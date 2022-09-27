@@ -66,6 +66,7 @@ has well as removing coordinators.
 | Collaborator       | An authenticated user that is part of a project. He is able to view the details of the project and be assigned tasks. His permissions within a project may vary.                                                 |
 | Coordinator        | An authenticated user that has the most permissions within a project. He can manage everything related to the project and give permissions to other collaborators. May also choose to appoint a new coordinator. |
 | Administrator      | A special type of authenticated user that is responsible for moderating the application. He is able to terminate user accounts and projects.                                                                     |
+
 *Table 1: Tu-Do actors description.*
 
 ### 2.2 User Stories
@@ -77,6 +78,7 @@ has well as removing coordinators.
 | US01           | Sign-in             | high         | As a Guest, I want to authenticate into the system, so that I can access privileged information.            |
 | US02           | Guest Sign-up       | high         | As a Guest, I want to register myself into the system, so that I can authenticate myself into the system.   |
 | US03           | Sign-in with Google | low          | As a Guest, I want to sign-in through my Google account, so that I can authenticate myself into the system. |
+
 *Table 2: Guest user stories*
 
 #### 2.2.2 User
@@ -87,6 +89,7 @@ has well as removing coordinators.
 | USXX           | See About               | Low-medium   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators.                        |
 | USXX           | Consult Services        | high         | As a User, I want to access the services information, so that I can see the website's service                                                |
 | USXX           | Accept Email Invitation | Medium-High  | As a User, I want to accept email invitations to projects, so that, if I accept, other users can add me to their projects as a collaborator. |
+
 *Table 3: User user stories*
 
 #### 2.2.3 Authenticated User
@@ -98,6 +101,7 @@ has well as removing coordinators.
 | USXX           | View projects               | high         | As an Authenticated User, I want to view all my active projects, so that I can have an overview and select one of them.                  |
 | USXX           | Project Invitation managing | medium       | As an Authenticated User, I want to manage my project invitations, so that I can accept/reject invitations according to my preferences.  |
 | USXX           | Logout                      | high         | As an Authenticated User, I want to Logout of the system, so that my session terminates and no one can have access during my absence.    |
+
 *Table 4: Authenticated User user stories*
 
 #### 2.2.4 Collaborator
@@ -118,6 +122,7 @@ has well as removing coordinators.
 | USXX           | Post Messages to Project Forum   | high         | As a Collaborator, I want to be able to post messages in the project forum, so that I can communicate my progress as well as sharing issues found and helping others.       |
 | USXX           | View Team Project                | medium       | As a Collaborator, I want to be able to view the team project, so that I can easily find the team members and information about them.                                       |
 | USXX           | Browse the Project Message Forum | medium       | As a Collaborator, I want to be able to browse messages on the project forum, so that I can  find them easily.                                                              |
+
 *Table 5: Collaborator user stories*
 
 #### 2.2.5 Coordinator
@@ -132,6 +137,7 @@ has well as removing coordinators.
 | USXX           | Archive Projects           | high         | As a Coordinator, I want to Archive projects, so that I can discard/abandon certain projects.                                                                |
 | USXX           | Manage members Permissions | low-medium   | As a Coordinator, I want to Manage members' permissions, so that members acquire/lose certain controls.                                                      |
 | USXX           | Invite to Project via email | high         | As a Coordinator, I want to invite new users to projects, so that I can add people that still aren’t users and to alert current users about the new project. |
+
 *Table 6: Coordinator user stories*
 
 ### 2.3 Supplementary Requirements
@@ -153,6 +159,7 @@ has well as removing coordinators.
 | TR07           | Robustness      | The system must be prepared to handle and continue operating when runtime errors occur                                                                                                                                                                                                                          |
 | TR08           | Ethics          | The system must respect the ethical principles in software development (for example, personal user details, or usage data, should not be collected nor shared without full acknowledgement and authorization from its owner)                                                                                    |
 | TR09           | Performance     | The system should have response times shorter than 2 seconds to ensure the user's attention                                                                                                                                                                                                                     |
+
 *Table 8: Tu-Do technical requirements*
 
 #### 2.3.3 Restrictions
@@ -162,6 +169,7 @@ has well as removing coordinators.
 | C01            | Deadline     | The system must be fully functional by the end of the semester                                                                                                                                                                                                                                                                               |
 | C02            | Team Limit   | The system must be developed using only the same team of 4 software developers                                                                                                                                                                                                                                                               |
 | C03            | Technologies | The developer team is restricted in the technologies they are allowed to use. They must use HTML, CSS and JavaScript as client languages, PHP for server-side programming, PostgreSQL as the DBMS, Laravel as the server framework, Docker as the virtualization environment, NGINX as the web server, and Git as the version control system |
+
 *Table 9: Tu-Do technical requirements*
 
 ---
