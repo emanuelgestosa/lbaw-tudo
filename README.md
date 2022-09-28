@@ -2,10 +2,10 @@
 
 ## Project Components
 
-* [ER: Requirements Specification](er)
-* [EBD: Database Specification](ebd)
-* [EAP: Architecture Specification and Prototype](eap)
-* [PA: Product and Presentation](pa)
+* [ER: Requirements Specification](docs/er.md)
+* [EBD: Database Specification](docs/ebd)
+* [EAP: Architecture Specification and Prototype](docs/eap)
+* [PA: Product and Presentation](docs/pa)
 
 ## Team
 
