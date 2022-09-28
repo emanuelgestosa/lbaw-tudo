@@ -2,21 +2,21 @@
 
 ## A1: Tu-Do
 
-    The Tu-Do system is being designed by a small college team group as a product targeted at users that want to organize/manage their projects.
-    The main goal of the project is the development of a web-based information system for managing projects [with and without a team]. From organizing house chores to managing software development, Tu-Do aims to provide a complete, yet easy and interactive environment. This is a tool that can be used for both personal use and by teams.
-    Users are separated into groups with different permissions: Guests, Authenticated Users, Collaborators, Coordinators and Project Owners.
-    When a user has not yet created an account it is called a Guest. Guests can still be invited by email to participate on a project.
-    A user who has an account is called an Authenticated User, it can be also invited to participate in projects as well as creating and viewing their own. They also have the ability to mark projects as their favorite.
-    A Collaborator is an Authenticated User who is participating on someone else’s project.  Collaborators can create and manage tasks (by due date, priority, using labels…), assign users to them as well as searching for them, commenting on them, viewing their details and marking them as completed. They should also be able to leave a project and to view the project team and its members’ profiles.
-    Additionally, a Coordinator is a Collaborator with special permissions to invite/remove users into/from the project and delete tasks created by others as well as assigning members to them, editing project details and assigning a new coordinator . Finally, a Project Owner has ownership over the project, having the ability to delete the project as well as removing Coordinators. (adm??)
+&nbsp;&nbsp;&nbsp;&nbsp;The Tu-Do system is being designed by a small college team group as a product targeted at users that want to organize/manage their projects. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;The main goal of the project is the development of a web-based information system for managing projects [with and without a team]. From organizing house chores to managing software development, Tu-Do aims to provide a complete, yet easy and interactive environment. This is a tool that can be used for both personal use and by teams. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;Users are separated into groups with different permissions: Guests, Authenticated Users, Collaborators, Coordinators and Project Owners. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;When a user has not yet created an account it is called a Guest. Guests can still be invited by email to participate on a project. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;A user who has an account is called an Authenticated User, it can be also invited to participate in projects as well as creating and viewing their own. They also have the ability to mark projects as their favorite. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;A Collaborator is an Authenticated User who is participating on someone else’s project.  Collaborators can create and manage tasks (by due date, priority, using labels…), assign users to them as well as searching for them, commenting on them, viewing their details and marking them as completed. They should also be able to leave a project and to view the project team and its members’ profiles. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;Additionally, a Coordinator is a Collaborator with special permissions to invite/remove users into/from the project and delete tasks created by others as well as assigning members to them, editing project details and assigning a new coordinator . Finally, a Project Owner has ownership over the project, having the ability to delete the project as well as removing Coordinators. (adm??)
 
 ## 2. A2: Actors and User stories
 
-> For the *Tu-Do* system, consider the user stories that are presented in the following sections.
+> For the *Tu-Do* system, consider the actors and user stories that are presented in the following sections.
 
 ### 2.1 Actors
 
-![Actors diagram] (NEED TO ADD IMAGE)
+![Actors diagram](NEED TO ADD IMAGE)
 *Figure 1: Tu-Do actors.*
 
 | **Identifier**     | **Description**                                                                                                                                                                                                  |
@@ -67,7 +67,7 @@
 | US15           | Delete Account              | high         | Only an Admin can reactivate a project.                                                                                                   |
 | US16           | Visit/Edit user profile     | high         | Administrator accounts are independent of the user accounts. They cannot create or participate in projects.                               |
 | US17           | Project Invitation managing | medium       | Tasks with a label from the notifiable category should send a notification/email some time before that tasks’ due date                    |
-| US18           | Favorite Projects           | low          |                                                                                                                                           |
+| US18           | Favorite Projects           | low          | As an Authenticated User, I want to favorite certain projects, so that I can have faster access to them.                                                                                                                                          |
 
 *Table 4: Authenticated User user stories*
 
@@ -116,9 +116,7 @@
 | US43           | Accept user           | high          |  As an Administrator, I want to accept the registration of a new system user, so that he can access restricted content                                |
 | US44           | View projects               | high         | As an Authenticated User, I want to view all my active projects, so that I can have an overview and select one of them.                  |
 | US45           | Ban user | high       |  As an Administrator, I want to ban a user from the system, so that he can no longer access restricted contents of the site |
-| US46           | Manage FAQs | medium | As an Administrator, I want to manage
-the questions on the FAQ page, so that they can better answers the common
-questions that our users have. |
+| US46           | Manage FAQs | medium | As an Administrator, I want to manage the questions on the FAQ page, so that they can better answers the common questions that our users have. |
 
 *Table 7: Administrator user stories*
 
@@ -144,14 +142,14 @@ questions that our users have. |
 | **Identifier** | **Name**        | **Description**                                                                                                                                                                                                                                                                                                 |
 |----------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | TR01           | Availability    | The system downtime must not add up to more than 1 day per year                                                                                                                                                                                                                                                 |
-| TR02           | Accessibility   | The system must be easily accessible to everyone, independently of their web browser or disabilities                                                                                                                                                                                                            |
+| TR02           | Accessibility   | The system must be easily accessible to everyone, independently of their web browser , device or disabilities                                                                                                                                                                                                            |
 | TR03           | Customizability | It is of the utmost importance that our users can customize the system to their needs.  The system is meant to be used by a wide range of people, from just an individual making his grocery list to a large company with dozens of projects and hundreds of employees.                                         |
-| TR04           | Web Application | The system should be implemented as a web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP). Due to all the possible different technological backgrounds of our users, our system should be easy to get started with, without the need for installing specific software or specialized hardware. |
+| TR04           | Web Application | The system should be implemented as a web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP). Due to all the possible different technological backgrounds of our users, our system should be easy to get started with, without the need for installing specific software or specialized hardware. (Low entry barrier) |
 | TR05           | Security        | The system must protect information from unauthorized access through the use of an authentication and verification system, as well as prevent common attack vectors (XSS, Man-In-The-Middle, CSRF, etc)                                                                                                         |
 | TR06           | Scalability     | The system must be prepared to deal with the growth in the number of users and their actions                                                                                                                                                                                                                    |
 | TR07           | Robustness      | The system must be prepared to handle and continue operating when runtime errors occur                                                                                                                                                                                                                          |
 | TR08           | Ethics          | The system must respect the ethical principles in software development (for example, personal user details, or usage data, should not be collected nor shared without full acknowledgement and authorization from its owner)                                                                                    |
-| TR09           | Performance     | The system should have response times shorter than 2 seconds to ensure the user's attention                                                                                                                                                                                                                     |
+| TR09           | Performance     | The system should have response times shorter than 2 seconds to ensure the user's attention and live feedback                                                                                                                                                                                                            |
 
 *Table 9: Tu-Do technical requirements*
 
