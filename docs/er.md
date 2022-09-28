@@ -17,6 +17,7 @@
 ### 2.1 Actors
 
 ![Actors diagram](actors_diagram.png)
+
 *Figure 1: Tu-Do actors.*
 
 | **Identifier**     | **Description**                                                                                                                                                                                                  |
