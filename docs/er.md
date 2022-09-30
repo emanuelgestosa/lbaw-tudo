@@ -8,7 +8,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;When a user has not yet created an account it is called a Guest. Guests can still be invited by email to participate on a project, but will be required to create an account in order to have access to the project. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;A user who has an account is called an Authenticated User, it can be also invited to participate in projects as well as creating and viewing their own. They also have the ability to mark projects as their favorite. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;A Collaborator is an Authenticated User who is participating on a project.  Collaborators can create and manage tasks (by due date, priority, using labels…), assign users to them as well as searching for them, commenting on them, viewing their details and marking them as completed. They should also be able to leave a project and to view the project team and its members’ profiles. A Collaborator may also have more permissions within a project, depending on the role assigned to him by the Coordinator. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;Additionally, a Coordinator is a Collaborator with special permissions to invite/remove users into/from the project and delete tasks created by others as well as assigning members to them, editing project details and assigning a new coordinator. He may also choose to archive the project. 
+&nbsp;&nbsp;&nbsp;&nbsp;Additionally, a Coordinator is a Collaborator with special permissions to invite/remove users into/from the project and delete tasks created by others as well as assigning members to them, editing project details and assigning a new coordinator. He may also choose to archive the project. <br> 
 &nbsp;&nbsp;&nbsp;&nbsp;Finally, there is a special type of account meant to be used for administration and moderation of the platform: the Administrator.
 
 ## 2. A2: Actors and User stories
@@ -104,7 +104,7 @@
 | US37           | Assign Tasks to Collaborators    | high         | As a Coordinator, I want to assign tasks to members, so that members know what tasks are their responsibility to complete.                             |
 | US38           | Remove Collaborators     | medium-high  | As a Coordinator, I want to be able to remove Coordinators, so that I can remove someone who is no longer part of the project.                                 |
 | US39           | Archive Projects           | high         | As a Coordinator, I want to archive projects, so that I can discard/abandon certain projects.                                                                |
-| US40           | Manage Collaborators' permissions | low-medium   | As a Coordinator, I want to manage members' permissions, so that members acquire/lose certain controls, according to their role in the project.       |
+| US40           | Manage Collaborators' permissions | low-medium   | As a Coordinator, I want to manage Collaborators' permissions, so that Collaborators acquire/lose certain controls, according to their role in the project.       |
 | US41           | Invite to Project via email | high         | As a Coordinator, I want to invite new users to projects, so that I can get more Collaborators participating in my project. |
 
 *Table 6: Coordinator user stories*
