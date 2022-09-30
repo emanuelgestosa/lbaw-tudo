@@ -4,11 +4,12 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;The Tu-Do system is being designed by a small college team group as a product targeted at users that want to organize/manage their projects. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;The main goal of the project is the development of a web-based information system for managing projects [with and without a team]. From organizing house chores to managing software development, Tu-Do aims to provide a complete, yet easy and interactive environment. This is a tool that can be used for both personal use and by teams. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;Users are separated into groups with different permissions: Guests, Authenticated Users, Collaborators, Coordinators and Project Owners. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;When a user has not yet created an account it is called a Guest. Guests can still be invited by email to participate on a project. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;Users are separated into groups with different permissions: Guests, Authenticated Users, Collaborators and Coordinators. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;When a user has not yet created an account it is called a Guest. Guests can still be invited by email to participate on a project, but will be required to create an account in order to have access to the project. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;A user who has an account is called an Authenticated User, it can be also invited to participate in projects as well as creating and viewing their own. They also have the ability to mark projects as their favorite. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;A Collaborator is an Authenticated User who is participating on someone else’s project.  Collaborators can create and manage tasks (by due date, priority, using labels…), assign users to them as well as searching for them, commenting on them, viewing their details and marking them as completed. They should also be able to leave a project and to view the project team and its members’ profiles. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;Additionally, a Coordinator is a Collaborator with special permissions to invite/remove users into/from the project and delete tasks created by others as well as assigning members to them, editing project details and assigning a new coordinator . Finally, a Project Owner has ownership over the project, having the ability to delete the project as well as removing Coordinators. (adm??)
+&nbsp;&nbsp;&nbsp;&nbsp;A Collaborator is an Authenticated User who is participating on a project.  Collaborators can create and manage tasks (by due date, priority, using labels…), assign users to them as well as searching for them, commenting on them, viewing their details and marking them as completed. They should also be able to leave a project and to view the project team and its members’ profiles. A Collaborator may also have more permissions within a project, depending on the role assigned to him by the Coordinator. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;Additionally, a Coordinator is a Collaborator with special permissions to invite/remove users into/from the project and delete tasks created by others as well as assigning members to them, editing project details and assigning a new coordinator. He may also choose to archive the project. 
+&nbsp;&nbsp;&nbsp;&nbsp;Finally, there is a special type of account meant to be used for administration and moderation of the platform: the Administrator.
 
 ## 2. A2: Actors and User stories
 
@@ -27,7 +28,7 @@
 | Authenticated User | A logged-in user that is able to create new projects and accept invites to existing ones.                                                                                                                        |
 | Collaborator       | An authenticated user that is part of a project. He is able to view the details of the project and be assigned tasks. His permissions within a project may vary.                                                 |
 | Coordinator        | An authenticated user that has the most permissions within a project. He can manage everything related to the project and give permissions to other collaborators. May also choose to appoint a new coordinator. |
-| Administrator      | A special type of authenticated user that is responsible for moderating the application. He is able to terminate user accounts and projects.                                                                     |
+| Administrator      | A special type of account that is responsible for moderating the platform. He is able to terminate user accounts and projects.                                                                                   |
 
 *Table 1: Tu-Do actors description.*
 
@@ -48,13 +49,12 @@
 
 | **Identifier** | **Name**                | **Priority** | **Description**                                                                                                                              |
 |----------------|-------------------------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| US05           | See Home                | high         | As a User, I want to access the home page, so that I can see a brief presentation of the website.                                            |
-| US06           | See About               | low-medium   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators.                        |
-| US07           | Consult Services        | high         | As a User, I want to access the services information, so that I can see the website's service                                                |
-| US08           | Accept Email Invitation | medium-High  | As a User, I want to accept email invitations to projects, so that, if I accept, other users can add me to their projects as a collaborator. |
-| US09           | Search | high  | As a User, I want to search the platform keywords, so that I can quickly find users and/or projects that I am looking for. |
-| US10           | See FAQ | low  | As a User, I want to see the FAQ page, so that I can get answers to common questions that I might have. |
-| US11           | See Contact Us | low  | As a User, I want to see the Contact Us page, so that I can know how to reach out to the owners of the website and its creators. |
+| US05           | See Home                | high         | As an User, I want to access the home page, so that I can see a brief presentation of the website.                                            |
+| US06           | See About               | low-medium   | As an User, I want to access the about page, so that I can see a complete description of the website and its creators.                        |
+| US08           | Accept Email Invitation | medium-high  | As an User, I want to accept email invitations to projects, so that, if I accept, other users can add me to their projects as a collaborator. |
+| US09           | Search | high  | As an User, I want to search the platform keywords, so that I can quickly find users and/or projects that I am looking for.                                           |
+| US10           | See FAQ | low  | As an User, I want to see the FAQ page, so that I can get answers to common questions that I might have.                                                              |
+| US11           | See Contact Us | low  | As an User, I want to see the Contact Us page, so that I can know how to reach out to the owners of the website and its creators.                              |
 
 *Table 3: User user stories*
 
@@ -81,14 +81,14 @@
 | US21           | Task Deletion                    | medium-high  | As a Collaborator, I want to be able to delete tasks, so that I can focus on the most important tasks.                                                                      |
 | US22           | Comment on a task                | medium       | As a Collaborator, I want to be able to comment on tasks, so that I can expose its progress and share useful information about it.                                          |
 | US23           | Assign users to task             | medium       | As a Collaborator, I want to have the ability to assign users to a task, so that everyone knows what it’s their responsibility.                                             |
-| US24           | Consult Contacts                 | high         | As a Collaborator, I want to access the project members' contacts, so that I can come in touch with the team.                                                               |
+| US24           | Consult Contacts                 | high         | As a Collaborator, I want to access the project members' contacts, so that I can get in touch with the team.                                                               |
 | US25           | View Task Details                | medium       | As a Collaborator, I want to be able to view the details of each task, so that I can have access to details such as due time, priority, etc.                                |
-| US26           | View Project Details             | medium       | As a Collaborator, I want to be able to view the details of the project I’m in, so that I can have access to details such as the current project coordinators/collaborators, project description and others. |
+| US26           | View Project Details             | medium       | As a Collaborator, I want to be able to view the details of the project I’m in, so that I can have access to details such as the current project coordinators/collaborator, project description and others. |
 | US27           | Task Completion                  | high         | As a Collaborator, I want to be able to mark a task as completed, so that it’s known that it is already done.                                                               |
 | US28           | Leave Project                    | high         | As a Collaborator, I want to be able to exit the project, so that I can better organize my chores excluding projects that I am no longer participating in.                  |
 | US29           | View Team Members Profile        | medium       | As a Collaborator, I want to be able to view the team members' profiles, so that I can have access to information such as their contacts and therefore easily contact them. |
 | US30           | Search Tasks                     | high         | As a Collaborator, I want to have the ability to search tasks so that I can quickly find tasks by their name, labels, due date or members assigned.                         |
-| US31           | Post Messages to Project Forum   | high         | As a Collaborator, I want to be able to post messages in the project forum, so that I can communicate my progress as well as sharing issues found and helping others.       |
+| US31           | Post Messages to Project Forum   | high         | As a Collaborator, I want to be able to post messages in the project forum, so that I can communicate my progress as well as share issues found and help others.       |
 | US32           | View Team Project                | medium       | As a Collaborator, I want to be able to view the team project, so that I can easily find the team members and information about them.                                       |
 | US33           | Browse the Project Message Forum | medium       | As a Collaborator, I want to be able to browse messages on the project forum, so that I can  find them easily.                                                              |
 
@@ -98,26 +98,26 @@
 
 | **Identifier** | **Name**                   | **Priority** | **Description**                                                                                                                                              |
 |----------------|----------------------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| US34           | Add Users to Project       | high         | As a Coordinator, I want to be able to add users to my project, so that they become collaborators.                                                          |
-| US35           | Assign new coordinators    | medium-high  | As a Coordinator, I want to assign project collaborators as coordinators, so that they can help with project coordination.                                   |
+| US34           | Add Users to Project       | high         | As a Coordinator, I want to be able to add users to my project, so that they become collaborators.                                                           |
+| US35           | Assign a new Coordinator    | medium-high  | As a Coordinator, I want to be able to assign a project collaborator as coordinator, so that I can give my role to someone who is better suited.            |
 | US36           | Edit Project Details       | medium       | As a Coordinator, I want to be able to edit project details, so that I can change previously defined aspects of the project.                                 |
-| US37           | Assign Tasks to Members    | high         | As a Coordinator, I want to assign tasks to members, so that members know what tasks are their responsibility to complete.                                   |
-| US38           | Remove project members     | medium-high  | As a Coordinator, I want to remove project members, so that I can manage the project members.                                                                |
-| US39           | Archive Projects           | high         | As a Coordinator, I want to Archive projects, so that I can discard/abandon certain projects.                                                                |
-| US40           | Manage members Permissions | low-medium   | As a Coordinator, I want to Manage members' permissions, so that members acquire/lose certain controls.                                                      |
-| US41           | Invite to Project via email | high         | As a Coordinator, I want to invite new users to projects, so that I can add people that still aren’t users and to alert current users about the new project. |
+| US37           | Assign Tasks to Collaborators    | high         | As a Coordinator, I want to assign tasks to members, so that members know what tasks are their responsibility to complete.                             |
+| US38           | Remove Collaborators     | medium-high  | As a Coordinator, I want to be able to remove Coordinators, so that I can remove someone who is no longer part of the project.                                 |
+| US39           | Archive Projects           | high         | As a Coordinator, I want to archive projects, so that I can discard/abandon certain projects.                                                                |
+| US40           | Manage Collaborators' permissions | low-medium   | As a Coordinator, I want to manage members' permissions, so that members acquire/lose certain controls, according to their role in the project.       |
+| US41           | Invite to Project via email | high         | As a Coordinator, I want to invite new users to projects, so that I can get more Collaborators participating in my project. |
 
 *Table 6: Coordinator user stories*
 
 #### 2.2.6 Administrator 
 
-| **Identifier** | **Name**                    | **Priority** | **Description**                                                                                                                          |
-|----------------|-----------------------------|--------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| US42           | Remove comments | high         | As an Administrator, I want to remove a comment, so that I can remove inappropriate content |
-| US43           | Accept user           | high          |  As an Administrator, I want to accept the registration of a new system user, so that he can access restricted content                                |
-| US44           | View projects               | high         | As an Authenticated User, I want to view all my active projects, so that I can have an overview and select one of them.                  |
-| US45           | Ban user | high       |  As an Administrator, I want to ban a user from the system, so that he can no longer access restricted contents of the site |
-| US46           | Manage FAQs | medium | As an Administrator, I want to manage the questions on the FAQ page, so that they can better answers the common questions that our users have. |
+| **Identifier** | **Name**          | **Priority** | **Description**                                                                                                                             |
+|----------------|-------------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| US42           | Accept user       | high         | As an Administrator, I want to accept the registration of a new system user, so that he can access restricted content.                      |
+| US43           | Ban user          | high         | As an Administrator, I want to ban a user from the system, so that he can no longer access restricted contents of the site.                 |
+| US44           | Browse projects   | high         | As an Administrator, I want to browse all projects, so that I can access any project.                                                       |
+| US45           | Remove comments   | high         | As an Administrator, I want to remove a comment, so that I can remove inappropriate content.                                                |
+| US46           | Unfreeze projects | medium       | As an Administrator, I want to be able to unfreeze a project, so that if its Coordinator deleted his account, his project can be recovered. |
 
 *Table 7: Administrator user stories*
 
@@ -128,13 +128,11 @@
 #### 2.3.1 Business rules
 
 | **Identifier** | **Name**                    | **Description**                                                                                                                           |
-|----------------|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| BR01           | Deleted Account             | The system shouldn’t delete all of a user’s information, it should keep its participation (comments,posts,tasks done) in shared projects. |
-| BR02           | Ownership of a Project      | Only the owner of a project can delete his project and the ownership of a project can be passed to another user                           |
-| BR03           | Deleted Owner               | If a owner of a project deletes his account without giving up ownership of his projects, his projects will become frozen.                 |
-| BR04           | Reinstating Frozen Projects | Only an Admin can reactivate a project.                                                                                                   |
-| BR05           | Administrator accounts      | Administrator accounts are independent of the user accounts. They cannot create or participate in projects.                               |
-| BR06           | Notifiable Tasks            | Tasks with a label from the notifiable category should send a notification/email some time before that tasks’ due date                    |
+|----------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| BR01           | Deleted Account             | The system shouldn’t delete all of a user’s information, it should keep its participation (comments,posts,tasks done) in shared projects.          |
+| BR02           | Deleted Coordinator         | If a project's Coordinator deletes his account without first setting a new Coordinator, his projects will become frozen, instead of being deleted. |
+| BR03           | Administrator accounts      | Administrator accounts are independent of the user accounts. They cannot create or participate in projects.                                        |
+| BR04           | Notifiable Tasks            | Tasks with a label from the notifiable category should send a notification/email some time before that tasks’ due date                             |
 
 *Table 8: Tu-Do business rules*
 
