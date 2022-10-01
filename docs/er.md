@@ -60,15 +60,15 @@
 
 #### 2.2.3 Authenticated User
 
-| **Identifier** | **Name**                    | **Priority** | **Description**                                                                                                                           |
-|----------------|-----------------------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| US12           | Project Creation            | high         | The system shouldn’t delete all of a user’s information, it should keep its participation (comments,posts,tasks done) in shared projects. |
-| US13           | Logout                      | high         | Only the owner of a project can delete his project and the ownership of a project can be passed to another user                           |
-| US14           | View projects               | high         | If a owner of a project deletes his account without giving up ownership of his projects, his projects will become frozen.                 |
-| US15           | Delete Account              | high         | Only an Admin can reactivate a project.                                                                                                   |
-| US16           | Visit/Edit user profile     | high         | Administrator accounts are independent of the user accounts. They cannot create or participate in projects.                               |
-| US17           | Project Invitation managing | medium       | Tasks with a label from the notifiable category should send a notification/email some time before that tasks’ due date                    |
-| US18           | Favorite Projects           | low          | As an Authenticated User, I want to favorite certain projects, so that I can have faster access to them.                                                                                                                                          |
+| **Identifier** | **Name**                    | **Priority** | **Description**                                                                                                                              |
+|----------------|-----------------------------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| US12           | Project Creation            | high         | As an Authenticated User, I want to be able to create a project, so that I can define tasks needed to accomplish it and centralize them.     |
+| US13           | Logout                      | high         | As an Authenticated User, I want to Logout of the system, so that my session terminates, and no one can have access to It during my absence. |
+| US14           | View projects               | high         | As an Authenticated User, I want to view all my active projects, so that I can have an overview and select one of them.                      |
+| US15           | Delete Account              | high         | As an Authenticated User, I want to delete my account, so that my account abandons the system.                                               |
+| US16           | Visit/Edit user profile     | high         | As an Authenticated User, I want to visit and edit my user profile, so that I can see my user profile details and change them as I desire.   |
+| US17           | Project Invitation managing | medium       | As an Authenticated User, I want to manage my project invitations, so that I can accept/reject invitations according to my preferences.      |
+| US18           | Favorite Projects           | low          | As an Authenticated User, I want to favorite certain projects, so that I can have faster access to them.                                     |
 
 *Table 4: Authenticated User user stories*
 
