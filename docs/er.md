@@ -141,7 +141,7 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
   <tr><td>US56  </td><td>Add/create new Board columns  </td><td>medium  </td><td>As a Coordinator, I want to be able to add new columns to the board, so that other members can use them to organize tasks. </td></tr>
   <tr><td>US57  </td><td>Set completed tasks column  </td><td>medium  </td><td>As a Coordinator, I want to set a column to be the column for completed tasks, so that the team can easily keep track of all completed tasks. </td></tr>
   <tr><td>US58  </td><td>Manage Collaborators' permissions  </td><td>low</td><td>As a Coordinator, I want to manage Collaborators' permissions, so that Collaborators acquire/lose certain controls, according to their role in the project. </td></tr>
-  <tr><td>US59  </td><td>Invite to Project via email  </td><td>low  </td><td>As a Coordinator, I want to invite new users to projects, so that I can get more Collaborators participating in my project. </td></tr>
+  <tr><td>US59  </td><td>Invite to Project via email  </td><td>low  </td><td>As a Coordinator, I want to invite users to projects via email, so that I can send invites in an way that might be more convenient. </td></tr>
   <tr><td>US60  </td><td>Create Board  </td><td>low  </td><td>As a Coordinator, I want to be able to create boards with different departments, so that the project can be better organized. </td></tr>
   <tr><td>US61  </td><td>Create new roles</td><td>low  </td><td>As a Coordinator, I want to create new roles with some set permissions, so that I can divide the Collaborators into different groups according to their role within the project. </td></tr>
   <tr><td>US62  </td><td>Atribute roles</td><td>low  </td><td>As a Coordinator, I want to atribute roles to Collaborators, so that they are given permissions according to their role in the project. </td></tr>
@@ -173,10 +173,11 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 
 | **Identifier** | **Name**                    | **Description**                                                                                                                           |
 |----------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| BR01           | Deleted Account             | The system shouldn’t delete all of a user’s information, it should keep its participation (comments,posts,tasks done) in shared projects.          |
+| BR01           | Deleted Account             | The system shouldn’t delete all of a user’s information, it should anonymously keep its participation (comments,posts,tasks done) in shared projects.          |
 | BR02           | Deleted Coordinator         | If a project's Coordinator deletes his account without first setting a new Coordinator, his projects will become frozen, instead of being deleted. |
 | BR03           | Administrator accounts      | Administrator accounts are independent of the user accounts. They cannot create or participate in projects.                                        |
 | BR04           | Notifiable Tasks            | Tasks with a label from the notifiable category should send a notification/email some time before that tasks’ due date                             |
+| BR05           | Self commenting            | It is allowed for a Collaborator to comment on tasks created by him. |
 
 *Table 8: Tu-Do business rules*
 
