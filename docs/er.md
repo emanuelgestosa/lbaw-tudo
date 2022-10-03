@@ -46,6 +46,8 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 
 ### 2.2 User Stories
 
+> Below, are presented user stories and the actors' specification. It is the project's requirements agile documentation that will help us in the developement of this project.
+
 #### 2.2.1 Guest
 
 <table>
@@ -72,8 +74,11 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
   <tr><td>US11  </td><td>Search Filters  </td><td>medium  </td><td>As an User, I want to have the ability to filter the contents that I see (by category, etc.),so that I can find the content easily.</td></tr>
   <tr><td>US12  </td><td>See Contacts  </td><td>medium  </td><td>As an User, I want to see the Contact Us page, so that I can know how to reach out to the owners of the website and its creators. </td></tr>
   <tr><td>US13  </td><td>Change to dark/light mode  </td><td>medium  </td><td>As an User, I want to be able to switch between dark and light mode, so that I can better adapt the website to my preferences. </td></tr>
-  <tr><td>US14  </td><td>Sort  </td><td>low  </td><td>As an User, I want to have the ability to sort search results, so that I can find content easily. </td></tr>
-  <tr><td>US15  </td><td>See FAQ  </td><td>low  </td><td>As an User, I want to see the FAQ page, so that I can get answers to common questions that I might have. </td></tr>
+  <tr><td>US14  </td><td>Placeholders in Form Inputs  </td><td>medium  </td><td>As an User, I want placeholders in my form inputs, so that some information might already be filled out by default. </td></tr>
+  <tr><td>US15  </td><td>Contextual Error Messages  </td><td>medium  </td><td>As an User, I want to see error messages, so that when something goes wrong I can get more details on what happened. </td></tr>
+  <tr><td>US16  </td><td>Contextual Help  </td><td>medium  </td><td>As an User, I want to see help messages, so that I can have guidance on some features. </td></tr>
+  <tr><td>US17  </td><td>Sort  </td><td>low  </td><td>As an User, I want to have the ability to sort search results, so that I can find content easily. </td></tr>
+  <tr><td>US18  </td><td>See FAQ  </td><td>low  </td><td>As an User, I want to see the FAQ page, so that I can get answers to common questions that I might have. </td></tr>
 </table>
 
 *Table 2: User user stories*
@@ -82,15 +87,15 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 
   <table>
   <tr><th>Identifier</th><th>Name</th><th>Priority</th><th>Description</th></tr>
-  <tr><td>US16  </td><td>Project Creation  </td><td>high  </td><td>As an Authenticated User, I want to be able to create a project, so that I can define tasks needed to accomplish it and centralize them. </td></tr>
-  <tr><td>US17  </td><td>Logout  </td><td>high  </td><td>As an Authenticated User, I want to Logout of the system, so that my session terminates, and no one can have access to It during my absence. </td></tr>
-  <tr><td>US18  </td><td>View my projects  </td><td>high  </td><td>As an Authenticated User, I want to view all my projects, so that I can have an overview and select one of them. </td></tr>
-  <tr><td>US19  </td><td>View profile  </td><td>high  </td><td>As an Authenticated User, I want to view my profile, so that I can see my profile details. </td></tr>
-  <tr><td>US20  </td><td>Edit profile  </td><td>high  </td><td>As an Authenticated User, I want to edit my user profile, so that I can change my details as I desire or update them. </td></tr>
-  <tr><td>US21  </td><td>Delete Account  </td><td>medium  </td><td>As an Authenticated User, I want to delete my account, so that my account abandons the system. </td></tr>
-  <tr><td>US22  </td><td>Support Profile Picture  </td><td>medium  </td><td>As an Authenticated User, I want to have the ability to change my profile picture, so that people that I am in a team with can recognize my face. </td></tr>
-  <tr><td>US23  </td><td>Favorite Projects  </td><td>medium  </td><td>As an Authenticated User, I want to favorite certain projects, so that I can have faster access to them. </td></tr>
-  <tr><td>US24  </td><td>Project Invitation managing  </td><td>low  </td><td>As an Authenticated User, I want to manage my project invitations, so that I can accept/reject invitations according to my preferences. </td></tr>
+  <tr><td>US19  </td><td>Project Creation  </td><td>high  </td><td>As an Authenticated User, I want to be able to create a project, so that I can define tasks needed to accomplish it and centralize them. </td></tr>
+  <tr><td>US20  </td><td>Logout  </td><td>high  </td><td>As an Authenticated User, I want to Logout of the system, so that my session terminates, and no one can have access to It during my absence. </td></tr>
+  <tr><td>US21  </td><td>View my projects  </td><td>high  </td><td>As an Authenticated User, I want to view all my projects, so that I can have an overview and select one of them. </td></tr>
+  <tr><td>US22  </td><td>View profile  </td><td>high  </td><td>As an Authenticated User, I want to view my profile, so that I can see my profile details. </td></tr>
+  <tr><td>US23  </td><td>Edit profile  </td><td>high  </td><td>As an Authenticated User, I want to edit my user profile, so that I can change my details as I desire or update them. </td></tr>
+  <tr><td>US24  </td><td>Delete Account  </td><td>medium  </td><td>As an Authenticated User, I want to delete my account, so that my account abandons the system. </td></tr>
+  <tr><td>US25  </td><td>Support Profile Picture  </td><td>medium  </td><td>As an Authenticated User, I want to have the ability to change my profile picture, so that people that I am in a team with can recognize my face. </td></tr>
+  <tr><td>US26  </td><td>Favorite Projects  </td><td>medium  </td><td>As an Authenticated User, I want to favorite certain projects, so that I can have faster access to them. </td></tr>
+  <tr><td>US27  </td><td>Project Invitation managing  </td><td>low  </td><td>As an Authenticated User, I want to manage my project invitations, so that I can accept/reject invitations according to my preferences. </td></tr>
 </table>
 
 *Table 3: Authenticated User user stories*
@@ -99,29 +104,29 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 
 <table>
   <tr><th>Identifier</th><th>Name</th><th>Priority</th><th>Description</th></tr>
-  <tr><td>US25  </td><td>Task Creation  </td><td>high  </td><td>As a Collaborator, I want to be able to create tasks, so that I can contribute to the organization of the project. </td></tr>
-  <tr><td>US26  </td><td>Task Management  </td><td>high  </td><td>As a Collaborator, I want to be able to manage tasks and change some aspects like their priority, due date and other labels, so that I can better organize them. </td></tr>
-  <tr><td>US27  </td><td>View Task Details  </td><td>high  </td><td>As a Collaborator, I want to be able to view the details of each task, so that I can have access to details such as due time, priority, etc. </td></tr>
-  <tr><td>US28  </td><td>Task Completion  </td><td>high  </td><td>As a Collaborator, I want to be able to mark an assigned task as completed, so that it's known that it is already done. </td></tr>
-  <tr><td>US29  </td><td>Search Tasks  </td><td>high  </td><td>As a Collaborator, I want to have the ability to search tasks so that I can quickly find tasks by their name, labels, due date or members assigned. </td></tr>
-  <tr><td>US30  </td><td>Task Deletion  </td><td>medium  </td><td>As a Collaborator, I want to be able to delete tasks that I created, so that I can focus on the most important tasks. </td></tr>
-  <tr><td>US31  </td><td>Comment on a task  </td><td>medium  </td><td>As a Collaborator, I want to be able to comment on tasks, so that I can expose its progress and share useful information about it. </td></tr>
-  <tr><td>US32  </td><td>Assign users to task  </td><td>medium  </td><td>As a Collaborator, I want to have the ability to assign users to a task, so that everyone knows what it's their responsibility. </td></tr>
-  <tr><td>US33  </td><td>View Board Columns  </td><td>medium  </td><td>As a Collaborator, I want to view the columns on each board, so that I can better locate taks by their category (column).</td></tr>
-  <tr><td>US34  </td><td>Change tasks' column  </td><td>medium  </td><td>As a Collaborator, I want to move a task to any existing column, so that I can make sure that the tasks are always in their most adequate category. </td></tr>
-  <tr><td>US35  </td><td>Notification on Coordinator change  </td><td>medium  </td><td>As a Collaborator, I want to be notified when the Coordinator of the project changes, so that I can always be aware of who is currently the head of the project. </td></tr>
-  <tr><td>US36  </td><td>Notification on task assignment  </td><td>medium  </td><td>As a Collaborator, I want to be notified when I am assigned to a task, so that I can immediately know when I have been delegated some work. </td></tr>
-  <tr><td>US37  </td><td>Notification on task completion  </td><td>medium  </td><td>As a Collaborator, I want to be notified when a task I was assigned to is completed, so that I know that I no longer need to work in that task. </td></tr>
-  <tr><td>US38  </td><td>Leave Project  </td><td>medium  </td><td>As a Collaborator, I want to be able to exit the project, so that I can better organize my chores excluding projects that I am no longer participating in. </td></tr>
-  <tr><td>US39  </td><td>View Team Members Profile  </td><td>medium  </td><td>As a Collaborator, I want to be able to view the team members' profiles, so that I can have access to information such as their contacts and therefore easily contact them.</td></tr>
-  <tr><td>US40  </td><td>View Project Team  </td><td>medium  </td><td>As a Collaborator, I want to be able to see the team on a project I am enrolled in, so that I can find their contacts and contact them. </td></tr>
-  <tr><td>US41  </td><td>Post Messages to Project Forum  </td><td>low  </td><td>As a Collaborator, I want to be able to post messages in the project forum, so that I can communicate my progress as well as share issues found and help others. </td></tr>
-  <tr><td>US42  </td><td>Browse the Project Message Forum  </td><td>low  </td><td>As a Collaborator, I want to be able to browse messages on the project forum, so that I can find them easily. </td></tr>
-  <tr><td>US43  </td><td>View Project Timeline  </td><td>low  </td><td>As a Collaborator, I want to see the project timeline, so that I can see the due dates and better organize my time. </td></tr>
-  <tr><td>US44  </td><td>Edit Post  </td><td>low  </td><td>As a Collaborator, I want to have the ability to edit a post I created, so that I can update it or fix typos. </td></tr>
-  <tr><td>US45  </td><td>Delete Post  </td><td>low  </td><td>As a Collaborator, I want to be able to delete a post I created so that I can delete something that is no longer relevant. </td></tr>
-  <tr><td>US46  </td><td>View Board  </td><td>low  </td><td>As a Collaborator, I want to be able to view the different boards in a project I am in, so that the tasks in the project can be better organized. </td></tr>
-  <tr><td>US47  </td><td>View Project Details  </td><td>low  </td><td>As a Collaborator, I want to be able to view the details of the project I'm in, so that I can have access to details such as the current project coordinators/collaborator, project description and others. </td></tr>
+  <tr><td>US28  </td><td>Task Creation  </td><td>high  </td><td>As a Collaborator, I want to be able to create tasks, so that I can contribute to the organization of the project. </td></tr>
+  <tr><td>US29  </td><td>Task Management  </td><td>high  </td><td>As a Collaborator, I want to be able to manage tasks and change some aspects like their priority, due date and other labels, so that I can better organize them. </td></tr>
+  <tr><td>US30  </td><td>View Task Details  </td><td>high  </td><td>As a Collaborator, I want to be able to view the details of each task, so that I can have access to details such as due time, priority, etc. </td></tr>
+  <tr><td>US31  </td><td>Task Completion  </td><td>high  </td><td>As a Collaborator, I want to be able to mark an assigned task as completed, so that it's known that it is already done. </td></tr>
+  <tr><td>US32  </td><td>Search Tasks  </td><td>high  </td><td>As a Collaborator, I want to have the ability to search tasks so that I can quickly find tasks by their name, labels, due date or members assigned. </td></tr>
+  <tr><td>US33  </td><td>Task Deletion  </td><td>medium  </td><td>As a Collaborator, I want to be able to delete tasks that I created, so that I can focus on the most important tasks. </td></tr>
+  <tr><td>US34  </td><td>Comment on a task  </td><td>medium  </td><td>As a Collaborator, I want to be able to comment on tasks, so that I can expose its progress and share useful information about it. </td></tr>
+  <tr><td>US35  </td><td>Assign users to task  </td><td>medium  </td><td>As a Collaborator, I want to have the ability to assign users to a task, so that everyone knows what it's their responsibility. </td></tr>
+  <tr><td>US36  </td><td>View Board Columns  </td><td>medium  </td><td>As a Collaborator, I want to view the columns on each board, so that I can better locate taks by their category (column).</td></tr>
+  <tr><td>US37  </td><td>Change tasks' column  </td><td>medium  </td><td>As a Collaborator, I want to move a task to any existing column, so that I can make sure that the tasks are always in their most adequate category. </td></tr>
+  <tr><td>US38  </td><td>Notification on Coordinator change  </td><td>medium  </td><td>As a Collaborator, I want to be notified when the Coordinator of the project changes, so that I can always be aware of who is currently the head of the project. </td></tr>
+  <tr><td>US39  </td><td>Notification on task assignment  </td><td>medium  </td><td>As a Collaborator, I want to be notified when I am assigned to a task, so that I can immediately know when I have been delegated some work. </td></tr>
+  <tr><td>US40  </td><td>Notification on task completion  </td><td>medium  </td><td>As a Collaborator, I want to be notified when a task I was assigned to is completed, so that I know that I no longer need to work in that task. </td></tr>
+  <tr><td>US41  </td><td>Leave Project  </td><td>medium  </td><td>As a Collaborator, I want to be able to exit the project, so that I can better organize my chores excluding projects that I am no longer participating in. </td></tr>
+  <tr><td>US42  </td><td>View Team Members Profile  </td><td>medium  </td><td>As a Collaborator, I want to be able to view the team members' profiles, so that I can have access to information such as their contacts and therefore easily contact them.</td></tr>
+  <tr><td>US43  </td><td>View Project Team  </td><td>medium  </td><td>As a Collaborator, I want to be able to see the team on a project I am enrolled in, so that I can find their contacts and contact them. </td></tr>
+  <tr><td>US44  </td><td>Post Messages to Project Forum  </td><td>low  </td><td>As a Collaborator, I want to be able to post messages in the project forum, so that I can communicate my progress as well as share issues found and help others. </td></tr>
+  <tr><td>US45  </td><td>Browse the Project Message Forum  </td><td>low  </td><td>As a Collaborator, I want to be able to browse messages on the project forum, so that I can find them easily. </td></tr>
+  <tr><td>US46  </td><td>View Project Timeline  </td><td>low  </td><td>As a Collaborator, I want to see the project timeline, so that I can see the due dates and better organize my time. </td></tr>
+  <tr><td>US47  </td><td>Edit Post  </td><td>low  </td><td>As a Collaborator, I want to have the ability to edit a post I created, so that I can update it or fix typos. </td></tr>
+  <tr><td>US48  </td><td>Delete Post  </td><td>low  </td><td>As a Collaborator, I want to be able to delete a post I created so that I can delete something that is no longer relevant. </td></tr>
+  <tr><td>US49  </td><td>View Board  </td><td>low  </td><td>As a Collaborator, I want to be able to view the different boards in a project I am in, so that the tasks in the project can be better organized. </td></tr>
+  <tr><td>US50  </td><td>View Project Details  </td><td>low  </td><td>As a Collaborator, I want to be able to view the details of the project I'm in, so that I can have access to details such as the current project coordinators/collaborator, project description and others. </td></tr>
 </table>
 
 *Table 4: Collaborator user stories*
@@ -130,21 +135,21 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 
 <table>
   <tr><th>Identifier</th><th>Name</th><th>Priority</th><th>Description</th></tr>
-  <tr><td>US48  </td><td>Add Users to Project  </td><td>high  </td><td>As a Coordinator, I want to be able to add users to my project, so that they become collaborators. </td></tr>
-  <tr><td>US49  </td><td>Assign a new Coordinator  </td><td>medium  </td><td>As a Coordinator, I want to be able to assign a project collaborator as coordinator, so that I can give my role to someone who is better suited. </td></tr>
-  <tr><td>US50  </td><td>Edit Project Details  </td><td>medium  </td><td>As a Coordinator, I want to be able to edit project details, so that I can change previously defined aspects of the project. </td></tr>
-  <tr><td>US51  </td><td>Assign Tasks to Collaborators  </td><td>medium  </td><td>As a Coordinator, I want to assign tasks to members, so that members know what tasks are their responsibility to complete. </td></tr>
-  <tr><td>US52  </td><td>Remove Collaborators  </td><td>medium  </td><td>As a Coordinator, I want to be able to remove Coordinators, so that I can remove someone who is no longer part of the project. </td></tr>
-  <tr><td>US53  </td><td>Archive Projects  </td><td>medium  </td><td>As a Coordinator, I want to archive projects, so that I can discard/abandon certain projects. </td></tr>
-  <tr><td>US54  </td><td>Notification on accepted invitation  </td><td>medium  </td><td>As a Coordinator, I want to be notified when someone accepts an invitation to join the project, so that I can immediately be aware of new Collaborators. </td></tr>
-  <tr><td>US55  </td><td>Notification on task completion  </td><td>medium  </td><td>As a Coordinator, I want to be notified when a task is completed, so that I can always be aware of the progress of my team. </td></tr>
-  <tr><td>US56  </td><td>Add/create new Board columns  </td><td>medium  </td><td>As a Coordinator, I want to be able to add new columns to the board, so that other members can use them to organize tasks. </td></tr>
-  <tr><td>US57  </td><td>Set completed tasks column  </td><td>medium  </td><td>As a Coordinator, I want to set a column to be the column for completed tasks, so that the team can easily keep track of all completed tasks. </td></tr>
-  <tr><td>US58  </td><td>Manage Collaborators' permissions  </td><td>low</td><td>As a Coordinator, I want to manage Collaborators' permissions, so that Collaborators acquire/lose certain controls, according to their role in the project. </td></tr>
-  <tr><td>US59  </td><td>Invite to Project via email  </td><td>low  </td><td>As a Coordinator, I want to invite users to projects via email, so that I can send invites in an way that might be more convenient. </td></tr>
-  <tr><td>US60  </td><td>Create Board  </td><td>low  </td><td>As a Coordinator, I want to be able to create boards with different departments, so that the project can be better organized. </td></tr>
-  <tr><td>US61  </td><td>Create new roles</td><td>low  </td><td>As a Coordinator, I want to create new roles with some set permissions, so that I can divide the Collaborators into different groups according to their role within the project. </td></tr>
-  <tr><td>US62  </td><td>Atribute roles</td><td>low  </td><td>As a Coordinator, I want to atribute roles to Collaborators, so that they are given permissions according to their role in the project. </td></tr>
+  <tr><td>US51  </td><td>Add Users to Project  </td><td>high  </td><td>As a Coordinator, I want to be able to add users to my project, so that they become collaborators. </td></tr>
+  <tr><td>US52  </td><td>Assign a new Coordinator  </td><td>medium  </td><td>As a Coordinator, I want to be able to assign a project collaborator as coordinator, so that I can give my role to someone who is better suited. </td></tr>
+  <tr><td>US53  </td><td>Edit Project Details  </td><td>medium  </td><td>As a Coordinator, I want to be able to edit project details, so that I can change previously defined aspects of the project. </td></tr>
+  <tr><td>US54  </td><td>Assign Tasks to Collaborators  </td><td>medium  </td><td>As a Coordinator, I want to assign tasks to members, so that members know what tasks are their responsibility to complete. </td></tr>
+  <tr><td>US55  </td><td>Remove Collaborators  </td><td>medium  </td><td>As a Coordinator, I want to be able to remove Coordinators, so that I can remove someone who is no longer part of the project. </td></tr>
+  <tr><td>US56  </td><td>Archive Projects  </td><td>medium  </td><td>As a Coordinator, I want to archive projects, so that I can discard/abandon certain projects. </td></tr>
+  <tr><td>US57  </td><td>Notification on accepted invitation  </td><td>medium  </td><td>As a Coordinator, I want to be notified when someone accepts an invitation to join the project, so that I can immediately be aware of new Collaborators. </td></tr>
+  <tr><td>US58  </td><td>Notification on task completion  </td><td>medium  </td><td>As a Coordinator, I want to be notified when a task is completed, so that I can always be aware of the progress of my team. </td></tr>
+  <tr><td>US59  </td><td>Add/create new Board columns  </td><td>medium  </td><td>As a Coordinator, I want to be able to add new columns to the board, so that other members can use them to organize tasks. </td></tr>
+  <tr><td>US60  </td><td>Set completed tasks column  </td><td>medium  </td><td>As a Coordinator, I want to set a column to be the column for completed tasks, so that the team can easily keep track of all completed tasks. </td></tr>
+  <tr><td>US61  </td><td>Manage Collaborators' permissions  </td><td>low</td><td>As a Coordinator, I want to manage Collaborators' permissions, so that Collaborators acquire/lose certain controls, according to their role in the project. </td></tr>
+  <tr><td>US62  </td><td>Invite to Project via email  </td><td>low  </td><td>As a Coordinator, I want to invite users to projects via email, so that I can send invites in an way that might be more convenient. </td></tr>
+  <tr><td>US63  </td><td>Create Board  </td><td>low  </td><td>As a Coordinator, I want to be able to create boards with different departments, so that the project can be better organized. </td></tr>
+  <tr><td>US64  </td><td>Create new roles</td><td>low  </td><td>As a Coordinator, I want to create new roles with some set permissions, so that I can divide the Collaborators into different groups according to their role within the project. </td></tr>
+  <tr><td>US65  </td><td>Atribute roles</td><td>low  </td><td>As a Coordinator, I want to atribute roles to Collaborators, so that they are given permissions according to their role in the project. </td></tr>
 </table>
 
 *Table 5: Coordinator user stories*
@@ -153,14 +158,14 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 
 <table>
   <tr><th>Identifier</th><th>Name</th><th>Priority</th><th>Description</th></tr>
-  <tr><td>US63  </td><td>Administer User Accounts  </td><td>high  </td><td>As an Administrator, I want to be able to create/edit/view and search user accounts, so that I can control/change all user accounts. </td></tr>
-  <tr><td>US64  </td><td>Delete user account  </td><td>medium  </td><td>As an Administrator, I want to delete a user from the system, so that his account no longer exists in the system. </td></tr>
-  <tr><td>US65  </td><td>Block/Unblock user accounts  </td><td>medium  </td><td>As an Administrator, I want to block/unblock a user from the system, so that I can control if the user can no longer access restricted contents of the site. </td></tr>
-  <tr><td>US66  </td><td>Browse projects  </td><td>medium  </td><td>As an Administrator, I want to browse all projects, so that I can access any project. </td></tr>
-  <tr><td>US67  </td><td>View project details  </td><td>medium  </td><td>As an Administrator, I want to view the details of any project, so I can better moderate the platform. </td></tr>
-  <tr><td>US68  </td><td>Remove comments  </td><td>low  </td><td>As an Administrator, I want to remove a comment, so that I can remove inappropriate content. </td></tr>
-  <tr><td>US69  </td><td>Unfreeze projects  </td><td>low  </td><td>As an Administrator, I want to be able to unfreeze a project, so that if its Coordinator deleted his account, his project can be recovered. </td></tr>
-  <tr><td>US70  </td><td>Accept user  </td><td>low  </td><td>As an Administrator, I want to accept the registration of a new system user, so that he can access restricted content. </td></tr>
+  <tr><td>US66  </td><td>Administer User Accounts  </td><td>high  </td><td>As an Administrator, I want to be able to create/edit/view and search user accounts, so that I can control/change all user accounts. </td></tr>
+  <tr><td>US67  </td><td>Delete user account  </td><td>medium  </td><td>As an Administrator, I want to delete a user from the system, so that his account no longer exists in the system. </td></tr>
+  <tr><td>US68  </td><td>Block/Unblock user accounts  </td><td>medium  </td><td>As an Administrator, I want to block/unblock a user from the system, so that I can control if the user can no longer access restricted contents of the site. </td></tr>
+  <tr><td>US69  </td><td>Browse projects  </td><td>medium  </td><td>As an Administrator, I want to browse all projects, so that I can access any project. </td></tr>
+  <tr><td>US70  </td><td>View project details  </td><td>medium  </td><td>As an Administrator, I want to view the details of any project, so I can better moderate the platform. </td></tr>
+  <tr><td>US71  </td><td>Remove comments  </td><td>low  </td><td>As an Administrator, I want to remove a comment, so that I can remove inappropriate content. </td></tr>
+  <tr><td>US72  </td><td>Unfreeze projects  </td><td>low  </td><td>As an Administrator, I want to be able to unfreeze a project, so that if its Coordinator deleted his account, his project can be recovered. </td></tr>
+  <tr><td>US73  </td><td>Accept user  </td><td>low  </td><td>As an Administrator, I want to accept the registration of a new system user, so that he can access restricted content. </td></tr>
 </table>
 
 *Table 6: Administrator user stories*
