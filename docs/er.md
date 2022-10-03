@@ -41,6 +41,7 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 | Collaborator       | An authenticated user that is part of a project. He is able to view the details of the project and be assigned tasks. His permissions within a project may vary.                                                 |
 | Coordinator        | An authenticated user that has the most permissions within a project. He can manage everything related to the project and give permissions to other collaborators. May also choose to appoint a new coordinator. |
 | Administrator      | A special type of account that is responsible for moderating the platform. He is able to terminate user accounts and projects.                                                                                   |
+| Sign-In API        | External Google API that allows registering or logging in to the system.       |
 
 *Table 1: Tu-Do actors description.*
 
