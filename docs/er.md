@@ -211,14 +211,24 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 
 ## A3: Information Architecture
 
-> Brief presentation of the artefact goals.
+This artefact contains a sitemap and some wireframes representing information about the system to be developed.
+The sitemap represents the main connections between the system's pages. 
+The wireframes represent the contents and features of some of the main pages.
 
 
 ### 1. Sitemap
 
-> Sitemap presenting the overall structure of the web application.  
-> Each page must be identified in the sitemap.  
-> Multiple instances of the same page (e.g. student profile in SIGARRA) are presented as page stacks.
+Sitemap presenting the overall structure of the Tu-Do's web application.  
+Multiple instances of the same page are presented as page stacks.
+
+The pages presented in the sitemap are:
+- Homepage;
+- Admin Pages (pages only available to the Administrators for the system's management);
+- User Pages (pages that are only available and specific to an Authenticated User);
+- Static Pages (pages that are the same for all users no matter the context);
+- Project Pages (pages specific to the projects);
+- Authentication Pages.
+
 
 ![Site Map](./sitemap.png)
 
