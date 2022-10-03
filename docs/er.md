@@ -17,7 +17,9 @@
 
 ### 2.1 Actors
 
-![Actors diagram](actors_diagram.png)
+<section style="display: flex;background-color:white;justify-content: center;padding:1em 0em;">
+    <img alt="Actors diagram" src="actors_diagram.png">
+</section>
 
 *Figure 1: Tu-Do actors.*
 
