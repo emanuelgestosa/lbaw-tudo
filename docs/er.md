@@ -113,6 +113,7 @@
   <tr><td>US47  </td><td>View Board Columns  </td><td>medium  </td><td>As a Collaborator, I want to view the columns on each board, so that I can better locate taks by their category (column).</td></tr>
   <tr><td>US48  </td><td>Change tasks' column  </td><td>medium  </td><td>As a Collaborator, I want to move a task to any existing column, so that I can make sure that the tasks are always in their most adequate category. </td></tr>
 </table>
+
 *Table 4: Collaborator user stories*
 
 #### 2.2.5 Coordinator
