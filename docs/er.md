@@ -52,9 +52,10 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
   <tr> <th>Identifier</th><th>Name</th><th>Priority</th><th>Description</th></tr>
   <tr><td>US01  </td><td>Sign-in  </td><td>high  </td><td>As a Guest, I want to authenticate into the system, so that I can access privileged information. </td></tr>
   <tr><td>US02  </td><td>Guest Sign-up  </td><td>high  </td><td>As a Guest, I want to register myself into the system, so that I can authenticate myself into the system. </td></tr>
-  <tr><td>US03  </td><td>Sign-in with Google</td><td>low  </td><td>As a Guest, I want to sign-in through my Google account, so that I can authenticate myself into the system. </td></tr>
-  <tr><td>US04  </td><td>Sign-up with Google</td><td>low  </td><td>As a Guest, I want to register a new account linked to my Google account, so that I do not need to create a whole new account to use the platform. </td></tr>
-  <tr><td>US05  </td><td>Recover Password</td><td>medium  </td><td>As a Guest, I want to recover my password, so that if it happens that I forget it I can still have access to the app. </td></tr>
+  <tr><td>US03  </td><td>Recover Password</td><td>medium  </td><td>As a Guest, I want to recover my password, so that if it happens that I forget it I can still have access to the app. </td></tr>
+  <tr><td>US04  </td><td>Sign-in with Google</td><td>low  </td><td>As a Guest, I want to sign-in through my Google account, so that I can authenticate myself into the system. </td></tr>
+  <tr><td>US05  </td><td>Sign-up with Google</td><td>low  </td><td>As a Guest, I want to register a new account linked to my Google account, so that I do not need to create a whole new account to use the platform. </td></tr>
+
 </table>
 
 *Table 1: Guest user stories*
@@ -64,15 +65,15 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 <table>
   <tr><th>Identifier</th><th>Name</th><th>Priority</th><th>Description</th></tr>
   <tr><td>US06  </td><td>See Home  </td><td>high  </td><td>As an User, I want to access the home page, so that I can see a brief presentation of the website. </td></tr>
-  <tr><td>US07  </td><td>See About Us  </td><td>medium  </td><td>As an User, I want to access the about page, so that I can see a complete description of the website and its creators. </td></tr>
-  <tr><td>US08  </td><td>See Main Features  </td><td>medium  </td><td>As an User, I want to have access to a page that lists the main features of the product, so that I know what use it can have for me. </td></tr>
-  <tr><td>US09  </td><td>Accept Email Invitation  </td><td>medium  </td><td>As an User, I want to accept email invitations to projects, so that, if I accept, other users can add me to their projects as a collaborator. </td></tr>
-  <tr><td>US10  </td><td>Search (full text and exact match) </td><td>high  </td><td>As an User, I want to search the platform keywords, so that I can quickly find users and/or projects that I am looking for. </td></tr>
+  <tr><td>US07  </td><td>Search (full text and exact match) </td><td>high  </td><td>As an User, I want to search the platform keywords, so that I can quickly find users and/or projects that I am looking for. </td></tr>
+  <tr><td>US08  </td><td>See About Us  </td><td>medium  </td><td>As an User, I want to access the about page, so that I can see a complete description of the website and its creators. </td></tr>
+  <tr><td>US09  </td><td>See Main Features  </td><td>medium  </td><td>As an User, I want to have access to a page that lists the main features of the product, so that I know what use it can have for me. </td></tr>
+  <tr><td>US10  </td><td>Accept Email Invitation  </td><td>medium  </td><td>As an User, I want to accept email invitations to projects, so that, if I accept, other users can add me to their projects as a collaborator. </td></tr>
   <tr><td>US11  </td><td>Search Filters  </td><td>medium  </td><td>As an User, I want to have the ability to filter the contents that I see (by category, etc.),so that I can find the content easily.</td></tr>
-  <tr><td>US12  </td><td>Sort  </td><td>low  </td><td>As an User, I want to have the ability to sort search results, so that I can find content easily. </td></tr>
-  <tr><td>US13  </td><td>See FAQ  </td><td>low  </td><td>As an User, I want to see the FAQ page, so that I can get answers to common questions that I might have. </td></tr>
-  <tr><td>US14  </td><td>See Contacts  </td><td>medium  </td><td>As an User, I want to see the Contact Us page, so that I can know how to reach out to the owners of the website and its creators. </td></tr>
-  <tr><td>US15  </td><td>Change to dark/light mode  </td><td>medium  </td><td>As an User, I want to be able to switch between dark and light mode, so that I can better adapt the website to my preferences. </td></tr>
+  <tr><td>US12  </td><td>See Contacts  </td><td>medium  </td><td>As an User, I want to see the Contact Us page, so that I can know how to reach out to the owners of the website and its creators. </td></tr>
+  <tr><td>US13  </td><td>Change to dark/light mode  </td><td>medium  </td><td>As an User, I want to be able to switch between dark and light mode, so that I can better adapt the website to my preferences. </td></tr>
+  <tr><td>US14  </td><td>Sort  </td><td>low  </td><td>As an User, I want to have the ability to sort search results, so that I can find content easily. </td></tr>
+  <tr><td>US15  </td><td>See FAQ  </td><td>low  </td><td>As an User, I want to see the FAQ page, so that I can get answers to common questions that I might have. </td></tr>
 </table>
 
 *Table 2: User user stories*
