@@ -2,14 +2,24 @@
 
 ## A1: Tu-Do
 
-&nbsp;&nbsp;&nbsp;&nbsp;The Tu-Do system is being designed by a small college team group as a product targeted at users that want to organize/manage their projects. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;The main goal of the project is the development of a web-based information system for managing projects [with and without a team]. From organizing house chores to managing software development, Tu-Do aims to provide a complete, yet easy and interactive environment. This is a tool that can be used for both personal use and by teams. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;Users are separated into groups with different permissions: Guests, Authenticated Users, Collaborators and Coordinators. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;When a user has not yet created an account it is called a Guest. Guests can still be invited by email to participate on a project, but will be required to create an account in order to have access to the project. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;A user who has an account is called an Authenticated User, it can be also invited to participate in projects as well as creating and viewing their own. They also have the ability to mark projects as their favorite. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;A Collaborator is an Authenticated User who is participating on a project.  Collaborators can create and manage tasks (by due date, priority, using labels…), assign users to them as well as searching for them, commenting on them, viewing their details and marking them as completed. They should also be able to leave a project and to view the project team and its members’ profiles. A Collaborator may also have more permissions within a project, depending on the role assigned to him by the Coordinator. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;Additionally, a Coordinator is a Collaborator with special permissions to invite/remove users into/from the project and delete tasks created by others as well as assigning members to them, editing project details and assigning a new coordinator. He may also choose to archive the project. <br> 
-&nbsp;&nbsp;&nbsp;&nbsp;Finally, there is a special type of account meant to be used for administration and moderation of the platform: the Administrator.
+###Motivation and Context
+As college students, we have to deal with various teams and work in different group projects along the semester. The due dates get overwhelming and a good planning of these projects is essential for a good semester.  For that reason, we decided to create Tu-Do. A web based information system where one could centralize and manage all their personal or team projects and communicate with their teams! Having access to a lot of features for the better organisation and division of work.
+
+###Goals and Objectives
+
+The main goal of Tu-Do is to give people a convenient way for managing projects, either working by themselves or with a team. From simple tasks like organizing house chores to complex ones like managing software development in a huge company, Tu-Do aims to provide a complete, yet easy and interactive environment to do so.
+
+###Features
+
+After setting up an account, either by your own initiative or by receiving an email invitation, Tu-Do allows its users to create new projects or to be invitied by someone else to an existing one. Once he is part of a project, the user will be able to access its boards, where he and his team (if there is one) share an intuitive interface for creating, managing and assigning tasks. This way the whole squad can easily keep track of what needs to be done, who should do it, along with other details, as well as seeing their progress by marking tasks as completed. <br>
+Since communication is essential to a project's success, we offer all members of a project a simple way to view information about the elements of his team, including their contacts, so the team can always stay in touch. <br>
+To keep the workflow in order, every team will have a coordinator responsible for inviting and removing members, assigning members to tasks, managing every detail about the project and its tasks and might even choose to step down and appoint a more capable coordinator. <br>
+Tu-Do helps its users stay organized by keeping all their projects easily accessable in their profile and allows them to mark them as favorite so they can stay focused on whats more important. It also provides a powerful search feature so our users can find any information they might be looking for. <br>
+Finally, Tu-Do is very keen on having a welcoming and clean platform, so our administrators are able to browse every project and view their details, to ensure nothing sketchy is going on, and will terminate user accounts that are disrespectul or offensive. <br>
+
+###Access Groups
+
+Tu-Do has 5 main types of users: *Guest* users, which have not authenticated themselves into the system will only have a very basic access to the platform. Once they register an account and log in, they become *Authenticated Users*. This type of user unlocks the ability to take part in projects and will have a profile of his own. When an user becomes part of a project they are called *Collaborators*, unlocking all the helpful project and task management features that Tu-Do provides. Every project will have a special type of Collaborator called the *Coordinator*. The Coordinator's job is, well, to coordinate! He is responsible for managing the project, its tasks, and its collaborators. Finally, there is a special type of account responsible for moderating the platform: the *Administrator*. The role is only given to a few trustworthy individuals and they are trusted to keep the platform as friendly as possible.
 
 ## 2. A2: Actors and User stories
 
