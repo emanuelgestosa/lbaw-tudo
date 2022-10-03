@@ -207,17 +207,41 @@
 > Each page must be identified in the sitemap.  
 > Multiple instances of the same page (e.g. student profile in SIGARRA) are presented as page stacks.
 
+![Site Map](./sitemap.png)
 
 ### 2. Wireframes
 
-> Wireframes for, at least, two main pages of the web application.
-> Do not include trivial use cases.
+#### UI: Home Page
 
+![Home Page](./homePage.png)
 
-#### UIxx: Page Name
+#### UI: User Projects
 
-#### UIxx: Page Name
+![View Projects Page](./myProjects.png)
 
+#### UI: Project
+
+![Project Page](./projectPage.png)
+
+#### UI: Board
+
+![Board Page](./boardPage.png)
+
+#### UI: User Profile
+
+![Profile Page](./profilePage.png)
+
+#### UI: Edit User Profile
+
+![Edit Profile Page](./editProfilePage.png)
+
+#### UI: Sign Up Page
+
+![Sign Up Page](./signUpPage.png)
+
+#### UI: Log In Page
+
+![Log In Page](./logInPage.png)
 
 ---
 
