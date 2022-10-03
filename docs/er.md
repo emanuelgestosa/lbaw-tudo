@@ -23,7 +23,7 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 
 ## 2. A2: Actors and User stories
 
-> For the *Tu-Do* system, consider the actors and user stories that are presented in the following sections.
+> Below, are presented user stories and the actors' specification. It is the project's requirements agile documentation that will help us in the developement of this project.
 
 ### 2.1 Actors
 
@@ -45,8 +45,6 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 *Table 1: Tu-Do actors description.*
 
 ### 2.2 User Stories
-
-> Below, are presented user stories and the actors' specification. It is the project's requirements agile documentation that will help us in the developement of this project.
 
 #### 2.2.1 Guest
 
