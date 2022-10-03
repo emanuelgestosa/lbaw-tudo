@@ -281,8 +281,9 @@ Changes made to the first submission:
 1. ...
 
 ***
-GROUP21gg, DD/MM/2021
+GROUP2215, 04/10/2022
 
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+* Emanuel Silva Gestosa, up202005485@edu.fe.up.pt (Editor)
+* José Leandro Rodrigues da Silva, up202008061@edu.fe.up.pt
+* Mariana Solange Monteiro Rocha, up202004656@edu.fe.up.pt
+* Martim Afonso Rodrigues dos Santos Castro Videira, up202006289@edu.fe.up.pt
