@@ -85,12 +85,12 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
   <tr><td>US16  </td><td>Project Creation  </td><td>high  </td><td>As an Authenticated User, I want to be able to create a project, so that I can define tasks needed to accomplish it and centralize them. </td></tr>
   <tr><td>US17  </td><td>Logout  </td><td>high  </td><td>As an Authenticated User, I want to Logout of the system, so that my session terminates, and no one can have access to It during my absence. </td></tr>
   <tr><td>US18  </td><td>View my projects  </td><td>high  </td><td>As an Authenticated User, I want to view all my projects, so that I can have an overview and select one of them. </td></tr>
-  <tr><td>US19  </td><td>Delete Account  </td><td>medium  </td><td>As an Authenticated User, I want to delete my account, so that my account abandons the system. </td></tr>
-  <tr><td>US20  </td><td>View profile  </td><td>high  </td><td>As an Authenticated User, I want to view my profile, so that I can see my profile details. </td></tr>
-  <tr><td>US21  </td><td>Edit profile  </td><td>high  </td><td>As an Authenticated User, I want to edit my user profile, so that I can change my details as I desire or update them. </td></tr>
+  <tr><td>US19  </td><td>View profile  </td><td>high  </td><td>As an Authenticated User, I want to view my profile, so that I can see my profile details. </td></tr>
+  <tr><td>US20  </td><td>Edit profile  </td><td>high  </td><td>As an Authenticated User, I want to edit my user profile, so that I can change my details as I desire or update them. </td></tr>
+  <tr><td>US21  </td><td>Delete Account  </td><td>medium  </td><td>As an Authenticated User, I want to delete my account, so that my account abandons the system. </td></tr>
   <tr><td>US22  </td><td>Support Profile Picture  </td><td>medium  </td><td>As an Authenticated User, I want to have the ability to change my profile picture, so that people that I am in a team with can recognize my face. </td></tr>
-  <tr><td>US23  </td><td>Project Invitation managing  </td><td>low  </td><td>As an Authenticated User, I want to manage my project invitations, so that I can accept/reject invitations according to my preferences. </td></tr>
-  <tr><td>US24  </td><td>Favorite Projects  </td><td>medium  </td><td>As an Authenticated User, I want to favorite certain projects, so that I can have faster access to them. </td></tr>
+  <tr><td>US23  </td><td>Favorite Projects  </td><td>medium  </td><td>As an Authenticated User, I want to favorite certain projects, so that I can have faster access to them. </td></tr>
+  <tr><td>US24  </td><td>Project Invitation managing  </td><td>low  </td><td>As an Authenticated User, I want to manage my project invitations, so that I can accept/reject invitations according to my preferences. </td></tr>
 </table>
 
 *Table 3: Authenticated User user stories*
@@ -136,13 +136,13 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
   <tr><td>US51  </td><td>Assign Tasks to Collaborators  </td><td>medium  </td><td>As a Coordinator, I want to assign tasks to members, so that members know what tasks are their responsibility to complete. </td></tr>
   <tr><td>US52  </td><td>Remove Collaborators  </td><td>medium  </td><td>As a Coordinator, I want to be able to remove Coordinators, so that I can remove someone who is no longer part of the project. </td></tr>
   <tr><td>US53  </td><td>Archive Projects  </td><td>medium  </td><td>As a Coordinator, I want to archive projects, so that I can discard/abandon certain projects. </td></tr>
-  <tr><td>US54  </td><td>Manage Collaborators' permissions  </td><td>low</td><td>As a Coordinator, I want to manage Collaborators' permissions, so that Collaborators acquire/lose certain controls, according to their role in the project. </td></tr>
-  <tr><td>US55  </td><td>Invite to Project via email  </td><td>low  </td><td>As a Coordinator, I want to invite new users to projects, so that I can get more Collaborators participating in my project. </td></tr>
-  <tr><td>US56  </td><td>Notification on accepted invitation  </td><td>medium  </td><td>As a Coordinator, I want to be notified when someone accepts an invitation to join the project, so that I can immediately be aware of new Collaborators. </td></tr>
-  <tr><td>US57  </td><td>Notification on task completion  </td><td>medium  </td><td>As a Coordinator, I want to be notified when a task is completed, so that I can always be aware of the progress of my team. </td></tr>
-  <tr><td>US58  </td><td>Create Board  </td><td>low  </td><td>As a Coordinator, I want to be able to create boards with different departments, so that the project can be better organized. </td></tr>
-  <tr><td>US59  </td><td>Add/create new Board columns  </td><td>medium  </td><td>As a Coordinator, I want to be able to add new columns to the board, so that other members can use them to organize tasks. </td></tr>
-  <tr><td>US60  </td><td>Set completed tasks column  </td><td>medium  </td><td>As a Coordinator, I want to set a column to be the column for completed tasks, so that the team can easily keep track of all completed tasks. </td></tr>
+  <tr><td>US54  </td><td>Notification on accepted invitation  </td><td>medium  </td><td>As a Coordinator, I want to be notified when someone accepts an invitation to join the project, so that I can immediately be aware of new Collaborators. </td></tr>
+  <tr><td>US55  </td><td>Notification on task completion  </td><td>medium  </td><td>As a Coordinator, I want to be notified when a task is completed, so that I can always be aware of the progress of my team. </td></tr>
+  <tr><td>US56  </td><td>Add/create new Board columns  </td><td>medium  </td><td>As a Coordinator, I want to be able to add new columns to the board, so that other members can use them to organize tasks. </td></tr>
+  <tr><td>US57  </td><td>Set completed tasks column  </td><td>medium  </td><td>As a Coordinator, I want to set a column to be the column for completed tasks, so that the team can easily keep track of all completed tasks. </td></tr>
+  <tr><td>US58  </td><td>Manage Collaborators' permissions  </td><td>low</td><td>As a Coordinator, I want to manage Collaborators' permissions, so that Collaborators acquire/lose certain controls, according to their role in the project. </td></tr>
+  <tr><td>US59  </td><td>Invite to Project via email  </td><td>low  </td><td>As a Coordinator, I want to invite new users to projects, so that I can get more Collaborators participating in my project. </td></tr>
+  <tr><td>US60  </td><td>Create Board  </td><td>low  </td><td>As a Coordinator, I want to be able to create boards with different departments, so that the project can be better organized. </td></tr>
   <tr><td>US61  </td><td>Create new roles</td><td>low  </td><td>As a Coordinator, I want to create new roles with some set permissions, so that I can divide the Collaborators into different groups according to their role within the project. </td></tr>
   <tr><td>US62  </td><td>Atribute roles</td><td>low  </td><td>As a Coordinator, I want to atribute roles to Collaborators, so that they are given permissions according to their role in the project. </td></tr>
 </table>
@@ -153,14 +153,14 @@ Tu-Do has 5 main types of users: *Guest* users, which have not authenticated the
 
 <table>
   <tr><th>Identifier</th><th>Name</th><th>Priority</th><th>Description</th></tr>
-  <tr><td>US63  </td><td>Accept user  </td><td>low  </td><td>As an Administrator, I want to accept the registration of a new system user, so that he can access restricted content. </td></tr>
+  <tr><td>US70  </td><td>Administer User Accounts  </td><td>high  </td><td>As an Administrator, I want to be able to create/edit/view and search user accounts, so that I can control/change all user accounts. </td></tr>
   <tr><td>US64  </td><td>Delete user account  </td><td>medium  </td><td>As an Administrator, I want to delete a user from the system, so that his account no longer exists in the system. </td></tr>
   <tr><td>US65  </td><td>Block/Unblock user accounts  </td><td>medium  </td><td>As an Administrator, I want to block/unblock a user from the system, so that I can control if the user can no longer access restricted contents of the site. </td></tr>
   <tr><td>US66  </td><td>Browse projects  </td><td>medium  </td><td>As an Administrator, I want to browse all projects, so that I can access any project. </td></tr>
   <tr><td>US67  </td><td>View project details  </td><td>medium  </td><td>As an Administrator, I want to view the details of any project, so I can better moderate the platform. </td></tr>
   <tr><td>US68  </td><td>Remove comments  </td><td>low  </td><td>As an Administrator, I want to remove a comment, so that I can remove inappropriate content. </td></tr>
   <tr><td>US69  </td><td>Unfreeze projects  </td><td>low  </td><td>As an Administrator, I want to be able to unfreeze a project, so that if its Coordinator deleted his account, his project can be recovered. </td></tr>
-  <tr><td>US70  </td><td>Administer User Accounts  </td><td>high  </td><td>As an Administrator, I want to be able to create/edit/view and search user accounts, so that I can control/change all user accounts. </td></tr>
+  <tr><td>US63  </td><td>Accept user  </td><td>low  </td><td>As an Administrator, I want to accept the registration of a new system user, so that he can access restricted content. </td></tr>
 </table>
 
 *Table 6: Administrator user stories*
