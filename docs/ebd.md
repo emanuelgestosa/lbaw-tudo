@@ -87,3 +87,169 @@ Legend:
 | Functional Dependencies |   |
 | FD0301                  | {id} -> {name, id\_project} |
 | Normal Form             | BCNF |
+
+| Table R04 (column)      |   |
+| ----------------------- | - |
+| Keys: {id}              |   |
+| Functional Dependencies |   |
+| FD0401                  | {id} -> {name, id\_board} |
+| Normal Form             | BCNF |
+
+| Table R05 (task)        |  |
+| ----------------------- | - |
+| Keys: {id}              | |
+| Functional Dependencies | |
+| FD0501                  | {id} -> {name, description, creation\_date, due\_date, id\_column} |
+| Normal Form             | BCNF |
+
+| Table R06 (label)       |   |
+| ----------------------- | - |
+| Keys: {id}              |   |
+| Functional Dependencies |   |
+| FD0601                  | {id} -> {name} |
+| Normal Form             | BCNF |
+
+| Table R07 (label\_class) |   |
+| ------------------------ | - |
+| Keys: {id}               |   |
+| Functional Dependencies  |   |
+| FD0701                   | {id} -> {name} |
+| Normal Form              | BCNF |
+
+| Table R08 (forum)       |   |
+| ----------------------- | - |
+| Keys: {forum\_id}       |   |
+| Functional Dependencies | none |
+| Normal Form             | BCNF |
+
+| Table R09 (chat)        | |
+| ----------------------- | - |
+| Keys: {id}              | |
+| Functional Dependencies | |
+| FD0901                  | {id} -> {name} |
+| Normal Form             | BCNF |
+
+| Table R10 (message)     |   |
+| ----------------------- | - |
+| Keys: {id}              |   |
+| Functional Dependencies |   |
+| FD1001                  | {id} -> {message, sent\_date, id\_user, id\_chat} |
+| Normal Form             | BCNF |
+
+| Table R11 (role)        |   |
+| ----------------------- | - |
+| Keys: {id}              |   |
+| Functional Dependencies |   |
+| FD1101                  | {id} -> {name, id\_project} |
+| Normal Form             | BCNF |
+
+| Table R12 (permission)  |   |
+| ----------------------- | - |
+| Keys: {id}              |   |
+| Functional Dependencies |   |
+| FD1201                  | {id} -> {name} |
+| Normal Form             | BCNF |
+
+| Table R13 (administrator) |   |
+| ------------------------- | - |
+| Keys: {id}                |   |
+| Functional Dependencies   |   |
+| FD1301                    | {id} -> {id\_user} |
+| Normal Form               | BCNF |
+
+| Table R14 (ban)         |   |
+| ----------------------- | - |
+| Keys: {id}              |   |
+| Functional Dependencies |   |
+| FD1401                  | {id} -> {start\_date, end\_date, reason, id\_user, id\_administrator} |
+| Normal Form             | BCNF |
+
+| Table R15 (faq) faq(id, question NN UK, answer NN) |   |
+| -------------------------------------------------- | - |
+| Keys: {id}, {question}                             |   |
+| Functional Dependencies                            |   |
+| FD1501                                             | {id} -> {question, answer} |
+| FD1502                                             | {question} -> {id, answer} |
+| Normal Form                                        | BCNF |
+
+| Table R16 (faq)         |   |
+| ----------------------- | - |
+| Keys: {id}              |   |
+| Functional Dependencies |   |
+| FD1601                  | {id} -> {date, message} |
+| Normal Form             | BCNF |
+
+| Table R17 (faq)          |   |
+| ------------------------ | - |
+| Keys: {id\_notification} |   |
+| Functional Dependencies  |   |
+| FD1701                   | {id\_notification} -> {id\_message} |
+| Normal Form              | BCNF |
+
+| Table R18 (new\_coordinator) |   |
+| ---------------------------- | - |
+| Keys: {id\_notification}     |   |
+| Functional Dependencies      |   |
+| FD1801                       | {id\_notification} -> {id\_project} |
+| Normal Form                  | BCNF |
+
+| Table R19 (new assign)   |   |
+| ------------------------ | - |
+| Keys: {id\_notification} |   |
+| Functional Dependencies  |   |
+| FD1901                   | {id\_notification} -> {id\_assignment} |
+| Normal Form              | BCNF |
+
+| Table R20 (task moved)   |   |
+| ------------------------ | - |
+| Keys: {id\_notification} |   |
+| Functional Dependencies  |   |
+| FD2001                   | {id\_notification} -> {id\_task} |
+| Normal Form              | BCNF |
+
+| Table R21 (assignment)     | |
+| -------------------------- | - |
+| Keys: {id\_user, id\_task} | |
+| Functional Dependencies    | |
+| FD2101                     | {id\_user, id\_task} -> {assign\_date} |
+| Normal Form                | BCNF |
+
+
+| Table R22 (notified)               | |
+| ---------------------------------- | - |
+| Keys: {id\_user, id\_notification} | |
+| Functional Dependencies            | |
+| FD2201                             | {id\_user, id\_notification} -> {isRead} |
+| Normal Form                        | BCNF |
+
+| Table R23 (user\_role)     | |
+| -------------------------- | - |
+| Keys: {id\_user, id\_role} | |
+| Functional Dependencies    | none |
+| Normal Form                | BCNF |
+
+| Table R24 (collaborator)      | |
+| ----------------------------- | - |
+| Keys: {id\_user, id\_project} | |
+| Functional Dependencies       | |
+| FD2401                        | {id\_user, id\_project} -> {favorite} |
+
+| Normal Form                   | BCNF |
+| Table R25 (label\_label\_class)     | |
+| ----------------------------------- | - |
+| Keys: {id\_label, id\_label\_class} | |
+| Functional Dependencies             | none |
+| Normal Form                         | BCNF |
+
+| Table R26 (label\_task)     | |
+| --------------------------- | - |
+| Keys: {id\_label, id\_task} | |
+| Functional Dependencies     | none |
+| Normal Form                 | BCNF |
+
+| Table R27 (role\_permission)     | |
+| -------------------------------- | - |
+| Keys: {id\_role, id\_permission} | |
+| Functional Dependencies          | none |
+| Normal Form                      | BCNF |
+

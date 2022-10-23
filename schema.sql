@@ -163,3 +163,14 @@ CREATE TABLE notified (
     is_read boolean DEFAULT FALSE,
     PRIMARY KEY (id_users, id_notification)
 );
+
+
+-- 22 tables
+
+user_role(id_user->user, id_role->role)
+collaborator(id_user->user, id_project->project, favorite NN DF false) 
+label_label_class(id_label ->label, id_label_class -> label_class)
+label_task(id_label->label, id_task->task)
+role_permission(id_role -> role, id_permission -> permission)
+
+
