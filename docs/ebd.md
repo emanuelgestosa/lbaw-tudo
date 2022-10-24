@@ -1,7 +1,13 @@
 # EBD: Database Specification Component
 
 ## A4: Conceptual Data Model
-> apresentar os objetivos
+
+This artifact objective is to illustrate the entities and relations between them that are relevant in our project context. 
+
+For that, UML was used since it's common among the field and it's easy to understand.
+This conceptual model will be used as a support to design the system's database.
+
+
 
 ### 1. Class diagram
 
