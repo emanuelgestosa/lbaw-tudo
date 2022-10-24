@@ -23,6 +23,9 @@ This conceptual model will be used as a support to design the system's database.
 * BR06. When a task is deleted its chat is deleted too.
   
 ## A5: Relational Schema, validation and schema refinement
+
+This artifact contains the Relational Schema obtained by mapping from the Conceptual Data Model. The Relational Schema includes each relation schema, attributes, domains, primary keys, foreign keys and other integrity rules: UNIQUE (UK), DEFAULT (DF), NOT NULL (NN), CHECK (CK). A Schema Validation section was added to verify the normal form of each table. An Annex containing the SQL code to create de schema.
+
 ### Relational Schema
 
 | Relation reference | Relation Compact Notation                                                                                                                                        |
@@ -186,7 +189,6 @@ Legend:
 | FD1601                  | {id} -> {date, message} |
 | Normal Form             | BCNF |
 
-
 | Table R17 (comment)     | |
 | ----------------------- | - |
 | Keys: {id}              | |
@@ -228,7 +230,6 @@ Legend:
 | Functional Dependencies    | |
 | FD22101                     | {id\_user, id\_task} -> {assign\_date} |
 | Normal Form                | BCNF |
-
 
 | Table R23 (notified)               | |
 | ---------------------------------- | - |
