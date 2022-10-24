@@ -49,7 +49,7 @@ This artifact contains the Relational Schema obtained by mapping from the Concep
 | R17                | comment(id, message NN, sent\_date NN CK sent\_date <= Today, id\_task->task, id\_user->user)                                                                                |
 | R18                | new\_message(id\_notification\->notification, id\_message->message)                                                                                              |
 | R19                | new\_coordinator(id\_notification\->notification, id\_project->project)                                                                                          |
-| R20                | new\_assign(id\_notification\->notification, {id\_task, id\_users}->assignment)                                                                                        |
+| R20                | new\_assign(id\_notification\->notification, \{id\_task, id\_user\}->assignment)                                                                                        |
 | R21                | task\_moved(id\_notification\->notification id\_task->task)                                                                                                      |
 | R22                | assignment(id\_user\->user, id\_task\->task, assign\_date NN CK assignDate <= current\_date)                                                                     |
 | R23                | notified(id\_user\->user, id\_notification\->notification, isRead NN DF false)                                                                                   |
