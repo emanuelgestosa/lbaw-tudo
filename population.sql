@@ -394,3 +394,80 @@ insert into comment (id, message, sent_date, id_task, id_users) values (7, 'os p
 insert into comment (id, message, sent_date, id_task, id_users) values (8, 'os projetos estão todos a arder', '11/15/2021', 18, 3);
 insert into comment (id, message, sent_date, id_task, id_users) values (9, 'os projetos estão todos a arder', '5/7/2022', 6, 5);
 insert into comment (id, message, sent_date, id_task, id_users) values (10, 'os projetos estão todos a arder', '6/20/2022', 33, 13);
+
+insert into notified (id_users, id_notification, is_read) values (7, 1, true);
+insert into notified (id_users, id_notification, is_read) values (11, 2, true);
+insert into notified (id_users, id_notification, is_read) values (11, 3, false);
+insert into notified (id_users, id_notification, is_read) values (12, 4, false);
+insert into notified (id_users, id_notification, is_read) values (15, 5, false);
+insert into notified (id_users, id_notification, is_read) values (5, 6, true);
+insert into notified (id_users, id_notification, is_read) values (3, 7, false);
+insert into notified (id_users, id_notification, is_read) values (11, 8, true);
+insert into notified (id_users, id_notification, is_read) values (2, 9, true);
+insert into notified (id_users, id_notification, is_read) values (15, 10, true);
+
+insert into users_role (id_users, id_role) values (15, 6);
+insert into users_role (id_users, id_role) values (5, 21);
+insert into users_role (id_users, id_role) values (10, 1);
+insert into users_role (id_users, id_role) values (8, 25);
+insert into users_role (id_users, id_role) values (13, 15);
+insert into users_role (id_users, id_role) values (2, 4);
+insert into users_role (id_users, id_role) values (7, 12);
+insert into users_role (id_users, id_role) values (14, 17);
+insert into users_role (id_users, id_role) values (3, 18);
+insert into users_role (id_users, id_role) values (3, 8);
+
+insert into assignment (id_users, id_notification, is_read) values (11, 2, true);
+insert into assignment (id_users, id_notification, is_read) values (8, 7, false);
+insert into assignment (id_users, id_notification, is_read) values (6, 8, true);
+insert into assignment (id_users, id_notification, is_read) values (12, 1, false);
+insert into assignment (id_users, id_notification, is_read) values (1, 10, false);
+insert into assignment (id_users, id_notification, is_read) values (10, 3, false);
+insert into assignment (id_users, id_notification, is_read) values (1, 5, false);
+insert into assignment (id_users, id_notification, is_read) values (1, 2, true);
+insert into assignment (id_users, id_notification, is_read) values (2, 8, false);
+insert into assignment (id_users, id_notification, is_read) values (13, 7, true);
+
+insert into collaborator (id_users, id_project) values (11, 2);
+insert into collaborator (id_users, id_project) values (15, 7);
+insert into collaborator (id_users, id_project) values (2, 4);
+insert into collaborator (id_users, id_project) values (10, 4);
+insert into collaborator (id_users, id_project) values (14, 4);
+insert into collaborator (id_users, id_project) values (7, 6);
+insert into collaborator (id_users, id_project) values (13, 5);
+insert into collaborator (id_users, id_project) values (12, 8);
+insert into collaborator (id_users, id_project) values (3, 2);
+insert into collaborator (id_users, id_project) values (13, 6);
+
+insert into label_label_class (id_label, id_label_class) values (7, 1);
+insert into label_label_class (id_label, id_label_class) values (9, 1);
+insert into label_label_class (id_label, id_label_class) values (9, 1);
+insert into label_label_class (id_label, id_label_class) values (2, 1);
+insert into label_label_class (id_label, id_label_class) values (5, 1);
+insert into label_label_class (id_label, id_label_class) values (3, 3);
+insert into label_label_class (id_label, id_label_class) values (7, 3);
+insert into label_label_class (id_label, id_label_class) values (2, 2);
+insert into label_label_class (id_label, id_label_class) values (4, 1);
+insert into label_label_class (id_label, id_label_class) values (10, 3);
+
+insert into role_permission (id_role, id_permission) values (20, 9);
+insert into role_permission (id_role, id_permission) values (4, 5);
+insert into role_permission (id_role, id_permission) values (8, 2);
+insert into role_permission (id_role, id_permission) values (21, 10);
+insert into role_permission (id_role, id_permission) values (16, 9);
+insert into role_permission (id_role, id_permission) values (22, 8);
+insert into role_permission (id_role, id_permission) values (1, 2);
+insert into role_permission (id_role, id_permission) values (15, 1);
+insert into role_permission (id_role, id_permission) values (12, 5);
+insert into role_permission (id_role, id_permission) values (15, 3);
+
+insert into label_task (id_label, id_task) values (19, 2);
+insert into label_task (id_label, id_task) values (46, 1);
+insert into label_task (id_label, id_task) values (31, 2);
+insert into label_task (id_label, id_task) values (30, 1);
+insert into label_task (id_label, id_task) values (57, 2);
+insert into label_task (id_label, id_task) values (12, 2);
+insert into label_task (id_label, id_task) values (39, 3);
+insert into label_task (id_label, id_task) values (54, 2);
+insert into label_task (id_label, id_task) values (8, 2);
+insert into label_task (id_label, id_task) values (52, 1);
