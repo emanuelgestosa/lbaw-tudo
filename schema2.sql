@@ -32,8 +32,8 @@ DROP TABLE IF EXISTS board;
 DROP TABLE IF EXISTS project;
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE users (
-    id serial PRIMARY KEY,
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
     username text NOT NULL CONSTRAINT username_unique UNIQUE,
     password text NOT NULL,
     name text NOT NULL,
@@ -164,6 +164,8 @@ CREATE TABLE assignmnt (
 
 CREATE TABLE new_assign (
     id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
+	id_users integer,
+	id_task integer,
     CONSTRAINT FK_Assign FOREIGN KEY (id_users, id_task) REFERENCES assignmnt (id_users, id_task) ON UPDATE CASCADE
 );
 
