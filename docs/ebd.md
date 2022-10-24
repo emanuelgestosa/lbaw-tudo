@@ -19,35 +19,36 @@
 ## A5: Relational Schema, validation and schema refinement
 ### Relational Schema
 
-| **Relation reference** | **Relation Compact Notation**                                                                                                                             |
-|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| R01                    | user(id, username UK NN, password NN, name NN, birth NN CK birth < Today, email UK NN, phone_number)                                                      |
-| R02                    | project(id, title NN, description, creation NN CK creation <= Today, is_archived NN DF false, id_coordinator->user NN)                                    |
-| R03                    | board(id, name NN, id_project->project NN)                                                                                                                |
-| R04                    | column(id, name NN, id_board->board NN)                                                                                                                   |
-| R05                    | task(id, id_chat-> chat NN, name NN, description, creation_date NN CK creation_date <= Today ,due_date CK creation_date < due_date, id_column->column NN) |
-| R06                    | label(id, name NN)                                                                                                                                        |
-| R07                    | label_class(id, name NN)                                                                                                                                  |
-| R08                    | forum(project_id->project)                                                                                                                                |
-| R09                    | chat(id, name NN)                                                                                                                                         |
-| R10                    | message(id, message NN, sent_date NN CK sent_date <= Today, id_user->user NN, id_chat->chat NN)                                                           |
-| R11                    | role(id, name NN, id_project->project NN)                                                                                                                 |
-| R12                    | permission(id, name NN)                                                                                                                                   |
-| R13                    | administrator(id, id_user->user NN)                                                                                                                       |
-| R14                    | ban(id, start_date NN, end_date NN CK start_date < end_date, reason, id_user->user NN, id_administrator->administrator NN)                                |
-| R15                    | faq(id, question NN UK, answer NN)                                                                                                                        |
-| R16                    | notification(id, date NN CK date <= Today, message NN)                                                                                                    |
-| R17                    | new_message(id_notification->notification, id_message->message)                                                                                           |
-| R18                    | new_coordinator(id_notification->notification, id_project->project)                                                                                       |
-| R19                    | new_assign(id_notification->notification, id_assignement->assignment)                                                                                     |
-| R20                    | task_moved(id_notification->notification id_task->task)                                                                                                   |
-| R21                    | assignment(id_user->user, id_task->task, assign_date NN CK assignDate <= current_date)                                                                    |
-| R22                    | notified(id_user->user, id_notification->notification, isRead NN DF false)                                                                                |
-| R23                    | user_role(id_user->user, id_role->role)                                                                                                                   |
-| R24                    | collaborator(id_user->user, id_project->project, favorite NN DF false)                                                                                    |
-| R25                    | label_label_class(id_label ->label, id_label_class -> label_class)                                                                                        |
-| R26                    | label_task(id_label->label, id_task->task)                                                                                                                |
-| R27                    | role_permission(id_role -> role, id_permission -> permission)                                                                                             |
+| Relation reference | Relation Compact Notation                                                                                                                                        |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| R01                | user(id, username UK NN, password NN, name NN, birth NN CK birth < Today, email UK NN, phone\_number)                                                            |
+| R02                | project(id, title NN, description, creation NN CK creation <= Today, is\_archived NN DF false, id\_coordinator->user NN)                                         |
+| R03                | board(id, name NN, id\_project->project NN)                                                                                                                      |
+| R04                | column(id, name NN, id\_board->board NN)                                                                                                                         |
+| R05                | task(id, name NN, description, creation\_date NN CK creation\_date <= Today ,due\_date CK creation\_date < due\_date, id\_column->column NN) |
+| R06                | label(id, name NN)                                                                                                                                               |
+| R07                | label\_class(id, name NN)                                                                                                                                        |
+| R08                | forum(id\_project\->project)                                                                                                                                     |
+| R09                | chat(id, name NN)                                                                                                                                                |
+| R10                | message(id, message NN, sent\_date NN CK sent\_date <= Today, id\_user->user NN, id\_chat->chat NN)                                                              |
+| R11                | role(id, name NN, id\_project->project NN)                                                                                                                       |
+| R12                | permission(id, name NN)                                                                                                                                          |
+| R13                | administrator(id, id\_user->user NN)                                                                                                                             |
+| R14                | ban(id, start\_date NN, end\_date NN CK start\_date < end\_date, reason, id\_user->user NN, id\_administrator->administrator NN)                                 |
+| R15                | faq(id, question NN UK, answer NN)                                                                                                                               |
+| R16                | notification(id, date NN CK date <= Today, message NN)                                                                                                           |
+| R17                | comment(id, message NN, sent\_date NN CK sent\_date <= Today, id\_task->task, id\_user->user)                                                                                |
+| R18                | new\_message(id\_notification\->notification, id\_message->message)                                                                                              |
+| R19                | new\_coordinator(id\_notification\->notification, id\_project->project)                                                                                          |
+| R20                | new\_assign(id\_notification\->notification, id\_assignement->assignment)                                                                                        |
+| R21                | task\_moved(id\_notification\->notification id\_task->task)                                                                                                      |
+| R22                | assignment(id\_user\->user, id\_task\->task, assign\_date NN CK assignDate <= current\_date)                                                                     |
+| R23                | notified(id\_user\->user, id\_notification\->notification, isRead NN DF false)                                                                                   |
+| R24                | user\_role(id\_user\->user, id\_role\->role)                                                                                                                     |
+| R25                | collaborator(id\_user\->user, id\_project\->project, favorite NN DF false)                                                                                       |
+| R26                | label\_label\_class(id\_label ->label, id\_label\_class -> label\_class)                                                                                         |
+| R27                | label\_task(id\_label\->label, id\_task\->task)                                                                                                                  |
+| R28                | role\_permission(id\_role -> role, id\_permission -> permission)                                                                                                 |
 
 Legend:
 * **UK** = UNIQUE KEY
@@ -164,7 +165,7 @@ Legend:
 | FD1401                  | {id} -> {start\_date, end\_date, reason, id\_user, id\_administrator} |
 | Normal Form             | BCNF |
 
-| Table R15 (faq) faq(id, question NN UK, answer NN) |   |
+| Table R15 (faq)                                    |   |
 | -------------------------------------------------- | - |
 | Keys: {id}, {question}                             |   |
 | Functional Dependencies                            |   |
@@ -172,84 +173,103 @@ Legend:
 | FD1502                                             | {question} -> {id, answer} |
 | Normal Form                                        | BCNF |
 
-| Table R16 (faq)         |   |
+| Table R16 (notification)         |   |
 | ----------------------- | - |
 | Keys: {id}              |   |
 | Functional Dependencies |   |
 | FD1601                  | {id} -> {date, message} |
 | Normal Form             | BCNF |
 
-| Table R17 (faq)          |   |
+
+| Table R17 (comment)     | |
+| ----------------------- | - |
+| Keys: {id}              | |
+| Functional Dependencies | |
+| FD1701                  | {id} -> {message, sent\_date, id\_user, id\_task} |
+| Normal Form             | BCNF |
+
+| Table R18 (new_message)  |   |
 | ------------------------ | - |
 | Keys: {id\_notification} |   |
 | Functional Dependencies  |   |
-| FD1701                   | {id\_notification} -> {id\_message} |
+| FD1801                   | {id\_notification} -> {id\_message} |
 | Normal Form              | BCNF |
 
-| Table R18 (new\_coordinator) |   |
+| Table R19 (new\_coordinator) |   |
 | ---------------------------- | - |
 | Keys: {id\_notification}     |   |
 | Functional Dependencies      |   |
-| FD1801                       | {id\_notification} -> {id\_project} |
+| FD1901                       | {id\_notification} -> {id\_project} |
 | Normal Form                  | BCNF |
 
-| Table R19 (new assign)   |   |
+| Table R20 (new\_assign)   |   |
 | ------------------------ | - |
 | Keys: {id\_notification} |   |
 | Functional Dependencies  |   |
-| FD1901                   | {id\_notification} -> {id\_assignment} |
+| FD2001                   | {id\_notification} -> {id\_assignment} |
 | Normal Form              | BCNF |
 
-| Table R20 (task moved)   |   |
+| Table R21 (task\_moved)   |   |
 | ------------------------ | - |
 | Keys: {id\_notification} |   |
 | Functional Dependencies  |   |
-| FD2001                   | {id\_notification} -> {id\_task} |
+| FD2101                   | {id\_notification} -> {id\_task} |
 | Normal Form              | BCNF |
 
-| Table R21 (assignment)     | |
+| Table 22 (assignment)     | |
 | -------------------------- | - |
 | Keys: {id\_user, id\_task} | |
 | Functional Dependencies    | |
-| FD2101                     | {id\_user, id\_task} -> {assign\_date} |
+| FD22101                     | {id\_user, id\_task} -> {assign\_date} |
 | Normal Form                | BCNF |
 
 
-| Table R22 (notified)               | |
+| Table R23 (notified)               | |
 | ---------------------------------- | - |
 | Keys: {id\_user, id\_notification} | |
 | Functional Dependencies            | |
-| FD2201                             | {id\_user, id\_notification} -> {isRead} |
+| FD23201                             | {id\_user, id\_notification} -> {isRead} |
 | Normal Form                        | BCNF |
 
-| Table R23 (user\_role)     | |
+| Table R24 (user\_role)     | |
 | -------------------------- | - |
 | Keys: {id\_user, id\_role} | |
 | Functional Dependencies    | none |
 | Normal Form                | BCNF |
 
-| Table R24 (collaborator)      | |
+| Table R25 (collaborator)      | |
 | ----------------------------- | - |
 | Keys: {id\_user, id\_project} | |
 | Functional Dependencies       | |
-| FD2401                        | {id\_user, id\_project} -> {favorite} |
+| FD2501                        | {id\_user, id\_project} -> {favorite} |
 
 | Normal Form                   | BCNF |
-| Table R25 (label\_label\_class)     | |
+| Table R26 (label\_label\_class)     | |
 | ----------------------------------- | - |
 | Keys: {id\_label, id\_label\_class} | |
 | Functional Dependencies             | none |
 | Normal Form                         | BCNF |
 
-| Table R26 (label\_task)     | |
+| Table R27 (label\_task)     | |
 | --------------------------- | - |
 | Keys: {id\_label, id\_task} | |
 | Functional Dependencies     | none |
 | Normal Form                 | BCNF |
 
-| Table R27 (role\_permission)     | |
+| Table R28 (role\_permission)     | |
 | -------------------------------- | - |
 | Keys: {id\_role, id\_permission} | |
 | Functional Dependencies          | none |
 | Normal Form                      | BCNF |
 
+Because all relations are in the Boyce–Codd Normal Form (BCNF), the relational schema is also in the BCNF and, therefore, the schema does not need to be further normalized.
+
+### 4. Annex A. SQL Code
+
+#### 4.1 Database schema
+
+[Annex A.1 Database schema](../schema.sql)
+
+#### 4.2 Database population
+
+[Annex A.2 Database population](../population.sql)
