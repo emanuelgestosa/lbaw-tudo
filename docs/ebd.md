@@ -32,7 +32,7 @@ This conceptual model will be used as a support to design the system's database.
 | R03                | board(id, name NN, id\_project->project NN)                                                                                                                      |
 | R04                | column(id, name NN, id\_board->board NN)                                                                                                                         |
 | R05                | task(id, name NN, description, creation\_date NN CK creation\_date <= Today ,due\_date CK creation\_date < due\_date, id\_column->column NN) |
-| R06                | label(id, name NN)                                                                                                                                               |
+| R06                | label(id, name NN, 1<= color NN <=16777215)                                                                                                                                               |
 | R07                | label\_class(id, name NN)                                                                                                                                        |
 | R08                | forum(id\_project\->project)                                                                                                                                     |
 | R09                | chat(id, name NN)                                                                                                                                                |
@@ -113,7 +113,7 @@ Legend:
 | ----------------------- | - |
 | Keys: {id}              |   |
 | Functional Dependencies |   |
-| FD0601                  | {id} -> {name} |
+| FD0601                  | {id} -> {name, color} |
 | Normal Form             | BCNF |
 
 | Table R07 (label\_class) |   |
