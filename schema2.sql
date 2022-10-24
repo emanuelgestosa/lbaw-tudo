@@ -3,34 +3,34 @@
 -- Verificar as foreing keys se todas serao on update cascade
 -- Add ON DELETE CASCADE
 
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS project;
-DROP TABLE IF EXISTS board;
-DROP TABLE IF EXISTS vertical;
-DROP TABLE IF EXISTS task;
-DROP TABLE IF EXISTS label;
-DROP TABLE IF EXISTS label_class;
-DROP TABLE IF EXISTS forum;
-DROP TABLE IF EXISTS chat;
-DROP TABLE IF EXISTS msg;
-DROP TABLE IF EXISTS ROLE;
-DROP TABLE IF EXISTS permission;
-DROP TABLE IF EXISTS administrator;
-DROP TABLE IF EXISTS ban;
-DROP TABLE IF EXISTS faq;
-DROP TABLE IF EXISTS notification;
-DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS new_message;
-DROP TABLE IF EXISTS new_coordinator;
-DROP TABLE IF EXISTS assignmnt;
-DROP TABLE IF EXISTS new_assign;
-DROP TABLE IF EXISTS task_moved;
-DROP TABLE IF EXISTS notified;
-DROP TABLE IF EXISTS users_role;
-DROP TABLE IF EXISTS collaborator;
-DROP TABLE IF EXISTS label_label_class;
-DROP TABLE IF EXISTS label_task;
 DROP TABLE IF EXISTS role_permission;
+DROP TABLE IF EXISTS label_task;
+DROP TABLE IF EXISTS label_label_class;
+DROP TABLE IF EXISTS collaborator;
+DROP TABLE IF EXISTS users_role;
+DROP TABLE IF EXISTS notified;
+DROP TABLE IF EXISTS task_moved;
+DROP TABLE IF EXISTS new_assign;
+DROP TABLE IF EXISTS assignmnt;
+DROP TABLE IF EXISTS new_coordinator;
+DROP TABLE IF EXISTS new_message;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS notification;
+DROP TABLE IF EXISTS faq;
+DROP TABLE IF EXISTS ban;
+DROP TABLE IF EXISTS administrator;
+DROP TABLE IF EXISTS permission;
+DROP TABLE IF EXISTS ROLE;
+DROP TABLE IF EXISTS msg;
+DROP TABLE IF EXISTS chat;
+DROP TABLE IF EXISTS forum;
+DROP TABLE IF EXISTS label_class;
+DROP TABLE IF EXISTS label;
+DROP TABLE IF EXISTS task;
+DROP TABLE IF EXISTS vertical;
+DROP TABLE IF EXISTS board;
+DROP TABLE IF EXISTS project;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id serial PRIMARY KEY,
@@ -141,8 +141,8 @@ CREATE TABLE comment (
     id serial PRIMARY KEY,
     msg text NOT NULL,
     sent_date date NOT NULL CONSTRAINT CK_comment_sent_date CHECK (sent_date <= CURRENT_DATE),
-    id_task integer NOT NULL,
-    id_users integer NOT NULL
+    id_task integer NOT NULL REFERENCES task (id),
+    id_users integer NOT NULL REFERENCES users (id)
 );
 
 CREATE TABLE new_message (
@@ -164,7 +164,7 @@ CREATE TABLE assignmnt (
 
 CREATE TABLE new_assign (
     id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
-    id_assignment integer REFERENCES assignmnt (id) ON UPDATE CASCADE
+    CONSTRAINT FK_Assign FOREIGN KEY (id_users, id_task) REFERENCES assignmnt (id_users, id_task) ON UPDATE CASCADE
 );
 
 CREATE TABLE task_moved (
