@@ -16,8 +16,8 @@ This conceptual model will be used as a support to design the system's database.
 ### 2. Additional Business Rules
 
 * BR01. When a project is deleted, all its boards are deleted as well.
-* BR02. When a board is deleted, all its columns are deleted as well.
-* BR03. When a column is deleted, all its tasks are deleted as well.
+* BR02. When a board is deleted, all its verticals are deleted as well.
+* BR03. When a vertical is deleted, all its tasks are deleted as well.
 * BR04. When a forum is deleted, all its chats are deleted as well.
 * BR05. When a chat is deleted, all its messages are deleted as well.
 * BR06. When a task is deleted its chat is deleted too.
@@ -33,8 +33,8 @@ This artifact contains the Relational Schema obtained by mapping from the Concep
 | R01                | user(id, username UK NN, password NN, name NN, birth NN CK birth < Today, email UK NN, phone\_number)                                                            |
 | R02                | project(id, title NN, description, creation NN CK creation <= Today, is\_archived NN DF false, id\_coordinator->user NN)                                         |
 | R03                | board(id, name NN, id\_project->project NN)                                                                                                                      |
-| R04                | column(id, name NN, id\_board->board NN)                                                                                                                         |
-| R05                | task(id, name NN, description, creation\_date NN CK creation\_date <= Today ,due\_date CK creation\_date < due\_date, id\_column->column NN) |
+| R04                | vertical(id, name NN, isDone NN DF false, id\_board->board NN)                                                                                                                         |
+| R05                | task(id, name NN, description, creation\_date NN CK creation\_date <= Today ,due\_date CK creation\_date < due\_date, id\_vertical->vertical NN) |
 | R06                | label(id, name NN, 1<= color NN <=16777215)                                                                                                                                               |
 | R07                | label\_class(id, name NN)                                                                                                                                        |
 | R08                | forum(id\_project\->project)                                                                                                                                     |
@@ -98,7 +98,7 @@ Legend:
 | FD0301                  | {id} -> {name, id\_project} |
 | Normal Form             | BCNF |
 
-| Table R04 (column)      |   |
+| Table R04 (vertical)      |   |
 | ----------------------- | - |
 | Keys: {id}              |   |
 | Functional Dependencies |   |
@@ -109,7 +109,7 @@ Legend:
 | ----------------------- | - |
 | Keys: {id}              | |
 | Functional Dependencies | |
-| FD0501                  | {id} -> {name, description, creation\_date, due\_date, id\_column} |
+| FD0501                  | {id} -> {name, description, creation\_date, due\_date, id\_vertical} |
 | Normal Form             | BCNF |
 
 | Table R06 (label)       |   |

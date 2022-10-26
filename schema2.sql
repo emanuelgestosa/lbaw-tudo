@@ -60,6 +60,7 @@ CREATE TABLE board (
 CREATE TABLE vertical (
     id serial PRIMARY KEY,
     name text NOT NULL,
+    isDone boolean NOT NULL DEFAULT FALSE,
     id_board integer NOT NULL REFERENCES board (id) ON UPDATE CASCADE
 );
 
@@ -69,7 +70,7 @@ CREATE TABLE task (
     description text,
     creation_date date NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_DATE), 
     due_date date CONSTRAINT CK_task_due_date CHECK (creation_date < due_date),
-    id_column integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE
+    id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE label (
