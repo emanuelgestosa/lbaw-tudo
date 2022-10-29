@@ -7,8 +7,6 @@ This artifact objective is to illustrate the entities and relations between them
 For that, UML was used since it's common among the field and it's easy to understand.
 This conceptual model will be used as a support to design the system's database.
 
-
-
 ### 1. Class diagram
 
 ![umlDiagram](umlDiagram.png)
@@ -280,3 +278,37 @@ Because all relations are in the Boyce–Codd Normal Form (BCNF), the relational
 #### 4.2 Database population
 
 [Annex A.2 Database population](../population.sql)
+
+## A6: Indexes, triggers, transactions and database population
+
+### 1. Database Workload
+
+| Relation | Relation name       | Order of magnitude            | Estimated growth     |
+| -------- | ------------------- | ----------------------------- | -------------------- |
+| R01      | users               | 10 k (tens of thousands)      | 10 (tens) / day      |
+| R02      | project             | 1 k (thousands)               | 1 (units) / day      |
+| R03      | board               | 1 k                           | 1 / day              |
+| R04      | column              | 10 k                          | 10 / day             |
+| R05      | task                | 100 k (hundreds of thousands) | 100 (hundreds) / day |
+| R06      | label               | 10 k                          | 1 / day              |
+| R07      | label\_class        | 1 k                           | 1 / day              |
+| R08      | forum               | 1 k                           | 1 / day              |
+| R09      | chat                | 100 k                         | 100 / day            |
+| R10      | message             | 1 kk (millions)               | 1 k / day            |
+| R11      | role                | 1 k                           | 1 / day              |
+| R12      | permission          | 10                            | 1 / month            |
+| R13      | administrator       | 10                            | 1 / month            |
+| R14      | ban                 | 100                           | 1 / day              |
+| R15      | faq                 | 1                             | 1 / month            |
+| R16      | notification        | 1 kk                          | 1 k / day            |
+| R17      | new\_message        | 1 kk                          | 1 k / day            |
+| R18      | new\_coordinator    | 100                           | 1 / day              |
+| R19      | new\_assign         | 100 k                         | 100 / day            |
+| R20      | task\_moved         | 100 k                         | 100 / day            |
+| R21      | assignment          | 100 k                         | 100 / day            |
+| R22      | notified            | 1 kk                          | 1 k / day            |
+| R23      | users\_role         | 10 k                          | 1 / day              |
+| R24      | collaborator        | 10 k                          | 10 / day             |
+| R25      | label\_label\_class | 10 k                          | 10 / day             |
+| R26      | label\_task         | 100 k                         | 10 / day             |
+| R27      | role\_permission    | 1 k                           | 1 / day              |
