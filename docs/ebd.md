@@ -9,17 +9,13 @@ This conceptual model will be used as a support to design the system's database.
 
 ### 1. Class diagram
 
-![umlDiagram](umlDiagram.png)
+![classDiagram](classDiagram.png)
 
 ### 2. Additional Business Rules
 
-* BR01. When a project is deleted, all its boards are deleted as well.
-* BR02. When a board is deleted, all its verticals are deleted as well.
-* BR03. When a vertical is deleted, all its tasks are deleted as well.
-* BR04. When a forum is deleted, all its chats are deleted as well.
-* BR05. When a chat is deleted, all its messages are deleted as well.
-* BR06. When a task is deleted its chat is deleted too.
-  
+* BR06. A user can only send a message to a chat he has access to.
+* BR07. A ban cannot be applied to an administrator.
+
 ## A5: Relational Schema, validation and schema refinement
 
 This artifact contains the Relational Schema obtained by mapping from the Conceptual Data Model. The Relational Schema includes each relation schema, attributes, domains, primary keys, foreign keys and other integrity rules: UNIQUE (UK), DEFAULT (DF), NOT NULL (NN), CHECK (CK). A Schema Validation section was added to verify the normal form of each table. An Annex containing the SQL code to create de schema.
@@ -304,3 +300,13 @@ Because all relations are in the Boyce–Codd Normal Form (BCNF), the relational
 | R25          | label\_label\_class     | 10 k                              | 10 / day             |
 | R26          | label\_task             | 100 k                             | 10 / day             |
 | R27          | role\_permission        | 1 k                               | 1 / day              |
+
+### 2. Indexes
+
+#### 2.1 Performance indexes
+
+#### 2.2 Full-text Search indexes
+
+### Triggers
+
+
