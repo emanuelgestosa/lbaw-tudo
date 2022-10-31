@@ -2,6 +2,8 @@
 -- phone number  which type
 -- Verificar as foreing keys se todas serao on update cascade
 -- Add ON DELETE CASCADE
+DROP TYPE IF EXISTS TODAY;
+CREATE DOMAIN TODAY AS TIMESTAMP DEFAULT CURRENT_TIMESTAMP CHECK (VALUE <= CURRENT_TIMESTAMP);
 DROP TABLE IF EXISTS role_permission;
 
 DROP TABLE IF EXISTS label_task;
@@ -242,45 +244,27 @@ PRIMARY KEY (id_role, id_permission)
 -- Get the projects of a user
 CREATE INDEX user_projects_index ON collaborator USING HASH (id_users);
 
--- CLUSTER collaborator USING user_projects_index;
 -- Get the comments on a task
 CREATE INDEX task_comments_index ON comment USING HASH (id_task);
 
--- CLUSTER comment USING task_comments_index;
 -- Get the task of a certain column
 CREATE INDEX column_tasks_index ON task USING HASH (id_vertical);
 
--- CLUSTER task USING column_tasks_index;
 -- Get the verticals of a certain board
 CREATE INDEX board_verticals_index ON vertical USING HASH (id_board);
 
--- CLUSTER vertical USING board_verticals_index;
 -- Get the boards of a certain project
 CREATE INDEX project_boards_index ON board USING HASH (id_project);
 
--- CLUSTER board USING project_boards_index;
 -- Get the labels of a certain task
 CREATE INDEX task_labels_index ON label_task USING HASH (id_task);
 
--- CLUSTER task USING column_tasks_index;
 -- Get users notifications
 CREATE INDEX user_notifications_index ON notified USING HASH (id_users);
 
---CLUSTER notification USING notification_date_index;
 -- Organize notifications by sent date
 CREATE INDEX notifications_date_index ON notification USING btree (sent_date);
 
--- CREATE INDEX username_index ON users USING btree (username);
--- Create an Index and Cluster for every chat (name) usado para ordenar chats pelo seu nome
--- CREATE INDEX chat_index ON chat USING btree (name);
---CLUSTER chat USING chat_index;  MAYBE NOT A GOOD IDEA BECAUSE OF HIGH UPDATE FREQUENCY
--- Create an Index and Cluster for every message (date) usado para ordenar msgs por data de envio
--- CREATE INDEX msg_index ON msg USING btree (sent_date);
---CLUSTER msg USING msg_index;
--- CREATE INDEX task_name_index ON task USING btree (name);
--- CREATE INDEX project_name_index ON project USING btree (title);
--- CREATE INDEX label_index ON label USING btree (name);
---Projetos(Nome do Projeto,descricao do projeto),Tasks(Nome da Task,descricao), Users(username,Nome), Labels(Nome)
 --------------------------------------------------------------------------------------------------------------
 --                          Full Text Search
 --------------------------------------------------------------------------------------------------------------
@@ -395,7 +379,7 @@ $$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER label_search_update_trigger
-    BEFORE INSERT OR UPDATE ON project
+    BEFORE INSERT OR UPDATE ON label
     FOR EACH ROW
     EXECUTE PROCEDURE label_search_update ();
 
@@ -411,8 +395,8 @@ DROP FUNCTION IF EXISTS send_message() CASCADE;
 CREATE FUNCTION send_message() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-IF NOT EXISTS (SELECT * FROM collaborator WHERE id_user = NEW.id_user AND id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM msg WHERE NEW.id = id))) THEN
-    RAISE EXCEPTION 'User does not have access to chat';
+IF EXISTS (SELECT * FROM collaborator WHERE id_users = NEW.id_users AND id_project IN (SELECT id_forum AS id_project FROM post WHERE id IN (SELECT id_post AS id FROM msg WHERE NEW.id = id))) THEN
+    RAISE EXCEPTION 'User does not have access to forum';
 END IF;
 RETURN NEW;
 END
@@ -473,7 +457,7 @@ BEGIN
     INSERT INTO notification(sent_date, msg)
     VALUES (current_date, 'One of your projects has a new coordinator') RETURNING id INTO id_notf;
     INSERT INTO new_coordinator(id_notification, id_project)
-    VALUES (id_noft, NEW.id);
+    VALUES (id_notf, NEW.id);
     INSERT INTO notified(id_users, id_notification)
         SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project = NEW.id AND id = id_notf;
 RETURN NEW;
@@ -492,11 +476,11 @@ $BODY$
 DECLARE 
 id_notf INTEGER;
 BEGIN
-IF NOT EXISTS (SELECT * FROM task WHERE id = NEW.id AND id_vertical = NEW.id_vertical) THEN
+IF NOT EXISTS (SELECT * FROM task WHERE OLD.id = NEW.id AND id_vertical = NEW.id_vertical) THEN
     INSERT INTO notification(sent_date, msg)
     VALUES (current_date, 'A task you are assigned to has been moved') RETURNING id INTO id_notf;
     INSERT INTO task_moved(id_notification, id_task)
-    VALUES (id_noft, NEW.id);
+    VALUES (id_notf, NEW.id);
     INSERT INTO notified(id_users, id_notification)
         SELECT id_users, id AS id_notification FROM assignmnt CROSS JOIN notification WHERE id = id_notf AND id_task = NEW.id;
 END IF;
@@ -506,7 +490,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER notify_moved_task
-BEFORE UPDATE ON task
+AFTER UPDATE ON task
 FOR EACH ROW
 EXECUTE PROCEDURE notify_moved_task();
 
@@ -519,9 +503,9 @@ BEGIN
     INSERT INTO notification(sent_date, msg)
     VALUES (current_date, 'You have received a new message.') RETURNING id INTO id_notf;
     INSERT INTO new_message(id_notification, id_message)
-    VALUES (id_noft, NEW.id);
+    VALUES (id_notf, NEW.id);
     INSERT INTO notified(id_users, id_notification)
-        SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM message WHERE NEW.id = id)) AND id = id_notf;
+        SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id_forum FROM post WHERE id IN (SELECT id_post FROM msg WHERE NEW.id = id)) AND id = id_notf;
     RETURN NEW;
 END
 $BODY$
