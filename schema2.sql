@@ -324,3 +324,25 @@ CREATE TRIGGER notify_assignment
     AFTER INSERT OR UPDATE ON assignmnt
     FOR EACH ROW
     EXECUTE PROCEDURE notify_assignment();
+
+DROP FUNCTION IF EXISTS notify_new_coordinator() CASCADE;
+CREATE FUNCTION notify_new_coordinator() RETURNS TRIGGER AS
+$BODY$
+DECLARE 
+    id_notf INTEGER;
+BEGIN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'One of your projects has a new coordinator') RETURNING id INTO id_notf;
+        INSERT INTO new_coordinator(id_notification, id_project)
+        VALUES (id_noft, NEW.id);
+        INSERT INTO notified(id_users, id_notification)
+            SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project = NEW.id AND id = id_notf;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_new_coordinator
+    AFTER UPDATE ON project
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_new_coordinator()
