@@ -22,35 +22,36 @@ This artifact contains the Relational Schema obtained by mapping from the Concep
 
 ### Relational Schema
 
-| **Relation reference** | **Relation Compact Notation**                                                                                                                                             |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| R01                    | users(id, username **UK** **NN**, password **NN**, name **NN**, birth **NN** **CK** birth < Today, email **UK** **NN**, phone_number)                                     |
-| R02                    | project(id, title **NN**, description, creation **NN** **CK** creation <= Today, is_archived **NN** **DF** false, id_coordinator->users **NN**)                           |
-| R03                    | board(id, name **NN**, id_project->project **NN**)                                                                                                                        |
-| R04                    | column(id, name **NN**, id_board->board **NN**)                                                                                                                           |
-| R05                    | task(id, name **NN**, description, creation_date **NN** **CK** creation_date <= Today ,due_date **CK** creation_date < due_date, id_column->column **NN**, id_chat->chat) |
-| R06                    | label(id, name **NN**, 1<= color **NN** <=16777215 )                                                                                                                      |
-| R07                    | label_class(id, name **NN**)                                                                                                                                              |
-| R08                    | forum(id_project\->project)                                                                                                                                               |
-| R09                    | chat(id, name **NN**, id_forum->forum)                                                                                                                                    |
-| R10                    | message(id, message **NN**, sent_date **NN** **CK** sent_date <= Today, id_users->users **NN**, id_chat->chat **NN**)                                                     |
-| R11                    | role(id, name **NN**, id_project->project **NN**)                                                                                                                         |
-| R12                    | permission(id, name **NN**)                                                                                                                                               |
-| R13                    | administrator(id, id_users->users **NN**)                                                                                                                                 |
-| R14                    | ban(id, start_date **NN**, end_date **NN** **CK** start_date < end_date, reason, id_users -> users **NN**, id_administrator->administrator **NN**)                        |
-| R15                    | faq(id, question **NN** **UK**, answer **NN**)                                                                                                                            |
-| R16                    | notification(id, date **NN** **CK** date <= Today, message **NN**)                                                                                                        |
-| R17                    | new_message(id_notification\->notification, id_message->message)                                                                                                          |
-| R18                    | new_coordinator(id_notification\->notification, id_project->project)                                                                                                      |
-| R19                    | new_assign(id_notification\->notification, {id_task, id_users} -> assignment)                                                                                             |
-| R20                    | task_moved(id_notification\->notification id_task->task)                                                                                                                  |
-| R21                    | assignment(id_users\->users, id_task\->task, assign_date **NN** **CK** assignDate <= current_date)                                                                        |
-| R22                    | notified(id_users\->users, id_notification\->notification, isRead **NN** **DF** false)                                                                                    |
-| R23                    | users_role(id_users\->users, id_role\->role)                                                                                                                              |
-| R24                    | collaborator(id_users\->users, id_project\->project, favorite **NN** **DF** false)                                                                                        |
-| R25                    | label_label_class(id_label ->label, id_label_class -> label_class)                                                                                                        |
-| R26                    | label_task(id_label\->label, id_task\->task)                                                                                                                              |
-| R27                    | role_permission(id_role -> role, id_permission -> permission)                                                                                                             |
+| Relation reference | Relation Compact Notation                                                                                                                                    |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| R01                | users(id, username UK NN, password NN, name NN, birth NN CK birth < Today, email UK NN, phone\_number)                                                       |
+| R02                | project(id, title NN, description, creation NN CK creation <= Today, is\_archived NN DF false, id\_coordinator->users NN)                                    |
+| R03                | board(id, name NN, id\_project->project NN)                                                                                                                  |
+| R04                | column(id, name NN, id\_board->board NN)                                                                                                                     |
+| R05                | task(id, name NN, description, creation\_date NN CK creation\_date <= Today ,due\_date CK creation\_date < due\_date, id\_column->column NN, id\_chat->chat) |
+| R06                | label(id, name NN, 1<= color NN <=16777215 )                                                                                                                 |
+| R07                | label\_class(id, name NN)                                                                                                                                    |
+| R08                | forum(id\_project\->project)                                                                                                                                 |
+| R09                | post(id, name NN, id\_forum->forum NN)                                                                                                                       |
+| R10                | message(id, message NN, sent\_date NN CK sent\_date <= Today, id\_users->users NN, id\_chat->chat NN)                                                        |
+| R11                | role(id, name NN, id\_project->project NN)                                                                                                                   |
+| R12                | permission(id, name NN)                                                                                                                                      |
+| R13                | administrator(id, id\_users->users NN)                                                                                                                       |
+| R14                | ban(id, start\_date NN, end\_date NN CK start\_date < end\_date, reason, id\_users -> users NN, id\_administrator->administrator NN)                         |
+| R15                | faq(id, question NN UK, answer NN)                                                                                                                           |
+| R16                | notification(id, date NN CK date <= Today, message NN)                                                                                                       |
+| R17                | new\_message(id\_notification\->notification, id\_message->message)                                                                                          |
+| R18                | new\_coordinator(id\_notification\->notification, id\_project->project)                                                                                      |
+| R19                | new\_assign(id\_notification\->notification, {id\_task, id\_users} -> assignment)                                                                            |
+| R20                | task\_moved(id\_notification\->notification id\_task->task)                                                                                                  |
+| R21                | assignment(id\_users\->users, id\_task\->task, assign\_date NN CK assign\_date <= Today)                                                                     |
+| R22                | notified(id\_users\->users, id\_notification\->notification, isRead NN DF false)                                                                             |
+| R23                | users\_role(id\_users\->users, id\_role\->role)                                                                                                              |
+| R24                | collaborator(id\_users\->users, id\_project\->project, favorite NN DF false)                                                                                 |
+| R25                | label\_label\_class(id\_label ->label, id\_label\_class -> label\_class)                                                                                     |
+| R26                | label\_task(id\_label\->label, id\_task\->task)                                                                                                              |
+| R27                | role\_permission(id\_role -> role, id\_permission -> permission)                                                                                             |
+| R28                | comment(id, msg NN, sent\_date NN CK sent\_date <= Today, id\_task->task NN, id\_users->users NN)                                                            |
 
 Legend:
 
@@ -319,7 +320,7 @@ This artifact also contains the database's workload as well as the complete data
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Justification   | Since fetching the user’s projects will be a frequent enough operation, a performance index for the collaborator table on the id_users attribute would be useful. The cardinality is medium since there may be repeated id_users values. Sorting id_users is also not required so a hashmap was chosen. Clustering was added because fetching all the user’s projects will be needed and the cardinality is medium. |
-| SQL Code        |
+ SQL Code        
 
 ```sql
 CREATE INDEX user_projects_index ON collaborator USING hash (id_users);
@@ -333,7 +334,7 @@ CREATE INDEX user_projects_index ON collaborator USING hash (id_users);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Justification   | Since fetching the task’s comments will be a frequent enough operation, a performance index for the comment table on the id_task attribute would be useful. The cardinality is medium since there may be repeated id_task values. Sorting id_task is also not required so a hashmap was chosen. Clustering was added because fetching all the task’s comments will be needed and the cardinality is medium. |
-| SQL Code        |
+ SQL Code        
 
 ```sql
 CREATE INDEX task_comments_index ON comment USING hash (id_task);
@@ -361,7 +362,7 @@ CREATE INDEX column_tasks_index ON task USING hash (id_vertical);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                          |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Justification   | Since fetching the board’s columns will be a frequent enough operation, a performance index for the vertical table on the id_board attribute would be useful. The cardinality is medium since there may be repeated id_board values. Sorting id_board is also not required so a hashmap was chosen. Clustering was added because fetching all the board’s columns will be needed and the cardinality is medium. |
-| SQL Code        |
+SQL Code        
 
 ```sql
 CREATE INDEX board_verticals_index ON vertical USING hash (id_board);
@@ -375,7 +376,7 @@ CREATE INDEX board_verticals_index ON vertical USING hash (id_board);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Justification   | Since fetching the project’s boards will be a frequent enough operation, a performance index for the board table on the id_project attribute would be useful. The cardinality is medium since there may be repeated id_project values. Sorting id_project is also not required so a hashmap was chosen. Clustering was added because fetching all the project’s boards will be needed and the cardinality is medium. |
-| SQL Code        |
+SQL Code        
 
 ```sql
 CREATE INDEX project_boards_index ON board USING hash (id_project);
@@ -389,7 +390,7 @@ CREATE INDEX project_boards_index ON board USING hash (id_project);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Justification   | Since fetching the task’s labels will be a frequent enough operation, a performance index for the label_task table on the id_task attribute would be useful. The cardinality is medium since there may be repeated id_task values. Sorting id_task is also not required so a hashmap was chosen. Clustering was added because fetching all the task’s labels will be needed and the cardinality is medium. |
-| SQL Code        |
+ SQL Code        
 
 ```sql
 CREATE INDEX task_labels_index ON label_task USING hash (id_task);
@@ -403,7 +404,7 @@ CREATE INDEX task_labels_index ON label_task USING hash (id_task);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Justification   | Since fetching the user’s notifications will be a frequent enough operation, a performance index for the notified table on the id_users attribute would be useful. The cardinality is medium since there may be repeated id_users values. Sorting id_users is also not required so a hashmap was chosen. Clustering was added because fetching all the user’s notifications will be needed and the cardinality is medium. |
-| SQL Code        |
+ SQL Code        
 
 ```sql
 CREATE INDEX user_notifications_index ON notified USING hash (id_users);
@@ -417,7 +418,7 @@ CREATE INDEX user_notifications_index ON notified USING hash (id_users);
 | Cardinality     | Medium                                                                                                                                                                                                       |
 | Clustering      | No                                                                                                                                                                                                           |
 | Justification   | We predict the use of date filtering on notifications, i.e to see the most recent notifications. So a performance index for the notification table on the sent_date attribute using a btree was implemented. |
-| SQL Code        |
+ SQL Code        
 
 ```sql
 CREATE INDEX notifications_date_index ON notification USING btree (sent_date);
@@ -431,7 +432,7 @@ CREATE INDEX notifications_date_index ON notification USING btree (sent_date);
 |Index type | GIN|
 |Clustering | No|
 |Justification| To provide our users a way of searching by other users with more weight on usernames then on name|
-|SQL Code| |
+SQL Code
 
 ```sql
 ALTER TABLE users
@@ -470,7 +471,7 @@ CREATE INDEX search_users_idx ON users USING GIN (tsvectors);
 |Index type | GIN|
 |Clustering | No|
 |Justification| To provide our users a way of searching by projects based on project titles and its descrition|
-|SQL Code| |
+SQL Code
 ```sql
 ALTER TABLE project
     ADD COLUMN tsvectors TSVECTOR;
@@ -508,7 +509,7 @@ CREATE INDEX search_project_idx ON project USING GIN (tsvectors);
 |Index type | GIN|
 |Clustering | No|
 |Justification| To provide our users a way of searching by tasks based on the taks's name and description with enphasis on the name|
-|SQL Code|
+SQL Code
 ```sql
 ALTER TABLE task
     ADD COLUMN tsvectors TSVECTOR;
@@ -545,7 +546,8 @@ CREATE INDEX search_task_idx ON task USING GIN (tsvectors);
 |Index type | GIN|
 |Clustering | No|
 |Justification| To provide our users a way of searching by labels based on their name|
-|SQL Code| |
+
+SQL Code
 
 ```sql
 ALTER TABLE label
@@ -581,9 +583,7 @@ CREATE INDEX search_label_idx ON label USING GIN (tsvectors);
 | Trigger     | TRIGGER01                                                    |
 | ----------- | ------------------------------------------------------------ |
 | Description | An user can only send a message in a forum he has access to. |
-| SQL Code    |
-
-|
+ SQL Code    
 
 ```sql
 CREATE FUNCTION send_message() RETURNS TRIGGER AS
@@ -603,14 +603,10 @@ CREATE TRIGGER send_message
     EXECUTE PROCEDURE send_message();
 ```
 
-|
-
 | Trigger     | TRIGGER02                                    |
 | ----------- | -------------------------------------------- |
 | Description | A ban cannot be applied to an admninistrator |
-| SQL Code    |
-
-|
+ SQL Code    
 
 ```sql
 CREATE FUNCTION issue_ban() RETURNS TRIGGER AS
@@ -630,14 +626,12 @@ CREATE TRIGGER issue_ban
     EXECUTE PROCEDURE issue_ban();
 ```
 
-|
+
 
 | Trigger     | TRIGGER03                             |
 | ----------- | ------------------------------------- |
 | Description | Issue notification on task assignment |
-| SQL Code    |
-
-|
+ SQL Code    
 
 ```sql
 CREATE FUNCTION notify_assignment() RETURNS TRIGGER AS
@@ -662,14 +656,12 @@ CREATE TRIGGER notify_assignment
     EXECUTE PROCEDURE notify_assignment();
 ```
 
-|
+
 
 | Trigger     | TRIGGER04                             |
 | ----------- | ------------------------------------- |
 | Description | Issue notification on new coordinator |
-| SQL Code    |
-
-|
+ SQL Code    
 
 ```sql
 CREATE FUNCTION notify_new_coordinator() RETURNS TRIGGER AS
@@ -694,89 +686,89 @@ CREATE TRIGGER notify_new_coordinator
     EXECUTE PROCEDURE notify_new_coordinator();
 ```
 
-|
+
 
 | Trigger     | TRIGGER05                        |
 | ----------- | -------------------------------- |
 | Description | Issue notification on moved task |
 
-| SQL Code  
-|
+ SQL Code  
+
 
 ```sql
 CREATE FUNCTION notify_moved_task() RETURNS TRIGGER AS
 $BODY$
 DECLARE
-    id_notf INTEGER;
+     id_notf INTEGER;
 BEGIN
-    IF NOT EXISTS (SELECT * FROM task WHERE id = NEW.id AND id_vertical = NEW.id_vertical) THEN
-        INSERT INTO notification(sent_date, msg)
-        VALUES (current_date, 'A task you are assigned to has been moved') RETURNING id INTO id_notf;
-        INSERT INTO task_moved(id_notification, id_task)
-        VALUES (id_noft, NEW.id);
-        INSERT INTO notified(id_users, id_notification)
-            SELECT id_users, id AS id_notification FROM assignmnt CROSS JOIN notification WHERE id = id_notf AND id\_task = NEW.id;
-    END IF;
-    RETURN NEW;
+     IF NOT EXISTS (SELECT * FROM task WHERE id = NEW.id AND id_vertical = NEW.id_vertical) THEN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'A task you are assigned to has been moved') RETURNING id INTO id_notf;
+        INSERT INTO task_moved(id_notification, id_task)
+        VALUES (id_noft, NEW.id);
+        INSERT INTO notified(id_users, id_notification)
+        SELECT id_users, id AS id_notification FROM assignmnt CROSS JOIN notification WHERE id = id_notf AND id\_task = NEW.id;
+    END IF;
+    RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER notify_moved_task
-    BEFORE UPDATE ON task
-    FOR EACH ROW
-    EXECUTE PROCEDURE notify_moved_task();
+    BEFORE UPDATE ON task
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_moved_task();
 ```
 
-|
+
 
 | Trigger     | TRIGGER06                         |
 | ----------- | --------------------------------- |
 | Description | Issue notification on new message |
-| SQL Code    |
+ SQL Code    
 
-|
+
 
 ```sql
 CREATE FUNCTION notify_message() RETURNS TRIGGER AS
 $BODY$
 DECLARE
-    id_notf INTEGER;
+    id_notf INTEGER;
 BEGIN
-        INSERT INTO notification(sent_date, msg)
-        VALUES (current_date, 'You have received a new message.') RETURNING id INTO id_notf;
-        INSERT INTO new_message(id_notification, id_message)
-        VALUES (id_noft, NEW.id);
-        INSERT INTO notified(id_users, id_notification)
-            SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id\_forum FROM chat WHERE id IN (SELECT id_chat FROM message WHERE NEW.id = id)) AND id = id_notf;
-    RETURN NEW;
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'You have received a new message.') RETURNING id INTO id_notf;
+        INSERT INTO new_message(id_notification, id_message)
+        VALUES (id_noft, NEW.id);
+        INSERT INTO notified(id_users, id_notification)
+            SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id\_forum FROM chat WHERE id IN (SELECT id_chat FROM message WHERE NEW.id = id)) AND id = id_notf;
+    RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER notify_message
-    AFTER INSERT ON msg
-    FOR EACH ROW
-    EXECUTE PROCEDURE notify_message();
+    AFTER INSERT ON msg
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_message();
 ```
 
-|
+
 
 | Trigger     | TRIGGER07                                                |
 | ----------- | -------------------------------------------------------- |
 |             |                                                          |
 | Description | Archive project when its coordinator deletes his account |
-| SQL Code    |
+ SQL Code    
 
 ```sql
 CREATE FUNCTION archive_project() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-     UPDATE project
-     SET is_archived = true
-         id_coordinator = null
-     WHERE id IN (SELECT id FROM project WHERE id_coordinator = OLD.id);
-     RETURN OLD;
+    UPDATE project
+    SET is_archived = true
+        id_coordinator = null
+    WHERE id IN (SELECT id FROM project WHERE id_coordinator = OLD.id);
+    RETURN OLD;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -787,7 +779,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE archive_project();
 ```
 
-|
+
 
 ### Transaction
 
@@ -796,9 +788,9 @@ EXECUTE PROCEDURE archive_project();
 | Description     | Get comments and their number                                                                                                                                                                                                                                 |
 | Justification   | In the middle of the transaction, the insertion of new rows in the comment table can occur, which implies that the information retrieved in both selects is different, consequently resulting in a Phantom Read. It's READ ONLY because it only uses Selects. |
 | Isolation Level |                                                                                                                                                                                                                                                               |
-| SQL Code        |
+SQL Code        
 
-|
+
 
 ```sql
 BEGIN TRANSACTION;
@@ -818,4 +810,4 @@ WHERE task\_id=$id;
 END TRANSACTION;
 ```
 
-|
+
