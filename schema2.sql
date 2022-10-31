@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS permission;
 DROP TABLE IF EXISTS ROLE;
 DROP TABLE IF EXISTS msg;
 DROP TABLE IF EXISTS post;
-DROP TABLE IF EXISTS forum;
+DROP TABLE IF EXISTS forum CASCADE;
 DROP TABLE IF EXISTS label_class;
 DROP TABLE IF EXISTS label;
 DROP TABLE IF EXISTS task;
@@ -269,7 +269,7 @@ CREATE INDEX notifications_date_index ON notification USING btree (sent_date);
 -- TRIGGERS
 -- -------------------------
 
-DROP FUNCTION IF EXISTS issue_ban();
+DROP FUNCTION IF EXISTS issue_ban() CASCADE;
 CREATE FUNCTION issue_ban() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -287,7 +287,7 @@ CREATE TRIGGER issue_ban
     EXECUTE PROCEDURE issue_ban();
 
 
-DROP FUNCTION IF EXISTS notify_assignment();
+DROP FUNCTION IF EXISTS notify_assignment() CASCADE;
 CREATE FUNCTION notify_assignment() RETURNS TRIGGER AS
 $BODY$
 DECLARE 
