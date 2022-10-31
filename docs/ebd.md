@@ -58,6 +58,9 @@ Legend:
 * **DF** = DEFAULT
 * **CK** = CHECK
 
+There are only two generalisations. One of them is in the User, an Administrator is specific kind of User that has more power.
+Other generalisation is in the Notifications we have 4 kinds of notifications: New Message (a user receives a notification when they receive a new message), New Coordinator (a user is notified when some of the projects he is enrolled in changed coordinator), Task Moved (a user is notified when a task is moved from one column to another ) and New Assign (when the user is assigned to a task).
+
 
 ### 2. Domains
 
@@ -317,8 +320,10 @@ This artifact also contains the database's workload as well as the complete data
 | Cardinality                                                                | Medium                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Clustering                                                                 | Yes                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Justification                                                              | Since fetching the user’s projects will be a frequent enough operation, a performance index for the collaborator table on the id\_users attribute would be useful. The cardinality is medium since there may be repeated id\_users values. Sorting id\_users is also not required so a hashmap was chosen. Clustering was added because fetching all the user’s projects will be needed and the cardinality is medium. |
-| SQL Code                                                                   |
-| CREATE INDEX user\_projects\_index ON collaborator USING hash (id\_users); |
+| SQL Code                                                                          |
+ ```sql
+CREATE INDEX user_projects_index ON collaborator USING hash (id_users); 
+``` 
 
 | Index                                                                | IDX02                                                                                                                                                                                                                                                                                                                                                                                                          |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -328,8 +333,10 @@ This artifact also contains the database's workload as well as the complete data
 | Cardinality                                                          | Medium                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Clustering                                                           | Yes                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Justification                                                        | Since fetching the task’s comments will be a frequent enough operation, a performance index for the comment table on the id\_task attribute would be useful. The cardinality is medium since there may be repeated id\_task values. Sorting id\_task is also not required so a hashmap was chosen. Clustering was added because fetching all the task’s comments will be needed and the cardinality is medium. |
-| SQL Code                                                             |
-| CREATE INDEX task\_comments\_index ON comment USING hash (id\_task); |
+| SQL Code                                                                          |
+ ```sql
+CREATE INDEX task_comments_index ON comment USING hash (id_task); 
+``` 
 
 | Index                                                                | IDX03                                                                                                                                                                                                                                                                                                                                                                                                             |
 | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -339,8 +346,10 @@ This artifact also contains the database's workload as well as the complete data
 | Cardinality                                                          | Medium                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Clustering                                                           | Yes                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Justification                                                        | Since fetching the task’s columns will be a frequent enough operation, a performance index for the task table on the id\_task attribute would be useful. The cardinality is medium since there may be repeated id\_vertical values. Sorting id\_vertical is also not required so a hashmap was chosen. Clustering was added because fetching all the task’s columns will be needed and the cardinality is medium. |
-| SQL Code                                                             |
-| CREATE INDEX column\_tasks\_index ON task USING hash (id\_vertical); |
+| SQL Code                                                                          |
+ ```sql
+CREATE INDEX column_tasks_index ON task USING hash (id_vertical); 
+``` 
 
 | Index                                                                    | IDX04                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -350,9 +359,10 @@ This artifact also contains the database's workload as well as the complete data
 | Cardinality                                                              | Medium                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Clustering                                                               | Yes                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Justification                                                            | Since fetching the board’s columns will be a frequent enough operation, a performance index for the vertical table on the id\_board attribute would be useful. The cardinality is medium since there may be repeated id\_board values. Sorting id\_board is also not required so a hashmap was chosen. Clustering was added because fetching all the board’s columns will be needed and the cardinality is medium. |
-| SQL Code                                                                 |
-| CREATE INDEX board\_verticals\_index ON vertical USING hash (id\_board); |
-
+| SQL Code                                                                          |
+ ```sql
+CREATE INDEX board_verticals_index ON vertical USING hash (id_board); 
+``` 
 
 | Index                                                                  | IDX05                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -362,8 +372,10 @@ This artifact also contains the database's workload as well as the complete data
 | Cardinality                                                            | Medium                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Clustering                                                             | Yes                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Justification                                                          | Since fetching the project’s boards will be a frequent enough operation, a performance index for the board table on the id\_project attribute would be useful. The cardinality is medium since there may be repeated id\_project values. Sorting id\_project is also not required so a hashmap was chosen. Clustering was added because fetching all the project’s boards will be needed and the cardinality is medium. |
-| SQL Code                                                               |
-| CREATE INDEX project\_boards\_index ON board USING hash (id\_project); |
+| SQL Code                                                                          |
+ ```sql
+CREATE INDEX project_boards_index ON board USING hash (id_project); 
+``` 
 
 | Index                                                                  | IDX06                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -373,8 +385,10 @@ This artifact also contains the database's workload as well as the complete data
 | Cardinality                                                            | Medium                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Clustering                                                             | Yes                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Justification                                                          | Since fetching the task’s labels will be a frequent enough operation, a performance index for the label\_task table on the id\_task attribute would be useful. The cardinality is medium since there may be repeated id\_task values. Sorting id\_task is also not required so a hashmap was chosen. Clustering was added because fetching all the task’s labels will be needed and the cardinality is medium. |
-| SQL Code                                                               |
-| CREATE INDEX task\_labels\_index ON label\_task USING hash (id\_task); |
+| SQL Code                                                                          |
+ ```sql
+CREATE INDEX task_labels_index ON label_task USING hash (id_task); 
+``` 
 
 | Index                                                                       | IDX07                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -384,8 +398,10 @@ This artifact also contains the database's workload as well as the complete data
 | Cardinality                                                                 | Medium                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Clustering                                                                  | Yes                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | Justification                                                               | Since fetching the user’s notifications will be a frequent enough operation, a performance index for the notified table on the id\_users attribute would be useful. The cardinality is medium since there may be repeated id\_users values. Sorting id\_users is also not required so a hashmap was chosen. Clustering was added because fetching all the user’s notifications will be needed and the cardinality is medium. |
-| SQL Code                                                                    |
-| CREATE INDEX user\_notifications\_index ON notified USING hash (id\_users); |
+| SQL Code                                                                          |
+ ```sql
+CREATE INDEX user_notifications_index ON notified USING hash (id_users); 
+``` 
 
 | Index                                                                             | IDX08                                                                                                                                                                                                         |
 | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -396,8 +412,231 @@ This artifact also contains the database's workload as well as the complete data
 | Clustering                                                                        | No                                                                                                                                                                                                           |
 | Justification                                                                     | We predict the use of date filtering on notifications, i.e to see the most recent notifications. So a performance index for the notification table on the sent\_date attribute using a btree was implemented. |
 | SQL Code                                                                          |
-| CREATE INDEX notifications\_date\_index ON notification USING btree (sent\_date); |
+ ```sql
+CREATE INDEX notifications_date_index ON notification USING btree (sent_date); 
+``` 
 
 #### 2.2 Full-text Search indexes
 
 ### Triggers
+
+| Trigger                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | TRIGGER01                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | An user can only send a message in a forum he has access to. |
+| SQL Code                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| 
+```sql 
+CREATE FUNCTION send_message() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF NOT EXISTS (SELECT * FROM collaborator WHERE id_user = NEW.id_user AND id_project IN (SELECT id_forum AS id_project FROM post WHERE id IN (SELECT id_post AS id FROM msg WHERE NEW.id = id))) THEN
+        RAISE EXCEPTION 'User does not have access to this forum';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER send_message
+    BEFORE INSERT OR UPDATE ON msg
+    FOR EACH ROW
+    EXECUTE PROCEDURE send_message();
+``` 
+|
+
+| Trigger                                                                                                                                                                                                                                                                                                                                                                                                                                        | TRIGGER02                                    |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| Description                                                                                                                                                                                                                                                                                                                                                                                                                                    | A ban cannot be applied to an admninistrator |
+| SQL Code                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| 
+```sql
+CREATE FUNCTION issue_ban() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (SELECT * FROM administrator WHERE id_users IN (SELECT id_users AS banned_id FROM ban WHERE NEW.id = id)) THEN
+        RAISE EXCEPTION 'Cannot ban an administrator';
+END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER issue_ban
+    BEFORE INSERT OR UPDATE ON ban
+    FOR EACH ROW
+    EXECUTE PROCEDURE issue_ban(); 
+``` 
+|
+
+| Trigger                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | TRIGGER03                             |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Issue notification on task assignment |
+| SQL Code                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 
+```sql 
+CREATE FUNCTION notify_assignment() RETURNS TRIGGER AS
+$BODY$
+DECLARE
+    id_notf INTEGER;
+BEGIN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'You have been assigned a new task.') RETURNING id INTO id_notf;
+        INSERT INTO new_assign(id_notification, id_users, id_task)
+        VALUES (id_notf, NEW.id_users, NEW.id_task);
+        INSERT INTO notified(id_users, id\_notification)
+        VALUES (NEW.id_users, id_notf);
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_assignment
+    AFTER INSERT OR UPDATE ON assignmnt
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_assignment(); 
+```    
+|
+
+| Trigger                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | TRIGGER04                             |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Issue notification on new coordinator |
+| SQL Code                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 
+```sql
+CREATE FUNCTION notify_new_coordinator() RETURNS TRIGGER AS
+$BODY$
+DECLARE
+    id_notf INTEGER;
+BEGIN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'One of your projects has a new coordinator') RETURNING id INTO id_notf;
+        INSERT INTO new_coordinator(id_notification, id_project)
+        VALUES (id_noft, NEW.id);
+        INSERT INTO notified(id_users, id_notification)
+            SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project = NEW.id AND id = id_notf;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_new_coordinator
+    AFTER UPDATE ON project
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_new_coordinator(); 
+```
+|
+
+| Trigger                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | TRIGGER05                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| Description                                                                                                                       | Issue notification on moved task |
+| SQL Code                                                                    
+| 
+```sql
+CREATE FUNCTION notify_moved_task() RETURNS TRIGGER AS
+$BODY$
+DECLARE
+    id_notf INTEGER;
+BEGIN
+    IF NOT EXISTS (SELECT * FROM task WHERE id = NEW.id AND id_vertical = NEW.id_vertical) THEN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'A task you are assigned to has been moved') RETURNING id INTO id_notf;
+        INSERT INTO task_moved(id_notification, id_task)
+        VALUES (id_noft, NEW.id);
+        INSERT INTO notified(id_users, id_notification)
+            SELECT id_users, id AS id_notification FROM assignmnt CROSS JOIN notification WHERE id = id_notf AND id\_task = NEW.id;
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_moved_task
+    BEFORE UPDATE ON task
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_moved_task(); 
+```
+|
+
+
+| Trigger                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | TRIGGER06                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
+| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Issue notification on new message |
+| SQL Code                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 
+```sql
+CREATE FUNCTION notify_message() RETURNS TRIGGER AS
+$BODY$
+DECLARE
+    id_notf INTEGER;
+BEGIN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'You have received a new message.') RETURNING id INTO id_notf;
+        INSERT INTO new_message(id_notification, id_message)
+        VALUES (id_noft, NEW.id);
+        INSERT INTO notified(id_users, id_notification)
+            SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id\_forum FROM chat WHERE id IN (SELECT id_chat FROM message WHERE NEW.id = id)) AND id = id_notf;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_message
+    AFTER INSERT ON msg
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_message();
+```
+|
+
+
+
+| Trigger                                                                                                                                                                                                                                                                                                                                                                                                         | TRIGGER07                                                |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+|                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                          |
+| Description                                                                                                                                                                                                                                                                                                                                                                                                     | Archive project when its coordinator deletes his account |
+| SQL Code                                                                                                                                                                                                                                                                                                                                                                                                        |
+```sql
+CREATE FUNCTION archive_project() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+     UPDATE project
+     SET is_archived = true
+         id_coordinator = null
+     WHERE id IN (SELECT id FROM project WHERE id_coordinator = OLD.id);
+     RETURN OLD;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER archive_project
+BEFORE DELETE ON users
+FOR EACH ROW
+EXECUTE PROCEDURE archive_project();
+```
+|
+
+### Transaction
+| Transaction                                                                                                                                                                                                                                                                                     | TRAN01                                                                                                                                                                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                                                                                                                                                                                                                                                                                     | Get comments and their number                                                                                                                                                                                                                                 |
+| Justification                                                                                                                                                                                                                                                                                   | In the middle of the transaction, the insertion of new rows in the comment table can occur, which implies that the information retrieved in both selects is different, consequently resulting in a Phantom Read. It's READ ONLY because it only uses Selects. |
+| Isolation Level                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                               |
+| SQL Code                                                                                                                                                                                                                                                                                        |
+| 
+```sql
+BEGIN TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ ONLY;
+
+\-- Get number of current comments on a task
+SELECT COUNT(\*)
+FROM comment
+WHERE task\_id=$id;
+
+\-- Get comments on a task
+SELECT \*
+FROM loan
+WHERE task\_id=$id;
+
+END TRANSACTION; 
+```
+|
