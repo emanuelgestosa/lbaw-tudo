@@ -355,7 +355,7 @@ CREATE OR REPLACE FUNCTION task_search_update ()
     AS $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
-        NEW.tsvectors = (setweight(to_tsvector('english', NEW.name), 'A') || setweight(to_tsvector('english', coalesce(NEW.description, '')), 'B')));
+        NEW.tsvectors = (setweight(to_tsvector('english', NEW.name), 'A') || setweight(to_tsvector('english', coalesce(NEW.description, '')), 'B'));
     END IF;
     IF TG_OP = 'UPDATE' THEN
         IF (NEW.name<> OLD.name) OR (NEW.description <> OLD.description) THEN
@@ -412,11 +412,11 @@ DROP FUNCTION IF EXISTS send_message() CASCADE;
 CREATE FUNCTION send_message() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-
-IF NOT EXISTS (select * from collaborator ) THEN
-    RAISE EXCEPTION 'User does not have access to chat';
+IF EXITS (select * from users join collaborator on (users.id = collaborator.id_users) join project on (collaborator.id_project = project.id)
+ where (users.id = NEW.id_users) AND (NEW.id_post = project.id)) THEN
+    return new;
 END IF;
-RETURN NEW;
+    RAISE EXCEPTION 'User does not have access to chat';
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -521,7 +521,7 @@ BEGIN
     INSERT INTO notification(sent_date, msg)
     VALUES (current_date, 'You have received a new message.') RETURNING id INTO id_notf;
     INSERT INTO new_message(id_notification, id_message)
-    VALUES (id_noft, NEW.id);
+    VALUES (id_notf, NEW.id);
     INSERT INTO notified(id_users, id_notification)
         SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_forum FROM message WHERE NEW.id = id)) AND id = id_notf;
     RETURN NEW;
@@ -552,9 +552,3 @@ CREATE TRIGGER archive_project
     FOR EACH ROW
     EXECUTE PROCEDURE archive_project();
 
-
-
--------------------------------------------------------------
--- User in Project 
--------------------------------------------------------------
--- create or replace function 
