@@ -269,6 +269,9 @@ Because all relations are in the Boyce–Codd Normal Form (BCNF), the relational
 
 ## A6: Indexes, triggers, transactions and database population
 
+This artifact contains the physical schema of the database, the identification and characterisation of the indexes, the support of data integrity rules with triggers and the definition of the database user-defined functions.
+Furthermore, it also shows the database transactions needed to assure the integrity of the data in the presence of concurrent accesses. For each transaction, the isolation level is explicitly stated and justified.
+This artifact also contains the database's workload as well as the complete database creation script, including all SQL necessary to define all integrity constraints, indexes and triggers. Finally, this artifact also includes a separate script with INSERT statements to populate the database.
 
 ### 1. Database Workload
 
