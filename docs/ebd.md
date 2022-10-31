@@ -269,6 +269,7 @@ Because all relations are in the Boyce–Codd Normal Form (BCNF), the relational
 
 ## A6: Indexes, triggers, transactions and database population
 
+
 ### 1. Database Workload
 
 | **Relation** | **Relation name**       | **Order of magnitude**            | **Estimated growth**     |
@@ -397,5 +398,3 @@ Because all relations are in the Boyce–Codd Normal Form (BCNF), the relational
 #### 2.2 Full-text Search indexes
 
 ### Triggers
-
-
