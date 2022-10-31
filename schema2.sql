@@ -211,3 +211,55 @@ CREATE TABLE role_permission (
     id_permission integer REFERENCES permission (id) ON UPDATE CASCADE,
     PRIMARY KEY (id_role, id_permission)
 );
+
+
+-- --------------------------
+-- INDEXES
+-- -------------------------
+
+-- Get the projects of a user
+CREATE INDEX user_projects_index ON collaborator USING hash (id_users);
+-- CLUSTER collaborator USING user_projects_index;
+
+-- Get the comments on a task
+CREATE INDEX task_comments_index ON comment USING hash (id_task);
+-- CLUSTER comment USING task_comments_index;
+
+-- Get the task of a certain column
+CREATE INDEX column_tasks_index ON task USING hash (id_vertical);
+-- CLUSTER task USING column_tasks_index;
+
+-- Get the verticals of a certain board
+CREATE INDEX board_verticals_index ON vertical USING hash (id_board);
+-- CLUSTER vertical USING board_verticals_index;
+
+-- Get the boards of a certain project
+CREATE INDEX project_boards_index ON board USING hash (id_project);
+-- CLUSTER board USING project_boards_index;
+
+-- Get the labels of a certain task
+CREATE INDEX task_labels_index ON label_task USING hash (id_task);
+-- CLUSTER task USING column_tasks_index;
+
+-- Get users notifications
+CREATE INDEX user_notifications_index ON notified USING hash (id_users);
+--CLUSTER notification USING notification_date_index;
+
+-- Organize notifications by sent date
+CREATE INDEX notifications_date_index ON notification USING btree (sent_date);
+
+-- CREATE INDEX username_index ON users USING btree (username);
+-- Create an Index and Cluster for every chat (name) usado para ordenar chats pelo seu nome
+-- CREATE INDEX chat_index ON chat USING btree (name);
+--CLUSTER chat USING chat_index;  MAYBE NOT A GOOD IDEA BECAUSE OF HIGH UPDATE FREQUENCY 
+
+-- Create an Index and Cluster for every message (date) usado para ordenar msgs por data de envio
+-- CREATE INDEX msg_index ON msg USING btree (sent_date);
+--CLUSTER msg USING msg_index;
+
+
+-- CREATE INDEX task_name_index ON task USING btree (name);
+
+-- CREATE INDEX project_name_index ON project USING btree (title);
+
+-- CREATE INDEX label_index ON label USING btree (name);
