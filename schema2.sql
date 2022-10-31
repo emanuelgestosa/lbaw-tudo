@@ -370,3 +370,25 @@ CREATE TRIGGER notify_moved_task
     BEFORE UPDATE ON task
     FOR EACH ROW
     EXECUTE PROCEDURE notify_moved_task();
+
+DROP FUNCTION IF EXISTS notify_message() CASCADE;
+CREATE FUNCTION notify_message() RETURNS TRIGGER AS
+$BODY$
+DECLARE 
+    id_notf INTEGER;
+BEGIN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'You have received a new message.') RETURNING id INTO id_notf;
+        INSERT INTO new_message(id_notification, id_message)
+        VALUES (id_noft, NEW.id);
+        INSERT INTO notified(id_users, id_notification)
+            SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM message WHERE NEW.id = id)) AND id = id_notf;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_message
+    AFTER INSERT ON msg
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_message();
