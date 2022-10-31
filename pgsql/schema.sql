@@ -1,9 +1,9 @@
--- email  special data type
--- phone number  which type
--- Verificar as foreing keys se todas serao on update cascade
--- Add ON DELETE CASCADE
+
+
 DROP TYPE IF EXISTS TODAY;
+
 CREATE DOMAIN TODAY AS TIMESTAMP DEFAULT CURRENT_TIMESTAMP CHECK (VALUE <= CURRENT_TIMESTAMP);
+
 DROP TABLE IF EXISTS role_permission;
 
 DROP TABLE IF EXISTS label_task;
@@ -64,7 +64,7 @@ password text NOT NULL,
 name text NOT NULL,
 birth date NOT NULL CONSTRAINT CK_birth CHECK (birth < CURRENT_DATE),
 email text NOT NULL CONSTRAINT email_unique UNIQUE,
-phone_number text
+phone_number text 
 );
 
 CREATE TABLE project (
@@ -73,20 +73,20 @@ title text NOT NULL,
 description text,
 creation date NOT NULL CONSTRAINT CK_project_creation CHECK (creation <= CURRENT_DATE),
 is_archived boolean NOT NULL DEFAULT FALSE,
-id_coordinator integer REFERENCES users (id) ON UPDATE CASCADE
+id_coordinator integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE board (
 id serial PRIMARY KEY,
 name text NOT NULL,
-id_project integer NOT NULL REFERENCES project (id) ON UPDATE CASCADE
+id_project integer NOT NULL REFERENCES project (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE vertical (
 id serial PRIMARY KEY,
 name text NOT NULL,
 isDone boolean NOT NULL DEFAULT FALSE,
-id_board integer NOT NULL REFERENCES board (id) ON UPDATE CASCADE
+id_board integer NOT NULL REFERENCES board (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE task (
@@ -95,7 +95,7 @@ name text NOT NULL,
 description text,
 creation_date date NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_DATE), 
 due_date date CONSTRAINT CK_task_due_date CHECK (creation_date < due_date),
-id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE
+id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE label (
@@ -109,28 +109,28 @@ name text NOT NULL
 );
 
 CREATE TABLE forum (
-id_project integer PRIMARY KEY REFERENCES project (id) ON UPDATE CASCADE
+id_project integer PRIMARY KEY REFERENCES project (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE post (
 id serial PRIMARY KEY,
 title text NOT NULL,
 description text, 
-id_forum integer NOT NULL REFERENCES forum (id_project) ON UPDATE CASCADE
+id_forum integer NOT NULL REFERENCES forum (id_project) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE msg (
 id serial PRIMARY KEY,
 msg text NOT NULL,
 sent_date date NOT NULL CONSTRAINT CK_sent_date CHECK (sent_date <= CURRENT_DATE),
-id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-id_post integer NOT NULL REFERENCES post (id) ON UPDATE CASCADE
+id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_post integer NOT NULL REFERENCES post (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE ROLE (
 id serial PRIMARY KEY,
 name text NOT NULL,
-id_project integer NOT NULL REFERENCES project (id) ON UPDATE CASCADE
+id_project integer NOT NULL REFERENCES project (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE permission (
@@ -140,7 +140,7 @@ name text NOT NULL
 
 CREATE TABLE administrator (
 id serial PRIMARY KEY,
-id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE
+id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE ban (
@@ -148,8 +148,8 @@ id serial PRIMARY KEY,
 start_date date NOT NULL,
 end_date date NOT NULL CONSTRAINT CK_ban_interval CHECK (start_date <= end_date),
 reason text,
-id_administrator integer NOT NULL REFERENCES administrator (id) ON UPDATE CASCADE,
-id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE
+id_administrator integer NOT NULL REFERENCES administrator (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE faq (
@@ -173,106 +173,91 @@ id_users integer NOT NULL REFERENCES users (id)
 );
 
 CREATE TABLE new_message (
-id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
-id_message integer REFERENCES msg (id) ON UPDATE CASCADE
+id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_message integer REFERENCES msg (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE new_coordinator (
-id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
-id_project integer REFERENCES project (id) ON UPDATE CASCADE
+id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_project integer REFERENCES project (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE assignmnt (
-id_users integer REFERENCES users (id) ON UPDATE CASCADE,
-id_task integer REFERENCES task (id) ON UPDATE CASCADE,
+id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_task integer REFERENCES task (id) ON UPDATE CASCADE ON DELETE CASCADE,
 assign_date date NOT NULL CONSTRAINT CK_assign_date CHECK (assign_date <= CURRENT_DATE),
 PRIMARY KEY (id_users, id_task)
 );
 
 CREATE TABLE new_assign (
-id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
+id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE ON DELETE CASCADE,
 id_users integer,
 id_task integer,
-CONSTRAINT FK_Assign FOREIGN KEY (id_users, id_task) REFERENCES assignmnt (id_users, id_task) ON UPDATE CASCADE
+CONSTRAINT FK_Assign FOREIGN KEY (id_users, id_task) REFERENCES assignmnt (id_users, id_task) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE task_moved (
-id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
-id_task integer REFERENCES task (id) ON UPDATE CASCADE
+id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_task integer REFERENCES task (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE notified (
-id_users integer REFERENCES users (id) ON UPDATE CASCADE,
-id_notification integer REFERENCES notification (id) ON UPDATE CASCADE,
+id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_notification integer REFERENCES notification (id) ON UPDATE CASCADE ON DELETE CASCADE,
 is_read boolean NOT NULL DEFAULT FALSE,
 PRIMARY KEY (id_users, id_notification)
 );
 
 CREATE TABLE users_role (
-id_users integer REFERENCES users (id) ON UPDATE CASCADE,
-id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE,
+id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE ON DELETE CASCADE,
 PRIMARY KEY (id_users, id_role)
 );
 
 CREATE TABLE collaborator (
-id_users integer REFERENCES users (id) ON UPDATE CASCADE,
-id_project integer REFERENCES project (id) ON UPDATE CASCADE,
+id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_project integer REFERENCES project (id) ON UPDATE CASCADE ON DELETE CASCADE,
 PRIMARY KEY (id_users, id_project)
 );
 
 CREATE TABLE label_label_class (
-id_label integer REFERENCES label (id) ON UPDATE CASCADE,
-id_label_class integer REFERENCES label_class (id) ON UPDATE CASCADE,
+id_label integer REFERENCES label (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_label_class integer REFERENCES label_class (id) ON UPDATE CASCADE ON DELETE CASCADE,
 PRIMARY KEY (id_label, id_label_class)
 );
 
 CREATE TABLE label_task (
-id_label integer REFERENCES label (id) ON UPDATE CASCADE,
-id_task integer REFERENCES task (id) ON UPDATE CASCADE,
+id_label integer REFERENCES label (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_task integer REFERENCES task (id) ON UPDATE CASCADE ON DELETE CASCADE,
 PRIMARY KEY (id_label, id_task)
 );
 
 CREATE TABLE role_permission (
-id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE,
-id_permission integer REFERENCES permission (id) ON UPDATE CASCADE,
+id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE ON DELETE CASCADE,
+id_permission integer REFERENCES permission (id) ON UPDATE CASCADE ON DELETE CASCADE,
 PRIMARY KEY (id_role, id_permission)
 );
 
--- --------------------------
--- INDEXES
--- -------------------------
--- Get the projects of a user
 CREATE INDEX user_projects_index ON collaborator USING HASH (id_users);
 
--- Get the comments on a task
 CREATE INDEX task_comments_index ON comment USING HASH (id_task);
 
--- Get the task of a certain column
 CREATE INDEX column_tasks_index ON task USING HASH (id_vertical);
 
--- Get the verticals of a certain board
 CREATE INDEX board_verticals_index ON vertical USING HASH (id_board);
 
--- Get the boards of a certain project
 CREATE INDEX project_boards_index ON board USING HASH (id_project);
 
--- Get the labels of a certain task
 CREATE INDEX task_labels_index ON label_task USING HASH (id_task);
 
--- Get users notifications
 CREATE INDEX user_notifications_index ON notified USING HASH (id_users);
 
--- Organize notifications by sent date
 CREATE INDEX notifications_date_index ON notification USING btree (sent_date);
 
---------------------------------------------------------------------------------------------------------------
---                          Full Text Search
---------------------------------------------------------------------------------------------------------------
----         User Search         ---
+
 ALTER TABLE users
     ADD COLUMN tsvectors TSVECTOR;
 
--- Create a function to automatically update ts_vectors on update or on insert
 CREATE OR REPLACE FUNCTION users_search_update ()
     RETURNS TRIGGER
     AS $$
@@ -290,17 +275,14 @@ END;
 $$
 LANGUAGE plpgsql;
 
--- Create a trigger before insert or update on work.
 CREATE TRIGGER users_search_update_trigger
     BEFORE INSERT OR UPDATE ON users
     FOR EACH ROW
     EXECUTE PROCEDURE users_search_update ();
 
--- Finally, create a GIN index for ts_vectors.
 DROP INDEX IF EXISTS search_users_idx;
 CREATE INDEX search_users_idx ON users USING GIN (tsvectors);
 
----         Project Search        ---
 ALTER TABLE project
     ADD COLUMN tsvectors TSVECTOR;
 
@@ -321,7 +303,6 @@ END;
 $$
 LANGUAGE plpgsql;
 
--- Create a trigger before insert or update on project
 CREATE TRIGGER project_search_update_trigger
     BEFORE INSERT OR UPDATE ON project
     FOR EACH ROW
@@ -330,7 +311,6 @@ CREATE TRIGGER project_search_update_trigger
 DROP INDEX IF EXISTS search_project_idx;
 CREATE INDEX search_project_idx ON project USING GIN (tsvectors);
 
----         Task Search         ---
 ALTER TABLE task
     ADD COLUMN tsvectors TSVECTOR;
 
@@ -360,7 +340,6 @@ DROP INDEX IF EXISTS search_task_idx;
 
 CREATE INDEX search_task_idx ON task USING GIN (tsvectors);
 
----         Label Search           ----
 ALTER TABLE LABEL
     ADD COLUMN tsvectors TSVECTOR;
 
@@ -389,9 +368,6 @@ CREATE TRIGGER label_search_update_trigger
 DROP INDEX IF EXISTS search_label_idx;
 CREATE INDEX search_label_idx ON label USING GIN (tsvectors);
 
--- --------------------------
--- TRIGGERS
--- -------------------------
 DROP FUNCTION IF EXISTS send_message() CASCADE;
 CREATE FUNCTION send_message() RETURNS TRIGGER AS
 $BODY$
