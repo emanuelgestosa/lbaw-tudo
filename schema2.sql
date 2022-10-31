@@ -268,6 +268,22 @@ CREATE INDEX notifications_date_index ON notification USING btree (sent_date);
 -- --------------------------
 -- TRIGGERS
 -- -------------------------
+DROP FUNCTION IF EXISTS send_message() CASCADE;
+CREATE FUNCTION send_message() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF NOT EXISTS (SELECT * FROM collaborator WHERE id_user = NEW.id_user AND id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM msg WHERE NEW.id = id))) THEN
+        RAISE EXCEPTION 'User does not have access to chat';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER send_message
+    BEFORE INSERT OR UPDATE ON msg
+    FOR EACH ROW
+    EXECUTE PROCEDURE send_message();
 
 DROP FUNCTION IF EXISTS issue_ban() CASCADE;
 CREATE FUNCTION issue_ban() RETURNS TRIGGER AS
