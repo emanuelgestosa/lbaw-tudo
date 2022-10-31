@@ -39,16 +39,8 @@ DROP TABLE IF EXISTS permission;
 DROP TABLE IF EXISTS ROLE;
 
 DROP TABLE IF EXISTS msg;
-<<<<<<< HEAD:pgsql/schema2.sql
-
-DROP TABLE IF EXISTS chat;
-
-DROP TABLE IF EXISTS forum;
-
-=======
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS forum CASCADE;
->>>>>>> main:schema2.sql
 DROP TABLE IF EXISTS label_class;
 
 DROP TABLE IF EXISTS label;
@@ -63,16 +55,6 @@ DROP TABLE IF EXISTS project;
 
 DROP TABLE IF EXISTS users;
 
-<<<<<<< HEAD:pgsql/schema2.sql
-CREATE TABLE users (
-    id serial PRIMARY KEY,
-    username text NOT NULL CONSTRAINT username_unique UNIQUE,
-    password text NOT NULL,
-    name text NOT NULL,
-    birth date NOT NULL CONSTRAINT CK_birth CHECK (birth < CURRENT_DATE),
-    email text NOT NULL CONSTRAINT email_unique UNIQUE,
-    phone_number text
-=======
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
 username text NOT NULL CONSTRAINT username_unique UNIQUE,
@@ -81,7 +63,6 @@ name text NOT NULL,
 birth date NOT NULL CONSTRAINT CK_birth CHECK (birth < CURRENT_DATE),
 email text NOT NULL CONSTRAINT email_unique UNIQUE,
 phone_number text
->>>>>>> main:schema2.sql
 );
 
 CREATE TABLE project (
@@ -107,21 +88,12 @@ id_board integer NOT NULL REFERENCES board (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE task (
-<<<<<<< HEAD:pgsql/schema2.sql
-    id serial PRIMARY KEY,
-    name text NOT NULL,
-    description text,
-    creation_date date NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_DATE),
-    due_date date CONSTRAINT CK_task_due_date CHECK (creation_date < due_date),
-    id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE
-=======
 id serial PRIMARY KEY,
 name text NOT NULL,
 description text,
 creation_date date NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_DATE), 
 due_date date CONSTRAINT CK_task_due_date CHECK (creation_date < due_date),
 id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE
->>>>>>> main:schema2.sql
 );
 
 CREATE TABLE label (
@@ -216,17 +188,10 @@ PRIMARY KEY (id_users, id_task)
 );
 
 CREATE TABLE new_assign (
-<<<<<<< HEAD:pgsql/schema2.sql
-    id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
-    id_users integer,
-    id_task integer,
-    CONSTRAINT FK_Assign FOREIGN KEY (id_users, id_task) REFERENCES assignmnt (id_users, id_task) ON UPDATE CASCADE
-=======
 id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
 id_users integer,
 id_task integer,
 CONSTRAINT FK_Assign FOREIGN KEY (id_users, id_task) REFERENCES assignmnt (id_users, id_task) ON UPDATE CASCADE
->>>>>>> main:schema2.sql
 );
 
 CREATE TABLE task_moved (
