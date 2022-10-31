@@ -264,3 +264,88 @@ CREATE INDEX notifications_date_index ON notification USING btree (sent_date);
 -- CREATE INDEX project_name_index ON project USING btree (title);
 
 -- CREATE INDEX label_index ON label USING btree (name);
+
+-- --------------------------
+-- TRIGGERS
+-- -------------------------
+
+CREATE FUNCTION issue_ban() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (SELECT * FROM administrator WHERE id_users IN (SELECT id_users AS banned_id FROM ban WHERE NEW.id = id)) THEN
+        RAISE EXCEPTION "Cannotbananadministrator";
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER issue_ban
+    BEFORE INSERT OR UPDATE ON ban
+    FOR EACH ROW
+    EXECUTE PROCEDURE issue_ban()
+
+-------------------------------------------------
+
+CREATE FUNCTION notify_assignment() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, “You have been assigned a new task.”) RETURNING id INTO id_notf;
+        INSERT INTO new_assign(id_notification, id_users, id_task)
+        VALUES (id_notf, NEW.id_users, NEW.id_task);
+        INSERT INTO notified(id_users, id_notification)
+        VALUES (NEW.id_users, id_notf);
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_assignment
+    AFTER INSERT OR UPDATE ON assignmnt
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_assignment()
+
+
+
+---2.0
+DROP FUNCTION IF EXISTS issue_ban();
+CREATE FUNCTION issue_ban() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (SELECT * FROM administrator WHERE id_users IN (SELECT id_users AS banned_id FROM ban WHERE NEW.id = id)) THEN
+        RAISE EXCEPTION 'Cannot ban an administrator'; 
+END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER issue_ban
+    BEFORE INSERT OR UPDATE ON ban
+    FOR EACH ROW
+    EXECUTE PROCEDURE issue_ban();
+
+
+DROP FUNCTION IF EXISTS notify_assignment();
+CREATE FUNCTION notify_assignment() RETURNS TRIGGER AS
+$BODY$
+DECLARE 
+	id_notf INTEGER;
+BEGIN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'You have been assigned a new task.') RETURNING id INTO id_notf;
+        INSERT INTO new_assign(id_notification, id_users, id_task)
+        VALUES (id_notf, NEW.id_users, NEW.id_task);
+        INSERT INTO notified(id_users, id_notification)
+        VALUES (NEW.id_users, id_notf);
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_assignment
+    AFTER INSERT OR UPDATE ON assignmnt
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_assignment();
+
