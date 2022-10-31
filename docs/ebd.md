@@ -320,6 +320,7 @@ This artifact also contains the database's workload as well as the complete data
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Justification   | Since fetching the user’s projects will be a frequent enough operation, a performance index for the collaborator table on the id_users attribute would be useful. The cardinality is medium since there may be repeated id_users values. Sorting id_users is also not required so a hashmap was chosen. Clustering was added because fetching all the user’s projects will be needed and the cardinality is medium. |
+ 
  SQL Code        
 
 ```sql
@@ -334,6 +335,7 @@ CREATE INDEX user_projects_index ON collaborator USING hash (id_users);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Justification   | Since fetching the task’s comments will be a frequent enough operation, a performance index for the comment table on the id_task attribute would be useful. The cardinality is medium since there may be repeated id_task values. Sorting id_task is also not required so a hashmap was chosen. Clustering was added because fetching all the task’s comments will be needed and the cardinality is medium. |
+ 
  SQL Code        
 
 ```sql
@@ -348,7 +350,8 @@ CREATE INDEX task_comments_index ON comment USING hash (id_task);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Justification   | Since fetching the task’s columns will be a frequent enough operation, a performance index for the task table on the id_task attribute would be useful. The cardinality is medium since there may be repeated id_vertical values. Sorting id_vertical is also not required so a hashmap was chosen. Clustering was added because fetching all the task’s columns will be needed and the cardinality is medium. |
-| SQL Code        |
+ 
+ SQL Code        
 
 ```sql
 CREATE INDEX column_tasks_index ON task USING hash (id_vertical);
@@ -362,6 +365,7 @@ CREATE INDEX column_tasks_index ON task USING hash (id_vertical);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                          |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Justification   | Since fetching the board’s columns will be a frequent enough operation, a performance index for the vertical table on the id_board attribute would be useful. The cardinality is medium since there may be repeated id_board values. Sorting id_board is also not required so a hashmap was chosen. Clustering was added because fetching all the board’s columns will be needed and the cardinality is medium. |
+
 SQL Code        
 
 ```sql
@@ -376,6 +380,7 @@ CREATE INDEX board_verticals_index ON vertical USING hash (id_board);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Justification   | Since fetching the project’s boards will be a frequent enough operation, a performance index for the board table on the id_project attribute would be useful. The cardinality is medium since there may be repeated id_project values. Sorting id_project is also not required so a hashmap was chosen. Clustering was added because fetching all the project’s boards will be needed and the cardinality is medium. |
+
 SQL Code        
 
 ```sql
@@ -390,6 +395,7 @@ CREATE INDEX project_boards_index ON board USING hash (id_project);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Justification   | Since fetching the task’s labels will be a frequent enough operation, a performance index for the label_task table on the id_task attribute would be useful. The cardinality is medium since there may be repeated id_task values. Sorting id_task is also not required so a hashmap was chosen. Clustering was added because fetching all the task’s labels will be needed and the cardinality is medium. |
+ 
  SQL Code        
 
 ```sql
@@ -404,6 +410,7 @@ CREATE INDEX task_labels_index ON label_task USING hash (id_task);
 | Cardinality     | Medium                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Clustering      | Yes                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Justification   | Since fetching the user’s notifications will be a frequent enough operation, a performance index for the notified table on the id_users attribute would be useful. The cardinality is medium since there may be repeated id_users values. Sorting id_users is also not required so a hashmap was chosen. Clustering was added because fetching all the user’s notifications will be needed and the cardinality is medium. |
+
  SQL Code        
 
 ```sql
@@ -418,6 +425,7 @@ CREATE INDEX user_notifications_index ON notified USING hash (id_users);
 | Cardinality     | Medium                                                                                                                                                                                                       |
 | Clustering      | No                                                                                                                                                                                                           |
 | Justification   | We predict the use of date filtering on notifications, i.e to see the most recent notifications. So a performance index for the notification table on the sent_date attribute using a btree was implemented. |
+
  SQL Code        
 
 ```sql
@@ -432,6 +440,7 @@ CREATE INDEX notifications_date_index ON notification USING btree (sent_date);
 |Index type | GIN|
 |Clustering | No|
 |Justification| To provide our users a way of searching by other users with more weight on usernames then on name|
+
 SQL Code
 
 ```sql
@@ -471,6 +480,7 @@ CREATE INDEX search_users_idx ON users USING GIN (tsvectors);
 |Index type | GIN|
 |Clustering | No|
 |Justification| To provide our users a way of searching by projects based on project titles and its descrition|
+
 SQL Code
 ```sql
 ALTER TABLE project
@@ -509,6 +519,7 @@ CREATE INDEX search_project_idx ON project USING GIN (tsvectors);
 |Index type | GIN|
 |Clustering | No|
 |Justification| To provide our users a way of searching by tasks based on the taks's name and description with enphasis on the name|
+
 SQL Code
 ```sql
 ALTER TABLE task
@@ -583,6 +594,7 @@ CREATE INDEX search_label_idx ON label USING GIN (tsvectors);
 | Trigger     | TRIGGER01                                                    |
 | ----------- | ------------------------------------------------------------ |
 | Description | An user can only send a message in a forum he has access to. |
+
  SQL Code    
 
 ```sql
@@ -606,6 +618,7 @@ CREATE TRIGGER send_message
 | Trigger     | TRIGGER02                                    |
 | ----------- | -------------------------------------------- |
 | Description | A ban cannot be applied to an admninistrator |
+
  SQL Code    
 
 ```sql
@@ -631,6 +644,7 @@ CREATE TRIGGER issue_ban
 | Trigger     | TRIGGER03                             |
 | ----------- | ------------------------------------- |
 | Description | Issue notification on task assignment |
+
  SQL Code    
 
 ```sql
@@ -661,6 +675,7 @@ CREATE TRIGGER notify_assignment
 | Trigger     | TRIGGER04                             |
 | ----------- | ------------------------------------- |
 | Description | Issue notification on new coordinator |
+
  SQL Code    
 
 ```sql
@@ -725,6 +740,7 @@ CREATE TRIGGER notify_moved_task
 | Trigger     | TRIGGER06                         |
 | ----------- | --------------------------------- |
 | Description | Issue notification on new message |
+
  SQL Code    
 
 
@@ -758,6 +774,7 @@ CREATE TRIGGER notify_message
 | ----------- | -------------------------------------------------------- |
 |             |                                                          |
 | Description | Archive project when its coordinator deletes his account |
+
  SQL Code    
 
 ```sql
@@ -787,7 +804,7 @@ EXECUTE PROCEDURE archive_project();
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Description     | Get comments and their number                                                                                                                                                                                                                                 |
 | Justification   | In the middle of the transaction, the insertion of new rows in the comment table can occur, which implies that the information retrieved in both selects is different, consequently resulting in a Phantom Read. It's READ ONLY because it only uses Selects. |
-| Isolation Level |                                                                                                                                                                                                                                                               |
+| Isolation Level | SERIALIZABLE READ ONLY                                                                                                                                                                                                                                                              |
 SQL Code        
 
 
