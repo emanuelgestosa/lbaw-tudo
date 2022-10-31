@@ -401,7 +401,7 @@ BEGIN
         SET is_archived = true,
             id_coordinator = null
         WHERE id IN (SELECT id FROM project WHERE id_coordinator = OLD.id);
-        RETURN NEW;
+        RETURN OLD;
 END
 $BODY$
 LANGUAGE plpgsql;
