@@ -1,4 +1,3 @@
-
 insert into users (id, username, password, name, birth, email, phone_number) values (1, 'jfairhead0', 'X9G2Pj', 'Mylène', '07/06/1971', 'droad0@ft.com', '703-490-2953');
 insert into users (id, username, password, name, birth, email, phone_number) values (2, 'estiles1', 'IR32V9Rw', 'Aurélie', '04/10/1992', 'sissacson1@amazon.co.uk', '241-652-2035');
 insert into users (id, username, password, name, birth, email, phone_number) values (3, 'icron2', '9GRRQ0GH4B', 'Eléa', '10/02/1978', 'kpodd2@biglobe.ne.jp', '271-941-6712');
@@ -105,11 +104,30 @@ insert into faq (id, question, answer) values (1, 'What is Tu-Do?', 'Tu-Do is is
 insert into faq (id, question, answer) values (2, 'Who can use Tu-Do?', 'Tu-Do can be used to manage any kind of project no matter the size.');
 insert into faq (id, question, answer) values (3, 'Why should I user Tu-Do?', 'so it can be used by everyone from individuals making their grocery list to huge companies managing dozens of projects.');
 
+--insert into notification (id, sent_date, msg) values (1, '2/8/2022', 'One of your projects has a new coordinator');
+--insert into notification (id, sent_date, msg) values (2, '12/28/2021', 'You have been assigned a new task');
+--insert into notification (id, sent_date, msg) values (3, '12/9/2021', 'You received a message from your team mate! Check it now!');
+--insert into notification (id, sent_date, msg) values (4, '5/2/2022', 'A task you are assigned to has been moved');
+
+--insert into new_message (id_notification, id_message) values (1, 2);
+--insert into new_message (id_notification, id_message) values (2, 3);
+--insert into new_message (id_notification, id_message) values (3, 6);
+
+--insert into new_coordinator (id_notification, id_project) values (1, 1);
+--insert into new_coordinator (id_notification, id_project) values (2, 1);
+--insert into new_coordinator (id_notification, id_project) values (3, 2);
+
 insert into assignmnt (id_users, id_task, assign_date) values (8, 9, '11/20/2021');
 insert into assignmnt (id_users, id_task, assign_date) values (10, 8, '11/28/2021');
 insert into assignmnt (id_users, id_task, assign_date) values (7, 3, '1/7/2022');
 insert into assignmnt (id_users, id_task, assign_date) values (8, 6, '2/21/2022');
 insert into assignmnt (id_users, id_task, assign_date) values (4, 3, '10/17/2022');
+
+--insert into new_assign (id_notification, id_users, id_task) values (1, 8, 9);
+--insert into new_assign (id_notification, id_users, id_task) values (2, 10, 8);
+
+--insert into task_moved (id_notification, id_task) values (1, 6);
+--insert into task_moved (id_notification, id_task) values (2, 5);
 
 insert into comment (id, msg, sent_date, id_task, id_users) values (1, 'os projetos estão todos a arder', '5/14/2022', 5, 7);
 insert into comment (id, msg, sent_date, id_task, id_users) values (2, 'os projetos estão todos a arder', '7/13/2022', 3, 4);
@@ -122,16 +140,6 @@ insert into comment (id, msg, sent_date, id_task, id_users) values (8, 'os proje
 insert into comment (id, msg, sent_date, id_task, id_users) values (9, 'os projetos estão todos a arder', '5/7/2022', 6, 5);
 insert into comment (id, msg, sent_date, id_task, id_users) values (10, 'os projetos estão todos a arder', '6/20/2022', 3, 10);
 
-insert into notified (id_users, id_notification, is_read) values (7, 1, true);
-insert into notified (id_users, id_notification, is_read) values (10, 2, true);
-insert into notified (id_users, id_notification, is_read) values (6, 3, false);
-insert into notified (id_users, id_notification, is_read) values (9, 4, false);
-insert into notified (id_users, id_notification, is_read) values (10, 4, false);
-insert into notified (id_users, id_notification, is_read) values (5, 4, true);
-insert into notified (id_users, id_notification, is_read) values (3, 2, false);
-insert into notified (id_users, id_notification, is_read) values (8, 3, true);
-insert into notified (id_users, id_notification, is_read) values (2, 4, true);
-insert into notified (id_users, id_notification, is_read) values (6, 1, true);
 
 insert into users_role (id_users, id_role) values (4, 1);
 insert into users_role (id_users, id_role) values (5, 2);

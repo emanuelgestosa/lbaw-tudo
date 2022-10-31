@@ -298,7 +298,6 @@ CREATE TRIGGER users_search_update_trigger
 
 -- Finally, create a GIN index for ts_vectors.
 DROP INDEX IF EXISTS search_users_idx;
-
 CREATE INDEX search_users_idx ON users USING GIN (tsvectors);
 
 ---         Project Search        ---
@@ -329,7 +328,6 @@ CREATE TRIGGER project_search_update_trigger
     EXECUTE PROCEDURE project_search_update ();
 
 DROP INDEX IF EXISTS search_project_idx;
-
 CREATE INDEX search_project_idx ON project USING GIN (tsvectors);
 
 ---         Task Search         ---
@@ -341,17 +339,22 @@ CREATE OR REPLACE FUNCTION task_search_update ()
     AS $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
-        NEW.tsvectors = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', coalesce(NEW.description, ''), 'B')));
+        NEW.tsvectors = (setweight(to_tsvector('english', NEW.name), 'A') || setweight(to_tsvector('english', coalesce(NEW.description, '')), 'B'));
     END IF;
     IF TG_OP = 'UPDATE' THEN
-        IF (NEW.title <> OLD.title) OR (NEW.description <> OLD.description) THEN
-            NEW.tsvectors = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', coalesce(NEW.description, '')), 'B'));
+        IF (NEW.name<> OLD.name) OR (NEW.description <> OLD.description) THEN
+            NEW.tsvectors = (setweight(to_tsvector('english', NEW.name), 'A') || setweight(to_tsvector('english', coalesce(NEW.description, '')), 'B'));
         END IF;
     END IF;
     RETURN NEW;
 END;
 $$
 LANGUAGE plpgsql;
+
+CREATE TRIGGER task_search_update_trigger
+    BEFORE INSERT OR UPDATE ON task
+    FOR EACH ROW
+    EXECUTE PROCEDURE task_search_update ();
 
 DROP INDEX IF EXISTS search_task_idx;
 
@@ -384,9 +387,7 @@ CREATE TRIGGER label_search_update_trigger
     EXECUTE PROCEDURE label_search_update ();
 
 DROP INDEX IF EXISTS search_label_idx;
-
 CREATE INDEX search_label_idx ON label USING GIN (tsvectors);
-
 
 -- --------------------------
 -- TRIGGERS
