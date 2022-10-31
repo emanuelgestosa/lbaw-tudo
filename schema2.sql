@@ -392,3 +392,21 @@ CREATE TRIGGER notify_message
     AFTER INSERT ON msg
     FOR EACH ROW
     EXECUTE PROCEDURE notify_message();
+
+DROP FUNCTION IF EXISTS archive_project() CASCADE;
+CREATE FUNCTION archive_project() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+        UPDATE project 
+        SET is_archived = true,
+            id_coordinator = null
+        WHERE id IN (SELECT id FROM project WHERE id_coordinator = OLD.id);
+        RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER archive_project
+    BEFORE DELETE ON users
+    FOR EACH ROW
+    EXECUTE PROCEDURE archive_project();
