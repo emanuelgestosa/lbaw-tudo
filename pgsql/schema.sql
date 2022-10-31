@@ -355,7 +355,7 @@ CREATE OR REPLACE FUNCTION task_search_update ()
     AS $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
-        NEW.tsvectors = (setweight(to_tsvector('english', NEW.name), 'A') || setweight(to_tsvector('english', coalesce(NEW.description, '')), 'B'));
+        NEW.tsvectors = (setweight(to_tsvector('english', NEW.name), 'A') || setweight(to_tsvector('english', coalesce(NEW.description, '')), 'B')));
     END IF;
     IF TG_OP = 'UPDATE' THEN
         IF (NEW.name<> OLD.name) OR (NEW.description <> OLD.description) THEN
@@ -551,3 +551,10 @@ CREATE TRIGGER archive_project
     BEFORE DELETE ON users
     FOR EACH ROW
     EXECUTE PROCEDURE archive_project();
+
+
+
+-------------------------------------------------------------
+-- User in Project 
+-------------------------------------------------------------
+-- create or replace function 
