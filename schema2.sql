@@ -33,184 +33,184 @@ DROP TABLE IF EXISTS project;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users(
-    id SERIAL PRIMARY KEY,
-    username text NOT NULL CONSTRAINT username_unique UNIQUE,
-    password text NOT NULL,
-    name text NOT NULL,
-    birth date NOT NULL CONSTRAINT CK_birth CHECK (birth < CURRENT_DATE),
-    email text NOT NULL CONSTRAINT email_unique UNIQUE,
-    phone_number text
+id SERIAL PRIMARY KEY,
+username text NOT NULL CONSTRAINT username_unique UNIQUE,
+password text NOT NULL,
+name text NOT NULL,
+birth date NOT NULL CONSTRAINT CK_birth CHECK (birth < CURRENT_DATE),
+email text NOT NULL CONSTRAINT email_unique UNIQUE,
+phone_number text
 );
 
 CREATE TABLE project (
-    id serial PRIMARY KEY,
-    title text NOT NULL,
-    description text,
-    creation date NOT NULL CONSTRAINT CK_project_creation CHECK (creation <= CURRENT_DATE),
-    is_archived boolean NOT NULL DEFAULT FALSE,
-    id_coordinator integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE
+id serial PRIMARY KEY,
+title text NOT NULL,
+description text,
+creation date NOT NULL CONSTRAINT CK_project_creation CHECK (creation <= CURRENT_DATE),
+is_archived boolean NOT NULL DEFAULT FALSE,
+id_coordinator integer REFERENCES users (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE board (
-    id serial PRIMARY KEY,
-    name text NOT NULL,
-    id_project integer NOT NULL REFERENCES project (id) ON UPDATE CASCADE
+id serial PRIMARY KEY,
+name text NOT NULL,
+id_project integer NOT NULL REFERENCES project (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE vertical (
-    id serial PRIMARY KEY,
-    name text NOT NULL,
-    isDone boolean NOT NULL DEFAULT FALSE,
-    id_board integer NOT NULL REFERENCES board (id) ON UPDATE CASCADE
+id serial PRIMARY KEY,
+name text NOT NULL,
+isDone boolean NOT NULL DEFAULT FALSE,
+id_board integer NOT NULL REFERENCES board (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE task (
-    id serial PRIMARY KEY,
-    name text NOT NULL,
-    description text,
-    creation_date date NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_DATE), 
-    due_date date CONSTRAINT CK_task_due_date CHECK (creation_date < due_date),
-    id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE
+id serial PRIMARY KEY,
+name text NOT NULL,
+description text,
+creation_date date NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_DATE), 
+due_date date CONSTRAINT CK_task_due_date CHECK (creation_date < due_date),
+id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE label (
-    id serial PRIMARY KEY,
-    name text NOT NULL
+id serial PRIMARY KEY,
+name text NOT NULL
 );
 
 CREATE TABLE label_class (
-    id serial PRIMARY KEY,
-    name text NOT NULL
+id serial PRIMARY KEY,
+name text NOT NULL
 );
 
 CREATE TABLE forum (
-    id_project integer PRIMARY KEY REFERENCES project (id) ON UPDATE CASCADE
+id_project integer PRIMARY KEY REFERENCES project (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE post (
-    id serial PRIMARY KEY,
-    title text NOT NULL,
-    description text, 
-    id_forum integer NOT NULL REFERENCES forum (id_project) ON UPDATE CASCADE
+id serial PRIMARY KEY,
+title text NOT NULL,
+description text, 
+id_forum integer NOT NULL REFERENCES forum (id_project) ON UPDATE CASCADE
 );
 
 CREATE TABLE msg (
-    id serial PRIMARY KEY,
-    msg text NOT NULL,
-    sent_date date NOT NULL CONSTRAINT CK_sent_date CHECK (sent_date <= CURRENT_DATE),
-    id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_post integer NOT NULL REFERENCES post (id) ON UPDATE CASCADE
+id serial PRIMARY KEY,
+msg text NOT NULL,
+sent_date date NOT NULL CONSTRAINT CK_sent_date CHECK (sent_date <= CURRENT_DATE),
+id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+id_post integer NOT NULL REFERENCES post (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE ROLE (
-    id serial PRIMARY KEY,
-    name text NOT NULL,
-    id_project integer NOT NULL REFERENCES project (id) ON UPDATE CASCADE
+id serial PRIMARY KEY,
+name text NOT NULL,
+id_project integer NOT NULL REFERENCES project (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE permission (
-    id serial PRIMARY KEY,
-    name text NOT NULL
+id serial PRIMARY KEY,
+name text NOT NULL
 );
 
 CREATE TABLE administrator (
-    id serial PRIMARY KEY,
-    id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE
+id serial PRIMARY KEY,
+id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE ban (
-    id serial PRIMARY KEY,
-    start_date date NOT NULL,
-    end_date date NOT NULL CONSTRAINT CK_ban_interval CHECK (start_date <= end_date),
-    reason text,
-    id_administrator integer NOT NULL REFERENCES administrator (id) ON UPDATE CASCADE,
-    id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE
+id serial PRIMARY KEY,
+start_date date NOT NULL,
+end_date date NOT NULL CONSTRAINT CK_ban_interval CHECK (start_date <= end_date),
+reason text,
+id_administrator integer NOT NULL REFERENCES administrator (id) ON UPDATE CASCADE,
+id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE faq (
-    id serial PRIMARY KEY,
-    question text NOT NULL CONSTRAINT question_unique UNIQUE,
-    answer text NOT NULL
+id serial PRIMARY KEY,
+question text NOT NULL CONSTRAINT question_unique UNIQUE,
+answer text NOT NULL
 );
 
 CREATE TABLE notification (
-    id serial PRIMARY KEY,
-    sent_date date NOT NULL CONSTRAINT CK_notification_date CHECK (sent_date <= CURRENT_DATE),
-    msg text NOT NULL
+id serial PRIMARY KEY,
+sent_date date NOT NULL CONSTRAINT CK_notification_date CHECK (sent_date <= CURRENT_DATE),
+msg text NOT NULL
 );
 
 CREATE TABLE comment (
-    id serial PRIMARY KEY,
-    msg text NOT NULL,
-    sent_date date NOT NULL CONSTRAINT CK_comment_sent_date CHECK (sent_date <= CURRENT_DATE),
-    id_task integer NOT NULL REFERENCES task (id),
-    id_users integer NOT NULL REFERENCES users (id)
+id serial PRIMARY KEY,
+msg text NOT NULL,
+sent_date date NOT NULL CONSTRAINT CK_comment_sent_date CHECK (sent_date <= CURRENT_DATE),
+id_task integer NOT NULL REFERENCES task (id),
+id_users integer NOT NULL REFERENCES users (id)
 );
 
 CREATE TABLE new_message (
-    id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
-    id_message integer REFERENCES msg (id) ON UPDATE CASCADE
+id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
+id_message integer REFERENCES msg (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE new_coordinator (
-    id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
-    id_project integer REFERENCES project (id) ON UPDATE CASCADE
+id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
+id_project integer REFERENCES project (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE assignmnt (
-    id_users integer REFERENCES users (id) ON UPDATE CASCADE,
-    id_task integer REFERENCES task (id) ON UPDATE CASCADE,
-    assign_date date NOT NULL CONSTRAINT CK_assign_date CHECK (assign_date <= CURRENT_DATE),
-    PRIMARY KEY (id_users, id_task)
+id_users integer REFERENCES users (id) ON UPDATE CASCADE,
+id_task integer REFERENCES task (id) ON UPDATE CASCADE,
+assign_date date NOT NULL CONSTRAINT CK_assign_date CHECK (assign_date <= CURRENT_DATE),
+PRIMARY KEY (id_users, id_task)
 );
 
 CREATE TABLE new_assign (
-    id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
-	id_users integer,
-	id_task integer,
-    CONSTRAINT FK_Assign FOREIGN KEY (id_users, id_task) REFERENCES assignmnt (id_users, id_task) ON UPDATE CASCADE
+id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
+id_users integer,
+id_task integer,
+CONSTRAINT FK_Assign FOREIGN KEY (id_users, id_task) REFERENCES assignmnt (id_users, id_task) ON UPDATE CASCADE
 );
 
 CREATE TABLE task_moved (
-    id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
-    id_task integer REFERENCES task (id) ON UPDATE CASCADE
+id_notification integer PRIMARY KEY REFERENCES notification (id) ON UPDATE CASCADE,
+id_task integer REFERENCES task (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE notified (
-    id_users integer REFERENCES users (id) ON UPDATE CASCADE,
-    id_notification integer REFERENCES notification (id) ON UPDATE CASCADE,
-    is_read boolean NOT NULL DEFAULT FALSE,
-    PRIMARY KEY (id_users, id_notification)
+id_users integer REFERENCES users (id) ON UPDATE CASCADE,
+id_notification integer REFERENCES notification (id) ON UPDATE CASCADE,
+is_read boolean NOT NULL DEFAULT FALSE,
+PRIMARY KEY (id_users, id_notification)
 );
 
 CREATE TABLE users_role (
-    id_users integer REFERENCES users (id) ON UPDATE CASCADE,
-    id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE,
-    PRIMARY KEY (id_users, id_role)
+id_users integer REFERENCES users (id) ON UPDATE CASCADE,
+id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE,
+PRIMARY KEY (id_users, id_role)
 );
 
 CREATE TABLE collaborator (
-    id_users integer REFERENCES users (id) ON UPDATE CASCADE,
-    id_project integer REFERENCES project (id) ON UPDATE CASCADE,
-    PRIMARY KEY (id_users, id_project)
+id_users integer REFERENCES users (id) ON UPDATE CASCADE,
+id_project integer REFERENCES project (id) ON UPDATE CASCADE,
+PRIMARY KEY (id_users, id_project)
 );
 
 CREATE TABLE label_label_class (
-    id_label integer REFERENCES label (id) ON UPDATE CASCADE,
-    id_label_class integer REFERENCES label_class (id) ON UPDATE CASCADE,
-    PRIMARY KEY (id_label, id_label_class)
+id_label integer REFERENCES label (id) ON UPDATE CASCADE,
+id_label_class integer REFERENCES label_class (id) ON UPDATE CASCADE,
+PRIMARY KEY (id_label, id_label_class)
 );
 
 CREATE TABLE label_task (
-    id_label integer REFERENCES label (id) ON UPDATE CASCADE,
-    id_task integer REFERENCES task (id) ON UPDATE CASCADE,
-    PRIMARY KEY (id_label, id_task)
+id_label integer REFERENCES label (id) ON UPDATE CASCADE,
+id_task integer REFERENCES task (id) ON UPDATE CASCADE,
+PRIMARY KEY (id_label, id_task)
 );
 
 CREATE TABLE role_permission (
-    id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE,
-    id_permission integer REFERENCES permission (id) ON UPDATE CASCADE,
-    PRIMARY KEY (id_role, id_permission)
+id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE,
+id_permission integer REFERENCES permission (id) ON UPDATE CASCADE,
+PRIMARY KEY (id_role, id_permission)
 );
 
 
@@ -272,117 +272,117 @@ DROP FUNCTION IF EXISTS send_message() CASCADE;
 CREATE FUNCTION send_message() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF NOT EXISTS (SELECT * FROM collaborator WHERE id_user = NEW.id_user AND id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM msg WHERE NEW.id = id))) THEN
-        RAISE EXCEPTION 'User does not have access to chat';
-    END IF;
-    RETURN NEW;
+IF NOT EXISTS (SELECT * FROM collaborator WHERE id_user = NEW.id_user AND id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM msg WHERE NEW.id = id))) THEN
+    RAISE EXCEPTION 'User does not have access to chat';
+END IF;
+RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER send_message
-    BEFORE INSERT OR UPDATE ON msg
-    FOR EACH ROW
-    EXECUTE PROCEDURE send_message();
+BEFORE INSERT OR UPDATE ON msg
+FOR EACH ROW
+EXECUTE PROCEDURE send_message();
 
 DROP FUNCTION IF EXISTS issue_ban() CASCADE;
 CREATE FUNCTION issue_ban() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM administrator WHERE id_users IN (SELECT id_users AS banned_id FROM ban WHERE NEW.id = id)) THEN
-        RAISE EXCEPTION 'Cannot ban an administrator'; 
+IF EXISTS (SELECT * FROM administrator WHERE id_users IN (SELECT id_users AS banned_id FROM ban WHERE NEW.id = id)) THEN
+    RAISE EXCEPTION 'Cannot ban an administrator'; 
 END IF;
-    RETURN NEW;
+RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER issue_ban
-    BEFORE INSERT OR UPDATE ON ban
-    FOR EACH ROW
-    EXECUTE PROCEDURE issue_ban();
+BEFORE INSERT OR UPDATE ON ban
+FOR EACH ROW
+EXECUTE PROCEDURE issue_ban();
 
 
 DROP FUNCTION IF EXISTS notify_assignment() CASCADE;
 CREATE FUNCTION notify_assignment() RETURNS TRIGGER AS
 $BODY$
 DECLARE 
-    id_notf INTEGER;
+id_notf INTEGER;
 BEGIN
-        INSERT INTO notification(sent_date, msg)
-        VALUES (current_date, 'You have been assigned a new task.') RETURNING id INTO id_notf;
-        INSERT INTO new_assign(id_notification, id_users, id_task)
-        VALUES (id_notf, NEW.id_users, NEW.id_task);
-        INSERT INTO notified(id_users, id_notification)
-        VALUES (NEW.id_users, id_notf);
-    RETURN NEW;
+    INSERT INTO notification(sent_date, msg)
+    VALUES (current_date, 'You have been assigned a new task.') RETURNING id INTO id_notf;
+    INSERT INTO new_assign(id_notification, id_users, id_task)
+    VALUES (id_notf, NEW.id_users, NEW.id_task);
+    INSERT INTO notified(id_users, id_notification)
+    VALUES (NEW.id_users, id_notf);
+RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER notify_assignment
-    AFTER INSERT OR UPDATE ON assignmnt
-    FOR EACH ROW
-    EXECUTE PROCEDURE notify_assignment();
+AFTER INSERT OR UPDATE ON assignmnt
+FOR EACH ROW
+EXECUTE PROCEDURE notify_assignment();
 
 DROP FUNCTION IF EXISTS notify_new_coordinator() CASCADE;
 CREATE FUNCTION notify_new_coordinator() RETURNS TRIGGER AS
 $BODY$
 DECLARE 
-    id_notf INTEGER;
+id_notf INTEGER;
 BEGIN
-        INSERT INTO notification(sent_date, msg)
-        VALUES (current_date, 'One of your projects has a new coordinator') RETURNING id INTO id_notf;
-        INSERT INTO new_coordinator(id_notification, id_project)
-        VALUES (id_noft, NEW.id);
-        INSERT INTO notified(id_users, id_notification)
-            SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project = NEW.id AND id = id_notf;
-    RETURN NEW;
+    INSERT INTO notification(sent_date, msg)
+    VALUES (current_date, 'One of your projects has a new coordinator') RETURNING id INTO id_notf;
+    INSERT INTO new_coordinator(id_notification, id_project)
+    VALUES (id_noft, NEW.id);
+    INSERT INTO notified(id_users, id_notification)
+        SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project = NEW.id AND id = id_notf;
+RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER notify_new_coordinator
-    AFTER UPDATE ON project
-    FOR EACH ROW
-    EXECUTE PROCEDURE notify_new_coordinator();
+AFTER UPDATE ON project
+FOR EACH ROW
+EXECUTE PROCEDURE notify_new_coordinator();
 
 DROP FUNCTION IF EXISTS notify_moved_task() CASCADE;
 CREATE FUNCTION notify_moved_task() RETURNS TRIGGER AS
 $BODY$
 DECLARE 
-    id_notf INTEGER;
+id_notf INTEGER;
 BEGIN
-    IF NOT EXISTS (SELECT * FROM task WHERE id = NEW.id AND id_vertical = NEW.id_vertical) THEN
-        INSERT INTO notification(sent_date, msg)
-        VALUES (current_date, 'A task you are assigned to has been moved') RETURNING id INTO id_notf;
-        INSERT INTO task_moved(id_notification, id_task)
-        VALUES (id_noft, NEW.id);
-        INSERT INTO notified(id_users, id_notification)
-            SELECT id_users, id AS id_notification FROM assignmnt CROSS JOIN notification WHERE id = id_notf AND id_task = NEW.id;
-    END IF;
-    RETURN NEW;
+IF NOT EXISTS (SELECT * FROM task WHERE id = NEW.id AND id_vertical = NEW.id_vertical) THEN
+    INSERT INTO notification(sent_date, msg)
+    VALUES (current_date, 'A task you are assigned to has been moved') RETURNING id INTO id_notf;
+    INSERT INTO task_moved(id_notification, id_task)
+    VALUES (id_noft, NEW.id);
+    INSERT INTO notified(id_users, id_notification)
+        SELECT id_users, id AS id_notification FROM assignmnt CROSS JOIN notification WHERE id = id_notf AND id_task = NEW.id;
+END IF;
+RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER notify_moved_task
-    BEFORE UPDATE ON task
-    FOR EACH ROW
-    EXECUTE PROCEDURE notify_moved_task();
+BEFORE UPDATE ON task
+FOR EACH ROW
+EXECUTE PROCEDURE notify_moved_task();
 
 DROP FUNCTION IF EXISTS notify_message() CASCADE;
 CREATE FUNCTION notify_message() RETURNS TRIGGER AS
 $BODY$
 DECLARE 
-    id_notf INTEGER;
+id_notf INTEGER;
 BEGIN
-        INSERT INTO notification(sent_date, msg)
-        VALUES (current_date, 'You have received a new message.') RETURNING id INTO id_notf;
-        INSERT INTO new_message(id_notification, id_message)
-        VALUES (id_noft, NEW.id);
-        INSERT INTO notified(id_users, id_notification)
-            SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM message WHERE NEW.id = id)) AND id = id_notf;
+    INSERT INTO notification(sent_date, msg)
+    VALUES (current_date, 'You have received a new message.') RETURNING id INTO id_notf;
+    INSERT INTO new_message(id_notification, id_message)
+    VALUES (id_noft, NEW.id);
+    INSERT INTO notified(id_users, id_notification)
+        SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM message WHERE NEW.id = id)) AND id = id_notf;
     RETURN NEW;
 END
 $BODY$
