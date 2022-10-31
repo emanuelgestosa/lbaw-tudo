@@ -369,6 +369,11 @@ END;
 $$
 LANGUAGE plpgsql;
 
+CREATE TRIGGER task_search_update_trigger
+    BEFORE INSERT OR UPDATE ON task
+    FOR EACH ROW
+    EXECUTE PROCEDURE task_search_update ();
+
 DROP INDEX IF EXISTS search_task_idx;
 
 CREATE INDEX search_task_idx ON task USING GIN (tsvectors);
@@ -395,7 +400,7 @@ $$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER label_search_update_trigger
-    BEFORE INSERT OR UPDATE ON project
+    BEFORE INSERT OR UPDATE ON label
     FOR EACH ROW
     EXECUTE PROCEDURE label_search_update ();
 
@@ -411,7 +416,8 @@ DROP FUNCTION IF EXISTS send_message() CASCADE;
 CREATE FUNCTION send_message() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-IF NOT EXISTS (SELECT * FROM collaborator WHERE id_user = NEW.id_user AND id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM msg WHERE NEW.id = id))) THEN
+
+IF NOT EXISTS (select * from collaborator ) THEN
     RAISE EXCEPTION 'User does not have access to chat';
 END IF;
 RETURN NEW;
@@ -521,7 +527,7 @@ BEGIN
     INSERT INTO new_message(id_notification, id_message)
     VALUES (id_noft, NEW.id);
     INSERT INTO notified(id_users, id_notification)
-        SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_chat FROM message WHERE NEW.id = id)) AND id = id_notf;
+        SELECT id_users, id AS id_notification FROM collaborator CROSS JOIN notification WHERE id_project IN (SELECT id_forum FROM chat WHERE id IN (SELECT id_forum FROM message WHERE NEW.id = id)) AND id = id_notf;
     RETURN NEW;
 END
 $BODY$
