@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS administrator;
 DROP TABLE IF EXISTS permission;
 DROP TABLE IF EXISTS ROLE;
 DROP TABLE IF EXISTS msg;
-DROP TABLE IF EXISTS chat;
+DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS forum;
 DROP TABLE IF EXISTS label_class;
 DROP TABLE IF EXISTS label;
@@ -87,9 +87,10 @@ CREATE TABLE forum (
     id_project integer PRIMARY KEY REFERENCES project (id) ON UPDATE CASCADE
 );
 
-CREATE TABLE chat (
+CREATE TABLE post (
     id serial PRIMARY KEY,
-    name text NOT NULL,
+    title text NOT NULL,
+    description text, 
     id_forum integer NOT NULL REFERENCES forum (id_project) ON UPDATE CASCADE
 );
 
@@ -98,7 +99,7 @@ CREATE TABLE msg (
     msg text NOT NULL,
     sent_date date NOT NULL CONSTRAINT CK_sent_date CHECK (sent_date <= CURRENT_DATE),
     id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-    id_chat integer NOT NULL REFERENCES chat (id) ON UPDATE CASCADE
+    id_post integer NOT NULL REFERENCES post (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE ROLE (
