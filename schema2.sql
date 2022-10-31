@@ -345,4 +345,28 @@ LANGUAGE plpgsql;
 CREATE TRIGGER notify_new_coordinator
     AFTER UPDATE ON project
     FOR EACH ROW
-    EXECUTE PROCEDURE notify_new_coordinator()
+    EXECUTE PROCEDURE notify_new_coordinator();
+
+DROP FUNCTION IF EXISTS notify_moved_task() CASCADE;
+CREATE FUNCTION notify_moved_task() RETURNS TRIGGER AS
+$BODY$
+DECLARE 
+    id_notf INTEGER;
+BEGIN
+    IF NOT EXISTS (SELECT * FROM task WHERE id = NEW.id AND id_vertical = NEW.id_vertical) THEN
+        INSERT INTO notification(sent_date, msg)
+        VALUES (current_date, 'A task you are assigned to has been moved') RETURNING id INTO id_notf;
+        INSERT INTO task_moved(id_notification, id_task)
+        VALUES (id_noft, NEW.id);
+        INSERT INTO notified(id_users, id_notification)
+            SELECT id_users, id AS id_notification FROM assignmnt CROSS JOIN notification WHERE id = id_notf AND id_task = NEW.id;
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_moved_task
+    BEFORE UPDATE ON task
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_moved_task();
