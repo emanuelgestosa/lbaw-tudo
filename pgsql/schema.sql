@@ -281,6 +281,7 @@ CREATE TRIGGER users_search_update_trigger
     EXECUTE PROCEDURE users_search_update ();
 
 DROP INDEX IF EXISTS search_users_idx;
+
 CREATE INDEX search_users_idx ON users USING GIN (tsvectors);
 
 ALTER TABLE project
@@ -309,6 +310,7 @@ CREATE TRIGGER project_search_update_trigger
     EXECUTE PROCEDURE project_search_update ();
 
 DROP INDEX IF EXISTS search_project_idx;
+
 CREATE INDEX search_project_idx ON project USING GIN (tsvectors);
 
 ALTER TABLE task
@@ -337,6 +339,7 @@ CREATE TRIGGER task_search_update_trigger
     EXECUTE PROCEDURE task_search_update ();
 
 DROP INDEX IF EXISTS search_task_idx;
+
 CREATE INDEX search_task_idx ON task USING GIN (tsvectors);
 
 ALTER TABLE label
@@ -365,6 +368,7 @@ CREATE TRIGGER label_search_update_trigger
     EXECUTE PROCEDURE label_search_update ();
 
 DROP INDEX IF EXISTS search_label_idx;
+
 CREATE INDEX search_label_idx ON label USING GIN (tsvectors);
 
 DROP FUNCTION IF EXISTS send_message () CASCADE;
@@ -373,19 +377,21 @@ CREATE FUNCTION send_message ()
     RETURNS TRIGGER
     AS $BODY$
 BEGIN
-    IF (EXISTS (
-        SELECT
+    IF TG_OP = 'INSERT' OR TG_OP = 'UPDATE' THEN
+        Perform 
             *
         FROM
-            users
-            JOIN collaborator ON (users.id = collaborator.id_users)
-            JOIN project ON (collaborator.id_project = project.id)
-        WHERE ((users.id = NEW.id_users)
-        AND (NEW.id_post = project.id)))) THEN
-            RAISE EXCEPTION 'User does not  have access to the forum';
-END IF;
+            collaborator
+        WHERE ((collaborator.id_users = NEW.id_users)
+            AND (New.id_post in (select post.id from post join project on (post.id_forum =project.id) where project.id =collaborator.id_project)));
+        IF NOT found THEN
+            RAISE EXCEPTION 'user % is is not part of post % ', NEW.id_users, NEW.id_post;
+            return old;
+        END IF;
+    return new;
+    END IF;
     RETURN new;
-END
+END;
 $BODY$
 LANGUAGE plpgsql;
 
