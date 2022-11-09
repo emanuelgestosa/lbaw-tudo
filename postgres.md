@@ -20,3 +20,12 @@ Dentro do modo interativo do pgsql correr
 
 
 Depois as changes que fizerem serão refletidas no pgadmin  que está criado com o docker compose
+
+## Como conectar à Base de Dados Remota
+
+
+Depois de estarem dentro do container devem correr:
+
+- `psql -h db.fe.up.pt -p 5432 -U lbaw2215 lbaw2215`
+ 
+E depois já estam dentro da base de dados remota!
