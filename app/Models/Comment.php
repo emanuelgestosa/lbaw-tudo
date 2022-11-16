@@ -10,4 +10,9 @@ class Comment extends Model
     use HasFactory;
     public $timestamps=false;
     public $table = "comment";
+
+    public function task(){
+        return $this->belongsTo(Task::class,"id_task");
+    }
+
 }
