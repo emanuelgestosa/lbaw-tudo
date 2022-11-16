@@ -94,7 +94,7 @@ insert into msg (id, msg, sent_date, id_users, id_post) values (1, 'hoje foi um 
  (9, 'qual é o erro?', '7/5/2022', 7, 2);
 
 -- Insert que falha separado para nao eliminar os outros
-insert into msg (id, msg, sent_date, id_users, id_post) values (10, 'esta mensagem não pode entrar!', '8/5/2022', 11, 2);
+-- insert into msg (id, msg, sent_date, id_users, id_post) values (10, 'esta mensagem não pode entrar!', '8/5/2022', 11, 2);
 
 insert into ROLE (id, name, id_project) values (1, 'Manager', 1),
  (2, 'Admninistrator', 1),
