@@ -9,4 +9,5 @@ class Administrator extends Model
 {
     use HasFactory;
     public $timestamps=false;
+    public $table="administrator";
 }

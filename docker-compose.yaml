@@ -5,7 +5,7 @@ services:
     image: postgres:11
     restart: always
     volumes: 
-      - ./pgsql:/scripts
+      - ./resources/sql:/scripts
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pg!password

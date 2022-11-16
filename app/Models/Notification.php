@@ -9,4 +9,5 @@ class Notification extends Model
 {
     use HasFactory;
     public $timestamps=false;
+    public $table ="notification";
 }

@@ -9,4 +9,5 @@ class Forum extends Model
 {
     use HasFactory;
     public $timestamps=false;
+    public $table = "forum";
 }

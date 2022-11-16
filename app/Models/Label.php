@@ -9,4 +9,5 @@ class Label extends Model
 {
     use HasFactory;
     public $timestamps=false;
+    public $table = "lable";
 }
