@@ -21,4 +21,7 @@ class Project extends Model
     public function boards(){
         return $this->hasMany(Board::class,"id_project");
     }
+    public function forum(){
+        return $this->hasOne(Forum::class,"id_project");
+    }
 }
