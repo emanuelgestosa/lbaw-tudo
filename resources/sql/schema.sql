@@ -72,7 +72,7 @@ CREATE TABLE project (
     id serial PRIMARY KEY,
     title text NOT NULL,
     description text,
-    creation date NOT NULL CONSTRAINT CK_project_creation CHECK (creation <= CURRENT_DATE),
+    creation date NOT NULL CONSTRAINT CK_project_creation CHECK (creation <= CURRENT_DATE) default CURRENT_DATE,
     is_archived boolean NOT NULL DEFAULT FALSE,
     id_coordinator integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -94,7 +94,7 @@ CREATE TABLE task (
     id serial PRIMARY KEY,
     name text NOT NULL,
     description text,
-    creation_date date NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_DATE),
+    creation_date date NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_DATE) default CURRENT_DATE,
     due_date date CONSTRAINT CK_task_due_date CHECK (creation_date < due_date),
     id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -124,7 +124,7 @@ CREATE TABLE post (
 CREATE TABLE msg (
     id serial PRIMARY KEY,
     msg text NOT NULL,
-    sent_date date NOT NULL CONSTRAINT CK_sent_date CHECK (sent_date <= CURRENT_DATE),
+    sent_date date NOT NULL CONSTRAINT CK_sent_date CHECK (sent_date <= CURRENT_DATE) default CURRENT_DATE,
     id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_post integer NOT NULL REFERENCES post (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -169,7 +169,7 @@ CREATE TABLE notification (
 CREATE TABLE comment (
     id serial PRIMARY KEY,
     msg text NOT NULL,
-    sent_date date NOT NULL CONSTRAINT CK_comment_sent_date CHECK (sent_date <= CURRENT_DATE),
+    sent_date date NOT NULL CONSTRAINT CK_comment_sent_date CHECK (sent_date <= CURRENT_DATE) default CURRENT_DATE,
     id_task integer NOT NULL REFERENCES task (id),
     id_users integer NOT NULL REFERENCES users (id)
 );
@@ -187,7 +187,7 @@ CREATE TABLE new_coordinator (
 CREATE TABLE assignmnt (
     id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_task integer REFERENCES task (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    assign_date date NOT NULL CONSTRAINT CK_assign_date CHECK (assign_date <= CURRENT_DATE),
+    assign_date date NOT NULL CONSTRAINT CK_assign_date CHECK (assign_date <= CURRENT_DATE) default CURRENT_DATE,
     PRIMARY KEY (id_users, id_task)
 );
 
