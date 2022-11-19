@@ -117,7 +117,8 @@ CREATE TABLE post (
     id serial PRIMARY KEY,
     title text NOT NULL,
     description text,
-    id_forum integer NOT NULL REFERENCES forum (id_project) ON UPDATE CASCADE ON DELETE CASCADE
+    id_forum integer NOT NULL REFERENCES forum (id_project) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_users integer NOT NULL REFERENCES users ON UPDATE Cascade On delete Cascade   
 );
 
 CREATE TABLE msg (
@@ -218,6 +219,7 @@ CREATE TABLE users_role (
 CREATE TABLE collaborator (
     id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_project integer REFERENCES project (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    favourite boolean not null default FALSE,
     PRIMARY KEY (id_users, id_project)
 );
 
