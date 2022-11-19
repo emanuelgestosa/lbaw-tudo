@@ -19,6 +19,7 @@ Route::get('/features', 'FeaturesController@show');
 
 // User profile
 Route::get('/user/{id}', 'UserController@show');
+Route::get('/user/{id}/projects', 'UserController@showProjects');
 
 // API
 // Route::get('/api/faq', 'FaqController@retrieve');
