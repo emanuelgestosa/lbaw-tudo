@@ -15,8 +15,8 @@ class FaqController extends Controller
     /**
      * Retrieve all FAQs
      */
-    public function retrieve()
-    {
-      $faq = new FAQ(());
-    }
+    // public function retrieve()
+    // {
+    //   $faq = new FAQ(());
+    // }
 }
