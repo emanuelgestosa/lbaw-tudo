@@ -78,10 +78,11 @@ insert into task (id, name, description, creation_date, due_date, id_vertical) v
  (8, 'Smile', 'smile and wave', '10/17/2021', '2/7/2022', 6),
  (9, 'Correct bug on sql', 'i dont know what is wrong it justs says error help joanne', '11/27/2021', '8/27/2022', 8);
 
-insert into post (id, title, description, id_forum) values (1, 'Off-Topic', null,  1),
- (2, 'Politics', null, 1),
- (3, 'Sports', null, 2),
- (4, 'Help', null, 2);
+insert into post (id, title, description, id_forum,id_users) values 
+ (1, 'Off-Topic', null,  1, 1),
+ (2, 'Politics', null, 1,1),
+ (3, 'Sports', null, 2,1),
+ (4, 'Help', null, 2,1);
 
 insert into msg (id, msg, sent_date, id_users, id_post) values (1, 'hoje foi um dia feliz', '5/17/2022', 10, 1),
  (2, 'qual é o erro?', '5/21/2021', 8, 1),
