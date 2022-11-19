@@ -192,3 +192,80 @@ insert into label_task (id_label, id_task) values (1, 2),
  (6, 3),
  (5, 2),
  (3, 1);
+
+--------------------------------------------------------------------------------------
+--                  O Nosso Projeto Dentro Do Nosso Projeto 
+--------------------------------------------------------------------------------------
+insert into users (id, username, password, name, birth, email, phone_number) values 
+(12, 'Martim_Videira', 'lbaw', 'Martim', '07/06/2002', 'martim@lbaw.com', '912345678'),
+(13, 'Leandro_Silva', 'lbaw', 'Leandro', '04/10/2002', 'leandro@lbaw.com', '923456789'),
+(14, 'Emanuel_Gestosa', 'lbaw', 'Emanuel', '10/02/2002', 'emanuel@lbaw.com', '934567890'),
+(15, 'Mariana_Rocha', 'lbaw', 'Mariana', '12/02/2002', 'mariana@lbaw.com', '945678901');
+
+insert into project (id, title, description, is_archived, id_coordinator) values
+(3, 'Tu-do', 'Um website para gestao de projetos', false, 1);
+
+insert into collaborator (id_users, id_project) values (12, 3),
+(13, 3),
+(14, 3),
+(15, 3);
+
+insert into board (id, name, id_project) values 
+(5, 'EBD', 3),
+(6, 'EAP', 3);
+
+insert into vertical (id, name, id_board) values 
+ (10, 'A4', 5),
+ (11, 'A7', 6),
+ (12, 'A8', 6),
+ (13, 'A5', 5),
+ (14, 'A6', 5);
+
+insert into label (id, name) values 
+ (11, 'Aborrecida'),
+ (12, 'Facil'),
+ (13, 'Facilima'),
+ (14, 'Super Difícil');
+
+insert into label_class (id, name) values 
+(4, 'Dificuldade'),
+(5, 'Adjetivo');
+
+insert into forum (id_project) values (3);
+
+insert into task (id, name, description,due_date, id_vertical) values 
+ (10, 'Add more tables to UML', 'The teacher wants more classes', '12/30/2022', 10),
+ (11, 'Correct bug on sql', 'I need help','12/30/2022', 13),
+ (12, 'Code more triggersssss', 'We need more triggers', '12/30/2022', 14),
+ (13, 'Ask the teacher for more time', 'We are super late', '12/30/2022', 12);
+
+insert into post (id, title, description, id_forum,id_users) values 
+(5, 'Post geral do Projeto LBAW', 'Onde nos falamos IMENSO (tipo o discord)',  3,14),
+(6, 'Em que Cripto Moeda Devo Investir', 'Cripto Space in LBAW ', 3,12);
+
+insert into msg (id, msg, id_users, id_post) values 
+ (12, 'hoje foi um dia feliz', 13, 5),
+ (13, 'qual é o erro?', 13, 5),
+ (14, 'gosto imenso do cheiro das castanhas', 15, 5),
+(15,'Vamos investir todos em doge coin',12,6);
+
+insert into assignmnt (id_users, id_task) values (12, 11),
+ (13, 10),
+ (14, 12),
+ (13, 13),
+ (15, 13);
+
+insert into comment (id, msg, id_task, id_users) values 
+(11, 'Odeio esta task', 12, 14),
+ (12, 'Que task fácil', 13, 15),
+ (13, 'POR FAVOR alguem troque comigo', 11, 12);
+
+insert into label_label_class (id_label, id_label_class) values (11, 5),
+ (12, 4),
+ (13, 4),
+ (14, 4);
+
+insert into label_task (id_label, id_task) values (11, 10),
+ (13, 13),
+ (14, 12),
+ (12, 11);
