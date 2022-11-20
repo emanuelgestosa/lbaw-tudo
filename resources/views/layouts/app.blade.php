@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -23,7 +24,7 @@
   <body>
     <main>
       <header>
-        <h1><a href="{{ url('/') }}">Tu-Do</a></h1>
+        <h1 class="principal"><img src="../img/logo.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
         @if (Auth::check())
         <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
         @endif

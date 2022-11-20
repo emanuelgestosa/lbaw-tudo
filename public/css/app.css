@@ -1,14 +1,30 @@
+@import "./common.css";
+:root {
+  --lilac:#4E41E7;
+  --blilac: #897FFF;
+  --white: #ffffff;
+
+}
+
+*{
+  margin:0%;
+}
+
 body {
-  background-color: #ffffff;
-  color: #9b4dca;
+  background-color: --white;
+  color: var(--lilac);
 }
 main > header {
+  width: 100%;
+  margin: 0;
   display: grid;
-  grid-template-columns: 1fr auto auto;
   align-items: center;
-  background-color: #d2afe7;
-  padding: 1em;
-  margin: 1em;
+  background-color: var(--blilac);
+  padding: 1%;
+  text-align: center;
+  background: var(--blilac);
+  color: white;
+  font-size: 30px;
 }
 main > header h1 {
   margin: 0;
@@ -76,7 +92,7 @@ main > header span {
   margin: 0;
 }
 #cards article.card input[type=text] {
-  background-color: white;
+  background-color: var(--white);
   margin: 0;
 }
 #content label {
@@ -86,7 +102,7 @@ main > header span {
   margin: 0 auto;
   padding: 1em;
   max-width: 20em;
-  border: 1px solid #d2afe7;
+  border: 1px solid --blilac;
 }
 #content > form .error {
   font-weight: bold;
@@ -137,21 +153,29 @@ main > header span {
  * Some styles might be missing
  **/
 button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
+  background-color: var(--lilac);
+  border-color: var(--lilac);
 }
 a.button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
+  background-color: var(--lilac);
+  border-color: var(--lilac);
 }
 a.button.button-outline {
-  color: #9b4dca;
+  color: var(--lilac);
 }
 a {
-  color: #9b4dca;
+  color: var(--lilac);
 }
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
-  border-color: #9b4dca;
+  border-color: var(--lilac);
 }
+
+.page_name{
+  font-size: 35px;
+  margin-top: 1%;
+  margin-left: 3%;
+  font-weight: bold;
+}
+

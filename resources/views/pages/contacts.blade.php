@@ -4,6 +4,6 @@
 
 @section('content')
 
-  <h1>Contacts</h1>
+  <h1 class="page_name">Contacts</h1>
 
 @endsection

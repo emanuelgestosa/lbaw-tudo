@@ -4,6 +4,6 @@
 
 @section('content')
 
-  <h1>FAQ</h1>
+  <h1 class="page_name">FAQ</h1>
 
 @endsection

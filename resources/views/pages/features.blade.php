@@ -4,6 +4,6 @@
 
 @section('content')
 
-  <h1>Features</h1>
+  <h1 class="page_name">Features</h1>
 
 @endsection
