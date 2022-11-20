@@ -1,14 +1,14 @@
-insert into users (id, username, password, name, birth, email, phone_number) values (1, 'jfairhead0', 'X9G2Pj', 'Mylène', '07/06/1971', 'droad0@ft.com', '703-490-2953'),
- (2, 'estiles1', 'IR32V9Rw', 'Aurélie', '04/10/1992', 'sissacson1@amazon.co.uk', '241-652-2035'),
- (3, 'icron2', '9GRRQ0GH4B', 'Eléa', '10/02/1978', 'kpodd2@biglobe.ne.jp', '271-941-6712'),
- (4, 'lcruces3', 'bs5snq', 'Eléonore', '12/02/1998', 'sknevet3@ucoz.com', '100-174-4192'),
- (5, 'rseiller4', 'KwFFIgMgTl', 'Gérald', '01/11/1992', 'mshorland4@mail.ru', '398-589-8409'),
- (6, 'rkilbane5', 'FXd9YEoKU', 'Mårten', '08/08/1986', 'jmcmurty5@wsj.com', '155-693-6048'),
- (7, 'jdeerr6', 'RIZmwYs', 'Mén', '03/02/1980', 'fspedding6@goo.ne.jp', '263-860-1480'),
- (8, 'ddrummond7', 'FA6om0x', 'Lucrèce', '07/11/1973', 'smcclaurie7@salon.com', '623-891-5583'),
- (9, 'djacquemot8', '1F3A4oiDpoK', 'Ráo', '02/10/2002', 'lravenshaw8@nydailynews.com', '343-186-1456'),
- (10, 'wyeoman9', 'tnGoF3r1nJ4l', 'Ráo', '10/08/1988', 'hlink9@hhs.gov', '866-348-3166'),
- (11, 'cao', 'gato', 'pato', '10/08/1988', 'letsgo@yolo.gov', '69420');
+insert into users (username, password, name, birth, email, phone_number) values ('jfairhead0', 'X9G2Pj', 'Mylène', '07/06/1971', 'droad0@ft.com', '703-490-2953'),
+ ('estiles1', 'IR32V9Rw', 'Aurélie', '04/10/1992', 'sissacson1@amazon.co.uk', '241-652-2035'),
+ ('icron2', '9GRRQ0GH4B', 'Eléa', '10/02/1978', 'kpodd2@biglobe.ne.jp', '271-941-6712'),
+ ('lcruces3', 'bs5snq', 'Eléonore', '12/02/1998', 'sknevet3@ucoz.com', '100-174-4192'),
+ ('rseiller4', 'KwFFIgMgTl', 'Gérald', '01/11/1992', 'mshorland4@mail.ru', '398-589-8409'),
+ ('rkilbane5', 'FXd9YEoKU', 'Mårten', '08/08/1986', 'jmcmurty5@wsj.com', '155-693-6048'),
+ ('jdeerr6', 'RIZmwYs', 'Mén', '03/02/1980', 'fspedding6@goo.ne.jp', '263-860-1480'),
+ ('ddrummond7', 'FA6om0x', 'Lucrèce', '07/11/1973', 'smcclaurie7@salon.com', '623-891-5583'),
+ ('djacquemot8', '1F3A4oiDpoK', 'Ráo', '02/10/2002', 'lravenshaw8@nydailynews.com', '343-186-1456'),
+ ( 'wyeoman9', 'tnGoF3r1nJ4l', 'Ráo', '10/08/1988', 'hlink9@hhs.gov', '866-348-3166'),
+ ( 'cao', 'gato', 'pato', '10/08/1988', 'letsgo@yolo.gov', '69420');
 
 
 insert into project (id, title, description, creation, is_archived, id_coordinator) values (1, 'Sonsing', 'Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '11/20/2021', false, 8),
@@ -196,11 +196,11 @@ insert into label_task (id_label, id_task) values (1, 2),
 --------------------------------------------------------------------------------------
 --                  O Nosso Projeto Dentro Do Nosso Projeto 
 --------------------------------------------------------------------------------------
-insert into users (id, username, password, name, birth, email, phone_number) values 
-(12, 'Martim_Videira', 'lbaw', 'Martim', '07/06/2002', 'martim@lbaw.com', '912345678'),
-(13, 'Leandro_Silva', 'lbaw', 'Leandro', '04/10/2002', 'leandro@lbaw.com', '923456789'),
-(14, 'Emanuel_Gestosa', 'lbaw', 'Emanuel', '10/02/2002', 'emanuel@lbaw.com', '934567890'),
-(15, 'Mariana_Rocha', 'lbaw', 'Mariana', '12/02/2002', 'mariana@lbaw.com', '945678901');
+insert into users (username, password, name, birth, email, phone_number) values 
+('Martim_Videira', 'lbaw', 'Martim', '07/06/2002', 'martim@lbaw.com', '912345678'),
+('Leandro_Silva', 'lbaw', 'Leandro', '04/10/2002', 'leandro@lbaw.com', '923456789'),
+('Emanuel_Gestosa', 'lbaw', 'Emanuel', '10/02/2002', 'emanuel@lbaw.com', '934567890'),
+('Mariana_Rocha', 'lbaw', 'Mariana', '12/02/2002', 'mariana@lbaw.com', '945678901');
 
 insert into project (id, title, description, is_archived, id_coordinator) values
 (3, 'Tu-do', 'Um website para gestao de projetos', false, 1);
