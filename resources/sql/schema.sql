@@ -63,7 +63,7 @@ CREATE TABLE users (
     username text NOT NULL CONSTRAINT username_unique UNIQUE,
     password text NOT NULL,
     name text NOT NULL,
-    birth date NOT NULL CONSTRAINT CK_birth CHECK (birth < CURRENT_DATE),
+    birth date CONSTRAINT CK_birth CHECK (birth < CURRENT_DATE),
     email text NOT NULL CONSTRAINT email_unique UNIQUE,
     phone_number text
 );
