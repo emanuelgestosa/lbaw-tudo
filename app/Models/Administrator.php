@@ -16,4 +16,8 @@ class Administrator extends User
     public function user(){
         return $this->hasOne(User::class,'id','id_users');
     }
+
+    public function bans(){
+        return $this->hasMany(Ban::class,"id_administrator");
+    }
 }

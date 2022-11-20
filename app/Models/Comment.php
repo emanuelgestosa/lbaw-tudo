@@ -14,5 +14,8 @@ class Comment extends Model
     public function task(){
         return $this->belongsTo(Task::class,"id_task");
     }
+    public function user(){
+        return $this->belongsTo(User::class,"id_users");
+    }
 
 }

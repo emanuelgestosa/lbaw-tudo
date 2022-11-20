@@ -25,7 +25,11 @@ class User extends Authenticatable
     public $timestamps  = false;
     
     public function projects(){
-        return $this->belongsToMany(Project::class,"id_project");
+        return $this->belongsToMany(Project::class,"collaborator","id_project","id_users");
+    }
+
+    public function coordinates(){
+        return $this->hasMany(Project::class,"id_coordinator");
     }
 
     public function tasks(){
@@ -34,8 +38,15 @@ class User extends Authenticatable
     public function msgs(){
         return $this->hasMany(Msg::class,"id_users");
     }
-    // Ainda não está contemplado na base de dados
-    // public function posts(){
-    //     return $this->hasMany(Post::class,"id_user");
-    // }
+        
+     public function posts(){
+         return $this->hasMany(Post::class,"id_user");
+     }
+    public function bans(){
+        return $this->hasMany(Ban::class,"id_users");
+    }
+    public function roles(){
+        return $this->belongsToMany(Role::class,"users_role","id_role","id_user");
+    }
 }
+
