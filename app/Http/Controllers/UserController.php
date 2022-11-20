@@ -11,7 +11,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-      return view('pages.user.profile', ['id' => $id,'user'=>User::find($id)]);
+      $user = User::find($id);
+      return view('pages.user.profile', [
+        'id' => $user->id,
+        'username' => $user->username,
+        'name' => $user->name,
+        'email' => $user->email,
+        'phone_number' => $user->phone_number,
+      ]);
     }
 
     /**

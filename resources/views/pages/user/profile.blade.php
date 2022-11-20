@@ -3,12 +3,12 @@
 @yield('content')
 
 @section('content')
-  <h1>User {{ $user }}</h1>
+  <h1>{{ $username }}</h1>
   <div>
     <img src="">
-    <p>Name Surname</p>
-    <p>usermail@mail.com</p>
-    <p>+351987654321</p>
+    <p>{{ $name }}</p>
+    <p>{{ $email }}</p>
+    <p>{{ $phone_number }}</p>
     <a href="{{ url('/user/'. $id. '/edit') }}">Edit Profile</a>
   </div>
   <nav>
