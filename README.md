@@ -85,5 +85,17 @@ $posts = Post::whereBelongsTo($user)->get();
 // to any of the parent models within the collection:
 $users = User::where('vip', true)->get();
 $posts = Post::whereBelongsTo($users)->get();
+```
 
+- Talvez vou ter que fazer estas alteracoes:
+
+In addition to customizing the name of the intermediate table, you may also
+customize the column names of the keys on the table by passing additional
+arguments to the belongsToMany method. The third argument is the foreign key
+name of the model on which you are defining the relationship, while the fourth
+argument is the foreign key name of the model that you are joining to:
+
+```php
+<?php
+return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
 ```
