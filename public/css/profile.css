@@ -1,0 +1,23 @@
+#content {
+  margin: 3em;
+}
+
+#user-info {
+  float: left;
+  display: grid;
+}
+
+#user-info > h1 {
+  grid-row: 1;
+}
+
+#user-info > img {
+  grid-column: 1;
+  grid-row: 2 span 3;
+}
+
+#contacts {
+  grid-column: 2;
+  margin: 0;
+  height: min-content;
+}

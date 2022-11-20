@@ -179,3 +179,22 @@ input[type=password]:focus {
   font-weight: bold;
 }
 
+.right {
+  float: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.items {
+  display: flex;
+}
+
+.items > a {
+  width: 10em;
+  padding: 25px 0;
+  margin: 1em;
+  border: 2px solid var(--lilac);
+  border-radius: 1em;
+  text-align: center;
+}
+
