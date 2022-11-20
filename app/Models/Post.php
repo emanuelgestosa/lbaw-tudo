@@ -18,8 +18,7 @@ class Post extends Model
         return $this->hasMany(Msg::class,"id_msg");
     }
 
-    // Ainda não está contempaldo na bd
-    // public function author(){
-    //     return $this->belongsTo(User::class,"id_user");
-    // }
+     public function author(){
+         return $this->belongsTo(User::class,"id_user");
+     }
 }

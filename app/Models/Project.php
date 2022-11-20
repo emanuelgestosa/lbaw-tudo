@@ -12,7 +12,7 @@ class Project extends Model
     public $table = "project";
 
     public function coordinator(){
-        return $this->hasOne(User::class,"id","id_coordinator");
+        return $this->belongsTo(User::class,"id","id_coordinator");
     }
     public function collaborators(){
 
@@ -23,5 +23,9 @@ class Project extends Model
     }
     public function forum(){
         return $this->hasOne(Forum::class,"id_project");
+    }
+
+    public function roles(){
+        return $this->hasMany(Role::class,"id_project");
     }
 }
