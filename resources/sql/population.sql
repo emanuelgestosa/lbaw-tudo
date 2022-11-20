@@ -1,14 +1,14 @@
-insert into users (id, username, password, name, birth, email, phone_number) values (1, 'jfairhead0', 'X9G2Pj', 'Mylène', '07/06/1971', 'droad0@ft.com', '703-490-2953'),
- (2, 'estiles1', 'IR32V9Rw', 'Aurélie', '04/10/1992', 'sissacson1@amazon.co.uk', '241-652-2035'),
- (3, 'icron2', '9GRRQ0GH4B', 'Eléa', '10/02/1978', 'kpodd2@biglobe.ne.jp', '271-941-6712'),
- (4, 'lcruces3', 'bs5snq', 'Eléonore', '12/02/1998', 'sknevet3@ucoz.com', '100-174-4192'),
- (5, 'rseiller4', 'KwFFIgMgTl', 'Gérald', '01/11/1992', 'mshorland4@mail.ru', '398-589-8409'),
- (6, 'rkilbane5', 'FXd9YEoKU', 'Mårten', '08/08/1986', 'jmcmurty5@wsj.com', '155-693-6048'),
- (7, 'jdeerr6', 'RIZmwYs', 'Mén', '03/02/1980', 'fspedding6@goo.ne.jp', '263-860-1480'),
- (8, 'ddrummond7', 'FA6om0x', 'Lucrèce', '07/11/1973', 'smcclaurie7@salon.com', '623-891-5583'),
- (9, 'djacquemot8', '1F3A4oiDpoK', 'Ráo', '02/10/2002', 'lravenshaw8@nydailynews.com', '343-186-1456'),
- (10, 'wyeoman9', 'tnGoF3r1nJ4l', 'Ráo', '10/08/1988', 'hlink9@hhs.gov', '866-348-3166'),
- (11, 'cao', 'gato', 'pato', '10/08/1988', 'letsgo@yolo.gov', '69420');
+insert into users (username, password, name, birth, email, phone_number) values ('jfairhead0', 'X9G2Pj', 'Mylène', '07/06/1971', 'droad0@ft.com', '703-490-2953'),
+ ('estiles1', 'IR32V9Rw', 'Aurélie', '04/10/1992', 'sissacson1@amazon.co.uk', '241-652-2035'),
+ ('icron2', '9GRRQ0GH4B', 'Eléa', '10/02/1978', 'kpodd2@biglobe.ne.jp', '271-941-6712'),
+ ('lcruces3', 'bs5snq', 'Eléonore', '12/02/1998', 'sknevet3@ucoz.com', '100-174-4192'),
+ ('rseiller4', 'KwFFIgMgTl', 'Gérald', '01/11/1992', 'mshorland4@mail.ru', '398-589-8409'),
+ ('rkilbane5', 'FXd9YEoKU', 'Mårten', '08/08/1986', 'jmcmurty5@wsj.com', '155-693-6048'),
+ ('jdeerr6', 'RIZmwYs', 'Mén', '03/02/1980', 'fspedding6@goo.ne.jp', '263-860-1480'),
+ ('ddrummond7', 'FA6om0x', 'Lucrèce', '07/11/1973', 'smcclaurie7@salon.com', '623-891-5583'),
+ ('djacquemot8', '1F3A4oiDpoK', 'Ráo', '02/10/2002', 'lravenshaw8@nydailynews.com', '343-186-1456'),
+ ( 'wyeoman9', 'tnGoF3r1nJ4l', 'Ráo', '10/08/1988', 'hlink9@hhs.gov', '866-348-3166'),
+ ( 'cao', 'gato', 'pato', '10/08/1988', 'letsgo@yolo.gov', '69420');
 
 
 insert into project (id, title, description, creation, is_archived, id_coordinator) values (1, 'Sonsing', 'Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '11/20/2021', false, 8),
@@ -78,10 +78,11 @@ insert into task (id, name, description, creation_date, due_date, id_vertical) v
  (8, 'Smile', 'smile and wave', '10/17/2021', '2/7/2022', 6),
  (9, 'Correct bug on sql', 'i dont know what is wrong it justs says error help joanne', '11/27/2021', '8/27/2022', 8);
 
-insert into post (id, title, description, id_forum) values (1, 'Off-Topic', null,  1),
- (2, 'Politics', null, 1),
- (3, 'Sports', null, 2),
- (4, 'Help', null, 2);
+insert into post (id, title, description, id_forum,id_users) values 
+ (1, 'Off-Topic', null,  1, 1),
+ (2, 'Politics', null, 1,1),
+ (3, 'Sports', null, 2,1),
+ (4, 'Help', null, 2,1);
 
 insert into msg (id, msg, sent_date, id_users, id_post) values (1, 'hoje foi um dia feliz', '5/17/2022', 10, 1),
  (2, 'qual é o erro?', '5/21/2021', 8, 1),
@@ -191,3 +192,80 @@ insert into label_task (id_label, id_task) values (1, 2),
  (6, 3),
  (5, 2),
  (3, 1);
+
+--------------------------------------------------------------------------------------
+--                  O Nosso Projeto Dentro Do Nosso Projeto 
+--------------------------------------------------------------------------------------
+insert into users (username, password, name, birth, email, phone_number) values 
+('Martim_Videira', 'lbaw', 'Martim', '07/06/2002', 'martim@lbaw.com', '912345678'),
+('Leandro_Silva', 'lbaw', 'Leandro', '04/10/2002', 'leandro@lbaw.com', '923456789'),
+('Emanuel_Gestosa', 'lbaw', 'Emanuel', '10/02/2002', 'emanuel@lbaw.com', '934567890'),
+('Mariana_Rocha', 'lbaw', 'Mariana', '12/02/2002', 'mariana@lbaw.com', '945678901');
+
+insert into project (id, title, description, is_archived, id_coordinator) values
+(3, 'Tu-do', 'Um website para gestao de projetos', false, 1);
+
+insert into collaborator (id_users, id_project) values (12, 3),
+(13, 3),
+(14, 3),
+(15, 3);
+
+insert into board (id, name, id_project) values 
+(5, 'EBD', 3),
+(6, 'EAP', 3);
+
+insert into vertical (id, name, id_board) values 
+ (10, 'A4', 5),
+ (11, 'A7', 6),
+ (12, 'A8', 6),
+ (13, 'A5', 5),
+ (14, 'A6', 5);
+
+insert into label (id, name) values 
+ (11, 'Aborrecida'),
+ (12, 'Facil'),
+ (13, 'Facilima'),
+ (14, 'Super Difícil');
+
+insert into label_class (id, name) values 
+(4, 'Dificuldade'),
+(5, 'Adjetivo');
+
+insert into forum (id_project) values (3);
+
+insert into task (id, name, description,due_date, id_vertical) values 
+ (10, 'Add more tables to UML', 'The teacher wants more classes', '12/30/2022', 10),
+ (11, 'Correct bug on sql', 'I need help','12/30/2022', 13),
+ (12, 'Code more triggersssss', 'We need more triggers', '12/30/2022', 14),
+ (13, 'Ask the teacher for more time', 'We are super late', '12/30/2022', 12);
+
+insert into post (id, title, description, id_forum,id_users) values 
+(5, 'Post geral do Projeto LBAW', 'Onde nos falamos IMENSO (tipo o discord)',  3,14),
+(6, 'Em que Cripto Moeda Devo Investir', 'Cripto Space in LBAW ', 3,12);
+
+insert into msg (id, msg, id_users, id_post) values 
+ (12, 'hoje foi um dia feliz', 13, 5),
+ (13, 'qual é o erro?', 13, 5),
+ (14, 'gosto imenso do cheiro das castanhas', 15, 5),
+(15,'Vamos investir todos em doge coin',12,6);
+
+insert into assignmnt (id_users, id_task) values (12, 11),
+ (13, 10),
+ (14, 12),
+ (13, 13),
+ (15, 13);
+
+insert into comment (id, msg, id_task, id_users) values 
+(11, 'Odeio esta task', 12, 14),
+ (12, 'Que task fácil', 13, 15),
+ (13, 'POR FAVOR alguem troque comigo', 11, 12);
+
+insert into label_label_class (id_label, id_label_class) values (11, 5),
+ (12, 4),
+ (13, 4),
+ (14, 4);
+
+insert into label_task (id_label, id_task) values (11, 10),
+ (13, 13),
+ (14, 12),
+ (12, 11);

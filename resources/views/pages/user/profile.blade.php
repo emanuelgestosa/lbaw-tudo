@@ -3,8 +3,7 @@
 @yield('content')
 
 @section('content')
-
-  <h1>User {{ $id }}</h1>
+  <h1>User {{ $user }}</h1>
   <div>
     <img src="">
     <p>Name Surname</p>
