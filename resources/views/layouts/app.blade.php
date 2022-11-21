@@ -24,13 +24,15 @@
   </head>
   <body>
     <main>
-      <header>
+      <header id="main_head">
         <div id="main_logo">
           <h1 class="principal"><img src="/img/logo.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
         </div>
         @if (Auth::check())
-        <a class="button" href="{{ url('/logout') }}"> Logout </a> <a class="button" href="{{ url('/user/'. Auth::user()->id) }}">{{ Auth::user()->name }}</a>
-        @endif
+        <div id="main_buttons">
+          <a class="button" href="{{ url('/logout') }}"> Logout </a> <a class="button" href="{{ url('/user/'. Auth::user()->id) }}">{{ Auth::user()->name }}</a>
+        </div>
+          @endif
       </header>
       <section id="content">
         @yield('content')
