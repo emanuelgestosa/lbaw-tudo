@@ -10,15 +10,22 @@
 
     <h1> {{ $project->title }} </h1>
 
-        <h2> Project Description</h2>
-        <p> {{$project->description}} </p>
+    <h2> Project Description</h2>
+    <p> {{$project->description}} </p>
 
     <section id="project_boards">
         <h3> Boards </h3>
-    @foreach ($project->boards()->get() as $board)
+        @foreach ($project->boards()->get() as $board)
         @include('partials.board.card',['board',$board])
-    @endforeach
+        @endforeach
     </section>
+
+    <ul id="project_collaborators">
+        <h3> Collaborators </h3>
+        @foreach ($project->collaborators()->get() as $collaborator)
+        <a href="{{ url('/user/' . $collaborator->id) }}"> {{$collaborator->name}} </p>
+        @endforeach
+    </ul>
 
 </article>
 
