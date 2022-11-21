@@ -11,6 +11,11 @@
 |
 */
 // Static Pages
+
+use App\Http\Controllers\BoardController;
+use App\Http\Controllers\TaskController;
+use App\Models\Board;
+
 Route::get('/', 'HomeController@show');
 Route::get('/faq', 'FaqController@show');
 Route::get('/about', 'AboutController@show');
@@ -35,3 +40,7 @@ Route::post('register', 'Auth\RegisterController@register');
 // Project
 Route::get('/user/{user_id}/add_project', 'AddProjectController@show');
 Route::post('/user/{user_id}/add_project', 'AddProjectController@add_project')->name('add_project');
+
+// Experimenting
+Route::get('task/{id}',[TaskController::class,'show']);
+Route::get('board/{id}',[BoardController::class,'show']);

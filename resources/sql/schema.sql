@@ -101,7 +101,8 @@ CREATE TABLE task (
 
 CREATE TABLE label (
     id serial PRIMARY KEY,
-    name text NOT NULL
+    name text NOT NULL,
+    colour integer
 );
 
 CREATE TABLE label_class (

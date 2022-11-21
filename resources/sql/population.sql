@@ -50,16 +50,17 @@ insert into vertical (id, name, id_board) values (1, 'Doing', 1),
  (8, 'Need to talk', 4),
  (9, 'Need a raise', 4);
 
-insert into label (id, name) values (1, 'Important'),
- (2, 'Easy'),
- (3, 'Long'),
- (4, 'Fast'),
- (5, 'Low priority'),
- (6, 'Medium priority'),
- (7, 'High priority'),
- (8, 'Quick'),
- (9, 'Unimportant'),
- (10, 'Very important');
+insert into label (id, name,colour) values 
+ (1, 'Important',x'FF00FF'::int),
+ (2, 'Easy',x'FF00FF'::int),
+ (3, 'Long',x'FF00FF'::int),
+ (4, 'Fast',x'FF00FF'::int),
+ (5, 'Low priority',x'FF00FF'::int),
+ (6, 'Medium priority',x'FF00FF'::int),
+ (7, 'High priority',x'FF00FF'::int),
+ (8, 'Quick',x'FF00FF'::int),
+ (9, 'Unimportant',x'FF00FF'::int),
+ (10, 'Very important',x'FF00FF'::int);
 
 insert into label_class (id, name) values (1, 'Priority'),
  (2, 'Notifiable'),
@@ -221,11 +222,11 @@ insert into vertical (id, name, id_board) values
  (13, 'A5', 5),
  (14, 'A6', 5);
 
-insert into label (id, name) values 
- (11, 'Aborrecida'),
- (12, 'Facil'),
- (13, 'Facilima'),
- (14, 'Super Difícil');
+insert into label (id, name,colour) values 
+ (11, 'Aborrecida',x'FF00FF'::int),
+ (12, 'Facil',x'FF00FF'::int),
+ (13, 'Facilima',x'FF00FF'::int),
+ (14, 'Super Difícil',x'FF00FF'::int);
 
 insert into label_class (id, name) values 
 (4, 'Dificuldade'),

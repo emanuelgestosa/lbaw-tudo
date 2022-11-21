@@ -15,9 +15,9 @@ class Role extends Model
         return $this->belongsTo(Project::class,"id_project");
     }
     public function users(){
-        return $this->belongsToMany(User::class,"users_role","id_users","id_role");
+        return $this->belongsToMany(User::class,"users_role","id_role","id_users");
     }
     public function permissions(){
-        return $this->belongsToMany(Permission::class,"role_permission","id_permission","id_role"); 
+        return $this->belongsToMany(Permission::class,"role_permission","id_role","id_permission"); 
     } 
 }
