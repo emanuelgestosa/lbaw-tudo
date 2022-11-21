@@ -16,7 +16,7 @@ class Project extends Model
     }
     public function collaborators(){
 
-        return $this->belongsToMany(User::class,"collaborator","id_project");
+        return $this->belongsToMany(User::class,"collaborator","id_project","id_users");
     }
     public function boards(){
         return $this->hasMany(Board::class,"id_project");

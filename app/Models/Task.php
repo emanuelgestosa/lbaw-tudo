@@ -15,12 +15,12 @@ class Task extends Model
         return $this->belongsTo(Vertical::class,"id_vertical");
     }
     public function labels(){
-        return $this->belongsToMany(Label::class,"label_task","id_label","id_task");
+        return $this->belongsToMany(Label::class,"label_task","id_task","id_label");
     }
     public function comments(){
         return $this->hasMany(Comment::class,"id_task");
     }
     public function assignees(){
-        return  $this->belongsToMany(User::class,"assignmnt","id_users","id_task");
+        return  $this->belongsToMany(User::class,"assignmnt","id_task","id_users");
     }
 }
