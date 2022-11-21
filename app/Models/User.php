@@ -25,7 +25,7 @@ class User extends Authenticatable
     public $timestamps  = false;
     
     public function projects(){
-        return $this->belongsToMany(Project::class,"collaborator","id_users" ,"id_project");
+        return $this->belongsToMany(Project::class,"collaborator","id_users","id_project");
     }
 
     public function coordinates(){
