@@ -25,9 +25,11 @@
   <body>
     <main>
       <header>
-        <h1 class="principal"><img src="/img/logo.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
+        <div id="main_logo">
+          <h1 class="principal"><img src="/img/logo.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
+        </div>
         @if (Auth::check())
-        <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
+        <a class="button" href="{{ url('/logout') }}"> Logout </a> <a class="button" href="{{ url('/user/'. Auth::user()->id) }}">{{ Auth::user()->name }}</a>
         @endif
       </header>
       <section id="content">

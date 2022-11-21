@@ -16,8 +16,10 @@ body {
 }
 main > header {
   width: 100%;
+  height: 80px;
+  max-height: 80px;
   margin: 0;
-  display: grid;
+  display: flex;
   align-items: center;
   background-color: var(--blilac);
   padding: 1%;
@@ -25,6 +27,9 @@ main > header {
   background: var(--blilac);
   color: white;
   font-size: 30px;
+  flex-direction: row;
+  justify-content: end;
+  padding-top: 9px;
 }
 main > header h1 {
   margin: 0;
@@ -197,4 +202,3 @@ input[type=password]:focus {
   border-radius: 1em;
   text-align: center;
 }
-
