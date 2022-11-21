@@ -28,7 +28,7 @@ class UserController extends Controller
     public function showProjects($id)
     {
       $projects = User::find($id)->projects;
-      return view('pages.user.projects', ['projects' => $projects]);
+      return view('pages.user.projects', ['projects' => $projects, 'user_id' => $id]);
     }
 
     /**

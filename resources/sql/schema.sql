@@ -102,7 +102,7 @@ CREATE TABLE task (
 CREATE TABLE label (
     id serial PRIMARY KEY,
     name text NOT NULL,
-    colour integer
+    colour integer CONSTRAINT CK_colour_range CHECK (colour <= x'FFFFFF'::int and colour >= 0)
 );
 
 CREATE TABLE label_class (

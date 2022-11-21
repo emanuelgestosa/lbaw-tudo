@@ -26,6 +26,7 @@ Route::get('/features', 'FeaturesController@show');
 Route::get('/user/{id}', 'UserController@show');
 Route::get('/user/{id}/edit', 'UserController@showEdit');
 Route::get('/user/{id}/projects', 'UserController@showProjects');
+Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
 
 // API
 // Route::get('/api/faq', 'FaqController@retrieve');
@@ -39,6 +40,10 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 
+// Project
+Route::get('/user/{user_id}/add_project', 'AddProjectController@show');
+Route::post('/user/{user_id}/add_project', 'AddProjectController@add_project')->name('add_project');
+
 // Experimenting
-Route::get('task/{id}',[TaskController::class,'show']);
-Route::get('board/{id}',[BoardController::class,'show']);
+Route::get('task/{id}', [TaskController::class,'show']);
+Route::get('board/{id}', [BoardController::class,'show']);
