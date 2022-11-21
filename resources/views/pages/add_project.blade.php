@@ -9,7 +9,7 @@
 <form id="add_project_form" method="POST" action="{{ route('add_project', ['user_id' => $user->id]) }}">
   {{ csrf_field() }}
 
-  <label for="title">Title</label>
+  <label for="title">Title*</label>
   <input id="project_title_field" type="text" name="title" value="" required autofocus>
 
   <label for="description">Description</label>
@@ -18,6 +18,7 @@
   <button type="submit">
     Save
   </button>
+  <a href="{{ route('projects', ['id' => $user->id]) }}"> Cancel </a>
 </form>
 
 @endsection

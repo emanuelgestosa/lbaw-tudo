@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 
 class AddProjectController extends Controller
 {
-    /**
-     * Shows the FAQ page.
-     */
+
     public function show($user_id)
     {
       $user = User::find($user_id);
@@ -24,7 +22,8 @@ class AddProjectController extends Controller
       $new_project->description = $request->input('description');
       $new_project->id_coordinator = $user_id;
       $new_project->save();
-      print_r($new_project);
+      $new_project->collaborators()->save(User::find($user_id));
+
       return redirect('/user/'. $user_id .'/projects');
     }
 }
