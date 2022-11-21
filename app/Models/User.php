@@ -25,7 +25,7 @@ class User extends Authenticatable
     public $timestamps  = false;
     
     public function projects(){
-        return $this->belongsToMany(Project::class,"collaborator","id_project","id_users");
+        return $this->belongsToMany(Project::class,"collaborator","id_users","id_project");
     }
 
     public function coordinates(){
@@ -33,7 +33,7 @@ class User extends Authenticatable
     }
 
     public function tasks(){
-        return $this->belongsToMany(Task::class,"assignmnt","id_task","id_users");
+        return $this->belongsToMany(Task::class,"assignmnt","id_users","id_task");
     }
     public function msgs(){
         return $this->hasMany(Msg::class,"id_users");
@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this->hasMany(Ban::class,"id_users");
     }
     public function roles(){
-        return $this->belongsToMany(Role::class,"users_role","id_role","id_user");
+        return $this->belongsToMany(Role::class,"users_role","id_user","id_role");
     }
 }
 

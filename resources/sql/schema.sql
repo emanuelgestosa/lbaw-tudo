@@ -269,7 +269,7 @@ BEGIN
         NEW.tsvectors = (setweight(to_tsvector('english', NEW.username), 'A') || setweight(to_tsvector('english', NEW.name), 'B'));
     END IF;
     IF TG_OP = 'UPDATE' THEN
-        IF (NEW.name <> OLD.name) || (NEW.username <> OLD.username) THEN
+        IF (NEW.name <> OLD.name) or (NEW.username <> OLD.username) THEN
             NEW.tsvectors = (setweight(to_tsvector('english', NEW.username), 'A') || setweight(to_tsvector('english', NEW.name), 'B'));
         END IF;
     END IF;
