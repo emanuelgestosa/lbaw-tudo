@@ -208,3 +208,8 @@ input[type=password]:focus {
   border-radius: 1em;
   text-align: center;
 }
+.page_name{
+  font-size: 35px;
+  font-weight: bold;
+  margin: 3%;
+}
