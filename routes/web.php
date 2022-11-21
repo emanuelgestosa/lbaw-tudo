@@ -12,7 +12,9 @@
 */
 // Static Pages
 
+use App\Http\Controllers\BoardController;
 use App\Http\Controllers\TaskController;
+use App\Models\Board;
 
 Route::get('/', 'HomeController@show');
 Route::get('/faq', 'FaqController@show');
@@ -37,3 +39,4 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // Experimenting
 Route::get('task/{id}',[TaskController::class,'show']);
+Route::get('board/{id}',[BoardController::class,'show']);
