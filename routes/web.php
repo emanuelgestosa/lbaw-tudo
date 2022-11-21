@@ -14,6 +14,7 @@
 
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProjectController;
 use App\Models\Board;
 
 Route::get('/', 'HomeController@show');
@@ -25,7 +26,6 @@ Route::get('/features', 'FeaturesController@show');
 // User profile
 Route::get('/user/{id}', 'UserController@show');
 Route::get('/user/{id}/edit', 'UserController@showEdit');
-Route::get('/user/{id}/projects', 'UserController@showProjects');
 Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
 
 // API
@@ -40,10 +40,11 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 
-// Project
+// Add_Project
 Route::get('/user/{user_id}/add_project', 'AddProjectController@show');
 Route::post('/user/{user_id}/add_project', 'AddProjectController@add_project')->name('add_project');
 
 // Experimenting
-Route::get('task/{id}', [TaskController::class,'show']);
-Route::get('board/{id}', [BoardController::class,'show']);
+Route::get('/project/{id}', [ProjectController::class,'show']);
+Route::get('/task/{id}', [TaskController::class,'show']);
+Route::get('/board/{id}', [BoardController::class,'show']);
