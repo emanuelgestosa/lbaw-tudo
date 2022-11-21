@@ -1,0 +1,34 @@
+.board{
+   margin:3%;
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 10px;
+   grid-auto-rows: minmax(100px, auto);
+}
+.vertical{
+    border-style: solid; 
+    border-radius: 10px;
+}
+.task-name{
+    font-size: 25px;
+}
+.task-description{
+    font-size: 15px;
+    margin-left: 5%;
+}
+
+h3{
+    margin: 3%;
+    border-style: solid;
+    padding: 1%;
+    border-radius: 10px;
+}
+.label-container{
+    margin: 3%;
+}
+.comment-container{
+    margin: 3%; 
+}
+.task-name{
+    padding: 5%;
+}
