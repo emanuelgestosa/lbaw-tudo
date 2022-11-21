@@ -35,5 +35,5 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 
-//Noice 
+// Experimenting
 Route::get('task/{id}',[TaskController::class,'show']);
