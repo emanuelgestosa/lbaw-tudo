@@ -11,6 +11,6 @@
       <a href="">{{ $project->title }}</a>
     @endforeach
   </nav>
-  <a class="button" href="">New Project</a>
+  <a class="button" href="{{ url('/user/' . $user_id . '/add_project') }}">New Project</a>
 
 @endsection
