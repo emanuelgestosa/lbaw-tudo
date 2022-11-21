@@ -24,11 +24,7 @@ class AddProjectController extends Controller
       $new_project->description = $request->input('description');
       $new_project->id_coordinator = $user_id;
       $new_project->save();
-      //print_r($request->input());
-/*       Project::create([
-        $request->title,
-        $request->description
-      ]); */
-      return redirect('user/'.$user_id.'/projects');
+      print_r($new_project);
+      return redirect('/user/'. $user_id .'/projects');
     }
 }
