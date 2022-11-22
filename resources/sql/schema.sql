@@ -58,6 +58,9 @@ DROP TABLE IF EXISTS project;
 
 DROP TABLE IF EXISTS users;
 
+DROP TABLE IF EXISTS invite;
+
+
 CREATE TABLE users (
     id serial PRIMARY KEY,
     username text NOT NULL CONSTRAINT username_unique UNIQUE,
@@ -240,6 +243,14 @@ CREATE TABLE role_permission (
     id_role integer NOT NULL REFERENCES ROLE (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_permission integer NOT NULL REFERENCES permission (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_role, id_permission)
+);
+
+CREATE TABLE invite(
+    id_invitee integer not null references users (id) on update cascade,
+    id_inviter integer not null references users (id) on update cascade,
+    id_project integer not null references project (id) on update cascade,
+    accepted boolean default False,
+    PRIMARY KEY (id_invitee,id_inviter,id_project)
 );
 
 CREATE INDEX user_projects_index ON collaborator USING HASH (id_users);
