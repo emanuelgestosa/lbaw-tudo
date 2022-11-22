@@ -29,8 +29,9 @@ Route::get('/user/{id}/edit', 'UserController@showEdit');
 Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
 
 // API
-// Route::get('/api/faq', 'FaqController@retrieve');
-Route::patch('/api/users/{id}/edit', 'UserController@edit');
+Route::post('/api/user', 'UserController@create');
+Route::patch('/api/user/{id}', 'UserController@edit');
+Route::delete('/api/user/{id}', 'UserController@delete');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -53,6 +54,9 @@ Route::get('/project/{id}', [ProjectController::class,'show']);
 Route::get('/task/{id}', [TaskController::class,'show']);
 Route::get('/board/{id}', [BoardController::class,'show'])->name('board');
 
+// Administration
+Route::get('/admins', 'AdminController@show');
+Route::get('/admins/create', 'AdminController@showCreate');
 
 Route::get('/api-tester', function () {return view('pages.api-tester');});
 

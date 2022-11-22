@@ -23,7 +23,7 @@
     <a class="button" href="{{ url('user/' . $id . '/projects') }}"><i class="fa-solid fa-diagram-project"></i> My Projects</a>
   </nav>
 
-  <form method="post" action="/api/users/{{ $id }}/edit">
+  <form method="post" action="/api/user/{{ $id }}">
     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -34,6 +34,14 @@
     <input type="email" name="email"  value="{{ $email }}" />
 
     <button type="submit">Send</button>
-  </form>
+
+  <form>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+    <input type="hidden" name="id"  value="{{ $id }}" />
+
+    <button type="submit" style="background-color: red; border: none;"><i class="fa-solid fa-trash"></i> Delete User</button>
+    </form>
 
 @endsection
