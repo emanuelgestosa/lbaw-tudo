@@ -15,13 +15,20 @@
 const testApi = async () => {
     const queryInput = document.querySelector('input[type="text"]')
     const maxItemsInput = document.querySelector('input[type="number"]')
+    const id = maxItemsInput.value
+    //const url = new URL(`http://127.0.0.1:8000/api/user/${id}/invites`)
+    //url.search = new URLSearchParams(params).toString();
+    const url = `http://127.0.0.1:8000/api/project/3/invites`
+    const data = {id_invitee:12,id_inviter:12}
 
-    let params ={ query:queryInput.value,maxItems:maxItemsInput.value}
-    const url = new URL("http://127.0.0.1:8000/api/search/users")
-    url.search = new URLSearchParams(params).toString();
-
-    const response = await fetch(url)
-    const jsonResponse = await response.json()
+    const response = await fetch(url,{
+        method:"POST",
+        headers: {
+      'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(data)
+    })
+    const jsonResponse = await response.text()
 
     console.log(response)
     console.log(jsonResponse)}

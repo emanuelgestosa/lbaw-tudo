@@ -53,6 +53,7 @@ Route::post('/verticals/{vertical_id}/add_task', 'AddTaskController@add_project'
 Route::get('/project/{id}', [ProjectController::class,'show']);
 Route::get('/task/{id}', [TaskController::class,'show']);
 Route::get('/board/{id}', [BoardController::class,'show'])->name('board');
+Route::get('/project/{id}/invites',[ProjectController::class,'invites']);
 
 // Administration
 Route::get('/admins', 'AdminController@show');

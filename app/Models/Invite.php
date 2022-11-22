@@ -11,6 +11,10 @@ class Invite extends Model
     public $timestamps=false;
     public $table = "invite";
 
+    protected $fillable = [
+        'id_invitee',
+        'id_inviter',
+        'id_project'];
     public function invited(){
         return $this->belongsTo(User::class,"id_invitee");
     }
