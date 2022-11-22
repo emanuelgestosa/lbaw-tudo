@@ -23,4 +23,12 @@ class Task extends Model
     public function assignees(){
         return  $this->belongsToMany(User::class,"assignmnt","id_task","id_users");
     }
+    public function scopesearch($query,$search)
+    {  
+        if (!$search) {
+            return $query;
+        }
+        return $query->whereraw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$search])
+            ->orderbyraw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) desc', [$search]);
+    }   
 }
