@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Administrator;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -12,11 +13,21 @@ class AdminController extends Controller
      */
     public function show()
     {
+      if (!Auth::check() || (
+          Auth::check() &&
+          empty(Administrator::where('id_users', Auth::user()->id)->get()->all()))) {
+        return redirect('/');
+      }
       return view('pages.administration');
     }
 
     public function showCreate()
     {
+      if (!Auth::check() || (
+          Auth::check() &&
+          empty(Administrator::where('id_users', Auth::user()->id)->get()->all()))) {
+        return redirect('/');
+      }
       return view('pages.administrationCreate');
     }
 }
