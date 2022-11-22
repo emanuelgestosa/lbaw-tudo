@@ -9,33 +9,35 @@
 
 <article class="project" id="project_content">
 
-    <h1> {{ $project->title }} </h1>
-
-    <h2> Project Description</h2>
+    <h1 class="page_name"> {{ $project->title }} </h1>
+    <div id="about_proj">
+        <div id="proj_desc">
+            <h2 class="subtitle"> <i class="fa-solid fa-file"></i> Project Description</h2>
     <p> {{$project->description}} </p>
+        </div>
 
     <section id="project_boards">
-        <h3> Boards </h3>
+        <h2 class="subtitle"> <i class="fa-solid fa-briefcase"></i> Boards         <a class="button" href="{{ url('') }}"> Add board </a> </h2>
+        <div class="boardboard">
         @foreach ($project->boards()->get() as $board)
         @include('partials.board.card',['board',$board])
         @endforeach
-        <a class="button" href="{{ url('') }}"> Add board </a>
+        </div>
     </section>
 
     <ul id="project_collaborators">
         <section>
-        <h3> Collaborators </h3>
-            <a class="button" href="project/{{$project->id}}/invite">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
+             <h2 class="subtitle"><i class="fa-solid fa-people-group"></i> Collaborators 
+             </h2>
+             <a class="button" href="project/{{$project->id}}/invite">
+                <i class="fa-solid fa-envelope"></i> Invites
+             </a>       
         </section>
 
         @foreach ($project->collaborators()->get() as $collaborator)
-        <a href="{{ url('/user/' . $collaborator->id) }}"> {{$collaborator->name}} </p>
+        <a href="{{ url('/user/' . $collaborator->id) }}"> {{$collaborator->name}} </a>
         @endforeach
     </ul>
-
+    </div>
 </article>
-
-
 @endsection
