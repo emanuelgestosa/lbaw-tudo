@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 |
 */
 
+// All API need to bee checked 
 Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 
 Route::get('/search/users',function (Request $r){
@@ -32,6 +33,24 @@ Route::get('/search/users',function (Request $r){
 Route::get('/user/{id}/invites/received',function ($id){
     $result = User::find($id)->invitesReceived()->get();
     return response()->json($result);
+});
+
+Route::get('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
+    // Needs checkign 
+    $invite = Invite::find($inviteId);
+    echo $invite;
+    $invite->project()->first()->collaborators()->save(User::find($userId));
+    $invite->delete();
+    return response()->json();
+    
+});
+
+
+Route::delete('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
+    $invite = Invite::find($inviteId);
+    $invite->delete();
+    return response()->json();
+
 });
 
 Route::get('/user/{id}/invites/sent',function ($id){
