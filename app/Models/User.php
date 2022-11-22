@@ -19,6 +19,7 @@ class User extends Authenticatable
         'username',
         'email', 
         'password',
+        'phone_number',
     ];
 
     // Don't add create and update timestamps in database.
