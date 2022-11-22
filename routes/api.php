@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 /*
@@ -21,6 +22,15 @@ Route::get('/search/users',function (Request $r){
     $search=  $r->get('query');
     $maxItems=$r->get('maxItems',0);
     $result = User::search($search)->take($maxItems)->get();
+    return response()
+         ->json($result);
+
+});
+
+Route::get('/search/projects',function (Request $r){
+    $search=  $r->get('query');
+    $maxItems=$r->get('maxItems',0);
+    $result = Project::search($search)->take($maxItems)->get();
     return response()
          ->json($result);
 
