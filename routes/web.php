@@ -15,7 +15,6 @@
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProjectController;
-use App\Models\Board;
 
 Route::get('/', 'HomeController@show');
 Route::get('/faq', 'FaqController@show');
@@ -40,20 +39,17 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-
-// Add_Project
-Route::get('/user/{user_id}/add_project', 'AddProjectController@show');
-Route::post('/user/{user_id}/add_project', 'AddProjectController@add_project')->name('add_project');
-
-// Add_Task
-Route::get('/verticals/{vertical_id}/add_task', 'AddTaskController@show');
-Route::post('/verticals/{vertical_id}/add_task', 'AddTaskController@add_project')->name('add_task');
-
-// Project pages
-Route::get('/project/{id}', [ProjectController::class,'show']);
+// Task
 Route::get('/task/{id}', [TaskController::class,'show']);
+Route::get('/verticals/{vertical_id}/add_task', 'TaskController@showCreate');
+Route::post('/verticals/{vertical_id}/add_task', 'TaskController@add_task')->name('add_task');
+
+// Project
+Route::get('/project/{id}', [ProjectController::class,'show']);
 Route::get('/board/{id}', [BoardController::class,'show'])->name('board');
 Route::get('/project/{id}/invites',[ProjectController::class,'invites']);
+Route::get('/user/{user_id}/add_project', 'ProjectController@showCreate');
+Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('add_project');
 
 // Administration
 Route::get('/admins', 'AdminController@show');
