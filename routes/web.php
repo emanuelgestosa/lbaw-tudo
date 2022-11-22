@@ -49,7 +49,5 @@ Route::get('/project/{id}', [ProjectController::class,'show']);
 Route::get('/task/{id}', [TaskController::class,'show']);
 Route::get('/board/{id}', [BoardController::class,'show']);
 
-
-
-
-
+// Administration
+Route::get('/admins', 'AdminController@show');
