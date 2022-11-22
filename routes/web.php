@@ -30,7 +30,8 @@ Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects
 
 // API
 // Route::get('/api/faq', 'FaqController@retrieve');
-Route::patch('/api/user/{id}/edit', 'UserController@edit');
+Route::patch('/api/user/{id}', 'UserController@edit');
+Route::delete('/api/user/{id}', 'UserController@delete');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
