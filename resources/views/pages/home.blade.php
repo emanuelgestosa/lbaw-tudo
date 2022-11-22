@@ -7,7 +7,10 @@
 
   <h1>Tu-Do</h1>
   <h2>To simplify your life</h2>
-  <a class="button" href="{{ url('/register') }}"> Create an account </a>
-  <a class="button" href="{{ url('/login') }}"> Log in </a>
+
+  @if (!Auth::check())
+    <a class="button" href="{{ url('/register') }}"> Create an account </a>
+    <a class="button" href="{{ url('/login') }}"> Log in </a>
+  @endif
 
 @endsection

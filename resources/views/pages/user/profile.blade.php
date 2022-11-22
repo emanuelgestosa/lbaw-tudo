@@ -15,12 +15,17 @@
       <p><i class="fa-solid fa-phone"></i> {{ $phone_number }}</p>
     </div>
 
-    <a class="button" id="edit" href="{{ url('/user/'. $id. '/edit') }}"><i class="fa-solid fa-pencil"></i> Edit Profile</a>
+    @if (Auth::check() && (Auth::user()->id == $id ||
+        !empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all())))
+      <a class="button" id="edit" href="{{ url('/user/'. $id. '/edit') }}"><i class="fa-solid fa-pencil"></i> Edit Profile</a>
+    @endif
   </div>
-  <nav class="right">
-    <a class="button" href="{{ url('user/' . $id . '/favorites') }}"><i class="fa-solid fa-star"></i> My Favorites</a>
-    <a class="button" href="{{ url('user/' . $id . '/calendar') }}"><i class="fa-solid fa-calendar"></i> My Calendar</a>
-    <a class="button" href="{{ url('user/' . $id . '/projects') }}"><i class="fa-solid fa-diagram-project"></i> My Projects</a>
-  </nav>
+  @if (Auth::check() && Auth::user()->id == $id)
+    <nav class="right">
+      <a class="button" href="{{ url('user/' . $id . '/favorites') }}"><i class="fa-solid fa-star"></i> My Favorites</a>
+      <a class="button" href="{{ url('user/' . $id . '/calendar') }}"><i class="fa-solid fa-calendar"></i> My Calendar</a>
+      <a class="button" href="{{ url('user/' . $id . '/projects') }}"><i class="fa-solid fa-diagram-project"></i> My Projects</a>
+    </nav>
+  @endif
 
 @endsection
