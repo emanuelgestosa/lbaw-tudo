@@ -51,3 +51,6 @@ Route::get('/board/{id}', [BoardController::class,'show']);
 
 // Administration
 Route::get('/admins', 'AdminController@show');
+
+Route::get('/api-tester', function () {return view('pages.api-tester');});
+
