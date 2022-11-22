@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Label;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Task;
@@ -42,6 +43,15 @@ Route::get('/search/tasks',function (Request $r){
     $search=  $r->get('query');
     $maxItems=$r->get('maxItems',0);
     $result = Task::search($search)->take($maxItems)->get();
+    return response()
+         ->json($result);
+
+});
+
+Route::get('/search/labels',function (Request $r){
+    $search=  $r->get('query');
+    $maxItems=$r->get('maxItems',0);
+    $result = Label::search($search)->take($maxItems)->get();
     return response()
          ->json($result);
 
