@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 
 class UserController extends Controller
@@ -57,6 +58,6 @@ class UserController extends Controller
       $user->email = $request->input('email');
       $user->phone_number = $request->input('phone_number');
       $user->save();
-      return UserController::show($user->id);
+      return redirect('/user/' . $user->id);
     }
 }

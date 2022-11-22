@@ -23,7 +23,7 @@
     <a class="button" href="{{ url('user/' . $id . '/projects') }}"><i class="fa-solid fa-diagram-project"></i> My Projects</a>
   </nav>
 
-  <form method="post" action="/api/users/{{ $id }}/edit">
+  <form method="post" action="/api/user/{{ $id }}/edit">
     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
