@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /*
@@ -14,3 +15,13 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
+
+Route::get('/search/users',function (Request $r){
+    // Need to parse query
+    $search=  $r->get('query');
+    $maxItems=$r->get('maxItems',0);
+    $result = User::search($search)->take($maxItems)->get();
+    return response()
+         ->json($result);
+
+});

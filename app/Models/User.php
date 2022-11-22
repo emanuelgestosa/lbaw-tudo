@@ -48,5 +48,13 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany(Role::class,"users_role","id_user","id_role");
     }
+    public function scopeSearch($query,$search)
+    {  
+        if (!$search) {
+            return $query;
+        }
+        return $query->whereRaw('tsvectors @@ to_tsquery(\'english\', ?)', [$search])
+            ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$search]);
+    }   
 }
 
