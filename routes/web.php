@@ -29,7 +29,7 @@ Route::get('/user/{id}/edit', 'UserController@showEdit');
 Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
 
 // API
-// Route::get('/api/faq', 'FaqController@retrieve');
+Route::post('/api/user', 'UserController@create');
 Route::patch('/api/user/{id}', 'UserController@edit');
 Route::delete('/api/user/{id}', 'UserController@delete');
 
@@ -52,3 +52,4 @@ Route::get('/board/{id}', [BoardController::class,'show']);
 
 // Administration
 Route::get('/admins', 'AdminController@show');
+Route::get('/admins/create', 'AdminController@showCreate');

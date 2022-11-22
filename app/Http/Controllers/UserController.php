@@ -67,4 +67,20 @@ class UserController extends Controller
       $user->delete();
       return redirect('/');
     }
+
+    public function create(Request $request)
+    {
+      $username = $request->input('username');
+      $name = $request->input('name');
+      $email = $request->input('email');
+      $phone_number = $request->input('phone_number');
+      $password = $request->input('password');
+      $user = User::create([
+        'name' => $name,
+        'username' => $username,
+        'email' => $email,
+        'password' => bcrypt($password),
+      ]);
+      return redirect('/user/' . $user->id);
+    }
 }
