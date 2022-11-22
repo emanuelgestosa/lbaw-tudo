@@ -23,7 +23,13 @@
     </section>
 
     <ul id="project_collaborators">
+        <section>
         <h3> Collaborators </h3>
+            <a class="button" href="project/{{$project->id}}/invite">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        </section>
+
         @foreach ($project->collaborators()->get() as $collaborator)
         <a href="{{ url('/user/' . $collaborator->id) }}"> {{$collaborator->name}} </p>
         @endforeach
