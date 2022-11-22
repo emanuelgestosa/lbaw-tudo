@@ -74,7 +74,7 @@ CREATE TABLE project (
     description text,
     creation date NOT NULL CONSTRAINT CK_project_creation CHECK (creation <= CURRENT_DATE) default CURRENT_DATE,
     is_archived boolean NOT NULL DEFAULT FALSE,
-    id_coordinator integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
+    id_coordinator integer REFERENCES users (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE board (
@@ -119,14 +119,14 @@ CREATE TABLE post (
     title text NOT NULL,
     description text,
     id_forum integer NOT NULL REFERENCES forum (id_project) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_users integer NOT NULL REFERENCES users ON UPDATE Cascade On delete Cascade   
+    id_users integer REFERENCES users ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE msg (
     id serial PRIMARY KEY,
     msg text NOT NULL,
     sent_date date NOT NULL CONSTRAINT CK_sent_date CHECK (sent_date <= CURRENT_DATE) default CURRENT_DATE,
-    id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_users integer REFERENCES users (id) ON UPDATE CASCADE,
     id_post integer NOT NULL REFERENCES post (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -172,7 +172,7 @@ CREATE TABLE comment (
     msg text NOT NULL,
     sent_date date NOT NULL CONSTRAINT CK_comment_sent_date CHECK (sent_date <= CURRENT_DATE) default CURRENT_DATE,
     id_task integer NOT NULL REFERENCES task (id),
-    id_users integer NOT NULL REFERENCES users (id)
+    id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE new_message (
@@ -186,7 +186,7 @@ CREATE TABLE new_coordinator (
 );
 
 CREATE TABLE assignmnt (
-    id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_task integer REFERENCES task (id) ON UPDATE CASCADE ON DELETE CASCADE,
     assign_date date NOT NULL CONSTRAINT CK_assign_date CHECK (assign_date <= CURRENT_DATE) default CURRENT_DATE,
     PRIMARY KEY (id_users, id_task)
@@ -205,40 +205,40 @@ CREATE TABLE task_moved (
 );
 
 CREATE TABLE notified (
-    id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_notification integer REFERENCES notification (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_notification integer NOT NULL REFERENCES notification (id) ON UPDATE CASCADE ON DELETE CASCADE,
     is_read boolean NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id_users, id_notification)
 );
 
 CREATE TABLE users_role (
-    id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_role integer NOT NULL REFERENCES ROLE (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_users, id_role)
 );
 
 CREATE TABLE collaborator (
-    id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_project integer REFERENCES project (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_users integer NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_project integer NOT NULL REFERENCES project (id) ON UPDATE CASCADE ON DELETE CASCADE,
     favourite boolean not null default FALSE,
     PRIMARY KEY (id_users, id_project)
 );
 
 CREATE TABLE label_label_class (
-    id_label integer REFERENCES label (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_label_class integer REFERENCES label_class (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_label integer NOT NULL REFERENCES label (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_label_class integer NOT NULL REFERENCES label_class (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_label, id_label_class)
 );
 
 CREATE TABLE label_task (
-    id_label integer REFERENCES label (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_task integer REFERENCES task (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_label integer NOT NULL REFERENCES label (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_task integer NOT NULL REFERENCES task (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_label, id_task)
 );
 
 CREATE TABLE role_permission (
-    id_role integer REFERENCES ROLE (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_permission integer REFERENCES permission (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_role integer NOT NULL REFERENCES ROLE (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_permission integer NOT NULL REFERENCES permission (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_role, id_permission)
 );
 

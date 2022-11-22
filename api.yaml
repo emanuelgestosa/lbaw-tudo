@@ -296,7 +296,7 @@ paths:
             description: 'Cannot do this action.'
   
 
-  /columns/{column_id}/add_task:
+  /verticals/{vertical_id}/add_task:
     # Obter a page para adicionar uma task
     get:
       operationId: R510
