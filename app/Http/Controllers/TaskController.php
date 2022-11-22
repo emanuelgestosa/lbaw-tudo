@@ -28,7 +28,7 @@ class TaskController extends Controller
       $new_task->description = $request->input('description');
       $new_task->due_date = $request->input('due_date');
 
-      if(strcmp(date("Y-m-d"), $new_task->due_date) >= 0){
+      if(strcmp(date("Y-m-d"), $new_task->due_date) >= 0 && $new_task->due_date != ""){
         return redirect('/verticals/'.$vertical_id.'/add_task');
       }
       //Adicionar erro quando a data é invalida

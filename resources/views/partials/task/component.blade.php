@@ -7,6 +7,7 @@
 
 <article class="task-component" data-id="{{ $task->id }}">
   <h1 class="page_name"> Task - {{ $task->name}} </h1>
+  <p class="page_due_date"> Due Date - {{ $task->due_date}} </p>
   <h3> {{$task->description}} </h3>
 <section class="label-container">
         <b> Labels: </b>
