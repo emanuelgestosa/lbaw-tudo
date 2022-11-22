@@ -5,16 +5,42 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\User;
+use App\Models\Administrator;
 use Auth;
 
 class UserController extends Controller
 {
+
+    /**
+     * Checks if currently authenticated user
+     * has permissions to manage user of $id .
+     */
+    private function hasPerms($id)
+    {
+      if (!Auth::check() || (
+          Auth::check() &&
+          Auth::user()->id != $id &&
+          empty(Administrator::where('id_users', Auth::user()->id)->get()->all()))) {
+        return false;
+      }
+      return true;
+    }
+
     /**
      * Shows user profile.
      */
     public function show($id)
     {
+      if (!Auth::check()) {
+        return redirect('/');
+      }
+
       $user = User::find($id);
+
+      if (is_null($user)) {
+        return redirect('/');
+      }
+
       return view('pages.user.profile', [
         'id' => $user->id,
         'username' => $user->username,
@@ -29,8 +55,8 @@ class UserController extends Controller
      */
     public function showProjects($id)
     {
-      if (Auth::user()->id != $id){
-        return redirect('/');
+      if (!UserController::hasPerms($id)) {
+        return redirect('/user/'.$id);
       }
       
       $projects = User::find($id)->projects;
@@ -42,10 +68,16 @@ class UserController extends Controller
      */
     public function showEdit($id)
     {
-      if (Auth::user()->id != $id){
+      if (!UserController::hasPerms($id)) {
+        return redirect('/user/'.$id);
+      }
+
+      $user = User::find($id);
+
+      if (is_null($user)) {
         return redirect('/');
       }
-      $user = User::find($id);
+
       return view('pages.user.edit', [
         'id' => $user->id,
         'username' => $user->username,
@@ -60,11 +92,17 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
-      if (Auth::user()->id != $id){
+      $id = $request->input('id');
+      if (!UserController::hasPerms($id)) {
+        return redirect('/user/'.$id);
+      }
+
+      $user = User::find($id);
+
+      if (is_null($user)) {
         return redirect('/');
       }
 
-      $user = User::find($request->input('id'));
       $user->username = $request->input('username');
       $user->name = $request->input('name');
       $user->email = $request->input('email');
@@ -75,18 +113,30 @@ class UserController extends Controller
 
     public function delete(Request $request)
     {
-      if (Auth::user()->id != $id){
+      $id = $request->input('id');
+      if (!UserController::hasPerms($id)) {
+        return redirect('/user/'.$id);
+      }
+
+      $user = User::find($id);
+
+      if (is_null($user)) {
         return redirect('/');
       }
-      
 
-      $user = User::find($request->input('id'));
       $user->delete();
+
       return redirect('/');
     }
 
     public function create(Request $request)
     {
+      if (!Auth::check() || (
+          Auth::check() &&
+          empty(Administrator::where('id_users', Auth::user()->id)->get()->all()))) {
+        return redirect('/');
+      }
+
       $validate = $request->validate([
         'name' => 'required|string|max:255',
         'username' => 'required|string|max:255|unique:users',
@@ -107,6 +157,11 @@ class UserController extends Controller
         'phone_number' => $phone_number,
         'password' => bcrypt($password),
       ]);
+
+      if (is_null($user)) {
+        return redirect('/');
+      }
+
       return redirect('/user/' . $user->id);
     }
 }

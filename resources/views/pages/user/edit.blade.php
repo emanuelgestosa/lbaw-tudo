@@ -34,8 +34,9 @@
     <input type="email" name="email"  value="{{ $email }}" />
 
     <button type="submit">Send</button>
+  </form>
 
-  <form>
+  <form method="post" action="/api/user/{{ $id }}">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
