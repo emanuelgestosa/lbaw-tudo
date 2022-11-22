@@ -15,4 +15,8 @@ class AdminController extends Controller
       return view('pages.administration');
     }
 
+    public function showCreate()
+    {
+      return view('pages.administrationCreate');
+    }
 }

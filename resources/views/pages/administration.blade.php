@@ -7,8 +7,13 @@
   <h1 class="page_name">Administration Panel</h1>
   <section id="user-administration">
     <h2>User administration</h2>
+<<<<<<< HEAD
     <a class="button" href=""><i class="fa-solid fa-plus" style="font-size:150%;"></i> Create User</a>
     <forum class="search_bar">
+=======
+    <a class="button" href="/admins/create"><i class="fa-solid fa-plus" style="font-size:150%;"></i> Create User</a>
+    <div class="search_bar">
+>>>>>>> 1beb7e56c84a5958e94c3c5874bb1ddbebe5be65
       <i class="fa-solid fa-search"></i>
       <input class="search-user" type="text" placeholder="Search user...">
     </forum>
