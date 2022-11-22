@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -28,6 +29,10 @@ class UserController extends Controller
      */
     public function showProjects($id)
     {
+      if (Auth::user()->id != $id){
+        return redirect('/');
+      }
+      
       $projects = User::find($id)->projects;
       return view('pages.user.projects', ['projects' => $projects, 'user_id' => $id]);
     }
@@ -37,6 +42,9 @@ class UserController extends Controller
      */
     public function showEdit($id)
     {
+      if (Auth::user()->id != $id){
+        return redirect('/');
+      }
       $user = User::find($id);
       return view('pages.user.edit', [
         'id' => $user->id,
@@ -52,6 +60,10 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
+      if (Auth::user()->id != $id){
+        return redirect('/');
+      }
+
       $user = User::find($request->input('id'));
       $user->username = $request->input('username');
       $user->name = $request->input('name');
@@ -63,6 +75,11 @@ class UserController extends Controller
 
     public function delete(Request $request)
     {
+      if (Auth::user()->id != $id){
+        return redirect('/');
+      }
+      
+
       $user = User::find($request->input('id'));
       $user->delete();
       return redirect('/');
