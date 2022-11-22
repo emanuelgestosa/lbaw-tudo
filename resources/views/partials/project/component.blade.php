@@ -18,6 +18,7 @@
         @foreach ($project->boards()->get() as $board)
         @include('partials.board.card',['board',$board])
         @endforeach
+        <a class="button" href="{{ url('') }}"> Add board </a>
     </section>
 
     <ul id="project_collaborators">
