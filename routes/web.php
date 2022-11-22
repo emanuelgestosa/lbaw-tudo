@@ -50,6 +50,5 @@ Route::get('/task/{id}', [TaskController::class,'show']);
 Route::get('/board/{id}', [BoardController::class,'show']);
 
 
-
-
+Route::get('/api-tester', function () {return view('pages.api-tester');});
 
