@@ -11,8 +11,8 @@ insert into users (username, password, name, birth, email, phone_number) values 
  ( 'cao', 'gato', 'pato', '10/08/1988', 'letsgo@yolo.gov', '69420');
 
 
-insert into project (id, title, description, creation, is_archived, id_coordinator) values (1, 'Sonsing', 'Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '11/20/2021', false, 8),
- (2, 'Bigtax', 'Donec semper sapien a libero. Nam dui.', '6/10/2022', false, 5);
+insert into project (title, description, creation, is_archived, id_coordinator) values ('Sonsing', 'Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '11/20/2021', false, 8),
+ ('Bigtax', 'Donec semper sapien a libero. Nam dui.', '6/10/2022', false, 5);
 
 insert into collaborator (id_users, id_project) values (1, 1),
  (1, 2),
@@ -35,102 +35,102 @@ insert into collaborator (id_users, id_project) values (1, 1),
  (10, 1),
  (10, 2);
 
-insert into board (id, name, id_project) values (1, 'Tech', 1),
- (2, 'Support', 1),
- (3, 'Accounting', 2),
- (4, 'Human Resources', 2);
+insert into board (name, id_project) values ('Tech', 1),
+ ('Support', 1),
+ ('Accounting', 2),
+ ('Human Resources', 2);
 
-insert into vertical (id, name, id_board) values (1, 'Doing', 1),
- (2, 'In need of approval', 1),
- (3, 'Completed', 1),
- (4, 'Electronics', 2),
- (5, 'Music', 2),
- (6, 'To pay', 3),
- (7, 'Paid', 3),
- (8, 'Need to talk', 4),
- (9, 'Need a raise', 4);
+insert into vertical (name, id_board) values ('Doing', 1),
+ ('In need of approval', 1),
+ ('Completed', 1),
+ ('Electronics', 2),
+ ('Music', 2),
+ ('To pay', 3),
+ ('Paid', 3),
+ ('Need to talk', 4),
+ ('Need a raise', 4);
 
-insert into label (id, name,colour) values 
- (1, 'Important',x'FF00FF'::int),
- (2, 'Easy',x'FF00FF'::int),
- (3, 'Long',x'FF00FF'::int),
- (4, 'Fast',x'FF00FF'::int),
- (5, 'Low priority',x'FF00FF'::int),
- (6, 'Medium priority',x'FF00FF'::int),
- (7, 'High priority',x'FF00FF'::int),
- (8, 'Quick',x'FF00FF'::int),
- (9, 'Unimportant',x'FF00FF'::int),
- (10, 'Very important',x'FF00FF'::int);
+insert into label (name,colour) values 
+ ('Important',x'FF00FF'::int),
+ ('Easy',x'FF00FF'::int),
+ ('Long',x'FF00FF'::int),
+ ('Fast',x'FF00FF'::int),
+ ('Low priority',x'FF00FF'::int),
+ ('Medium priority',x'FF00FF'::int),
+ ('High priority',x'FF00FF'::int),
+ ('Quick',x'FF00FF'::int),
+ ('Unimportant',x'FF00FF'::int),
+ ('Very important',x'FF00FF'::int);
 
-insert into label_class (id, name) values (1, 'Priority'),
- (2, 'Notifiable'),
- (3, 'Importance');
+insert into label_class (name) values ('Priority'),
+ ('Notifiable'),
+ ('Importance');
 
 insert into forum (id_project) values (1),
 (2);
 
-insert into task (id, name, description, creation_date, due_date, id_vertical) values (1, 'Deliver mockups', 'Gogle wants mockups for a website about the season fruits', '11/22/2021', '1/25/2022', 2),
- (2, 'Correct bug on sql', 'I need help', '9/23/2021', '5/20/2022', 2),
- (3, 'Prepare some cookies', 'We need gluten free cookies and some orange juice', '11/15/2021', '7/1/2022', 8),
- (4, 'Eat burguer', 'nom nom I am hungry', '8/17/2021', '10/8/2022', 7),
- (5, 'Call Susan Boyle', 'lalalalala', '10/4/2021', '7/24/2022', 1),
- (6, 'Cook the beans', 'beans are amazing nom nom', '11/17/2021', '9/7/2022', 3),
- (7, 'Deliver mockups', 'Macrohard neeeds some help in their beauty site', '11/28/2021', '5/18/2022', 5),
- (8, 'Smile', 'smile and wave', '10/17/2021', '2/7/2022', 6),
- (9, 'Correct bug on sql', 'i dont know what is wrong it justs says error help joanne', '11/27/2021', '8/27/2022', 8);
+insert into task (name, description, creation_date, due_date, id_vertical) values ('Deliver mockups', 'Gogle wants mockups for a website about the season fruits', '11/22/2021', '1/25/2022', 2),
+ ('Correct bug on sql', 'I need help', '9/23/2021', '5/20/2022', 2),
+ ('Prepare some cookies', 'We need gluten free cookies and some orange juice', '11/15/2021', '7/1/2022', 8),
+ ('Eat burguer', 'nom nom I am hungry', '8/17/2021', '10/8/2022', 7),
+ ('Call Susan Boyle', 'lalalalala', '10/4/2021', '7/24/2022', 1),
+ ('Cook the beans', 'beans are amazing nom nom', '11/17/2021', '9/7/2022', 3),
+ ('Deliver mockups', 'Macrohard neeeds some help in their beauty site', '11/28/2021', '5/18/2022', 5),
+ ('Smile', 'smile and wave', '10/17/2021', '2/7/2022', 6),
+ ('Correct bug on sql', 'i dont know what is wrong it justs says error help joanne', '11/27/2021', '8/27/2022', 8);
 
-insert into post (id, title, description, id_forum,id_users) values 
- (1, 'Off-Topic', null,  1, 1),
- (2, 'Politics', null, 1,1),
- (3, 'Sports', null, 2,1),
- (4, 'Help', null, 2,1);
+insert into post (title, description, id_forum,id_users) values 
+ ('Off-Topic', null,  1, 1),
+ ('Politics', null, 1,1),
+ ('Sports', null, 2,1),
+ ('Help', null, 2,1);
 
-insert into msg (id, msg, sent_date, id_users, id_post) values (1, 'hoje foi um dia feliz', '5/17/2022', 10, 1),
- (2, 'qual é o erro?', '5/21/2021', 8, 1),
- (3, 'gosto imenso do cheiro das castanhas', '4/13/2020', 9, 2),
- (4, 'estou contente porque o Porto ganhou', '6/28/2022', 7, 2),
- (5, 'bom dia estou a ter um problema com o meu sql', '1/15/2022', 4, 3),
- (6, 'gosto imenso do cheiro das castanhas', '4/13/2022', 7, 3),
- (7, 'hoje comi bolo de amendoa', '5/23/2022', 6, 4),
- (8, 'qual é o erro?', '7/5/2022', 7, 4),
- (9, 'qual é o erro?', '7/5/2022', 7, 2);
+insert into msg (msg, sent_date, id_users, id_post) values ('hoje foi um dia feliz', '5/17/2022', 10, 1),
+ ('qual é o erro?', '5/21/2021', 8, 1),
+ ('gosto imenso do cheiro das castanhas', '4/13/2020', 9, 2),
+ ('estou contente porque o Porto ganhou', '6/28/2022', 7, 2),
+ ('bom dia estou a ter um problema com o meu sql', '1/15/2022', 4, 3),
+ ('gosto imenso do cheiro das castanhas', '4/13/2022', 7, 3),
+ ('hoje comi bolo de amendoa', '5/23/2022', 6, 4),
+ ('qual é o erro?', '7/5/2022', 7, 4),
+ ('qual é o erro?', '7/5/2022', 7, 2);
 
 -- Insert que falha separado para nao eliminar os outros
 -- insert into msg (id, msg, sent_date, id_users, id_post) values (10, 'esta mensagem não pode entrar!', '8/5/2022', 11, 2);
 
-insert into ROLE (id, name, id_project) values (1, 'Manager', 1),
- (2, 'Admninistrator', 1),
- (3, 'Developer', 2),
- (4, 'Inviter', 2),
- (5, 'Assigner', 2);
+insert into ROLE (name, id_project) values ('Manager', 1),
+ ('Admninistrator', 1),
+ ('Developer', 2),
+ ('Inviter', 2),
+ ('Assigner', 2);
 
-insert into permission (id, name) values (1, 'Invite collaborator'),
- (2, 'Remove collaborator'),
- (3, 'Assign to task'),
- (4, 'Create task'),
- (5, 'Delete task'),
- (6, 'Edit task'),
- (7, 'Create board'),
- (8, 'Delete board'),
- (9, 'Create column'),
- (10, 'Delete Column');
+insert into permission (name) values ('Invite collaborator'),
+ ('Remove collaborator'),
+ ('Assign to task'),
+ ('Create task'),
+ ('Delete task'),
+ ('Edit task'),
+ ('Create board'),
+ ('Delete board'),
+ ('Create column'),
+ ( 'Delete Column');
 
-insert into administrator (id, id_users) values (1, 9),
- (2, 3),
- (3, 1),
- (4, 10),
- (5, 7);
+insert into administrator (id_users) values (9),
+ (3),
+ (1),
+ (10),
+ (7);
 
-insert into ban (id, start_date, end_date, reason, id_administrator, id_users) values (1, '3/27/2022', '7/23/2024', 'não gostei', 5, 8),
- (2, '12/9/2021', '12/21/2023', 'infringiu a regra 70', 2, 6),
- (3, '5/27/2022', '11/4/2023', 'bad vibes', 4, 4),
- (4, '3/17/2022', '11/29/2023', 'bad vibes', 1, 8),
- (5, '10/25/2021', '8/27/2023', 'infringiu a regra 70', 4, 7),
- (6, '2/18/2022', '4/12/2022', 'não gostei', 2, 6);
+insert into ban (start_date, end_date, reason, id_administrator, id_users) values ('3/27/2022', '7/23/2024', 'não gostei', 5, 8),
+ ('12/9/2021', '12/21/2023', 'infringiu a regra 70', 2, 6),
+ ('5/27/2022', '11/4/2023', 'bad vibes', 4, 4),
+ ('3/17/2022', '11/29/2023', 'bad vibes', 1, 8),
+ ('10/25/2021', '8/27/2023', 'infringiu a regra 70', 4, 7),
+ ('2/18/2022', '4/12/2022', 'não gostei', 2, 6);
 
-insert into faq (id, question, answer) values (1, 'What is Tu-Do?', 'Tu-Do is is a tool designed to  be an interactive and easy way of managing projects.'),
- (2, 'Who can use Tu-Do?', 'Tu-Do can be used to manage any kind of project no matter the size.'),
- (3, 'Why should I user Tu-Do?', 'so it can be used by everyone from individuals making their grocery list to huge companies managing dozens of projects.');
+insert into faq (question, answer) values ('What is Tu-Do?', 'Tu-Do is is a tool designed to  be an interactive and easy way of managing projects.'),
+ ('Who can use Tu-Do?', 'Tu-Do can be used to manage any kind of project no matter the size.'),
+ ('Why should I user Tu-Do?', 'so it can be used by everyone from individuals making their grocery list to huge companies managing dozens of projects.');
 
 
 insert into assignmnt (id_users, id_task, assign_date) values (8, 9, '11/20/2021'),
@@ -140,16 +140,16 @@ insert into assignmnt (id_users, id_task, assign_date) values (8, 9, '11/20/2021
  (4, 3, '10/17/2022');
 
 
-insert into comment (id, msg, sent_date, id_task, id_users) values (1, 'os projetos estão todos a arder', '5/14/2022', 5, 7),
- (2, 'os projetos estão todos a arder', '7/13/2022', 3, 4),
- (3, 'os projetos estão todos a arder', '12/1/2021', 7, 9),
- (4, 'os projetos estão todos a arder', '6/22/2022', 8, 1),
- (5, 'que medo de apagar tudo', '7/10/2022', 2, 6),
- (6, 'calma malta nós conseguimos', '5/2/2022', 1, 5),
- (7, 'os projetos estão todos a arder', '2/26/2022', 4, 9),
- (8, 'os projetos estão todos a arder', '11/15/2021', 8, 3),
- (9, 'os projetos estão todos a arder', '5/7/2022', 6, 5),
- (10, 'os projetos estão todos a arder', '6/20/2022', 3, 10);
+insert into comment (msg, sent_date, id_task, id_users) values ('os projetos estão todos a arder', '5/14/2022', 5, 7),
+ ('os projetos estão todos a arder', '7/13/2022', 3, 4),
+ ('os projetos estão todos a arder', '12/1/2021', 7, 9),
+ ('os projetos estão todos a arder', '6/22/2022', 8, 1),
+ ('que medo de apagar tudo', '7/10/2022', 2, 6),
+ ('calma malta nós conseguimos', '5/2/2022', 1, 5),
+ ('os projetos estão todos a arder', '2/26/2022', 4, 9),
+ ('os projetos estão todos a arder', '11/15/2021', 8, 3),
+ ('os projetos estão todos a arder', '5/7/2022', 6, 5),
+ ( 'os projetos estão todos a arder', '6/20/2022', 3, 10);
 
 
 insert into users_role (id_users, id_role) values (4, 1),
@@ -203,52 +203,52 @@ insert into users (username, password, name, birth, email, phone_number) values
 ('Emanuel_Gestosa', 'lbaw', 'Emanuel', '10/02/2002', 'emanuel@lbaw.com', '934567890'),
 ('Mariana_Rocha', 'lbaw', 'Mariana', '12/02/2002', 'mariana@lbaw.com', '945678901');
 
-insert into project (id, title, description, is_archived, id_coordinator) values
-(3, 'Tu-do', 'Um website para gestao de projetos', false, 1);
+insert into project (title, description, is_archived, id_coordinator) values
+('Tu-do', 'Um website para gestao de projetos', false, 1);
 
 insert into collaborator (id_users, id_project) values (12, 3),
 (13, 3),
 (14, 3),
 (15, 3);
 
-insert into board (id, name, id_project) values 
-(5, 'EBD', 3),
-(6, 'EAP', 3);
+insert into board (name, id_project) values 
+('EBD', 3),
+('EAP', 3);
 
-insert into vertical (id, name, id_board) values 
- (10, 'A4', 5),
- (11, 'A7', 6),
- (12, 'A8', 6),
- (13, 'A5', 5),
- (14, 'A6', 5);
+insert into vertical (name, id_board) values 
+ ('A4', 5),
+ ('A7', 6),
+ ('A8', 6),
+ ('A5', 5),
+ ('A6', 5);
 
-insert into label (id, name,colour) values 
- (11, 'Aborrecida',x'FF00FF'::int),
- (12, 'Facil',x'FF00FF'::int),
- (13, 'Facilima',x'FF00FF'::int),
- (14, 'Super Difícil',x'FF00FF'::int);
+insert into label (name,colour) values 
+ ('Aborrecida',x'0000FF'::int),
+ ('Facil',x'0000FF'::int),
+ ('Facilima',x'0F00FF'::int),
+ ('Super Difícil',x'F000FF'::int);
 
-insert into label_class (id, name) values 
-(4, 'Dificuldade'),
-(5, 'Adjetivo');
+insert into label_class (name) values 
+('Dificuldade'),
+('Adjetivo');
 
 insert into forum (id_project) values (3);
 
-insert into task (id, name, description,due_date, id_vertical) values 
- (10, 'Add more tables to UML', 'The teacher wants more classes', '12/30/2022', 10),
- (11, 'Correct bug on sql', 'I need help','12/30/2022', 13),
- (12, 'Code more triggersssss', 'We need more triggers', '12/30/2022', 14),
- (13, 'Ask the teacher for more time', 'We are super late', '12/30/2022', 12);
+insert into task (name, description,due_date, id_vertical) values 
+ ('Add more tables to UML', 'The teacher wants more classes', '12/30/2022', 10),
+ ('Correct bug on sql', 'I need help','12/30/2022', 13),
+ ('Code more triggersssss', 'We need more triggers', '12/30/2022', 14),
+ ('Ask the teacher for more time', 'We are super late', '12/30/2022', 12);
 
-insert into post (id, title, description, id_forum,id_users) values 
-(5, 'Post geral do Projeto LBAW', 'Onde nos falamos IMENSO (tipo o discord)',  3,14),
-(6, 'Em que Cripto Moeda Devo Investir', 'Cripto Space in LBAW ', 3,12);
+insert into post (title, description, id_forum,id_users) values 
+('Post geral do Projeto LBAW', 'Onde nos falamos IMENSO (tipo o discord)',  3,14),
+('Em que Cripto Moeda Devo Investir', 'Cripto Space in LBAW ', 3,12);
 
-insert into msg (id, msg, id_users, id_post) values 
- (12, 'hoje foi um dia feliz', 13, 5),
- (13, 'qual é o erro?', 13, 5),
- (14, 'gosto imenso do cheiro das castanhas', 15, 5),
-(15,'Vamos investir todos em doge coin',12,6);
+insert into msg (msg, id_users, id_post) values 
+ ('hoje foi um dia feliz', 13, 5),
+ ('qual é o erro?', 13, 5),
+ ('gosto imenso do cheiro das castanhas', 15, 5),
+ ('Vamos investir todos em doge coin',12,6);
 
 insert into assignmnt (id_users, id_task) values (12, 11),
  (13, 10),
@@ -256,10 +256,10 @@ insert into assignmnt (id_users, id_task) values (12, 11),
  (13, 13),
  (15, 13);
 
-insert into comment (id, msg, id_task, id_users) values 
-(11, 'Odeio esta task', 12, 14),
- (12, 'Que task fácil', 13, 15),
- (13, 'POR FAVOR alguem troque comigo', 11, 12);
+insert into comment (msg, id_task, id_users) values 
+ ('Odeio esta task', 12, 14),
+ ('Que task fácil', 13, 15),
+ ('POR FAVOR alguem troque comigo', 11, 12);
 
 insert into label_label_class (id_label, id_label_class) values (11, 5),
  (12, 4),
