@@ -15,7 +15,6 @@
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProjectController;
-use App\Models\Board;
 
 Route::get('/', 'HomeController@show');
 Route::get('/faq', 'FaqController@show');
