@@ -1,0 +1,47 @@
+:root {
+    --lilac:#4E41E7;
+    --blilac: #897FFF;
+    --white: #ffffff;
+  }
+#about_proj{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    margin: 0 3% 0 3%;
+}
+#proj_desc{
+    grid-column: 1;
+    grid-row: 1;
+}
+#project_boards{
+    grid-column: 1/3;
+    grid-row: 2;
+    display: inline-block;
+}
+#project_collaborators{
+    grid-column: 2/3;
+    grid-row: 1;
+
+}
+.board-name{
+    max-width: fit-content;
+    display: flex;
+    padding: 7px;
+    border-style: solid;
+    border-width: auto;
+    border-radius: 10px;
+    background-color: var(--blilac);
+}
+.board-card{
+    max-width: fit-content;
+    margin-right: 10px;
+}
+.subtitle{
+    font-size: 27px;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+.boardboard{
+    display: inline-flex;
+}

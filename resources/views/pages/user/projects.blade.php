@@ -5,7 +5,7 @@
 
 @section('content')
 
-  <h1>My Projects</h1>
+  <h1 class="page_name">My Projects</h1>
   <nav class="items">
     @foreach($projects as $project)
       <a href="{{ url('/project/' . $project->id) }}">{{ $project->title }}</a>

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link href="{{ asset('/css/common.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/project.css') }}" rel="stylesheet">
 
 @yield('content')
 
@@ -8,24 +9,29 @@
 
 <article class="project" id="project_content">
 
-    <h1> {{ $project->title }} </h1>
+    <h1 class="page_name"> {{ $project->title }} </h1>
+    <div id="about_proj">
+        <div id="proj_desc">
+            <h2 class="subtitle"> <i class="fa-solid fa-file"></i> Project Description</h2>
+            <p> {{$project->description}} </p>
+        </div>
 
-    <h2> Project Description</h2>
-    <p> {{$project->description}} </p>
+        <section id="project_boards">
+            <h2 class="subtitle"> <i class="fa-solid fa-briefcase"></i> Boards </h2>
+            <div class="boardboard" >
+            @foreach ($project->boards()->get() as $board)
+            @include('partials.board.card',['board',$board])
+            @endforeach
+            </div>
+        </section>
 
-    <section id="project_boards">
-        <h3> Boards </h3>
-        @foreach ($project->boards()->get() as $board)
-        @include('partials.board.card',['board',$board])
-        @endforeach
-    </section>
-
-    <ul id="project_collaborators">
-        <h3> Collaborators </h3>
-        @foreach ($project->collaborators()->get() as $collaborator)
-        <a href="{{ url('/user/' . $collaborator->id) }}"> {{$collaborator->name}} </p>
-        @endforeach
-    </ul>
+        <ul id="project_collaborators">
+            <h2 class="subtitle"><i class="fa-solid fa-people-group"></i> Collaborators </h2>
+            @foreach ($project->collaborators()->get() as $collaborator)
+            <a href="{{ url('/user/' . $collaborator->id) }}"> {{$collaborator->name}} </a>
+            @endforeach
+        </ul>
+    </div>
 
 </article>
 
