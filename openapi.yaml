@@ -2252,176 +2252,176 @@ paths:
                     username: dizzy
                     profilePicture: #??
                     name: Daniel Ferreira
-    /api/search/projects/:
-      parameters:
-        - in: query
-          name: query
-          schema:
-              type: string
-          required: true
-        - in: query
-          name: maxItems
-          schema:
-              type: integer
-          required: false
-      get:
-        operationId: #dunno
-        summary: 'Search for projects'
-        description: 'Search for projects based on their title/description'
-        tags:
-          - 'M04: Content Searching, Filtering and Presentation'
-      responses:
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      title:
-                        type: string
-                      description:
-                        type: string
-                      participants:
-                        schema:
-                          type: array
-                          items:
-                            type: object
-                          properties:
-                            id:
-                              type: string
-                            username:
-                              type: string
-                            profilePicture:
-                              type: string
-                            name:
-                              type: string
-                  example:
-                    - id: 1
-                      title: Home
-                      description: Chores of the House
-                      participants:
-                        - id: 1
-                          username: spukunu
-                          profilePicture: #??
-                          name: Lara Daniela
-                        - id: 2
-                          username: laurasia
-                          profilePicture: #??
-                          name: Laura Eugénia
-    /api/search/tasks/:
-      parameters:
-        - in: query
-          name: query
-          schema:
-              type: string
-          required: true
-        - in: query
-          name: maxItems
-          schema:
-              type: integer
-          required: false
-      get:
-        operationId: #dunno
-        summary: 'Search for tasks'
-        description: 'Search for tasks based on their title/description'
-        tags:
-          - 'M04: Content Searching, Filtering and Presentation'
-      responses:
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      title:
-                        type: string
-                      description:
-                        type: string
-                      participants:
-                        schema:
-                          type: array
-                          items:
-                            type: object
-                          properties:
-                            id:
-                              type: string
-                            username:
-                              type: string
-                            profilePicture:
-                              type: string
-                            name:
-                              type: string
-                  example:
-                    - id: 1
-                      title: Dishes
-                      description: Doing the dishes this week
-                      participants:
-                        - id: 1
-                          username: spukunu
-                          profilePicture: #??
-                          name: Lara Daniela
-                        - id: 2
-                          username: laurasia
-                          profilePicture: #??
-                          name: Laura Eugénia
-                    - id: 2
-                      title: Laundry
-                      description: This week laundry
-                      participants:
-                        - id: 1
-                          username: spukunu
-                          profilePicture: #??
-                          name: Lara Daniela
-                        - id: 2
-                          username: laurasia
-                          profilePicture: #??
-                          name: Laura Eugénia
-    /api/search/labels/:
-      parameters:
-        - in: query
-          name: query
-          schema:
-              type: string
-          required: true
-        - in: query
-          name: maxItems
-          schema:
-              type: integer
-          required: false
-      get:
-        operationId: #dunno
-        summary: 'Search for labels'
-        description: 'Search for labels based on their name'
-        tags:
-          - 'M04: Content Searching, Filtering and Presentation'
-      responses:
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      name:
-                        type: string
-                  example:
-                    - id: 2
-                      name: 'Doing'
-                    - id: 3
-                      name: 'Done'
+  /api/search/projects/:
+    parameters:
+      - in: query
+        name: query
+        schema:
+            type: string
+        required: true
+      - in: query
+        name: maxItems
+        schema:
+            type: integer
+        required: false
+    get:
+      operationId: #dunno
+      summary: 'Search for projects'
+      description: 'Search for projects based on their title/description'
+      tags:
+        - 'M04: Content Searching, Filtering and Presentation'
+    responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    participants:
+                      schema:
+                        type: array
+                        items:
+                          type: object
+                        properties:
+                          id:
+                            type: string
+                          username:
+                            type: string
+                          profilePicture:
+                            type: string
+                          name:
+                            type: string
+                example:
+                  - id: 1
+                    title: Home
+                    description: Chores of the House
+                    participants:
+                      - id: 1
+                        username: spukunu
+                        profilePicture: #??
+                        name: Lara Daniela
+                      - id: 2
+                        username: laurasia
+                        profilePicture: #??
+                        name: Laura Eugénia
+  /api/search/tasks/:
+    parameters:
+      - in: query
+        name: query
+        schema:
+            type: string
+        required: true
+      - in: query
+        name: maxItems
+        schema:
+            type: integer
+        required: false
+    get:
+      operationId: #dunno
+      summary: 'Search for tasks'
+      description: 'Search for tasks based on their title/description'
+      tags:
+        - 'M04: Content Searching, Filtering and Presentation'
+    responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    participants:
+                      schema:
+                        type: array
+                        items:
+                          type: object
+                        properties:
+                          id:
+                            type: string
+                          username:
+                            type: string
+                          profilePicture:
+                            type: string
+                          name:
+                            type: string
+                example:
+                  - id: 1
+                    title: Dishes
+                    description: Doing the dishes this week
+                    participants:
+                      - id: 1
+                        username: spukunu
+                        profilePicture: #??
+                        name: Lara Daniela
+                      - id: 2
+                        username: laurasia
+                        profilePicture: #??
+                        name: Laura Eugénia
+                  - id: 2
+                    title: Laundry
+                    description: This week laundry
+                    participants:
+                      - id: 1
+                        username: spukunu
+                        profilePicture: #??
+                        name: Lara Daniela
+                      - id: 2
+                        username: laurasia
+                        profilePicture: #??
+                        name: Laura Eugénia
+  /api/search/labels/:
+    parameters:
+      - in: query
+        name: query
+        schema:
+            type: string
+        required: true
+      - in: query
+        name: maxItems
+        schema:
+            type: integer
+        required: false
+    get:
+      operationId: #dunno
+      summary: 'Search for labels'
+      description: 'Search for labels based on their name'
+      tags:
+        - 'M04: Content Searching, Filtering and Presentation'
+    responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                example:
+                  - id: 2
+                    name: 'Doing'
+                  - id: 3
+                    name: 'Done'
 
 
