@@ -270,3 +270,8 @@ insert into label_task (id_label, id_task) values (11, 10),
  (13, 13),
  (14, 12),
  (12, 11);
+
+insert into invite(id_invitee,id_inviter,id_project) values
+    (13,12,3),
+    (14,12,3),
+    (15,12,3);

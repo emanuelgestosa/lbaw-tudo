@@ -2,6 +2,8 @@ DROP TYPE IF EXISTS TODAY;
 
 CREATE DOMAIN TODAY AS TIMESTAMP DEFAULT CURRENT_TIMESTAMP CHECK (VALUE <= CURRENT_TIMESTAMP);
 
+DROP TABLE IF EXISTS invite;
+
 DROP TABLE IF EXISTS role_permission;
 
 DROP TABLE IF EXISTS label_task;
@@ -58,7 +60,6 @@ DROP TABLE IF EXISTS project;
 
 DROP TABLE IF EXISTS users;
 
-DROP TABLE IF EXISTS invite;
 
 
 CREATE TABLE users (
@@ -246,11 +247,12 @@ CREATE TABLE role_permission (
 );
 
 CREATE TABLE invite(
-    id_invitee integer not null references users (id) on update cascade,
-    id_inviter integer not null references users (id) on update cascade,
-    id_project integer not null references project (id) on update cascade,
-    accepted boolean default False,
-    PRIMARY KEY (id_invitee,id_inviter,id_project)
+    id serial PRIMARY KEY,
+    id_invitee integer not null references users (id) on update cascade on delete cascade,
+    id_inviter integer not null references users (id) on update cascade on delete cascade,
+    id_project integer not null references project (id) on update cascade on delete cascade,
+    accepted boolean default False
+    --  unique CONSTRAINT 
 );
 
 CREATE INDEX user_projects_index ON collaborator USING HASH (id_users);
