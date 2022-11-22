@@ -47,6 +47,7 @@ Route::post('/verticals/{vertical_id}/add_task', 'TaskController@add_task')->nam
 // Project
 Route::get('/project/{id}', [ProjectController::class,'show']);
 Route::get('/board/{id}', [BoardController::class,'show'])->name('board');
+Route::get('/project/{id}/invites',[ProjectController::class,'invites']);
 Route::get('/user/{user_id}/add_project', 'ProjectController@showCreate');
 Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('add_project');
 

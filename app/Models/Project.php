@@ -29,6 +29,10 @@ class Project extends Model
         return $this->hasMany(Role::class,"id_project");
     }
 
+    public function invites(){
+        return $this->hasMany(Invite::class,"id_project");
+    }
+
     public function scopeSearch($query,$search)
     {  
         if (!$search) {

@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Invite;
 use App\Models\Label;
 use App\Models\User;
 use App\Models\Project;
@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 |
 */
 
+// All API need to bee checked 
 Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 
 Route::get('/search/users',function (Request $r){
@@ -29,6 +30,50 @@ Route::get('/search/users',function (Request $r){
 
 });
 
+Route::get('/user/{id}/invites/received',function ($id){
+    $result = User::find($id)->invitesReceived()->get();
+    return response()->json($result);
+});
+
+Route::get('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
+    // Needs checkign 
+    $invite = Invite::find($inviteId);
+    echo $invite;
+    $invite->project()->first()->collaborators()->save(User::find($userId));
+    $invite->delete();
+    return response()->json();
+    
+});
+
+
+Route::delete('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
+    $invite = Invite::find($inviteId);
+    $invite->delete();
+    return response()->json();
+
+});
+
+Route::get('/user/{id}/invites/sent',function ($id){
+    $result = User::find($id)->invitesSent()->get();
+    return response()->json($result);
+});
+
+Route::get('project/{id}/invites',function ($id){
+    $result = Project::find($id)->invites()->get();
+    return response()->json($result);
+
+});
+
+Route::post('project/{id}/invites',function (Request $r,$id){
+    $invitee = $r->input('id_invitee');
+    $inviter = $r->input('id_inviter');
+    $invite = Invite::create(
+            ['id_invitee' => $invitee,
+             'id_inviter' => $inviter,
+             'id_project' => $id]);
+    return response()->json(["success"=>true]);
+});
+
 Route::get('/search/projects',function (Request $r){
     $search=  $r->get('query');
     $maxItems=$r->get('maxItems',0);
@@ -37,7 +82,6 @@ Route::get('/search/projects',function (Request $r){
          ->json($result);
 
 });
-
 
 Route::get('/search/tasks',function (Request $r){
     $search=  $r->get('query');

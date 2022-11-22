@@ -12,6 +12,11 @@ class ProjectController extends Controller
       $project = Project::find($id);
       return view('partials.project.component', ['project'=>$project]);
     }
+
+    public function invites($id){
+      $project = Project::find($id);
+      return view('partials.project.component', ['project'=>$project]);
+    }
     
     public function showCreate($user_id)
     {

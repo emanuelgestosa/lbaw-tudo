@@ -49,6 +49,13 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany(Role::class,"users_role","id_user","id_role");
     }
+
+    public function invitesReceived(){
+        return $this->hasMany(Invite::class,"id_invitee");
+    }
+    public function invitesSent(){
+        return $this->hasMany(Invite::class,"id_inviter");
+    }
     public function scopesearch($query,$search)
     {  
         if (!$search) {
