@@ -55,10 +55,12 @@ const searchButton = document.querySelector("forum.search_bar>i")
 
 queryInput.addEventListener('input',async () =>{
     const maxItems = 10
-    const result = await searchUser(queryInput.value,maxItems)
-    console.log(result)
     apagarLista()
+    if (queryInput.value != "") {
+    const result = await searchUser(queryInput.value,maxItems)
     preencherLista(result)
+    
+    }
 })
 </script>
 @endsection
