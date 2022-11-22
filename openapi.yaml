@@ -239,30 +239,30 @@ paths:
           description: 'User not found'
 
 
-/users/{id}/projects:
-
-  parameters:
-     - in: path
-       name: id
-       schema:
-         type: integer
-       required: true
-
-  get:
-    operationId: R203
-    summary: 'R203: View user projects page'
-    description: 'Show the individual user project page. Access: OWN, ADM'
-    tags:
-      - 'M02: Individual Profile and User Information'
-    responses:
-      '200':
-        description: 'Ok. Show User Projects UI'
-      '401':
-        description: 'Not logged-in.'
-      '403':
-        description: 'Tried to access the profile page of another user.'
-      '404':
-        description: 'User not found'
+  /users/{id}/projects:
+  
+    parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+  
+    get:
+      operationId: R203
+      summary: 'R203: View user projects page'
+      description: 'Show the individual user project page. Access: OWN, ADM'
+      tags:
+        - 'M02: Individual Profile and User Information'
+      responses:
+        '200':
+          description: 'Ok. Show User Projects UI'
+        '401':
+          description: 'Not logged-in.'
+        '403':
+          description: 'Tried to access the profile page of another user.'
+        '404':
+          description: 'User not found'
 
   /users/{id}/favorites:
 
