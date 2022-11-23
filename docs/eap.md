@@ -1808,8 +1808,6 @@ The web resources that were implemented in the prototype are described in the ne
 | R507: Adds a project board to a project Action | POST /project/{project\_id}/add\_board       |
 | R508: Fetch add\_vertical page                 | GET /boards/{board\_id}/add\_vertical        |
 | R509: Adds a board vertical to a board Action  | POST /boards/{board\_id}/add\_vertical
-
-<br> |
 | R510: Fetch add\_task page                     | GET /verticals/{vertical\_id}/add\_task      |
 | R511: Adds a column task to a column Action    | POST /verticals/{vertical\_id}/add\_task     |
 
