@@ -1,8 +1,9 @@
 # EAP: Architecture Specification and Prototype
 ## A7: Web Resources Specification
 
-This artifact documents the  architecture of the web application to be developed, indicating the catalog of resources, the properties of each resource, and the format of JSON responses. This specification adheres to the OpenAPI standard using YAML.
-This artifact presents the documentation for Tu-Do, including the CRUD (create, read, update, delete) operations for each resource.
+
+The main goal of this artifact is to shape the architecture of the Tu-do's web application. It's organized into modules and indicates resources used, the properties of each resource and the format of the JSON responses. This specification adheres to the OpenAPI standard using YAML.
+This artifact presents the documentation for Tu-Do, including the CRUD operations for each resource.
 
 ### Overview
 
@@ -2463,8 +2464,11 @@ paths:
 
 ## A8 - Vertical Prototype
 
-The Vertical Prototype includes the implementation of the features marked as necessary (with an asterisk) in the common and theme requirements documents. This artifact aims to validate the architecture presented, also serving to gain familiarity with the technologies used in the project.
-The implementation is based on the <a href="https://git.fe.up.pt/lbaw/template-laravel">LBAW Framework</a> and includes work on all layers of the architecture of the solution to implement: user interface, business logic and data access. The prototype includes the implementation of pages of visualization, insertion, edition and removal of information, the control of permissions in the access to the implemented pages, and the presentation of error and success messages.
+This artifact contains the implementation of the features marked as high priority (with an asterisk) in the common and theme requirements documents. It's essential to both validate the architecture presented and to get used with the technologies used to develop Tu-do's project.
+
+For it's implementation the <a href="https://git.fe.up.pt/lbaw/template-laravel">LBAW Framework</a> was used. 
+It contains work on all layers of the architecture of the solution to implement: user interface, business logic and data access.
+The prototype includes the implementation of pages of visualization, insertion, edition and removal of information.
 
 ### Implemented Features
 #### Implemented User Stories
@@ -2510,7 +2514,7 @@ The web resources that were implemented in the prototype are described in the ne
 | R104: Register Form    | GET [/register](http://medialibrary.lbaw.fe.up.pt/register) |
 | R105: Register Action  | POST /register                                              |
 
-#### M02: Individual Profile and User Information
+#### Module M02: Individual Profile and User Information
 
 | Web Resource Reference               | URL                      |
 | ------------------------------------ | ------------------------ |
@@ -2520,7 +2524,7 @@ The web resources that were implemented in the prototype are described in the ne
 | R206: Edit user profile              | PATCH /api/users/{id}    |
 | R207: Delete user profile            | DELETE /api/users/{id}   |
 
-#### M03: User Administration and static pages
+#### Module M03: User Administration and static pages
 
 | Web Resource Reference          | URL           |
 | ------------------------------- | ------------- |
@@ -2530,7 +2534,7 @@ The web resources that were implemented in the prototype are described in the ne
 | R304: View Main Features page.  | GET /features |
 | R309: View Administration page. | GET /admins   |
 
-#### M04: Content Searching, Filtering and Presentation
+#### Module M04: Content Searching, Filtering and Presentation
 
 | Web Resource Reference | URL                    |
 | ---------------------- | ---------------------- |
@@ -2554,7 +2558,15 @@ The web resources that were implemented in the prototype are described in the ne
 
 ### Prototype
 
-TBD
+Prototype available at: //inserir site
+
+#### Credentials
+##### Admin
+- Name:
+- Password:
+##### Regular User
+- Name:
+- Password:
 
 ## Revision History
 GROUP2215, 23/11/2022
