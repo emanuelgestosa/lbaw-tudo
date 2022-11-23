@@ -25,6 +25,7 @@
       <a class="button" href="{{ url('user/' . $id . '/favorites') }}"><i class="fa-solid fa-star"></i> My Favorites</a>
       <a class="button" href="{{ url('user/' . $id . '/calendar') }}"><i class="fa-solid fa-calendar"></i> My Calendar</a>
       <a class="button" href="{{ url('user/' . $id . '/projects') }}"><i class="fa-solid fa-diagram-project"></i> My Projects</a>
+      <a class="button" href="{{ url('user/' . $id . '/invites') }}"><i class="fa-solid fa-envelope"></i> My Invites</a>
     </nav>
   @endif
 

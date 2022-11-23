@@ -7,12 +7,11 @@
     <section class="invite-content" project-id="{{$project->id}}" user-id="{{Auth::user()->id}}"
         style="display:flex;gap:5em;margin:auto;">
     <section class="invite-list">
+    @foreach ($project->invites()->get() as $invite) 
         <article class="project-invite-card">
-            <p>Mariana enviou convite para Emanuel</p>
+            <p>{{$invite->inviter->name}} enviou convite para {{$invite->invited->name}}</p>
         </article>
-        <article class="project-invite-card">
-            <p>Leandro enviou convite para Martim</p>
-        </article>
+    @endforeach
     </section>
     <section class="search-collaborator">
     <div class="search_bar">
@@ -68,6 +67,7 @@ const preencherLista = (users) => {
             const idInvitee = cardUserId
             const url = `${SERVER}/api/project/${projectId}/invites`
             const data = {id_invitee:idInvitee,id_inviter:idInviter}
+            card.style.display="none"
             const response = await fetch(url,
                 {
                      method:"POST",
@@ -76,7 +76,9 @@ const preencherLista = (users) => {
                      },
                     body:JSON.stringify(data)
                 })
+            document.location.reload()
             })
+            
         }
     lista.style.display= "block"
 }
