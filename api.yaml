@@ -1384,6 +1384,84 @@ paths:
          '401':
             description: 'Cannot access this page.'
 
+  /assign_user_to_task/{user_id}/{task_id}:
+    post:
+      operationId: R539
+      summary: 'R539: Assigns a user (collaborator) to a task'
+      description: 'Creates a new assignment instance with the user_id and task_id. Access: COO'
+      tags:
+        - 'M05: Projects'
+
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+           type: integer
+          required: true
+        - in: path
+          name: task_id
+          schema:
+           type: integer
+          required: true
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                task_id:
+                  type: integer
+                assign_date:
+                  type: string
+              required:
+                - object
+
+      responses:
+        '200':
+          description: 'Ok. Show task page'
+        '401':
+          description: 'Cannot do this action.'
+
+  /favorite:
+    put:
+      operationId: R540
+      summary: 'R540: Adds a project to the favorites of a user'
+      description: 'Changes/edits the atribute favorite of the collaborator instance with the same user_id, so a user can add the project to their favorites page. Access: USR'
+      tags:
+        - 'M05: Projects'
+
+      parameters:
+        - in: query
+          name: user_id
+          description: User id of the user to add a new favorite project 
+          schema:
+           type: integer
+          required: true
+        - in: query
+          name: project_id
+          description: Project_id of the project to be favorited by a user
+          schema:
+           type: integer
+          required: true
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                favorite:
+                  type: boolean
+
+      responses:
+        '200':
+          description: 'Ok. Show projects page'
+
 
   /api/search/users/:
     parameters:
