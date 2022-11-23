@@ -34,20 +34,765 @@ There's also a link to the OpenAPI YAML file in the group's repository that can 
 
 ```
 openapi: 3.0.0
+
 info:
- version: '1.0'
- title: 'LBAW Tu-Do Web API'
- description: 'Web Resources Specification (A7) for Tu-Do' 
+  version: '1.0'
+  title: 'LBAW Tu-do Web API'
+  description: 'Web Resources Specification (A7) for Tu-do'
+
+servers:
+  - url: http://lbaw2215.lbaw.fe.up.pt
+    description: 'Production server'
+
+
 externalDocs:
- description: Find more info here.
- url: https://web.fe.up.pt/~ssn/wiki/teach/lbaw/medialib/a07
+  description: Find more info here.
+  url: https://this-file-bla-bla-bla
+
+
 tags:
- - name: 'M01: Authentication and Individual Profile'
- - name: 'M02: Works'
- - name: 'M03: Reviews and Wish list'
- - name: 'M04: Loans'
- - name: 'M05: Projects'
+  - name: 'M01: Sign up, Sign in and external APIs'
+  - name: 'M02: Individual Profile and User Information'
+  - name: 'M03: User Administration and static pages'
+  - name: 'M04: Content Searching, Filtering and Presentation'
+  - name: 'M05: Projects'
+  - name: 'M06: Forums'
+
+
 paths:
+  /login:
+    get:
+      operationId: R101
+      summary: 'R101: Login Form'
+      description: 'Provide login form. Access: PUB'
+      tags:
+        - 'M01: Sign up, Sign in and external APIs'
+      responses:
+          '200':
+            description: 'Ok. Show Log-in Form UI'
+
+
+    post:
+      operationId: R102
+      summary: 'R102: Login Action'
+      description: 'Processes the login form submission. Access: PUB'
+      tags:
+        - 'M01: Sign up, Sign in and external APIs'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+              required:
+                  - email
+                  - password
+
+      responses:
+        '302':
+          description: 'Redirect after processing the login credentials.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to user profile.'
+                  value: '/users/{id}'
+                302Error:
+                  description: 'Failed authentication. Redirect to login form.'
+                  value: '/login'
+        '400':
+          description: 'Bad Request. Back to Log-In Form.'
+
+  /logout:
+    post:
+      operationId: R103
+      summary: 'R103: Logout Action'
+      description: 'Logout the current authenticated user. Access: USR, ADM'
+      tags:
+        - 'M01: Sign up, Sign in and external APIs'
+      responses:
+        '302':
+          description: 'Redirect after processing logout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful logout. Redirect to login form.'
+                  value: '/login'
+
+
+  /register:
+    get:
+      operationId: R104
+      summary: 'R104: Register Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Sign up, Sign in and external APIs'
+      responses:
+        '200':
+          description: 'Ok. Show Sign-Up UI'
+
+    post:
+      operationId: R105
+      summary: 'R105: Register Action'
+      description: 'Processes the new user registration form submission. Access: PUB'
+      tags:
+        - 'M01: Sign up, Sign in and external APIs'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                passwordConfirmation:
+                  type: string
+                  format: password
+                name:
+                  type: string
+                birth:
+                  type: string
+                  format: date
+                phoneNumber:
+                  type: string
+              required:
+                  - email
+                  - password
+                  - passwordConfirmation
+                  - username
+                  - name
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to user profile.'
+                  value: '/users/{id}'
+                302Failure:
+                  description: 'Failed authentication. Redirect to login form.'
+                  value: '/login'
+        '400':
+          description: 'Bad Request. Back to Register Form.'
+
+  /login/google:
+    post:
+      operationId: R106
+      summary: 'R106: Login with Google'
+      description: 'Processes the login form submission. Access: PUB'
+      tags:
+        - 'M01: Sign up, Sign in and external APIs'
+      responses:
+        '302':
+          description: 'Redirect after processing the login credentials.'
+          headers:
+             Location:
+               schema:
+                 type: string
+               examples:
+                 302Success:
+                   description: 'Successful authentication. Redirect to user profile.'
+                   value: '/users/{id}'
+                 302Error:
+                   description: 'Failed authentication. Redirect to login form.'
+                   value: '/login'
+        '400':
+          description: 'Bad Request. Back to Log-In Form.'
+
+
+  /users/{id}:
+
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    get:
+      operationId: R201
+      summary: 'R201: View user profile'
+      description: 'Show the individual user profile. Access: USR'
+      tags:
+        - 'M02: Individual Profile and User Information'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Profile UI'
+        '401':
+          description: 'Not logged-in.'
+        '404':
+          description: 'User not found'
+
+
+  /users/{id}/edit:
+
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    get:
+      operationId: R202
+      summary: 'R202: View user profile edition page'
+      description: 'Show the individual user profile edition page. Access: OWN, ADM'
+      tags:
+        - 'M02: Individual Profile and User Information'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Profile Edition UI'
+        '401':
+          description: 'Not logged-in.'
+        '403':
+          description: 'Tried to access the edit profile page of another user.'
+        '404':
+          description: 'User not found'
+
+
+  /users/{id}/projects:
+  
+    parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+  
+    get:
+      operationId: R203
+      summary: 'R203: View user projects page'
+      description: 'Show the individual user project page. Access: OWN, ADM'
+      tags:
+        - 'M02: Individual Profile and User Information'
+      responses:
+        '200':
+          description: 'Ok. Show User Projects UI'
+        '401':
+          description: 'Not logged-in.'
+        '403':
+          description: 'Tried to access the profile page of another user.'
+        '404':
+          description: 'User not found'
+
+  /users/{id}/favorites:
+
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    get:
+      operationId: R204
+      summary: 'R204: View user favorite projects page'
+      description: "Show the individual user's favorite projects page. Access: OWN, ADM"
+      tags:
+        - 'M02: Individual Profile and User Information'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Favorite Projects UI'
+        '401':
+          description: 'Not logged-in.'
+        '403':
+          description: 'Tried to access the profile page of another user.'
+        '404':
+          description: 'User not found'
+
+
+  /users/{id}/calendar:
+
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+    get:
+      operationId: R205
+      summary: 'R205: View user projects page'
+      description: 'Show the individual user calendar page. Access: OWN, ADM'
+      tags:
+        - 'M02: Individual Profile and User Information'
+
+
+      responses:
+        '200':
+          description: 'Ok. Show User Calendar UI'
+        '401':
+          description: 'Not logged-in.'
+        '403':
+          description: 'Tried to access the profile page of another user.'
+        '404':
+          description: 'User not found'
+
+
+  /api/users/{id}:
+
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    patch:
+      operationId: R206
+      summary: 'R206: Edit user profile'
+      description: 'Processes the request to edit the profile of an user. Access: OWN, ADM'
+      tags:
+         - 'M02: Individual Profile and User Information'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                username:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                name:
+                  type: string
+                birth:
+                  type: string
+                  format: date
+                phoneNumber:
+                  type: string
+
+
+          responses:
+            '200':
+              description: 'OK. Profile edited with success.'
+            '400':
+              description: 'Bad Request. Return to profile.'
+            '401':
+              description: 'Not logged-in.'
+            '403':
+              description: 'Tried to edit a profile not owned by the user.'
+            '404':
+              description: 'User not found.'
+
+    delete:
+      operationId: R207
+      summary: 'R207: Delete user profile'
+      description: 'Delete an user profile. Access: OWN, ADM'
+      tags:
+        - 'M02: Individual Profile and User Information'
+      responses:
+        '200':
+          description: 'Ok. Delete user profile.'
+        '401':
+          description: 'Not logged-in.'
+        '403':
+          description: 'Tried to delete a profile not owned by the user.'
+        '404':
+          description: 'User not found.'
+
+
+  /api/users/{id}/notifications:
+
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    get:
+      operationId: R208
+      summary: 'R208: Get user notifications'
+      description: 'Requests all notifications of an user. Access: OWN, ADM'
+      tags:
+          - 'M02: Individual Profile and User Information'
+      responses:
+        '200':
+          description: 'OK. Notifications successfully retrieved.'
+          content:
+            application/json:
+              schema:
+                type: array
+              items:
+                type: object
+              properties:
+                id:
+                    type: string
+                date:
+                    type: string
+                    format: date-time
+                message:
+                    type: string
+              example:
+                  - id: 1
+                    date: 08/11/2022
+                    message: You have been assigned a new task.
+                  - id: 2
+                    date: 09/11/2022
+                    message: One of your projects has a new coordinator.
+        '400':
+          description: 'Bad Request.'
+        '401':
+          description: 'Not logged-in.'
+        '403':
+          description: 'Tried to retrieve notifications of an user profile not owned by the user.'
+        '404':
+          description: 'User not found.'
+
+  /api/users/{id}/projects:
+
+
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+    get:
+        operationId: R209
+        summary: 'R209: Get user projects'
+        description: 'Requests all projects of an user. Access: OWN, ADM'
+        tags:
+           - 'M02: Individual Profile and User Information'
+        responses:
+            '200':
+              description: 'OK. Projects successfully retrieved.'
+              content:
+                application/json:
+                  schema:
+                    type: array
+                  items:
+                    type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    creation:
+                      type: string
+                      format: date-time
+                    isArchived:
+                        type: boolean
+                  example:
+                    - id: 1
+                      title: Sonsing
+                      description: Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.
+                      creation: 11/20/2021
+                      isArchived: false
+            '400':
+              description: 'Bad Request.'
+            '401':
+              description: 'Not logged-in.'
+            '403':
+              description: 'Tried to retrieve projects of an user profile not owned by the user.'
+            '404':
+              description: 'User not found.'
+
+
+  /api/users/{id}/favorites:
+
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+    get:
+        operationId: R210
+        summary: 'R210: Get user favorite projects'
+        description: 'Requests all favorite projects of an user. Access: OWN, ADM'
+        tags:
+           - 'M02: Individual Profile and User Information'
+
+        responses:
+            '200':
+              description: 'OK. Projects successfully retrieved.'
+              content:
+                application/json:
+                    schema:
+                        type: array
+                    items:
+                        type: object
+                    properties:
+                        id:
+                            type: string
+                        title:
+                            type: string
+                        description:
+                            type: string
+                        creation:
+                            type: string
+                            format: date-time
+                        isArchived:
+                            type: boolean
+                    example:
+                        - id: 1
+                          title: Sonsing
+                          description: Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.
+                          creation: 11/20/2021
+                          isArchived: false
+            '400':
+              description: 'Bad Request.'
+            '401':
+              description: 'Not logged-in.'
+            '403':
+              description: 'Tried to retrieve favorite projects of an user profile not owned by the user.'
+            '404':
+              description: 'User not found.'
+
+
+  /faq:
+     get:
+       operationId: R301
+       summary: 'R301: View FAQ page.'
+       description: 'Show the page containing the Frequently Asked Questions. Access: PUB'
+       tags:
+         - 'M03: User Administration and static pages'
+
+
+       responses:
+         '200':
+           description: 'Ok. Show FAQ Page.'
+  /about:
+     get:
+       operationId: R302
+       summary: 'R302: View About Us page.'
+       description: 'Show the page containing information about the platform and its developers. Access: PUB'
+       tags:
+         - 'M03: User Administration and static pages'
+
+
+       responses:
+         '200':
+           description: 'Ok. Show About Us Page.'
+  /contacts:
+     get:
+       operationId: R303
+       summary: 'R303: View Contacts page.'
+       description: 'Show the page containing contact information. Access: PUB'
+       tags:
+         - 'M03: User Administration and static pages'
+
+
+       responses:
+         '200':
+           description: 'Ok. Show Contacts Page.'
+  /features:
+     get:
+       operationId: R304
+       summary: 'R304: View Main Features page.'
+       description: 'Show the page containing information about the main features of the platform. Access: PUB'
+       tags:
+         - 'M03: User Administration and static pages'
+
+
+       responses:
+         '200':
+           description: 'Ok. Show Main Features Page.'
+  /:
+     get:
+       operationId: R305
+       summary: 'R305: View Homepage.'
+       description: 'Show the Homepage. Access: PUB'
+       tags:
+         - 'M03: User Administration and static pages'
+
+
+       responses:
+         '200':
+           description: 'Ok. Show Homepage.'
+  /api/faq:
+    get:
+      operationId: R306
+      summary: 'R306: Get FAQs.'
+      description: 'Retrieve information about Frequently Asked Questions. Access: PUB'
+      tags:
+        - 'M03: User Administration and static pages'
+
+
+      responses:
+        '200':
+           description: 'Ok. Successfully retrieved FAQs.'
+           content:
+             application/json:
+               schema:
+                 type: array
+               items:
+                 type: object
+               properties:
+                 question:
+                   type: string
+                 answer:
+                   type: string
+               example:
+                 - question: 'What is Tu-Do?'
+                   answer: 'Tu-Do is a tool designed to be an interactive and easy way of managing projects'
+    put:
+      operationId: R307
+      summary: 'R307: New FAQ Action'
+      description: 'Processes the new FAQ submission. Access: ADM'
+      tags:
+        - 'M03: User Administration and static pages'
+
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                answer:
+                  type: string
+                  format: password
+              required:
+                  - question
+                  - answer
+
+
+      responses:
+        '200':
+          description: 'OK. Successfully added a new FAQ'
+        '401':
+           description: 'Not logged-in.'
+        '403':
+           description: 'User is not an administrator.'
+        '409':
+           description: 'Question already exists.'
+
+
+    delete:
+      operationId: R308
+      summary: 'R308: Delete FAQ action'
+      description: 'Attempts to delete a FAQ. Access: ADM'
+
+
+      tags:
+        - 'M03: User Administration and static pages'
+
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+              required:
+                 - id
+
+
+      responses:
+        '200':
+          description: 'OK. Successfully removed FAQ'
+        '204':
+          description: 'FAQ does not exist.''
+        '400':
+           description: 'Bad Request.'
+        '401':
+           description: 'Not logged-in.'
+        '403':
+           description: 'User is not an administrator.'
+
+  /admins:
+     get:
+       operationId: R309
+       summary: 'R309: View Administration page.'
+       description: 'Show the Administration Center page. Access: ADM'
+       tags:
+         - 'M03: User Administration and static pages'
+
+
+       responses:
+         '200':
+           description: 'Ok. Show Administration Page.'
+         '401':
+            description: 'Not logged-in.'
+         '403':
+            description: 'User is not an administrator.'
+
+  /api/users/{id}/ban:
+
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: R310
+      summary: 'R310: Ban an user Action'
+      description: 'Processes the request to ban an user. Access: ADM'
+      tags:
+        - 'M03: User Administration and static pages'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                endDate:
+                  type: string
+                  format: date-time
+                reason:
+                  type: string
+              required:
+                  - id
+                  - endDate
+
+      responses:
+          '200':
+            description: 'OK. User banned with success.'
+          '400':
+            description: 'Bad Request. Return to the last page.'
+          '401':
+            description: 'Not logged-in.'
+          '403':
+            description: 'User is not an administrator.'
+          '404':
+            description: 'User not found.'
+
   /projects/{project_id}:
      get:
        operationId: R501
@@ -55,14 +800,14 @@ paths:
        description: 'Get the project page. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: project_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
             description: 'Ok. Show Project page'
@@ -77,14 +822,14 @@ paths:
        description: 'Get the board page. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: board_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
            description: 'Ok. Show Board page'
@@ -94,19 +839,19 @@ paths:
   # Get the task page
   /task/{task_id}:
      get:
-       operationId: R503
+       operationId: R503  # CORRIGIR NUMERaÇÂO
        summary: 'R503: Fetch task page'
        description: 'Get the task page. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: task_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
            description: 'Ok. Show task page'
@@ -157,11 +902,11 @@ paths:
                 properties:
                   title:
                     type: string
-                  description: 
+                  description:
                     type: string
                 required:
                       - title
-    
+
         responses:
           '302':
             description: 'Redirect after processing the add_project form'
@@ -180,10 +925,10 @@ paths:
             description: 'Bad Request. Back to add_project page.'
           '401':
             description: 'Cannot do this action.'
-  
+
 
   /project/{project_id}/add_board:
-    # Obter a page para adicionar uma project board
+    # Obter a page para adicionar um projeto
     get:
       operationId: R506
       summary: 'R506: Fetch add_project_board page'
@@ -233,7 +978,7 @@ paths:
                 required:
                       - project_id
                       - name
-    
+
         responses:
           '302':
             description: 'Redirect after processing the add_board form'
@@ -254,12 +999,12 @@ paths:
             description: 'Cannot do this action.'
 
 
-  /boards/{board_id}/add_vertical:
+  /boards/{board_id}/add_column:
     # Obter a page para adicionar uma coluna
     get:
       operationId: R508
-      summary: 'R508: Fetch add_vertical page'
-      description: 'Gets the add_vertical page with a form to add a new board column. Access: COO'
+      summary: 'R508: Fetch add_column page'
+      description: 'Gets the add_column page with a form to add a new board column. Access: COO'
       tags:
         - 'M05: Projects'
       parameters:
@@ -270,15 +1015,15 @@ paths:
            required: true
       responses:
         '200':
-          description: 'Ok. Show add_vertical page'
+          description: 'Ok. Show add_column page'
         '401':
           description: 'Cannot access this page.'
 
     # Adiciona uma coluna nova a uma board
     post:
         operationId: R509
-        summary: 'R509: Adds a board vertical to a board Action'
-        description: 'Processes the add_vertical page form submission. Access: COO'
+        summary: 'R509: Adds a board column to a board Action'
+        description: 'Processes the add_column page form submission. Access: COO'
         tags:
           - 'M05: Projects'
         parameters:
@@ -297,31 +1042,31 @@ paths:
                 properties:
                   board_id:
                     type: integer
-                  name: 
+                  name:
                     type: string
                 required:
                       - board_id
                       - name
-    
+
         responses:
           '302':
-            description: 'Redirect after processing the add_vertical form'
+            description: 'Redirect after processing the add_column form'
             headers:
               Location:
                 schema:
                   type: string
                 examples:
                   302Success:
-                    description: 'New board vertical was added. Redirect to board page.'
+                    description: 'New board column was added. Redirect to board page.'
                     value: '/boards/{board_id}'
                   302Error:
-                    description: 'Failed to add new board vertical. Redirect to add_column form.'
-                    value: '/boards/{board_id}/vertical'
+                    description: 'Failed to add new board column. Redirect to add_column form.'
+                    value: '/boards/{board_id}/column'
           '400':
-            description: 'Bad Request. Back to add_vertical page.'
+            description: 'Bad Request. Back to add_column page.'
           '401':
             description: 'Cannot do this action.'
-  
+
 
   /verticals/{vertical_id}/add_task:
     # Obter a page para adicionar uma task
@@ -375,7 +1120,7 @@ paths:
                 required:
                       - column_id
                       - name
-    
+
         responses:
           '302':
             description: 'Redirect after processing the add_task form'
@@ -458,7 +1203,7 @@ paths:
       responses:
         '200':
           description: 'Ok. Show add_label_class page'
-  
+
     # adiciona/cria uma label_class nova a um label
     post:
         operationId: R515
@@ -556,7 +1301,7 @@ paths:
       description: 'Creates a new label_label_class instance with the given label_id and label_class_id. Access: USR'
       tags:
         - 'M05: Projects'
-        
+
       requestBody:
           required: true
           content:
@@ -638,7 +1383,7 @@ paths:
                     description: 'Failed to add new task comment. Redirect to add_task form.'
                     value: '/boards/{board_id}/column'
           '400':
-            description: 'Bad Request. Back to add_task page.'  
+            description: 'Bad Request. Back to add_task page.'
 
 
 
@@ -657,7 +1402,7 @@ paths:
           schema:
             type: integer
           required: true
- 
+
       responses:
          '200':
             description: 'Ok. Project fetched!’'
@@ -686,7 +1431,7 @@ paths:
         description: 'Edits a project. Access: COO'
         tags:
           - 'M05: Projects'
-        
+
         parameters:
          - in: path
            name: project_id
@@ -746,7 +1491,7 @@ paths:
           schema:
             type: integer
           required: true
- 
+
       responses:
          '200':
             description: 'Ok. board fetched!’'
@@ -761,7 +1506,7 @@ paths:
                       type: string
                     id_project:
                       type: integer
-    
+
     # edits a board
     put:
         operationId: R522
@@ -769,7 +1514,7 @@ paths:
         description: 'Edits a board. Access: COO'
         tags:
           - 'M05: Projects'
-        
+
         parameters:
          - in: path
            name: board_id
@@ -821,7 +1566,7 @@ paths:
           schema:
             type: integer
           required: true
- 
+
       responses:
          '200':
             description: 'Ok. column fetched!’'
@@ -836,7 +1581,7 @@ paths:
                       type: string
                     id_board:
                       type: integer
-    
+
     # edits a column
     put:
         operationId: R524
@@ -844,7 +1589,7 @@ paths:
         description: 'Edits a column. Access: COO'
         tags:
           - 'M05: Projects'
-        
+
         parameters:
          - in: path
            name: column_id
@@ -896,7 +1641,7 @@ paths:
           schema:
             type: integer
           required: true
- 
+
       responses:
          '200':
             description: 'Ok. task fetched!’'
@@ -917,7 +1662,7 @@ paths:
                       type: string
                     id_vertical:
                       type: integer
-    
+
     # edits a task
     put:
         operationId: R526
@@ -925,7 +1670,7 @@ paths:
         description: 'Edits a task. Access: USR'
         tags:
           - 'M05: Projects'
-        
+
         parameters:
          - in: path
            name: task_id
@@ -984,7 +1729,7 @@ paths:
           schema:
             type: integer
           required: true
- 
+
       responses:
          '200':
             description: 'Ok. label fetched!’'
@@ -999,7 +1744,7 @@ paths:
                       type: string
                     color:
                       type: integer
-    
+
     # edits a label
     put:
         operationId: R528
@@ -1007,7 +1752,7 @@ paths:
         description: 'Edits a label. Access: USR'
         tags:
           - 'M05: Projects'
-        
+
         parameters:
          - in: path
            name: label_id
@@ -1062,7 +1807,7 @@ paths:
           schema:
             type: integer
           required: true
- 
+
       responses:
          '200':
             description: 'Ok. label_class fetched!’'
@@ -1075,7 +1820,7 @@ paths:
                       type: integer
                     name:
                       type: string
-    
+
     # edits a label_class
     put:
         operationId: R530
@@ -1083,7 +1828,7 @@ paths:
         description: 'Edits a label_class. Access: COO'
         tags:
           - 'M05: Projects'
-        
+
         parameters:
          - in: path
            name: label_class_id
@@ -1100,7 +1845,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      
+
         responses:
           '302':
             description: 'Redirect after processing to form'
@@ -1133,7 +1878,7 @@ paths:
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
             description: 'Ok. User’s projects fetched!’'
@@ -1167,14 +1912,14 @@ paths:
        description: 'Gets the boards of a certain project. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: project_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
             description: 'Ok. Project’s boards fetched!'
@@ -1193,7 +1938,7 @@ paths:
                         type: integer
          '401':
             description: 'Cannot do this action.'
-  
+
   # gets the columns of a board (array of verticals)
   /api/boards/{board_id}/columns:
      get:
@@ -1202,14 +1947,14 @@ paths:
        description: 'Gets the columns of a certain board. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: board_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
             description: 'Ok. Board’s columns fetched!'
@@ -1228,7 +1973,7 @@ paths:
                         type: integer
          '401':
             description: 'Cannot do this action.'
-  
+
   # gets the tasks of a column (array of tasks)
   /api/columns/{column_id}/tasks:
      get:
@@ -1237,14 +1982,14 @@ paths:
        description: 'Gets the tasks of a certain column. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: column_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
             description: 'Ok. Column’s tasks fetched!'
@@ -1269,7 +2014,7 @@ paths:
                         type: integer
          '401':
             description: 'Cannot do this action.'
-  
+
   # gets the labels of a task (array of labels)
   /api/tasks/{task_id}/labels:
      get:
@@ -1278,14 +2023,14 @@ paths:
        description: 'Gets the labels of a certain task. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: task_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
             description: 'Ok. Task`s labels fetched!'
@@ -1304,7 +2049,7 @@ paths:
                         type: integer
          '401':
             description: 'Cannot do this action.'
-  
+
   # gets the label_classes of a label (array of label_classes)
   /api/labels/{label_id}/label_classes:
      get:
@@ -1313,14 +2058,14 @@ paths:
        description: 'Gets the label_classes of a certain label. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: label_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
             description: 'Ok. Task’s label_classes fetched!'
@@ -1346,14 +2091,14 @@ paths:
        description: 'Gets the messages of the chat that is associated with a certain task. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: task_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
             description: 'Ok. Task’s comments fetched!'
@@ -1385,14 +2130,14 @@ paths:
        description: 'Gets the users that are collaborators on the a project. Access: USR'
        tags:
          - 'M05: Projects'
-  
+
        parameters:
          - in: path
            name: project_id
            schema:
              type: integer
            required: true
-  
+
        responses:
          '200':
             description: 'Ok. Projects collaborators fetched!'
@@ -1472,7 +2217,7 @@ paths:
       parameters:
         - in: query
           name: user_id
-          description: User id of the user to add a new favorite project 
+          description: User id of the user to add a new favorite project
           schema:
            type: integer
           required: true
@@ -1497,7 +2242,6 @@ paths:
         '200':
           description: 'Ok. Show projects page'
 
-
   /api/search/users/:
     parameters:
       - in: query
@@ -1511,11 +2255,11 @@ paths:
             type: integer
         required: false
     get:
-      operationId: R401
-      summary: 'R401: Search for users'
+      operationId: #dunno
+      summary: 'Search for users'
       description: 'Search for users based on their username/name'
       tags:
-        - 'M04: Content Searching, Filtering and Presentation'      
+        - 'M04: Content Searching, Filtering and Presentation'
     responses:
         '200':
           description: Success
@@ -1543,180 +2287,177 @@ paths:
                     username: dizzy
                     profilePicture: #??
                     name: Daniel Ferreira
-
-    /api/search/projects/:
-      parameters:
-        - in: query
-          name: query
-          schema:
-              type: string
-          required: true
-        - in: query
-          name: maxItems
-          schema:
-              type: integer
-          required: false
-      get:
-        operationId: R402
-        summary: 'R402: Search for projects'
-        description: 'Search for projects based on their title/description'
-        tags:
-          - 'M04: Content Searching, Filtering and Presentation'      
-      responses:
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      title:
-                        type: string
-                      description:
-                        type: string
-                      participants:
-                        schema:
-                          type: array
-                          items:
-                            type: object
-                          properties:
-                            id: 
-                              type: string
-                            username: 
-                              type: string
-                            profilePicture:
-                              type: string
-                            name: 
-                              type: string
-                  example:
-                    - id: 1
-                      title: Home
-                      description: Chores of the House
-                      participants:
-                        - id: 1
-                          username: spukunu
-                          profilePicture: #??
-                          name: Lara Daniela 
-                        - id: 2
-                          username: laurasia
-                          profilePicture: #??
-                          name: Laura Eugénia
-    /api/search/tasks/:
-      parameters:
-        - in: query
-          name: query
-          schema:
-              type: string
-          required: true
-        - in: query
-          name: maxItems
-          schema:
-              type: integer
-          required: false
-      get:
-        operationId: R403
-        summary: 'R403: Search for tasks'
-        description: 'Search for tasks based on their title/description'
-        tags:
-          - 'M04: Content Searching, Filtering and Presentation'      
-      responses:
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      title:
-                        type: string
-                      description:
-                        type: string
-                      participants:
-                        schema:
-                          type: array
-                          items:
-                            type: object
-                          properties:
-                            id: 
-                              type: string
-                            username: 
-                              type: string
-                            profilePicture:
-                              type: string
-                            name: 
-                              type: string
-                  example:
-                    - id: 1
-                      title: Dishes
-                      description: Doing the dishes this week
-                      participants:
-                        - id: 1
-                          username: spukunu
-                          profilePicture: #??
-                          name: Lara Daniela 
-                        - id: 2
-                          username: laurasia
-                          profilePicture: #??
-                          name: Laura Eugénia
-                    - id: 2
-                      title: Laundry
-                      description: This week laundry
-                      participants:
-                        - id: 1
-                          username: spukunu
-                          profilePicture: #??
-                          name: Lara Daniela 
-                        - id: 2
-                          username: laurasia
-                          profilePicture: #??
-                          name: Laura Eugénia
-    /api/search/labels/:
-      parameters:
-        - in: query
-          name: query
-          schema:
-              type: string
-          required: true
-        - in: query
-          name: maxItems
-          schema:
-              type: integer
-          required: false
-      get:
-        operationId: R404
-        summary: 'R404: Search for labels'
-        description: 'Search for labels based on their name'
-        tags:
-          - 'M04: Content Searching, Filtering and Presentation'      
-      responses:
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      name:
-                        type: string
-                  example:
-                    - id: 2
-                      name: 'Doing'
-                    - id: 3
-                      name: 'Done'
-
-
+  /api/search/projects/:
+    parameters:
+      - in: query
+        name: query
+        schema:
+            type: string
+        required: true
+      - in: query
+        name: maxItems
+        schema:
+            type: integer
+        required: false
+    get:
+      operationId: #dunno
+      summary: 'Search for projects'
+      description: 'Search for projects based on their title/description'
+      tags:
+        - 'M04: Content Searching, Filtering and Presentation'
+    responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    participants:
+                      schema:
+                        type: array
+                        items:
+                          type: object
+                        properties:
+                          id:
+                            type: string
+                          username:
+                            type: string
+                          profilePicture:
+                            type: string
+                          name:
+                            type: string
+                example:
+                  - id: 1
+                    title: Home
+                    description: Chores of the House
+                    participants:
+                      - id: 1
+                        username: spukunu
+                        profilePicture: #??
+                        name: Lara Daniela
+                      - id: 2
+                        username: laurasia
+                        profilePicture: #??
+                        name: Laura Eugénia
+  /api/search/tasks/:
+    parameters:
+      - in: query
+        name: query
+        schema:
+            type: string
+        required: true
+      - in: query
+        name: maxItems
+        schema:
+            type: integer
+        required: false
+    get:
+      operationId: #dunno
+      summary: 'Search for tasks'
+      description: 'Search for tasks based on their title/description'
+      tags:
+        - 'M04: Content Searching, Filtering and Presentation'
+    responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    participants:
+                      schema:
+                        type: array
+                        items:
+                          type: object
+                        properties:
+                          id:
+                            type: string
+                          username:
+                            type: string
+                          profilePicture:
+                            type: string
+                          name:
+                            type: string
+                example:
+                  - id: 1
+                    title: Dishes
+                    description: Doing the dishes this week
+                    participants:
+                      - id: 1
+                        username: spukunu
+                        profilePicture: #??
+                        name: Lara Daniela
+                      - id: 2
+                        username: laurasia
+                        profilePicture: #??
+                        name: Laura Eugénia
+                  - id: 2
+                    title: Laundry
+                    description: This week laundry
+                    participants:
+                      - id: 1
+                        username: spukunu
+                        profilePicture: #??
+                        name: Lara Daniela
+                      - id: 2
+                        username: laurasia
+                        profilePicture: #??
+                        name: Laura Eugénia
+  /api/search/labels/:
+    parameters:
+      - in: query
+        name: query
+        schema:
+            type: string
+        required: true
+      - in: query
+        name: maxItems
+        schema:
+            type: integer
+        required: false
+    get:
+      operationId: #dunno
+      summary: 'Search for labels'
+      description: 'Search for labels based on their name'
+      tags:
+        - 'M04: Content Searching, Filtering and Presentation'
+    responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                example:
+                  - id: 2
+                    name: 'Doing'
+                  - id: 3
+                    name: 'Done'
 
 ```
 
