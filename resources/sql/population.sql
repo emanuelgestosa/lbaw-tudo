@@ -8,7 +8,9 @@ insert into users (username, password, name, birth, email, phone_number) values 
  ('ddrummond7', 'FA6om0x', 'Lucrèce', '07/11/1973', 'smcclaurie7@salon.com', '623-891-5583'),
  ('djacquemot8', '1F3A4oiDpoK', 'Ráo', '02/10/2002', 'lravenshaw8@nydailynews.com', '343-186-1456'),
  ( 'wyeoman9', 'tnGoF3r1nJ4l', 'Ráo', '10/08/1988', 'hlink9@hhs.gov', '866-348-3166'),
- ( 'cao', 'gato', 'pato', '10/08/1988', 'letsgo@yolo.gov', '69420');
+ ( 'cao', 'gato', 'pato', '10/08/1988', 'letsgo@yolo.gov', '69420'),
+ ('ricardo','$2y$10$eP1KfQDUyBPAtbgvBWdCSu.M59YoblmfZX/8IB0VWyhut9h7tP7fS', 'Ricardo', '08-08-1978', 'ricardo@mail.com', '912345678'),
+ ('ana', '$2y$10$zz9vKupDIwB6118e3sHTEuURD1BAVSrcYpit9KINChRdwx44lbE5O', 'Ana', '08-08-1978', 'ana@mail.com', '987654321');
 
 
 insert into project (title, description, creation, is_archived, id_coordinator) values ('Sonsing', 'Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '11/20/2021', false, 8),
@@ -119,7 +121,8 @@ insert into administrator (id_users) values (9),
  (3),
  (1),
  (10),
- (7);
+ (7),
+ (12);
 
 insert into ban (start_date, end_date, reason, id_administrator, id_users) values ('3/27/2022', '7/23/2024', 'não gostei', 5, 8),
  ('12/9/2021', '12/21/2023', 'infringiu a regra 70', 2, 6),

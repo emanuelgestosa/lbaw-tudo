@@ -175,7 +175,7 @@ CREATE TABLE comment (
     id serial PRIMARY KEY,
     msg text NOT NULL,
     sent_date date NOT NULL CONSTRAINT CK_comment_sent_date CHECK (sent_date <= CURRENT_DATE) default CURRENT_DATE,
-    id_task integer NOT NULL REFERENCES task (id),
+    id_task integer REFERENCES task (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 

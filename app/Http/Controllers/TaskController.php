@@ -32,6 +32,14 @@ class TaskController extends Controller
       return redirect('/task/' . $task->id);
     }
 
+    public function delete(Request $request)
+    {
+      $id = $request->input('id');
+      $task = Task::find($id);
+      $task->delete();
+
+      return redirect('/board/' . $request->input('board_id'));
+    }
 
     public function add_task(Request $request, $vertical_id){
 

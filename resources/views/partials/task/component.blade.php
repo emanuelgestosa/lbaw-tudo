@@ -7,6 +7,14 @@
 
 <article class="task-component" data-id="{{ $task->id }}">
   <h1 class="page_name"> Task - {{ $task->name}} </h1>
+  <form method="post" action="/api/task/{{ $task->id }}">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+  
+  <input type="hidden" name="id"  value="{{ $task->id }}" />
+  <input type="hidden" name="board_id"  value="{{ $task->vertical->id_board }}" />
+  <button type="submit" style="background-color: green;border:none;">Done</button>
+</form>
   <b> Due Date: {{ $task->due_date}} </b>
   <p></p>
   <b> Description: </b>
@@ -30,7 +38,6 @@
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
   <input type="hidden" name="id"  value="{{ $task->id }}" />
-  <input type="hidden" name="id_vertical"  value="{{ $task->id_vertical }}" />
 
   <label for="name">Name: </label>
   <input type="text" name="name"  value="{{ $task->name }}" />
@@ -41,7 +48,6 @@
 
   <button type="submit">Send</button>
 </form>
-
 
 </article>
 
