@@ -68,9 +68,9 @@ class UserController extends Controller
      */
     public function showInvites($id)
     {
-      //if (!UserController::hasPerms($id)) {
-        //return redirect('/user/'.$id);
-      //}
+      if (!UserController::hasPerms($id)) {
+        return redirect('/user/'.$id);
+      }
       
       $invites = User::find($id)->invitesReceived;
       return view('pages.user.invites', ['invites' => $invites, 'user_id' => $id]);
