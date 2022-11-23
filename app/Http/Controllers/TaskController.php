@@ -19,6 +19,21 @@ class TaskController extends Controller
       return view('pages.add_task', ['vertical' => $vertical]);
     }
 
+    public function edit(Request $request)
+    {
+      $id = $request->input('id');
+
+      $task = Task::find($id);
+
+      $task->name = $request->input('name');
+      $task->description = $request->input('description');
+      $task->due_date = $request->input('due_date');
+      $task->id_vertical = $request->input('id_vertical');
+      $task->save();
+      return redirect('/user/' . $user->id);
+    }
+
+
     public function add_task(Request $request, $vertical_id){
 
       $request->validate([
