@@ -35,10 +35,9 @@ Route::get('/user/{id}/invites/received',function ($id){
     return response()->json($result);
 });
 
-Route::get('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
+Route::post('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
     // Needs checkign 
     $invite = Invite::find($inviteId);
-    echo $invite;
     $invite->project()->first()->collaborators()->save(User::find($userId));
     $invite->delete();
     return response()->json();

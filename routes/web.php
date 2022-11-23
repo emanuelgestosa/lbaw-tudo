@@ -26,7 +26,7 @@ Route::get('/features', 'FeaturesController@show');
 Route::get('/user/{id}', 'UserController@show');
 Route::get('/user/{id}/edit', 'UserController@showEdit');
 Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
-
+Route::get('/user/{id}/invites', 'UserController@showInvites');
 // API
 Route::post('/api/user', 'UserController@create');
 Route::patch('/api/user/{id}', 'UserController@edit');
