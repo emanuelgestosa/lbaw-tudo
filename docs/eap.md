@@ -1728,3 +1728,91 @@ The implementation is based on the <a href="https://git.fe.up.pt/lbaw/template-l
 ### Implemented Features
 #### Implemented User Stories
 The user stories that were implemented in the prototype are described in the following table.
+
+| User Story | Name                               | Priority | Description                                                                                                                                                                                                 |
+| ---------- | ---------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US01       | Sign-in                            | high     | As a Visitor, I want to authenticate into the system, so that I can access privileged information                                                                                                           |
+| US02       | Sign-up                            | high     | As a Visitor, I want to register myself into the system, so that I can afterwards authenticate myself                                                                                                       |
+| US06       | See Home                           | high     | As an User, I want to access the home page, so that I can see a brief presentation of the website.                                                                                                          |
+| US07       | Search (full text and exact match) | high     | As an User, I want to search the platform keywords, so that I can quickly find users and/or projects that I am looking for.                                                                                 |
+| US19       | Project Creation                   | high     | As an Authenticated User, I want to be able to create a project, so that I can define tasks needed to accomplish it and centralize them.                                                                    |
+| US20       | Logout                             | high     | As an Authenticated User, I want to Logout of the system, so that my session terminates, and no one can have access to It during my absence.                                                                |
+| US21       | View my Projects                   | high     | As an Authenticated User, I want to view all my projects, so that I can have an overview and select one of them.                                                                                            |
+| US22       | View Profile                       | high     | As an Authenticated User, I want to view my profile, so that I can see my profile details.                                                                                                                  |
+| US23       | Edit Profile                       | high     | As an Authenticated User, I want to edit my user profile, so that I can change my details as I desire or update them.                                                                                       |
+| US28       | Task Creation                      | high     | As a Collaborator, I want to be able to create tasks, so that I can contribute to the organization of the project.                                                                                          |
+| US29       | Task Management                    | high     | As a Collaborator, I want to be able to manage tasks and change some aspects like their priority, due date and other labels, so that I can better organize them.                                            |
+| US30       | View Task Details                  | high     | As a Collaborator, I want to be able to view the details of each task, so that I can have access to details such as due time, priority, etc.                                                                |
+| US31       | Task Completion                    | high     | As a Collaborator, I want to be able to mark an assigned task as completed, so that it's known that it is already done.                                                                                     |
+| US32       | Search Tasks                       | high     | As a Collaborator, I want to have the ability to search tasks so that I can quickly find tasks by their name, labels, due date or members assigned.                                                         |
+| US51       | Add Users to Projects              | high     | As a Coordinator, I want to be able to add users to my project, so that they become collaborators.                                                                                                          |
+| US66       | Administer User Accounts           | high     | As an Administrator, I want to be able to create/edit/view and search user accounts, so that I can control/change all user accounts.                                                                        |
+| US12       | See Contacts                       | medium   | As an User, I want to see the Contact Us page, so that I can know how to reach out to the owners of the website and its creators.                                                                           |
+| US14       | Placeholders in Form Inputs        | medium   | As an User, I want placeholders in my form inputs, so that some information might already be filled out by default.                                                                                         |
+| US15       | Contextual Error Messages          | medium   | As an User, I want to see error messages, so that when something goes wrong I can get more details on what happened.                                                                                        |
+| US24       | Delete Account                     | medium   | As an Authenticated User, I want to delete my account, so that my account abandons the system.                                                                                                              |
+| US27       | Project Invitation managing        | low      | As an Authenticated User, I want to manage my project invitations, so that I can accept/reject invitations according to my preferences.                                                                     |
+| US36       | View Board Columns                 | medium   | As a Collaborator, I want to view the columns on each board, so that I can better locate taks by their category (column).                                                                                   |
+| US42       | View Team Members Profile          | medium   | As a Collaborator, I want to be able to view the team members' profiles, so that I can have access to information such as their contacts and therefore easily contact them.                                 |
+| US43       | View Project Team                  | medium   | As a Collaborator, I want to be able to see the team on a project I am enrolled in, so that I can find their contacts and contact them.                                                                     |
+| US49       | View Board                         | low      | As a Collaborator, I want to be able to view the different boards in a project I am in, so that the tasks in the project can be better organized.                                                           |
+| US50       | View Project Details               | low      | As a Collaborator, I want to be able to view the details of the project I'm in, so that I can have access to details such as the current project coordinators/collaborator, project description and others. |
+
+#### Implemented Web Resources
+The web resources that were implemented in the prototype are described in the next section.
+#### Module M01: Sign up, Sign in and external APIs
+| Web Resource Reference | URL                                                         |
+| ---------------------- | ----------------------------------------------------------- |
+| R101: Login Form       | GET [/login](http://medialibrary.lbaw.fe.up.pt/login)       |
+| R102: Login Action     | POST /login                                                 |
+| R103: Logout Action    | POST /logout                                                |
+| R104: Register Form    | GET [/register](http://medialibrary.lbaw.fe.up.pt/register) |
+| R105: Register Action  | POST /register                                              |
+
+#### M02: Individual Profile and User Information
+
+| Web Resource Reference               | URL                      |
+| ------------------------------------ | ------------------------ |
+| R201: View user profile              | GET /users/{id}          |
+| R202: View user profile edition page | GET /users/{id}/edit     |
+| R203: View user projects page        | GET /users/{id}/projects |
+| R206: Edit user profile              | PATCH /api/users/{id}    |
+| R207: Delete user profile            | DELETE /api/users/{id}   |
+
+#### M03: User Administration and static pages
+
+| Web Resource Reference          | URL           |
+| ------------------------------- | ------------- |
+| R301: View FAQ page.            | GET /faq      |
+| R302: View About Us page.       | GET /about    |
+| R303: View Contacts page.       | GET /contacts |
+| R304: View Main Features page.  | GET /features |
+| R309: View Administration page. | GET /admins   |
+
+#### M04: Content Searching, Filtering and Presentation
+
+| Web Resource Reference | URL                    |
+| ---------------------- | ---------------------- |
+| R401: Search for users | GET /api/search/users/ |
+
+#### Module M05: Projects
+
+| Web Resource Reference                         | URL                                          |
+| ---------------------------------------------- | -------------------------------------------- |
+| R501: Fetch project page                       | GET /projects/{project\_id}                  |
+| R502: Fetch board page                         | GET /boards/{board\_id}                      |
+| R503: Fetch task page                          | GET /task/{task\_id}                         |
+| R504: Fetch add project page                   | GET /users/{user\_id}/add\_project           |
+| R505: Adds a project to a user Action          | POST /users/{user\_id}/add\_project          |
+| R506: Fetch add\_project\_board page           | GET /project/{project\_id}/add\_board        |
+| R507: Adds a project board to a project Action | POST /project/{project\_id}/add\_board       |
+| R508: Fetch add\_vertical page                 | GET /boards/{board\_id}/add\_vertical        |
+| R509: Adds a board vertical to a board Action  | POST /boards/{board\_id}/add\_vertical
+
+<br> |
+| R510: Fetch add\_task page                     | GET /verticals/{vertical\_id}/add\_task      |
+| R511: Adds a column task to a column Action    | POST /verticals/{vertical\_id}/add\_task     |
+
+### Prototype
+
+TBD
