@@ -2559,15 +2559,20 @@ The web resources that were implemented in the prototype are described in the ne
 
 ### Prototype
 
-Prototype available at: //inserir site
+Prototype available at: http://lbaw2215.lbaw.fe.up.pt
 
 #### Credentials
+
 ##### Admin
-- Name:
-- Password:
+
+- Name: ricardo
+- Password: ricardo123
+
 ##### Regular User
-- Name:
-- Password:
+
+- Name: ana
+- Password: ana123
+
 
 ## Revision History
 GROUP2215, 23/11/2022
