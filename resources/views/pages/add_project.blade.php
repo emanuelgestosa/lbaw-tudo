@@ -11,14 +11,24 @@
 
   <label for="title">Title*</label>
   <input id="project_title_field" type="text" name="title" value="" required autofocus>
+  @if ($errors->has('title'))
+  <div class="error">
+    <p>{{ $errors->first('title') }}</p>
+  </div>
+  @endif
 
   <label for="description">Description</label>
   <input id="description" type="text" name="description">
+  @if ($errors->has('description'))
+  <div class="error">
+    <p>{{ $errors->first('description') }}</p>
+  </div>
+  @endif
 
   <button type="submit">
     Save
   </button>
-  <a href="{{ route('projects', ['id' => $user->id]) }}"> Cancel </a>
+  <a id="cancel_button" href="{{ route('projects', ['id' => $user->id]) }}"> Cancel </a>
 </form>
 
 @endsection
