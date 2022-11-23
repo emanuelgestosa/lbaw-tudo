@@ -27,11 +27,13 @@ Route::get('/user/{id}', 'UserController@show');
 Route::get('/user/{id}/edit', 'UserController@showEdit');
 Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
 Route::get('/user/{id}/invites', 'UserController@showInvites');
+
 // API
 Route::post('/api/user', 'UserController@create');
 Route::patch('/api/user/{id}', 'UserController@edit');
 Route::delete('/api/user/{id}', 'UserController@delete');
 Route::post('/api/project/{id}/board', 'BoardController@create');
+Route::post('/api/board/{id}/vertical', 'VerticalController@create');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -44,6 +46,9 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('/task/{id}', [TaskController::class,'show']);
 Route::get('/verticals/{vertical_id}/add_task', 'TaskController@showCreate');
 Route::post('/verticals/{vertical_id}/add_task', 'TaskController@add_task')->name('add_task');
+
+// Vertical
+Route::get('/board/{id}/create', 'VerticalController@showCreate');
 
 // Board
 Route::get('/board/{id}', [BoardController::class,'show'])->name('board');
