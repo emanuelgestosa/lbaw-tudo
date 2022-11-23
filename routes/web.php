@@ -35,6 +35,7 @@ Route::delete('/api/user/{id}', 'UserController@delete');
 Route::post('/api/project/{id}/board', 'BoardController@create');
 Route::post('/api/board/{id}/vertical', 'VerticalController@create');
 Route::patch('/api/task/{id}', 'TaskController@edit');
+Route::delete('/api/task/{id}', 'TaskController@delete');
 
 
 // Authentication
