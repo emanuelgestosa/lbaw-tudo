@@ -2256,8 +2256,8 @@ paths:
             type: integer
         required: false
     get:
-      operationId: #dunno
-      summary: 'Search for users'
+      operationId: R401
+      summary: 'R401: Search for users'
       description: 'Search for users based on their username/name'
       tags:
         - 'M04: Content Searching, Filtering and Presentation'
@@ -2288,6 +2288,7 @@ paths:
                     username: dizzy
                     profilePicture: #??
                     name: Daniel Ferreira
+
   /api/search/projects/:
     parameters:
       - in: query
@@ -2301,8 +2302,8 @@ paths:
             type: integer
         required: false
     get:
-      operationId: #dunno
-      summary: 'Search for projects'
+      operationId: R402
+      summary: 'R402: Search for projects'
       description: 'Search for projects based on their title/description'
       tags:
         - 'M04: Content Searching, Filtering and Presentation'
@@ -2362,8 +2363,8 @@ paths:
             type: integer
         required: false
     get:
-      operationId: #dunno
-      summary: 'Search for tasks'
+      operationId: R403
+      summary: 'R403: Search for tasks'
       description: 'Search for tasks based on their title/description'
       tags:
         - 'M04: Content Searching, Filtering and Presentation'
@@ -2435,8 +2436,8 @@ paths:
             type: integer
         required: false
     get:
-      operationId: #dunno
-      summary: 'Search for labels'
+      operationId: R404
+      summary: 'R404: Search for labels'
       description: 'Search for labels based on their name'
       tags:
         - 'M04: Content Searching, Filtering and Presentation'
