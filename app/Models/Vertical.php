@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Vertical extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     *@var array
+     */
+    protected $fillable = [
+        'name',
+        'id_board',
+    ];
+
     public $timestamps=false;
     public $table = "vertical";
 
