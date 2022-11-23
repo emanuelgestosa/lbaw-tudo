@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Board extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     *@var array
+     */
+    protected $fillable = [
+        'name',
+        'id_project',
+    ];
+
     public $table ="board";
     public $timestamps=false;
 
