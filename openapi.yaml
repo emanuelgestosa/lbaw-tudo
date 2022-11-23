@@ -12,7 +12,7 @@ servers:
 
 externalDocs:
   description: Find more info here.
-  url: https://this-file-bla-bla-bla
+  url: 'https://git.fe.up.pt/lbaw/lbaw2223/lbaw2215/-/wikis/home'
 
 
 tags:
@@ -240,14 +240,14 @@ paths:
 
 
   /users/{id}/projects:
-  
+
     parameters:
        - in: path
          name: id
          schema:
            type: integer
          required: true
-  
+
     get:
       operationId: R203
       summary: 'R203: View user projects page'
