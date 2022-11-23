@@ -15,11 +15,11 @@
     <section class="user-results" style="display:hidden"></section>
   </section>
 
+<script src ="/public/js/globals.js"></script>
 <script>
-
 const searchUser = async (query,maxItems) =>{
     const params ={ query:query,maxItems:maxItems}
-    const url = new URL("http://127.0.0.1:8000/api/search/users")
+    const url = new URL(SERVER + "/api/search/users")
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url)
     const jsonResponse = await response.json()
@@ -45,7 +45,7 @@ const preencherLista = (users) =>{
     for (const card of userCards){
         card.addEventListener('click',() =>{
             const userId = card.getAttribute('user-id')
-            window.location= ("http://127.0.0.1:8000/user/"+userId);
+            window.location= (SERVER + "/user/"+userId);
         })
     }
     lista.style.display= "block"

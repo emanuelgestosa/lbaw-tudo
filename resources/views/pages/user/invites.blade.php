@@ -28,14 +28,14 @@
           <button id="decline" type="submit"> Decline </button>
       </article>
     @endforeach
-    
+ <script src ="/public/js/globals.js"></script>   
 <script>
   const acceptButtons = document.querySelectorAll('#accept')
   for (const acceptButton of acceptButtons) {
     acceptButton.addEventListener('click',() => {
       const inviteId = acceptButton.parentElement.querySelector('input[name=inviteId]').value
       const userId = acceptButton.parentElement.querySelector('input[name=userId]').value
-      const url = `http://127.0.0.1:8000/api/user/${userId}/invites/${inviteId}`
+      const url = `${SERVER}/api/user/${userId}/invites/${inviteId}`
       // TODO : Precisamos de verificar a resposta
       fetch(url, {
         method: "POST",
@@ -54,7 +54,7 @@
     declineButton.addEventListener('click',() => {
       const inviteId = declineButton.parentElement.querySelector('input[name=inviteId]').value
       const userId = declineButton.parentElement.querySelector('input[name=userId]').value
-      const url = `http://127.0.0.1:8000/api/user/${userId}/invites/${inviteId}`
+      const url = `${SERVER}/api/user/${userId}/invites/${inviteId}`
       // TODO : Precisamos de verificar a resposta
       fetch(url, {
         method: "DELETE",
@@ -67,7 +67,5 @@
       
     })
   }
-
 </script>
-
 @endsection
