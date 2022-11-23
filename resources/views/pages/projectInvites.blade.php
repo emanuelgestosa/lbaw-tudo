@@ -68,6 +68,7 @@ const preencherLista = (users) => {
             const idInvitee = cardUserId
             const url = `${SERVER}/api/project/${projectId}/invites`
             const data = {id_invitee:idInvitee,id_inviter:idInviter}
+            card.style.display="none"
             const response = await fetch(url,
                 {
                      method:"POST",
