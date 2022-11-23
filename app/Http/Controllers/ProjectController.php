@@ -21,6 +21,11 @@ class ProjectController extends Controller
 
     public function create(Request $request){
 
+      $request->validate([
+        'title' => 'required',
+        'description' => 'nullable',
+      ]);
+
       $user = Auth::user();
       $new_project = New Project();
       $new_project->title = $request->input('title');
