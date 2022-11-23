@@ -28,9 +28,8 @@ class TaskController extends Controller
       $task->name = $request->input('name');
       $task->description = $request->input('description');
       $task->due_date = $request->input('due_date');
-      $task->id_vertical = $request->input('id_vertical');
       $task->save();
-      return redirect('/user/' . $user->id);
+      return redirect('/task/' . $task->id);
     }
 
 

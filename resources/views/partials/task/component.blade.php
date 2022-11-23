@@ -25,15 +25,19 @@
 </section>
 <br><br>
 <h1 class="page_name"> Editar </h1>
-<form method="post" action="/api/tasks/{{ $task->id }}">
+<form method="post" action="/api/task/{{ $task->id }}">
   <input type="hidden" name="_method" value="PATCH">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
   <input type="hidden" name="id"  value="{{ $task->id }}" />
+  <input type="hidden" name="id_vertical"  value="{{ $task->id_vertical }}" />
+
+  <label for="name">Name: </label>
   <input type="text" name="name"  value="{{ $task->name }}" />
+  <label for="description">Description: </label>
   <input type="text" name="description"  value="{{ $task->description }}" />
-  <input type="text" name="due_date"  value="{{ $task->due_date }}" />
-  <input type="integer" name="id_vertical"  value="{{ $task->id_vertical }}" />
+  <label for="due_date">Due Date: </label>
+  <input type="date" name="due_date" value="{{ $task->due_date }}" pattern="\d{4}-\d{2}-\d{2}">
 
   <button type="submit">Send</button>
 </form>
