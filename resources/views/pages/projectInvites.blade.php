@@ -23,10 +23,11 @@
   </section>
 </section>
 </section>
+<script src ="/public/js/globals.js"></script>
 <script>
 const searchUser = async (query,maxItems) =>{
     const params ={ query:query,maxItems:maxItems}
-    const url = new URL("http://127.0.0.1:8000/api/search/users")
+    const url = new URL(SERVER + "/api/search/users")
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url)
     const jsonResponse = await response.json()
@@ -58,14 +59,14 @@ const preencherLista = (users) => {
     for (const card of userCards) {
         const cardUserId = card.getAttribute('user-id')
         card.querySelector("section.user-card-name").addEventListener('click',() =>{
-            window.location= ("http://127.0.0.1:8000/user/"+cardUserId);
+            window.location= (SERVER +"/user/"+cardUserId);
         })
         card.querySelector("section.user-card-send-invite").addEventListener('click',async() =>{
             const op = document.querySelector("section.invite-content")
             const projectId = op.getAttribute("project-id")
             const idInviter = op.getAttribute("user-id")
             const idInvitee = cardUserId
-            const url = `http://127.0.0.1:8000/api/project/${projectId}/invites`
+            const url = `${SERVER}/api/project/${projectId}/invites`
             const data = {id_invitee:idInvitee,id_inviter:idInviter}
             const response = await fetch(url,
                 {
