@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link href="{{ asset('/css/common.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/project.css') }}" rel="stylesheet">
 
 @yield('content')
@@ -8,7 +7,6 @@
 
 
 <article class="project" id="project_content">
-
     <h1 class="page_name"> {{ $project->title }} </h1>
     <div id="about_proj">
         <div id="proj_desc">
@@ -29,7 +27,7 @@
         <section>
              <h2 class="subtitle"><i class="fa-solid fa-people-group"></i> Collaborators 
              </h2>
-             <a class="button" href="project/{{$project->id}}/invite">
+             <a class="button" href="/project/{{$project->id}}/invites">
                 <i class="fa-solid fa-envelope"></i> Invites
              </a>       
         </section>
