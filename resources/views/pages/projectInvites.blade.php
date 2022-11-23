@@ -3,19 +3,15 @@
 @yield('content')
 @section('content')
 <section style="display:flex;flex-direction:column;justify-content:center">
-<h2 style="text-align:center">Invites of {{$project->title}}</h2>
+<h2 class="page_name">Invites of {{$project->title}}</h2>
     <section class="invite-content" project-id="{{$project->id}}" user-id="{{Auth::user()->id}}"
         style="display:flex;gap:5em;margin:auto;">
     <section class="invite-list">
         <article class="project-invite-card">
-            <p>Mariana</p>
-            <p>Enviou convite para</p>
-            <p>Emanuel</p>
+            <p>Mariana enviou convite para Emanuel</p>
         </article>
         <article class="project-invite-card">
-            <p>Leandro</p>
-            <p>Enviou convite para</p>
-            <p>Martim</p>
+            <p>Leandro enviou convite para Martim</p>
         </article>
     </section>
     <section class="search-collaborator">
