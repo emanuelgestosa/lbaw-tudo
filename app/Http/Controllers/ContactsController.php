@@ -9,6 +9,6 @@ class ContactsController extends Controller
      */
     public function show()
     {
-      return view('pages.contacts');
+      return view('pages.static.contacts');
     }
 }

@@ -10,12 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // Static Pages
-
-use App\Http\Controllers\BoardController;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\ProjectController;
-
 Route::get('/', 'HomeController@show');
 Route::get('/faq', 'FaqController@show');
 Route::get('/about', 'AboutController@show');
