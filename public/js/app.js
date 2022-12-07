@@ -178,4 +178,7 @@ function createItem(item) {
 }
 
 addEventListeners();
-const SERVER = "http://127.0.0.1:8000"
+const LOCAL =  "http://127.0.0.1:8000"
+const PRODUCTION = "https://lbaw2215.lbaw.fe.up.pt"
+const SERVER = PRODUCTION
+
