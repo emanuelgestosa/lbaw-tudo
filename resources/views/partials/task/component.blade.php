@@ -13,7 +13,7 @@
   
   <input type="hidden" name="id"  value="{{ $task->id }}" />
   <input type="hidden" name="board_id"  value="{{ $task->vertical->id_board }}" />
-  <button type="submit" style="background-color: green;border:none;">Done</button>
+  <button type="submit" class="btn btn-primary">Done</button>
 </form>
   <b> Due Date: {{ $task->due_date}} </b>
   <p></p>
@@ -46,7 +46,7 @@
   <label for="due_date">Due Date: </label>
   <input type="date" name="due_date" value="{{ $task->due_date }}" pattern="\d{4}-\d{2}-\d{2}">
 
-  <button type="submit">Send</button>
+  <button type="submit" class="btn btn-primary">Send</button>
 </form>
 
 </article>

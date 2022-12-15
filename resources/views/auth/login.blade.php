@@ -24,9 +24,9 @@
         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
     </label>
 
-    <button type="submit">
+    <button type="submit" class="btn btn-primary">
         Login
     </button>
-    <a class="button button-outline" href="{{ route('register') }}">Register</a>
+    <a class="btn btn-primary" href="{{ route('register') }}">Register</a>
 </form>
 @endsection

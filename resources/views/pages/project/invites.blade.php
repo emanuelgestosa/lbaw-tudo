@@ -2,10 +2,9 @@
 <link href="{{ asset('/css/project.css') }}" rel="stylesheet">
 @yield('content')
 @section('content')
-<section style="display:flex;flex-direction:column;justify-content:center">
+<section>
 <h2 class="page_name">Invites of {{$project->title}}</h2>
-    <section class="invite-content" project-id="{{$project->id}}" user-id="{{Auth::user()->id}}"
-        style="display:flex;gap:5em;margin:auto;">
+    <section class="invite-content" project-id="{{$project->id}}" user-id="{{Auth::user()->id}}">
     <section class="invite-list">
     @foreach ($project->invites()->get() as $invite) 
         <article class="project-invite-card">
@@ -18,7 +17,7 @@
       <i class="fa-solid fa-search"></i>
       <input class="search-user" type="text" placeholder="Search user...">
     </div>
-    <section class="user-results" style="display:hidden"></section>
+    <section class="user-results"></section>
   </section>
 </section>
 </section>
@@ -42,7 +41,7 @@ const preencherLista = (users) => {
     lista = document.querySelector("section.user-results")
     for (const user of users){
         const userItem = `
-            <article class="user-card" user-id=${user.id} style="margin:0.5em;padding:1em;display:flex;border:1px solid blue;border-radius:1em;">
+            <article class="user-card" user-id=${user.id} >
             <section class="user-card-name">
             <p>Name ${user.name}</p>
             <p>Username ${user.username}</p>

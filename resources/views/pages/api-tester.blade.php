@@ -8,7 +8,7 @@
 <form class="api-test" action="" onsubmit="return false">
 <label>Query:<input type="text">>
 <label>MaxItems:<input type="number">>
-<button id="tests">Test</button>
+<button id="tests" class="btn btn-primary">Test</button>
 </form>
 
 <script src ="/public/js/globals.js"></script>
