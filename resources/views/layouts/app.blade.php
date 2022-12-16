@@ -34,7 +34,7 @@
     <main>
       <header id="main_head">
         <div id="main_logo">
-          <h1 class="principal"><img src="/img/logo2.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
+          <h1 class="principal"><img src="/img/logo.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
         </div>
         @if (Auth::check())
         <div id="main_buttons">
