@@ -13,6 +13,9 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
+    <!--Fonts -->
+    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <!-- Styles -->
     <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -27,11 +30,11 @@
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body class="@stack('body-class')">
     <main>
       <header id="main_head">
         <div id="main_logo">
-          <h1 class="principal"><img src="/img/logo.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
+          <h1 class="principal"><img src="/img/logo2.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
         </div>
         @if (Auth::check())
         <div id="main_buttons">
