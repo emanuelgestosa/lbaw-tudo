@@ -19,7 +19,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a5b6fcde37.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
@@ -39,7 +38,7 @@
 
         @if (Auth::check())
         <div id="main_buttons">
-          <a class="btn btn-primary" href="{{ url('/logout') }}"> Logout </a> <a class="btn btn-primary" href="{{ url('/user/'. Auth::user()->id) }}">{{ Auth::user()->name }}</a>
+          <a class="btn btn-primary" href="{{ url('/logout') }}"> <i class="fa fa-sign-out"></i> Logout </a> <a class="btn btn-primary" href="{{ url('/user/'. Auth::user()->id) }}">{{ Auth::user()->name }}</a>
         </div>
         @endif
 

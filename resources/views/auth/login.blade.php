@@ -6,7 +6,7 @@
 <div id="login-form">
     <div id="login-form2">
         <div id="logo">
-            <img src="/img/logo.png" height="100px" weigth="100px" alt="Logo of the website a purple check composed by 2 rectangles">
+            <img src="/img/logo.png" height="100px" weigth="100px" alt="Goose made by origami gradient from purple to pink">
         </div>
         <h1>Welcome Back!</h1>
 
@@ -23,6 +23,8 @@
                     </span>
                 @endif
             </div>
+        </div>
+        <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="password" >Password</label>
                 <input id="password" class="form-control" type="password" placeholder="Password" name="password" required>
@@ -42,7 +44,7 @@
             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
         </label>
 
-        <a id="register-now" href="{{ route('register') }}"> Do not have an account? Register Now!</a>
+        <a id="register-now" href="{{ route('register') }}">Register Now!</a>
     </form>
 </div>
 </div>
