@@ -21,34 +21,11 @@ Index:
 
 body {
   background-color: var(--dark);
-  color: var(--lilac);
+  color: var(--white);
 }
-main > #main_head {
-  width: 100%;
-  height: 70px;
-  max-height: 70px;
-  margin: 0;
-  align-items: center;
-  background-color: var(--blilac);
-  padding: 1%;
-  text-align: center;
-  background: var(--blilac);
-  color: white;
-  font-size: 30px;
-  flex-direction: row;
-  justify-content: end;
-  padding-top: 9px;
-}
-main > header h1 {
-  margin: 0;
-}
-main > header a.button {
-  margin: 1em;
-  justify-self: center;
-}
-main > header span {
-  margin: 1em;
-  justify-self: center;
+
+.container-nav *.navbar-butto, .container-nav *.navbar-brand, .navbar-toggler{
+  margin: 0 10px;
 }
 
 footer {
@@ -142,25 +119,6 @@ input[type=password]:focus {
   border-color: var(--lilac);
 }
 
-#main_head {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  grid-auto-rows: minmax(50px, auto);
-}
-
-#main_logo{
-  font-size: 35px;
-  margin-top: 1%;
-  margin-left: 3%;
-  font-weight: bold;
-  grid-column: 1;
-}
-
-#main_buttons{
-  grid-column: 5;
-}
-
 .right {
   float: right;
   display: flex;
@@ -243,7 +201,7 @@ a{
 Home Page Design
 */
 
-.home-bg #main_head{
+.home-bg .container-nav{
   display: none;
 }
 
@@ -364,9 +322,11 @@ Register
 .reg-bg #login-form{
   width: 100%;
   height: 100%;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
+  grid-template-columns: auto 1fr;
+  grid-auto-rows: auto;
 }
 
 .reg-bg #login-form2{

@@ -31,24 +31,28 @@
 </head>
   <body class="@stack('body-class')">
     <main>
-      <header id="main_head">
-        <div id="main_logo">
-          <h1 class="principal"><img src="/img/logo.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
-        </div>
-
-        @if (Auth::check())
-        <div id="main_buttons">
-          <a class="btn btn-primary" href="{{ url('/logout') }}"> <i class="fa fa-sign-out"></i> Logout </a> <a class="btn btn-primary" href="{{ url('/user/'. Auth::user()->id) }}">{{ Auth::user()->name }}</a>
-        </div>
-        @endif
-
-        @if (!Auth::check())
-        <div id="main_buttons">
-          <a class="btn btn-primary" href="{{ url('/register') }}"> Register </a> <a class="btn btn-primary" href="{{ url('/login') }}"> Login </a>
-        </div>
-        @endif
-
-      </header>
+      <div class="container-nav">
+        <nav class="navbar navbar-expand-md navbar-dark shadow">
+          <a href="#" class="navbar-brand">
+            <img src="/img/logo.png" alt="Tu-Do logo a goose made by origami" width="32" height="34"
+            class="d-inline-block align-top"/>
+            Tu-Do
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu"
+          aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-butto" id="toggleMobileMenu">
+            <ul class="navbar-nav ms-auto">
+              <li>
+                <a class="nav-link" href="#">Oi </a>
+              </li>
+              <li>
+                <a class="nav-link" href="#">Tudo? </a>
+              </li>
+          </div>
+        </nav>
+      </div>
       <section id="content">
         @yield('content')
       </section>
