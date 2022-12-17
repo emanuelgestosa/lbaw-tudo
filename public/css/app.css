@@ -5,6 +5,7 @@ Index:
   - Overrides           Overrides bootstrap css
   - Home Page Design    Changes the homepage design
   - Profile             Users profile page
+  - Nav e footer
 */
 
 
@@ -22,30 +23,6 @@ Index:
 body {
   background-color: var(--dark);
   color: var(--white);
-}
-
-.container-nav *.navbar-butto, .container-nav *.navbar-brand, .navbar-toggler{
-  margin: 0 10px;
-}
-
-footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   padding: 0.7%;
-   background-color: var(--lilac);
-   text-align: center;
-}
-
-footer a {
-    color: var(--white);
-    font-weight: bold;
-    margin-inline: 2%;
-}
-
-.principal {
-    text-align: center;
 }
 
 #content label {
@@ -163,6 +140,44 @@ input[type=password]:focus {
   padding: 5px 22px 5px 22px;
   border-color: var(--lilac);
 }
+
+/*
+Nav e footer
+*/
+.container-nav *.navbar-butto, .container-nav *.navbar-brand, .navbar-toggler{
+  margin: 0 10px;
+}
+
+.pfp-nav{
+  width: 35px;
+  height: 35px;
+  position: relative;
+}
+
+.pfp-nav > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  position: relative;
+}
+
+footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   padding: 0.7%;
+   background-color: var(--lilac);
+   text-align: center;
+}
+
+footer a {
+    color: var(--white);
+    font-weight: bold;
+    margin-inline: 2%;
+}
+
 
 /*
 Overrides

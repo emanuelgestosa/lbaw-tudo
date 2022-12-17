@@ -31,6 +31,7 @@
 </head>
   <body class="@stack('body-class')">
     <main>
+      @if (Auth::check())
       <div class="container-nav">
         <nav class="navbar navbar-expand-md navbar-dark shadow">
           <a href="#" class="navbar-brand">
@@ -45,22 +46,27 @@
           <div class="collapse navbar-collapse navbar-butto" id="toggleMobileMenu">
             <ul class="navbar-nav ms-auto">
               <li>
-                <a class="nav-link" href="#">Oi </a>
+                <a class="nav-link" href="#"> <i class="fa fa-bell"></i> Notifications</a>
+
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                  <div class="pfp-nav">
+                    <img src="https://picsum.photos/175/175"/>
+                  </div>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="{{ url('user/' . $id . '/projects') }}">Projects</a></li>
+                  <li><a class="dropdown-item" href="#">Calendar</a></li>
+                  <li><a class="dropdown-item" href="#">My Favorites</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/logout') }}"> <i class="fa fa-sign-out"></i> Logout </a> </li>
                 </ul>
               </li>
           </div>
         </nav>
       </div>
+      @endif
       <section id="content">
         @yield('content')
       </section>
