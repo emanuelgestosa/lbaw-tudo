@@ -56,7 +56,7 @@
                   </div>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{{ url('user/' . $id . '/projects') }}">Projects</a></li>
+                  
                   <li><a class="dropdown-item" href="#">Calendar</a></li>
                   <li><a class="dropdown-item" href="#">My Favorites</a></li>
                   <li><hr class="dropdown-divider"></li>
@@ -67,6 +67,32 @@
         </nav>
       </div>
       @endif
+
+      @if (!Auth::check())
+      <div class="container-nav">
+        <nav class="navbar navbar-expand-md navbar-dark shadow">
+          <a href="{{ url('/') }}" class="navbar-brand">
+            <img src="/img/logo.png" alt="Tu-Do logo a goose made by origami" width="32" height="34"
+            class="d-inline-block align-top"/>
+            Tu-Do
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu"
+          aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-butto" id="toggleMobileMenu">
+            <ul class="navbar-nav ms-auto">
+              <li>
+                <a class="nav-link" href="{{ url('/register') }}"> Register </a> 
+              </li>
+              <li>
+                <a class="nav-link" href="{{ url('/login') }}"> Login </a>
+              </li>
+          </div>
+        </nav>
+      </div>
+      @endif
+
       <section id="content">
         @yield('content')
       </section>
