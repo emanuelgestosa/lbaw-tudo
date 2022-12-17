@@ -1,32 +1,49 @@
 @extends('layouts.app')
+@push('body-class', 'login-bg')
 
 @section('content')
-<form method="POST" action="{{ route('login') }}">
-    {{ csrf_field() }}
 
-    <label for="username">Username</label>
-    <input id="username" type="text" name="username" value="{{ old('username') }}" required autofocus>
-    @if ($errors->has('username'))
-        <span class="error">
-          {{ $errors->first('username') }}
-        </span>
-    @endif
+<div id="login-form">
+    <div id="login-form2">
+        <div id="logo">
+            <img src="/img/logo.png" height="100px" weigth="100px" alt="Logo of the website a purple check composed by 2 rectangles">
+        </div>
+        <h1>Welcome Back!</h1>
 
-    <label for="password" >Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-        <span class="error">
-            {{ $errors->first('password') }}
-        </span>
-    @endif
+    <form class="form-auth" method="POST" action="{{ route('login') }}">
+        {{ csrf_field() }}
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="username" class=>Username</label>
+                <input id="username" class="form-control" type="text" name="username" placeholder="Username" value="{{ old('username') }}" required autofocus>
+                @if ($errors->has('username'))
+                    <span class="error">
+                    {{ $errors->first('username') }}
+                    </span>
+                @endif
+            </div>
+            <div class="form-group col-md-6">
+                <label for="password" >Password</label>
+                <input id="password" class="form-control" type="password" placeholder="Password" name="password" required>
+                @if ($errors->has('password'))
+                    <span class="error">
+                        {{ $errors->first('password') }}
+                    </span>
+                @endif        
+            </div>
+            <button type="submit" class="btn btn-primary">
+                Login
+            </button>
+        </div>
 
-    <label>
-        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-    </label>
 
-    <button type="submit" class="btn btn-primary">
-        Login
-    </button>
-    <a class="btn btn-primary" href="{{ route('register') }}">Register</a>
-</form>
+        <label id="remember-me">
+            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+        </label>
+
+        <a id="register-now" href="{{ route('register') }}"> Do not have an account? Register Now!</a>
+    </form>
+</div>
+</div>
 @endsection

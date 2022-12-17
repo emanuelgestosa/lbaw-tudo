@@ -25,8 +25,8 @@ body {
 }
 main > #main_head {
   width: 100%;
-  height: 80px;
-  max-height: 80px;
+  height: 70px;
+  max-height: 70px;
   margin: 0;
   align-items: center;
   background-color: var(--blilac);
@@ -78,7 +78,6 @@ footer a {
 #content > form {
   margin: 0 auto;
   padding: 1em;
-  max-width: 20em;
   border: 1px solid --blilac;
 }
 
@@ -112,10 +111,7 @@ footer a {
   main > header span {
     margin: 0;
   }
-  #content form {
-    margin: 0;
-    max-width: 25em;
-  }
+
 }
 
 /**
@@ -328,5 +324,45 @@ Profile
   position: relative;
 }
 
+/*
+Login
+*/
+.login-bg #login-form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login.bg #login-form2{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-bg .form-auth .form-row *{
+  width: 100%;
+}
+
+.login-bg h1, #logo{
+  text-align: center;
+}
+
+.login-bg .form-control{
+  margin-bottom: 10px;
+}
+
+.login-bg #password.form-control{
+  margin-bottom: 30px;
+}
+
+.login-bg #register-now{
+  text-decoration: underline;
+  font-weight: bold;
+  color: rgb(235, 185, 21);
+  break-before: auto;
+}
 
 

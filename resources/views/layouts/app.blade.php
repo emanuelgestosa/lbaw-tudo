@@ -25,22 +25,30 @@
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
-    <script type="text/javascript" src={{ asset('js/app.js') }} defer>
-</script>
+    <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  </head>
+  
+</head>
   <body class="@stack('body-class')">
     <main>
       <header id="main_head">
         <div id="main_logo">
           <h1 class="principal"><img src="/img/logo.png" height="50px" alt="Design of a chicken with blue feathers"> <a href="{{ url('/') }}">Tu-Do</a></h1>
         </div>
+
         @if (Auth::check())
         <div id="main_buttons">
           <a class="btn btn-primary" href="{{ url('/logout') }}"> Logout </a> <a class="btn btn-primary" href="{{ url('/user/'. Auth::user()->id) }}">{{ Auth::user()->name }}</a>
         </div>
-          @endif
+        @endif
+
+        @if (!Auth::check())
+        <div id="main_buttons">
+          <a class="btn btn-primary" href="{{ url('/register') }}"> Register </a> <a class="btn btn-primary" href="{{ url('/login') }}"> Login </a>
+        </div>
+        @endif
+
       </header>
       <section id="content">
         @yield('content')
