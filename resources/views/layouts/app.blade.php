@@ -34,7 +34,7 @@
       @if (Auth::check())
       <div class="container-nav">
         <nav class="navbar navbar-expand-md navbar-dark shadow">
-          <a href="#" class="navbar-brand">
+          <a href="{{ url('/') }}" class="navbar-brand">
             <img src="/img/logo.png" alt="Tu-Do logo a goose made by origami" width="32" height="34"
             class="d-inline-block align-top"/>
             Tu-Do
@@ -52,11 +52,13 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="pfp-nav">
-                    <img src="https://picsum.photos/175/175"/>
+                    <img src="https://picsum.photos/175/175"/> 
                   </div>
-                </a>
-                <ul class="dropdown-menu">
                   
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                  <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id) }}"> My Profile </a>
+                  <li><a class="dropdown-item" href="#">Calendar</a></li>
                   <li><a class="dropdown-item" href="#">Calendar</a></li>
                   <li><a class="dropdown-item" href="#">My Favorites</a></li>
                   <li><hr class="dropdown-divider"></li>
