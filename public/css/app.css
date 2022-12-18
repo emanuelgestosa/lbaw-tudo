@@ -25,6 +25,10 @@ body {
   color: var(--blilac);
 }
 
+ul{
+  list-style-type: none;
+}
+
 #content label {
   font-weight: normal;
 }
@@ -96,11 +100,6 @@ input[type=password]:focus {
   border-color: var(--lilac);
 }
 
-.right {
-  float: right;
-  display: flex;
-  flex-direction: column;
-}
 
 .items {
   display: flex;
@@ -283,22 +282,38 @@ Home Page Design
 /*
 Profile
 */
-.pfp{
+.profile-bg .pfp{
   width: 200px;
   height: 200px;
   position: relative;
+  border-radius: 50%;
+  box-shadow: 4px 6px 0 #a055ec4f;
 }
 
-.pfp > img{
+.profile-bg .pfp > img{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 50%;
   border-style: solid;
   border-width: 3px;
   border-color: var(--blilac);
   position: relative;
 }
+.profile-bg #contacts{
+  margin: 0;
+}
+.profile-bg #contacts li{
+  text-decoration: none;
+  margin:10px 0px;
+}
+.profile-bg .right {
+  float: right;
+  display: inline;
+  flex-direction: column;
+}
+
+
 
 /*
 Login

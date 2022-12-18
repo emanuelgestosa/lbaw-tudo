@@ -58,6 +58,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
                   <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id) }}"> My Profile </a>
+                  <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id . '/projects') }}"> My Projects </a>
                   <li><a class="dropdown-item" href="#">Calendar</a></li>
                   <li><a class="dropdown-item" href="#">Calendar</a></li>
                   <li><a class="dropdown-item" href="#">My Favorites</a></li>
