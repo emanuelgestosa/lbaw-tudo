@@ -1,6 +1,7 @@
 import {sendRequest} from '../app.js'
 
   const acceptButtons = document.querySelectorAll('#accept')
+if(acceptButton){
   for (const acceptButton of acceptButtons) {
     acceptButton.addEventListener('click',() => {
       const inviteId = acceptButton.parentElement.querySelector('input[name=inviteId]').value
@@ -23,3 +24,4 @@ import {sendRequest} from '../app.js'
       declineButton.parent.parent.style.display=none
     })
   }
+}

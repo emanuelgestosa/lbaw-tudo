@@ -1,8 +1,10 @@
+import { sendRequest } from "../app.js";
+
 const searchUser = async (query,maxItems) =>{
     const params ={ query:query,maxItems:maxItems}
     const url = new URL(window.SERVER + "/api/search/users")
     url.search = new URLSearchParams(params).toString();
-    const response = await fetch(url)
+    const response = await  sendRequest(url,{method:"GET"})
     const jsonResponse = await response.json()
     return jsonResponse
 }
@@ -42,7 +44,7 @@ const preencherLista = (users) => {
             const url = `${window.SERVER}/api/project/${projectId}/invites`
             const data = {id_invitee:idInvitee,id_inviter:idInviter}
             card.style.display="none"
-            const response = await fetch(url,
+            const response = await sendRequest(url,
                 {
                      method:"POST",
                      headers: {
@@ -58,12 +60,13 @@ const preencherLista = (users) => {
 }
 
 const queryInput= document.querySelector("input.search-user")
+if (queryInput){
 queryInput.addEventListener('input',async () =>{
     const maxItems = 10
     apagarLista()
     if (queryInput.value != "") {
     const result = await searchUser(queryInput.value,maxItems)
     preencherLista(result)
-    
     }
 })
+}

@@ -1,8 +1,10 @@
+import {sendRequest} from '../app.js'
+
 const searchUser = async (query,maxItems) =>{
     const params ={ query:query,maxItems:maxItems}
     const url = new URL(SERVER + "/api/search/users")
     url.search = new URLSearchParams(params).toString();
-    const response = await fetch(url)
+    const response = sendRequest(url,{method:"GET"})
     const jsonResponse = await response.json()
     return jsonResponse
 }
@@ -26,20 +28,20 @@ const preencherLista = (users) =>{
     for (const card of userCards){
         card.addEventListener('click',() =>{
             const userId = card.getAttribute('user-id')
-            window.location= (SERVER + "/user/"+userId);
+            window.location= (window.SERVER + "/user/"+userId);
         })
     }
     lista.style.display= "block"
 }
 const queryInput = document.querySelector("input.search-user")
 const searchButton = document.querySelector("forum.search_bar>i")
-
+if(queryInput){
 queryInput.addEventListener('input',async () =>{
     const maxItems = 10
     apagarLista()
     if (queryInput.value != "") {
     const result = await searchUser(queryInput.value,maxItems)
     preencherLista(result)
-    
     }
 })
+}
