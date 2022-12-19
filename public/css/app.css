@@ -29,6 +29,14 @@ ul{
   list-style-type: none;
 }
 
+.dropdown-menu-dark{
+  background-color: var(--blilac);
+}
+
+.dropdown-toggle{
+  display: inline-flex;
+}
+
 #content label {
   font-weight: normal;
 }
@@ -288,6 +296,7 @@ Profile
   position: relative;
   border-radius: 50%;
   box-shadow: 4px 6px 0 #a055ec4f;
+  margin: 30px 0px;
 }
 
 .profile-bg .pfp > img{
@@ -311,6 +320,9 @@ Profile
   float: right;
   display: inline;
   flex-direction: column;
+}
+.profile-bg{
+  display: block;
 }
 
 

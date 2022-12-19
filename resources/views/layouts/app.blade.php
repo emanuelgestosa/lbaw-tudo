@@ -54,12 +54,11 @@
                   <div class="pfp-nav">
                     <img src="https://picsum.photos/175/175"/> 
                   </div>
-                  
+                  My Profile
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow">
                   <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id) }}"> My Profile </a>
                   <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id . '/projects') }}"> My Projects </a>
-                  <li><a class="dropdown-item" href="#">Calendar</a></li>
                   <li><a class="dropdown-item" href="#">Calendar</a></li>
                   <li><a class="dropdown-item" href="#">My Favorites</a></li>
                   <li><hr class="dropdown-divider"></li>
