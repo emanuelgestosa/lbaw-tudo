@@ -1,12 +1,8 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./resources/js/app.js":
+var __webpack_exports__ = {};
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ (() => {
-
 function addEventListeners() {
   var itemCheckers = document.querySelectorAll('article.card li.item input[type=checkbox]');
   [].forEach.call(itemCheckers, function (checker) {
@@ -148,28 +144,5 @@ addEventListeners();
 var LOCAL = "http://127.0.0.1:8000";
 var PRODUCTION = "https://lbaw2215.lbaw.fe.up.pt";
 var SERVER = PRODUCTION;
-
-/***/ }),
-
-/***/ "./resources/css/app.css":
-/*!*******************************!*\
-  !*** ./resources/css/app.css ***!
-  \*******************************/
-/***/ (() => {
-
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nError: Can't resolve './common.css' in '/home/martim/Desktop/Repositories/lbaw2215/resources/css'\n    at finishWithoutResolve (/home/martim/Desktop/Repositories/lbaw2215/node_modules/enhanced-resolve/lib/Resolver.js:309:18)\n    at /home/martim/Desktop/Repositories/lbaw2215/node_modules/enhanced-resolve/lib/Resolver.js:386:15\n    at /home/martim/Desktop/Repositories/lbaw2215/node_modules/enhanced-resolve/lib/Resolver.js:435:5\n    at eval (eval at create (/home/martim/Desktop/Repositories/lbaw2215/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:14:1)\n    at /home/martim/Desktop/Repositories/lbaw2215/node_modules/enhanced-resolve/lib/Resolver.js:435:5\n    at eval (eval at create (/home/martim/Desktop/Repositories/lbaw2215/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:25:1)\n    at /home/martim/Desktop/Repositories/lbaw2215/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:87:43\n    at /home/martim/Desktop/Repositories/lbaw2215/node_modules/enhanced-resolve/lib/Resolver.js:435:5\n    at eval (eval at create (/home/martim/Desktop/Repositories/lbaw2215/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\n    at /home/martim/Desktop/Repositories/lbaw2215/node_modules/enhanced-resolve/lib/Resolver.js:435:5\n    at processResult (/home/martim/Desktop/Repositories/lbaw2215/node_modules/webpack/lib/NormalModule.js:758:19)\n    at /home/martim/Desktop/Repositories/lbaw2215/node_modules/webpack/lib/NormalModule.js:860:5\n    at /home/martim/Desktop/Repositories/lbaw2215/node_modules/loader-runner/lib/LoaderRunner.js:400:11\n    at /home/martim/Desktop/Repositories/lbaw2215/node_modules/loader-runner/lib/LoaderRunner.js:252:18\n    at context.callback (/home/martim/Desktop/Repositories/lbaw2215/node_modules/loader-runner/lib/LoaderRunner.js:124:13)\n    at Object.loader (/home/martim/Desktop/Repositories/lbaw2215/node_modules/css-loader/dist/index.js:155:5)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)");
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	__webpack_modules__["./resources/js/app.js"]();
-/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./resources/css/app.css"]();
-/******/ 	
 /******/ })()
 ;
