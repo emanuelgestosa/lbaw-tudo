@@ -178,7 +178,5 @@ function createItem(item) {
 }
 
 addEventListeners();
-const LOCAL =  "http://127.0.0.1:8000"
-const PRODUCTION = "https://lbaw2215.lbaw.fe.up.pt"
-const SERVER = PRODUCTION
+const SERVER = process.env.MIX_SENTRY_DSN_PUBLIC
 
