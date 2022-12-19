@@ -2,6 +2,7 @@
 
 php artisan config:clear
 php artisan cache:clear
+php artisan view:clear
 
 rm .env
 cp .env.local .env
