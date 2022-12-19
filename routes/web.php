@@ -42,7 +42,7 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 // Task
-Route::get('/task/{id}', [TaskController::class,'show']);
+Route::get('/task/{id}', 'TaskController@show');
 Route::get('/verticals/{vertical_id}/add_task', 'TaskController@showCreate');
 Route::post('/verticals/{vertical_id}/add_task', 'TaskController@add_task')->name('add_task');
 
@@ -50,12 +50,12 @@ Route::post('/verticals/{vertical_id}/add_task', 'TaskController@add_task')->nam
 Route::get('/board/{id}/create', 'VerticalController@showCreate');
 
 // Board
-Route::get('/board/{id}', [BoardController::class,'show'])->name('board');
+Route::get('/board/{id}', 'BoardController@show')->name('board');
 Route::get('/project/{id}/boards/create', 'BoardController@showCreate');
 
 // Project
-Route::get('/project/{id}', [ProjectController::class,'show']);
-Route::get('/project/{id}/invites',[ProjectController::class,'invites']);
+Route::get('/project/{id}', 'ProjectController@show');
+Route::get('/project/{id}/invites','ProjectController@invites');
 Route::get('/user/{user_id}/add_project', 'ProjectController@showCreate');
 Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('add_project');
 
