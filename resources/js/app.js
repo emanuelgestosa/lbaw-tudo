@@ -177,6 +177,11 @@ function createItem(item) {
   return new_item;
 }
 
+
 //addEventListeners();
-window.SERVER = process.env.MIX_SENTRY_DSN_PUBLIC
-console.log(`Server is ${window.SERVER} wtf`)
+export const sendRequest = async (url,options){ 
+    const SERVER = process.env.MIX_SENTRY_DSN_PUBLIC
+    const fullUrl = SERVER + url
+    const response = await fetch(fullUrl,options)
+    return response
+}
