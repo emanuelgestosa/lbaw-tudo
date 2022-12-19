@@ -99,3 +99,7 @@ argument is the foreign key name of the model that you are joining to:
 <?php
 return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
 ```
+
+## Packing JavaScript
+
+- when developing js run `npm run watch` to automatically compile any JavaScript asset to the correct folder.
