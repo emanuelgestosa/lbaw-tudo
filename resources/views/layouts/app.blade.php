@@ -54,7 +54,7 @@
                   <div class="pfp-nav">
                     <img src="https://picsum.photos/175/175"/> 
                   </div>
-                  My Profile
+                  Me
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow">
                   <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id) }}"> My Profile </a>
