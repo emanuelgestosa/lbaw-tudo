@@ -21,34 +21,19 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 
 
+// User Invites
 Route::get('/user/{id}/invites/received','UserInvitesController@received');
 Route::get('/user/{id}/invites/sent','UserInvitesController@sent');
-
 Route::post('user/{userId}/invites/{inviteId}', 'UserInvitesController@accept');
 Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline');
 
-
-Route::get('project/{id}/invites',function ($id){
-    $result = Project::find($id)->invites()->get();
-    return response()->json($result);
-
-});
-
-Route::post('project/{id}/invites',function (Request $r,$id){
-    $invitee = $r->input('id_invitee');
-    $inviter = $r->input('id_inviter');
-    $invite = Invite::create(
-            ['id_invitee' => $invitee,
-             'id_inviter' => $inviter,
-             'id_project' => $id]);
-    return response()->json(["success"=>true]);
-});
+// Project Invites
+Route::get('project/{id}/invites','ProjectInvitesController@invites');
+Route::post('project/{id}/invites','ProjectInvitesController@sendInvite');
 
 
-Route::get('/search/users','FullTexSearch@users');
-
-Route::get('/search/projects','FullTexSearch@projects');
-
-Route::get('/search/tasks','FullTexSearch@tasks');
-
-Route::get('/search/labels','FullTexSearch@lables');
+// Full Text Search
+Route::get('/search/users','FullTextSearch@users');
+Route::get('/search/projects','FullTextSearch@projects');
+Route::get('/search/tasks','FullTextSearch@tasks');
+Route::get('/search/labels','FullTextSearch@lables');
