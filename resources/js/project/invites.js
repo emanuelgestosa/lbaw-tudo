@@ -39,7 +39,7 @@ const userCardEventGoToProfile = (card) => {
     window.location = window.SERVER + '/user/' + cardUserId
   })
 }
-const userCardSendInvite = (card) =>{
+const userCardSendInvite = (card) => {
   const cardUserId = card.getAttribute('user-id')
   card
     .querySelector('section.user-card-send-invite')
@@ -60,12 +60,17 @@ const userCardSendInvite = (card) =>{
         body: JSON.stringify(data),
       }
       const response = await sendRequest(url, options)
+      if (response.ok) {
+        console.log('Correctly Invited User')
+      } else {
+        // Send POpup?
+      }
     })
 }
 
 const addUserCardEvents = (card) => {
-    userCardEventGoToProfile(card)
-    userCardSendInvite(card)
+  userCardEventGoToProfile(card)
+  userCardSendInvite(card)
 }
 const addEventListenerToUserCards = () => {
   const userCards = document.querySelectorAll('article.user-card')

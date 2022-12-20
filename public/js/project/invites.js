@@ -24,18 +24,16 @@ var sendRequest = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log("Send Request Called");
             fullUrl = new URL(window.SERVER + url);
-            console.log(fullUrl);
             if (options.method === "GET") {
               fullUrl.search = new URLSearchParams(options.params).toString();
             }
-            _context.next = 6;
+            _context.next = 4;
             return fetch(fullUrl, options);
-          case 6:
+          case 4:
             response = _context.sent;
             return _context.abrupt("return", response);
-          case 8:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -160,89 +158,101 @@ var deleteUserResults = function deleteUserResults() {
   lista.innerHTML = '';
   lista.style.display = 'hidden';
 };
-var fillUserResults = function fillUserResults(users) {
-  var lista = document.querySelector('section.user-results');
-
-  // Create UserResults Cards
+var createUserResultCards = function createUserResultCards(users) {
+  var cards = '';
   var _iterator = _createForOfIteratorHelper(users),
     _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var user = _step.value;
-      var userItem = "\n            <article class=\"user-card\" user-id=".concat(user.id, " style=\"margin:0.5em;padding:1em;display:flex;border:1px solid blue;border-radius:1em;\">\n            <section class=\"user-card-name\">\n            <p>Name ").concat(user.name, "</p>\n            <p>Username ").concat(user.username, "</p>\n            </section>\n            <section class=\"user-card-send-invite\">\n                <i class=\"fa-solid fa-envelope\"></i>\n            </section>            \n            </article>\n            ");
-      lista.innerHTML += userItem;
+      var userCard = "\n            <article class=\"user-card\" user-id=".concat(user.id, " style=\"margin:0.5em;padding:1em;display:flex;border:1px solid blue;border-radius:1em;\">\n            <section class=\"user-card-name\">\n            <p>Name ").concat(user.name, "</p>\n            <p>Username ").concat(user.username, "</p>\n            </section>\n            <section class=\"user-card-send-invite\">\n                <i class=\"fa-solid fa-envelope\"></i>\n            </section>            \n            </article>\n            ");
+      cards += userCard;
     }
-
-    // Add Event listener to invite users
   } catch (err) {
     _iterator.e(err);
   } finally {
     _iterator.f();
   }
+  return cards;
+};
+var userCardEventGoToProfile = function userCardEventGoToProfile(card) {
+  var cardUserId = card.getAttribute('user-id');
+  card.querySelector('section.user-card-name').addEventListener('click', function () {
+    window.location = window.SERVER + '/user/' + cardUserId;
+  });
+};
+var userCardSendInvite = function userCardSendInvite(card) {
+  var cardUserId = card.getAttribute('user-id');
+  card.querySelector('section.user-card-send-invite').addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+    var op, projectId, idInviter, idInvitee, url, data, options, response;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            op = document.querySelector('section.invite-content');
+            projectId = op.getAttribute('project-id');
+            idInviter = op.getAttribute('user-id');
+            idInvitee = cardUserId;
+            card.style.display = 'none';
+            url = "/api/project/".concat(projectId, "/invites");
+            data = {
+              id_invitee: idInvitee,
+              id_inviter: idInviter
+            };
+            options = {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            };
+            _context2.next = 10;
+            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)(url, options);
+          case 10:
+            response = _context2.sent;
+            if (response.ok) {
+              console.log('Correctly Invited User');
+            } else {
+              // Send POpup?
+            }
+          case 12:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  })));
+};
+var addUserCardEvents = function addUserCardEvents(card) {
+  userCardEventGoToProfile(card);
+  userCardSendInvite(card);
+};
+var addEventListenerToUserCards = function addEventListenerToUserCards() {
   var userCards = document.querySelectorAll('article.user-card');
   var _iterator2 = _createForOfIteratorHelper(userCards),
     _step2;
   try {
-    var _loop = function _loop() {
-      var card = _step2.value;
-      var cardUserId = card.getAttribute('user-id');
-      // Clicking On the name goes to the profile
-      card.querySelector('section.user-card-name').addEventListener('click', function () {
-        window.location = window.SERVER + '/user/' + cardUserId;
-      });
-      // Clicking on the envolope invites the user to the project
-      card.querySelector('section.user-card-send-invite').addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var op, projectId, idInviter, idInvitee, url, data, options, response;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                op = document.querySelector('section.invite-content');
-                projectId = op.getAttribute('project-id');
-                idInviter = op.getAttribute('user-id');
-                idInvitee = cardUserId;
-                card.style.display = 'none';
-                url = "/api/project/".concat(projectId, "/invites");
-                data = {
-                  id_invitee: idInvitee,
-                  id_inviter: idInviter
-                };
-                options = {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(data)
-                };
-                _context2.next = 10;
-                return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)(url, options);
-              case 10:
-                response = _context2.sent;
-                console.log(url);
-                console.log(response);
-              case 13:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      })));
-    };
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      _loop();
+      var card = _step2.value;
+      addUserCardEvents(card);
     }
-    // Show the user result list
   } catch (err) {
     _iterator2.e(err);
   } finally {
     _iterator2.f();
   }
+};
+var createUserResults = function createUserResults(users) {
+  var cards = createUserResultCards(users);
+  var lista = document.querySelector('section.user-results');
+  lista.innerHTML = cards;
+  addEventListenerToUserCards();
   lista.style.display = 'block';
 };
 var queryInput = document.querySelector('input.search-user');
 if (queryInput) {
   queryInput.addEventListener('input', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-    var maxItems, result;
+    var maxItems, users;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -256,8 +266,8 @@ if (queryInput) {
             _context3.next = 5;
             return searchUsers(queryInput.value, maxItems);
           case 5:
-            result = _context3.sent;
-            fillUserResults(result);
+            users = _context3.sent;
+            createUserResults(users);
           case 7:
           case "end":
             return _context3.stop();

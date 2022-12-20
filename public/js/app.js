@@ -53,18 +53,16 @@ var sendRequest = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log("Send Request Called");
             fullUrl = new URL(window.SERVER + url);
-            console.log(fullUrl);
             if (options.method === "GET") {
               fullUrl.search = new URLSearchParams(options.params).toString();
             }
-            _context.next = 6;
+            _context.next = 4;
             return fetch(fullUrl, options);
-          case 6:
+          case 4:
             response = _context.sent;
             return _context.abrupt("return", response);
-          case 8:
+          case 6:
           case "end":
             return _context.stop();
         }

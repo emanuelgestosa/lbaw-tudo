@@ -33,7 +33,7 @@ Route::post('project/{id}/invites','ProjectInvitesController@sendInvite');
 
 
 // Full Text Search
-Route::get('/search/users','FullTextSearch@users');
-Route::get('/search/projects','FullTextSearch@projects');
-Route::get('/search/tasks','FullTextSearch@tasks');
-Route::get('/search/labels','FullTextSearch@lables');
+Route::get('/search/users','FullTextSearchController@users');
+Route::get('/search/projects','FullTextSearchController@projects');
+Route::get('/search/tasks','FullTextSearchController@tasks');
+Route::get('/search/labels','FullTextSearchController@lables');
