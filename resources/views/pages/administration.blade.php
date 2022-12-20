@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<script defer src="/js/user/administration.js"></script>
 @yield('content')
 
 @section('content')

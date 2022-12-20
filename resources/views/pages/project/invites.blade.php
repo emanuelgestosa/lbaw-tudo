@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link href="{{ asset('/css/project.css') }}" rel="stylesheet">
+<script src="/js/project/invites.js"></script>
 @yield('content')
 @section('content')
 <section style="display:flex;flex-direction:column;justify-content:center">
