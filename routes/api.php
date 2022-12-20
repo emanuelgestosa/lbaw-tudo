@@ -99,3 +99,5 @@ Route::get('/search/labels',function (Request $r){
          ->json($result);
 
 });
+
+Route::post('/user', 'UserController@create');

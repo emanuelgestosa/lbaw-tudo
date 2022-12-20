@@ -25,7 +25,6 @@ Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects
 Route::get('/user/{id}/invites', 'UserController@showInvites');
 
 // API
-Route::post('/api/user', 'UserController@create');
 Route::patch('/api/user/{id}', 'UserController@edit');
 Route::delete('/api/user/{id}', 'UserController@delete');
 Route::post('/api/project/{id}/board', 'BoardController@create');

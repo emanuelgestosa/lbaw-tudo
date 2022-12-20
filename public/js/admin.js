@@ -84,8 +84,7 @@ function openCreateUser() {
 
   /* create form */
   let form = document.createElement('form')
-  form.setAttribute('method', 'POST')
-  form.setAttribute('action', '/api/user')
+  form.setAttribute('action', 'javascript:void(0);')
 
   /* create labels */
   let labelName = document.createElement('label')
@@ -140,32 +139,110 @@ function openCreateUser() {
   inputPasswordC.setAttribute('name', 'password_confirmation')
   inputPasswordC.setAttribute('required', 'required')
 
+  /* error messages */
+  let errorName = document.createElement('span')
+  errorName.className = 'error'
+  errorName.id = 'error-name'
+  errorName.style.color = 'red'
+  let errorUsername = document.createElement('span')
+  errorUsername.className = 'error'
+  errorUsername.id = 'error-username'
+  errorUsername.style.color = 'red'
+  let errorMail = document.createElement('span')
+  errorMail.className = 'error'
+  errorMail.id = 'error-mail'
+  errorMail.style.color = 'red'
+  let errorPhone = document.createElement('span')
+  errorPhone.className = 'error'
+  errorPhone.id = 'error-phone'
+  errorPhone.style.color = 'red'
+  let errorPassword = document.createElement('span')
+  errorPassword.className = 'error'
+  errorPassword.id = 'error-password'
+  errorPassword.style.color = 'red'
+
   /* submit button */
   let submit = document.createElement('button')
   submit.setAttribute('type', 'submit')
   submit.innerText = 'Create'
 
-  /* csrf token */
-  let token = document.createElement('input')
-  token.setAttribute('type', 'hidden')
-  token.setAttribute('name', '_token')
-  token.setAttribute('value', document.querySelector('meta[name="csrf-token"]').content)
-
   /* build form */
-  form.appendChild(token)
   form.appendChild(labelName)
   form.appendChild(inputName)
+  form.appendChild(errorName)
   form.appendChild(labelUsername)
   form.appendChild(inputUsername)
+  form.appendChild(errorUsername)
   form.appendChild(labelMail)
   form.appendChild(inputMail)
+  form.appendChild(errorMail)
   form.appendChild(labelPhone)
   form.appendChild(inputPhone)
+  form.appendChild(errorPhone)
   form.appendChild(labelPassword)
   form.appendChild(inputPassword)
+  form.appendChild(errorPassword)
   form.appendChild(labelPasswordC)
   form.appendChild(inputPasswordC)
   form.appendChild(submit)
+
+  form.addEventListener('submit', async () => {
+    url = new URL(SERVER + '/api/user')
+    const rawResponse = await fetch(url.toString(), {
+      method: 'POST',
+      headers: {
+        'Accept': 'application:json',
+        'Content-Type': 'application:json'
+      },
+      body: JSON.stringify({
+        name: inputName.value,
+        username: inputUsername.value,
+        email: inputMail.value,
+        phone_number: inputPhone.value,
+        password: inputPassword.value,
+        password_confirmation: inputPasswordC.value
+      })
+    })
+    const contents = await rawResponse.json()
+    if (!contents['success']) {
+      const inputs = document.querySelectorAll('form > input')
+      for (let i = 0; i < inputs.length; i++) {
+        inputs[i].style.borderColor = '#d1d1d1'
+      }
+      const errors = document.querySelectorAll('.error')
+      for (let i = 0; i < errors.length; i++) {
+        errors[i].innerText = ''
+      }
+      for (let error in contents['error']) {
+        if (error == 'name') {
+          errorName = document.getElementById('error-name')
+          document.getElementById('name').style.borderColor = 'red'
+          errorName.textContent = contents['error'][error][0]
+        } else if (error == 'username') {
+          errorUsername = document.getElementById('error-username')
+          document.getElementById('username').style.borderColor = 'red'
+          errorUsername.textContent = contents['error'][error][0]
+        } else if (error == 'email') {
+          errorMail = document.getElementById('error-mail')
+          document.getElementById('email').style.borderColor = 'red'
+          errorMail.textContent = contents['error'][error][0]
+        } else if (error == 'phone_number') {
+          errorPhone = document.getElementById('error-phone')
+          document.getElementById('phone_number').style.borderColor = 'red'
+          errorPhone.textContent = contents['error'][error][0]
+        } else if (error == 'password') {
+          errorPassword = document.getElementById('error-password')
+          document.getElementById('password').style.borderColor = 'red'
+          errorPassword.textContent = contents['error'][error][0]
+        }
+      }
+    } else {
+      const p = document.createElement('p')
+      p.innerText = 'Account created with success!'
+      content.innerHTML = ''
+      content.appendChild(p)
+    }
+  })
 
   content.innerHTML = ''
   content.appendChild(form)
