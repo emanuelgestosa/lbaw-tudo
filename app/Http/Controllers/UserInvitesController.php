@@ -51,4 +51,19 @@ class UserInvitesController extends Controller
             return response()->json(["Message" => "Invite is no longer available"], 404);
         }
     }
+
+    public static function deleteSentInvite($userId,$inviteId)
+    {
+        $invite = Invite::find('id', $inviteId);
+        if ($invite) {
+            if ($invite->id_inviter != $userId) {
+                return response()->json(["Message" => "User Did Not Sent This Invite"], 405);
+            } else {
+                $invite->delete();
+                return response()->json(["Message" => "Successefully Removed Invite"], 200);
+            }
+        } else {
+            return response()->json(["Message" => "Invite Does Not Exists"], 404);
+        }
+    }
 }
