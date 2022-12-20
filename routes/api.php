@@ -26,13 +26,13 @@ Route::get('/search/users',function (Request $r){
     $maxItems=$r->get('maxItems',0);
     $result = User::search($search)->take($maxItems)->get();
     return response()
-         ->json($result);
+         ->json($result,200);
 
 });
 
 Route::get('/user/{id}/invites/received',function ($id){
     $result = User::find($id)->invitesReceived()->get();
-    return response()->json($result);
+    return response()->json($result,200);
 });
 
 Route::post('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
@@ -40,7 +40,7 @@ Route::post('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
     $invite = Invite::find($inviteId);
     $invite->project()->first()->collaborators()->save(User::find($userId));
     $invite->delete();
-    return response()->json();
+    return response()->json(201);
     
 });
 
