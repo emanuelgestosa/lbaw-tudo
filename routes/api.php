@@ -30,6 +30,7 @@ Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline'
 // Project Invites
 Route::get('project/{id}/invites','ProjectInvitesController@invites');
 Route::post('project/{id}/invites','ProjectInvitesController@sendInvite');
+Route::delete('project/{id}/invites','ProjectInvitesController@deleteInvite');
 
 
 // Full Text Search
