@@ -20,42 +20,13 @@ use Illuminate\Http\Request;
 // All API need to bee checked 
 Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 
-Route::get('/search/users',function (Request $r){
-    // Need to parse query
-    $search=  $r->get('query');
-    $maxItems=$r->get('maxItems',0);
-    $result = User::search($search)->take($maxItems)->get();
-    return response()
-         ->json($result,200);
 
-});
+Route::get('/user/{id}/invites/received','UserInvitesController@received');
+Route::get('/user/{id}/invites/sent','UserInvitesController@sent');
 
-Route::get('/user/{id}/invites/received',function ($id){
-    $result = User::find($id)->invitesReceived()->get();
-    return response()->json($result,200);
-});
+Route::post('user/{userId}/invites/{inviteId}', 'UserInvitesController@accept');
+Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline');
 
-Route::post('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
-    // Needs checkign 
-    $invite = Invite::find($inviteId);
-    $invite->project()->first()->collaborators()->save(User::find($userId));
-    $invite->delete();
-    return response()->json(201);
-    
-});
-
-
-Route::delete('user/{userId}/invites/{inviteId}', function ($userId,$inviteId){
-    $invite = Invite::find($inviteId);
-    $invite->delete();
-    return response()->json();
-
-});
-
-Route::get('/user/{id}/invites/sent',function ($id){
-    $result = User::find($id)->invitesSent()->get();
-    return response()->json($result);
-});
 
 Route::get('project/{id}/invites',function ($id){
     $result = Project::find($id)->invites()->get();
@@ -73,29 +44,11 @@ Route::post('project/{id}/invites',function (Request $r,$id){
     return response()->json(["success"=>true]);
 });
 
-Route::get('/search/projects',function (Request $r){
-    $search=  $r->get('query');
-    $maxItems=$r->get('maxItems',0);
-    $result = Project::search($search)->take($maxItems)->get();
-    return response()
-         ->json($result);
 
-});
+Route::get('/search/users','FullTexSearch@users');
 
-Route::get('/search/tasks',function (Request $r){
-    $search=  $r->get('query');
-    $maxItems=$r->get('maxItems',0);
-    $result = Task::search($search)->take($maxItems)->get();
-    return response()
-         ->json($result);
+Route::get('/search/projects','FullTexSearch@projects');
 
-});
+Route::get('/search/tasks','FullTexSearch@tasks');
 
-Route::get('/search/labels',function (Request $r){
-    $search=  $r->get('query');
-    $maxItems=$r->get('maxItems',0);
-    $result = Label::search($search)->take($maxItems)->get();
-    return response()
-         ->json($result);
-
-});
+Route::get('/search/labels','FullTexSearch@lables');
