@@ -47,6 +47,8 @@ Array.from(tabs).forEach(e => {
   })
 })
 
+subTabsNav()
+
 /* sub-tabs navigation */
 function subTabsNav() {
   let sub_tabs = document.getElementsByClassName('sub-tab')
@@ -85,8 +87,7 @@ function openCreateUser() {
 
 function openSearchUser() {
   let content = document.getElementById('tab-content')
-  content.innerHTML = 'Search User'
-  /* TODO: Search User content */
+  content.innerHTML = '<div class="search_bar"><i class="fa-solid fa-search"></i><input class="search-user" type="text" placeholder="Search user..."></div><section class="user-results" style="display:hidden"></section>'
 }
 
 function openSearchProject() {
