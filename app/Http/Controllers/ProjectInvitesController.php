@@ -15,8 +15,14 @@ class ProjectInvitesController extends Controller
     }
     public static function sendInvite(Request $r, $id)
     {
+
         $invitee = $r->input('id_invitee');
         $inviter = $r->input('id_inviter');
+        $inProject = Project::find($id)->collaborators->where('id',$invitee) != [];
+        if($inProject){
+         return response()->json(["Message" => "User already in project"],400);
+        }
+        else{
         $invite = Invite::create(
             [
                 'id_invitee' => $invitee,
@@ -24,6 +30,7 @@ class ProjectInvitesController extends Controller
                 'id_project' => $id
             ]
         );
-        return response()->json(["success" => true]);
+        return response()->json(["Message" => "Successefully Sent Invite"],201);
+        }
     } 
 }
