@@ -355,8 +355,6 @@ paths:
                   format: date
                 phoneNumber:
                   type: string
-
-
           responses:
             '200':
               description: 'OK. Profile edited with success.'
@@ -368,7 +366,6 @@ paths:
               description: 'Tried to edit a profile not owned by the user.'
             '404':
               description: 'User not found.'
-
     delete:
       operationId: R207
       summary: 'R207: Delete user profile'
@@ -384,17 +381,13 @@ paths:
           description: 'Tried to delete a profile not owned by the user.'
         '404':
           description: 'User not found.'
-
-
   /api/users/{id}/notifications:
-
     parameters:
       - in: path
         name: id
         schema:
           type: integer
         required: true
-
     get:
       operationId: R208
       summary: 'R208: Get user notifications'
@@ -433,10 +426,7 @@ paths:
           description: 'Tried to retrieve notifications of an user profile not owned by the user.'
         '404':
           description: 'User not found.'
-
   /api/users/{id}/projects:
-
-
     parameters:
       - in: path
         name: id
@@ -484,10 +474,7 @@ paths:
               description: 'Tried to retrieve projects of an user profile not owned by the user.'
             '404':
               description: 'User not found.'
-
-
   /api/users/{id}/favorites:
-
     parameters:
       - in: path
         name: id
@@ -536,8 +523,6 @@ paths:
               description: 'Tried to retrieve favorite projects of an user profile not owned by the user.'
             '404':
               description: 'User not found.'
-
-
   /faq:
      get:
        operationId: R301
@@ -545,8 +530,6 @@ paths:
        description: 'Show the page containing the Frequently Asked Questions. Access: PUB'
        tags:
          - 'M03: User Administration and static pages'
-
-
        responses:
          '200':
            description: 'Ok. Show FAQ Page.'
@@ -557,8 +540,6 @@ paths:
        description: 'Show the page containing information about the platform and its developers. Access: PUB'
        tags:
          - 'M03: User Administration and static pages'
-
-
        responses:
          '200':
            description: 'Ok. Show About Us Page.'
@@ -569,8 +550,6 @@ paths:
        description: 'Show the page containing contact information. Access: PUB'
        tags:
          - 'M03: User Administration and static pages'
-
-
        responses:
          '200':
            description: 'Ok. Show Contacts Page.'
@@ -581,8 +560,6 @@ paths:
        description: 'Show the page containing information about the main features of the platform. Access: PUB'
        tags:
          - 'M03: User Administration and static pages'
-
-
        responses:
          '200':
            description: 'Ok. Show Main Features Page.'
@@ -593,8 +570,6 @@ paths:
        description: 'Show the Homepage. Access: PUB'
        tags:
          - 'M03: User Administration and static pages'
-
-
        responses:
          '200':
            description: 'Ok. Show Homepage.'
@@ -605,8 +580,6 @@ paths:
       description: 'Retrieve information about Frequently Asked Questions. Access: PUB'
       tags:
         - 'M03: User Administration and static pages'
-
-
       responses:
         '200':
            description: 'Ok. Successfully retrieved FAQs.'
@@ -630,8 +603,6 @@ paths:
       description: 'Processes the new FAQ submission. Access: ADM'
       tags:
         - 'M03: User Administration and static pages'
-
-
       requestBody:
         required: true
         content:
@@ -647,8 +618,6 @@ paths:
               required:
                   - question
                   - answer
-
-
       responses:
         '200':
           description: 'OK. Successfully added a new FAQ'
@@ -658,18 +627,12 @@ paths:
            description: 'User is not an administrator.'
         '409':
            description: 'Question already exists.'
-
-
     delete:
       operationId: R308
       summary: 'R308: Delete FAQ action'
       description: 'Attempts to delete a FAQ. Access: ADM'
-
-
       tags:
         - 'M03: User Administration and static pages'
-
-
       requestBody:
         required: true
         content:
@@ -681,8 +644,6 @@ paths:
                   type: integer
               required:
                  - id
-
-
       responses:
         '200':
           description: 'OK. Successfully removed FAQ'
@@ -694,7 +655,6 @@ paths:
            description: 'Not logged-in.'
         '403':
            description: 'User is not an administrator.'
-
   /admins:
      get:
        operationId: R309
@@ -702,8 +662,6 @@ paths:
        description: 'Show the Administration Center page. Access: ADM'
        tags:
          - 'M03: User Administration and static pages'
-
-
        responses:
          '200':
            description: 'Ok. Show Administration Page.'
@@ -711,23 +669,19 @@ paths:
             description: 'Not logged-in.'
          '403':
             description: 'User is not an administrator.'
-
   /api/users/{id}/ban:
-
     parameters:
       - in: path
         name: id
         schema:
           type: integer
         required: true
-
     post:
       operationId: R310
       summary: 'R310: Ban an user Action'
       description: 'Processes the request to ban an user. Access: ADM'
       tags:
         - 'M03: User Administration and static pages'
-
       requestBody:
         required: true
         content:
@@ -745,7 +699,6 @@ paths:
               required:
                   - id
                   - endDate
-
       responses:
           '200':
             description: 'OK. User banned with success.'
@@ -757,7 +710,6 @@ paths:
             description: 'User is not an administrator.'
           '404':
             description: 'User not found.'
-
   /projects/{project_id}:
      get:
        operationId: R501
@@ -765,20 +717,17 @@ paths:
        description: 'Get the project page. Access: USR'
        tags:
          - 'M05: Projects'
-
        parameters:
          - in: path
            name: project_id
            schema:
              type: integer
            required: true
-
        responses:
          '200':
             description: 'Ok. Show Project page'
          '401':
             description: 'Cannot access this page.'
-
   # Get the board page
   /boards/{board_id}:
      get:
@@ -871,7 +820,6 @@ paths:
                     type: string
                 required:
                       - title
-
         responses:
           '302':
             description: 'Redirect after processing the add_project form'
@@ -943,7 +891,6 @@ paths:
                 required:
                       - project_id
                       - name
-
         responses:
           '302':
             description: 'Redirect after processing the add_board form'
@@ -962,8 +909,6 @@ paths:
             description: 'Bad Request. Back to add_board page.'
           '401':
             description: 'Cannot do this action.'
-
-
   /boards/{board_id}/add_column:
     # Obter a page para adicionar uma coluna
     get:
@@ -983,7 +928,6 @@ paths:
           description: 'Ok. Show add_column page'
         '401':
           description: 'Cannot access this page.'
-
     # Adiciona uma coluna nova a uma board
     post:
         operationId: R509
@@ -997,7 +941,6 @@ paths:
            schema:
              type: integer
            required: true
-
         requestBody:
           required: true
           content:
@@ -1012,7 +955,6 @@ paths:
                 required:
                       - board_id
                       - name
-
         responses:
           '302':
             description: 'Redirect after processing the add_column form'
@@ -1031,7 +973,6 @@ paths:
             description: 'Bad Request. Back to add_column page.'
           '401':
             description: 'Cannot do this action.'
-
 
   /verticals/{vertical_id}/add_task:
     # Obter a page para adicionar uma task
@@ -1052,7 +993,6 @@ paths:
           description: 'Ok. Show add_task page'
         '401':
           description: 'Cannot do this action.'
-
     # Adiciona uma task nova a uma coluna
     post:
         operationId: R511
@@ -1066,7 +1006,6 @@ paths:
            schema:
              type: integer
            required: true
-
         requestBody:
           required: true
           content:
@@ -1085,7 +1024,6 @@ paths:
                 required:
                       - column_id
                       - name
-
         responses:
           '302':
             description: 'Redirect after processing the add_task form'
@@ -1104,8 +1042,6 @@ paths:
             description: 'Bad Request. Back to add_task page.'
           '401':
             description: 'Cannot do this action.'
-
-
   /add_label:
     # Obter a page para criar/adicionar uma label
     get:
@@ -1370,7 +1306,7 @@ paths:
 
       responses:
          '200':
-            description: 'Ok. Project fetched!’'
+            description: 'Ok. Project fetched!'
             content:
               application/json:
                 schema:
@@ -1459,7 +1395,7 @@ paths:
 
       responses:
          '200':
-            description: 'Ok. board fetched!’'
+            description: 'Ok. board fetched!'
             content:
               application/json:
                 schema:
@@ -1957,7 +1893,7 @@ paths:
 
        responses:
          '200':
-            description: 'Ok. Column’s tasks fetched!'
+            description: "Ok. Column's tasks fetched!"
             content:
               application/json:
                 schema:
@@ -2033,7 +1969,7 @@ paths:
 
        responses:
          '200':
-            description: 'Ok. Task’s label_classes fetched!'
+            description: "Ok. Task's label_classes fetched!"
             content:
               application/json:
                 schema:
@@ -2066,7 +2002,7 @@ paths:
 
        responses:
          '200':
-            description: 'Ok. Task’s comments fetched!'
+            description: "Ok. Task's comments fetched!"
             content:
               application/json:
                 schema:
@@ -2212,12 +2148,12 @@ paths:
       - in: query
         name: query
         schema:
-            type: string
+          type: string
         required: true
       - in: query
         name: maxItems
         schema:
-            type: integer
+          type: integer
         required: false
     get:
       operationId: R401
@@ -2246,11 +2182,11 @@ paths:
                 example:
                   - id: 1
                     username: spukunu
-                    profilePicture: #??
+                    profilePicture: path/picture
                     name: Lara Daniela Ferreira
                   - id: 13
                     username: dizzy
-                    profilePicture: #??
+                    profilePicture: path/picture
                     name: Daniel Ferreira
   /api/search/projects/:
     parameters:
@@ -2307,11 +2243,11 @@ paths:
                     participants:
                       - id: 1
                         username: spukunu
-                        profilePicture: #??
+                        profilePicture: path/picture
                         name: Lara Daniela
                       - id: 2
                         username: laurasia
-                        profilePicture: #??
+                        profilePicture: path/picture
                         name: Laura Eugénia
   /api/search/tasks/:
     parameters:
@@ -2368,11 +2304,11 @@ paths:
                     participants:
                       - id: 1
                         username: spukunu
-                        profilePicture: #??
+                        profilePicture: path/picture
                         name: Lara Daniela
                       - id: 2
                         username: laurasia
-                        profilePicture: #??
+                        profilePicture: path/picture
                         name: Laura Eugénia
                   - id: 2
                     title: Laundry
@@ -2380,11 +2316,11 @@ paths:
                     participants:
                       - id: 1
                         username: spukunu
-                        profilePicture: #??
+                        profilePicture: path/picture
                         name: Lara Daniela
                       - id: 2
                         username: laurasia
-                        profilePicture: #??
+                        profilePicture: path/picture
                         name: Laura Eugénia
   /api/search/labels/:
     parameters:
@@ -2423,5 +2359,3 @@ paths:
                     name: 'Doing'
                   - id: 3
                     name: 'Done'
-
-
