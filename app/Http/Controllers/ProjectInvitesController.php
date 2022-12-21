@@ -46,7 +46,7 @@ class ProjectInvitesController extends Controller
     public static function deleteInvite(Request $r, $id)
     {
         $inviteId = $r->input('inviteId');
-        $invite = Invite::find('id', $inviteId);
+        $invite = Invite::find($inviteId);
         if ($invite) {
             if ($invite->id_project != $id) {
                 return response()->json(["Message" => "Invite Does Not Belong To this Project"], 405);
@@ -55,7 +55,7 @@ class ProjectInvitesController extends Controller
                 return response()->json(["Message" => "Successefully Removed Invite"], 200);
             }
         } else {
-            return response()->json(["Message" => "Invite Does Not Exists"], 404);
+            return response()->json(["Message" => "Invite Does Not Exist"], 404);
         }
     }
 }

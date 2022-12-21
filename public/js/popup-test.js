@@ -162,7 +162,6 @@ generatePopupButton.addEventListener('click', function () {
   var text = inputText.value;
   var inputType = document.querySelector('select#PopUp-status');
   var type = inputType.value;
-  console.log(type);
   document.body.appendChild((0,_app_js__WEBPACK_IMPORTED_MODULE_0__.createPopUp)(type, title, text));
 });
 })();

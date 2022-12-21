@@ -209,9 +209,9 @@ var handleInviteResponse = /*#__PURE__*/function () {
             jsonResponse = _context2.sent;
             message = jsonResponse.Message;
             if (response.ok) {
-              popup = (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.createPopUp)("success", "Success", message);
+              popup = (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.createPopUp)('success', 'Success', message);
             } else {
-              popup = (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.createPopUp)("error", "Error", message);
+              popup = (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.createPopUp)('error', 'Error', message);
             }
             document.body.appendChild(popup);
           case 6:
@@ -339,6 +339,88 @@ if (queryInput) {
     }, _callee4);
   })));
 }
+
+// Eliminar convites
+
+var deleteInvitesAjax = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+    var invites, _iterator3, _step3, _loop;
+    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            invites = document.querySelectorAll('article.project-invite-card');
+            if (invites) {
+              _iterator3 = _createForOfIteratorHelper(invites);
+              try {
+                _loop = function _loop() {
+                  var invite = _step3.value;
+                  var deleteButton = invite.querySelector('button');
+                  var inviteId = invite.getAttribute("invite-id");
+                  var projId = invite.getAttribute("project-id");
+                  var data = {
+                    "inviteId": inviteId
+                  };
+                  var deleteInvite = /*#__PURE__*/function () {
+                    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+                      var url, options, response;
+                      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+                        while (1) {
+                          switch (_context5.prev = _context5.next) {
+                            case 0:
+                              url = "/api/project/".concat(projId, "/invites/");
+                              options = {
+                                method: 'DELETE',
+                                headers: {
+                                  'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(data)
+                              };
+                              _context5.next = 4;
+                              return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)(url, options);
+                            case 4:
+                              response = _context5.sent;
+                              if (response.ok) {
+                                invite.style.display = "none";
+                              }
+                              handleInviteResponse(response);
+                            case 7:
+                            case "end":
+                              return _context5.stop();
+                          }
+                        }
+                      }, _callee5);
+                    }));
+                    return function deleteInvite() {
+                      return _ref6.apply(this, arguments);
+                    };
+                  }();
+                  deleteButton.addEventListener('click', deleteInvite);
+                  invite.addEventListener('click', function () {
+                    deleteButton.toggleAttribute("closed");
+                  });
+                };
+                for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                  _loop();
+                }
+              } catch (err) {
+                _iterator3.e(err);
+              } finally {
+                _iterator3.f();
+              }
+            }
+          case 2:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  }));
+  return function deleteInvitesAjax() {
+    return _ref5.apply(this, arguments);
+  };
+}();
+deleteInvitesAjax();
 })();
 
 /******/ })()

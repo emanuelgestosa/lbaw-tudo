@@ -1,4 +1,4 @@
-import { sendRequest,createPopUp } from '../app.js'
+import { sendRequest, createPopUp } from '../app.js'
 
 const searchUsers = async (query, maxItems) => {
   const params = { query: query, maxItems: maxItems }
@@ -15,18 +15,17 @@ const deleteUserResults = () => {
   lista.style.display = 'hidden'
 }
 
-const handleInviteResponse = async (response) =>{
-    let popup;
-    const jsonResponse= await response.json()
-    const message = jsonResponse.Message
-    if(response.ok){
-        popup = createPopUp("success","Success",message)
-    }
-    else{
-        popup = createPopUp("error","Error",message)
-    }
-    
-    document.body.appendChild(popup)
+const handleInviteResponse = async (response) => {
+  let popup
+  const jsonResponse = await response.json()
+  const message = jsonResponse.Message
+  if (response.ok) {
+    popup = createPopUp('success', 'Success', message)
+  } else {
+    popup = createPopUp('error', 'Error', message)
+  }
+
+  document.body.appendChild(popup)
 }
 const createUserResultCards = (users) => {
   let cards = ''
@@ -106,3 +105,38 @@ if (queryInput) {
     }
   })
 }
+
+// Eliminar convites
+
+const deleteInvitesAjax = async () => {
+  const invites = document.querySelectorAll('article.project-invite-card')
+  if (invites) {
+    for (const invite of invites) {
+      const deleteButton = invite.querySelector('button')
+        const inviteId = invite.getAttribute("invite-id")
+        const projId = invite.getAttribute("project-id")
+        const data = { "inviteId": inviteId }
+        const deleteInvite = async () => {
+          const url = `/api/project/${projId}/invites/`
+          const options = {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          }
+          const response = await sendRequest(url, options)
+          if(response.ok){
+            invite.style.display = "none"
+          }
+          handleInviteResponse(response)
+        }
+        deleteButton.addEventListener('click', deleteInvite)
+        invite.addEventListener('click', () => {
+          deleteButton.toggleAttribute("closed")
+
+        })
+    }
+  }
+}
+deleteInvitesAjax()
