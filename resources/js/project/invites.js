@@ -1,4 +1,4 @@
-import { sendRequest } from '../app.js'
+import { sendRequest,createPopUp } from '../app.js'
 
 const searchUsers = async (query, maxItems) => {
   const params = { query: query, maxItems: maxItems }
@@ -15,6 +15,19 @@ const deleteUserResults = () => {
   lista.style.display = 'hidden'
 }
 
+const handleInviteResponse = async (response) =>{
+    let popup;
+    const jsonResponse= await response.json()
+    const message = jsonResponse.Message
+    if(response.ok){
+        popup = createPopUp("success","Success",message)
+    }
+    else{
+        popup = createPopUp("error","Error",message)
+    }
+    
+    document.body.appendChild(popup)
+}
 const createUserResultCards = (users) => {
   let cards = ''
   for (const user of users) {
@@ -60,11 +73,7 @@ const userCardSendInvite = (card) => {
         body: JSON.stringify(data),
       }
       const response = await sendRequest(url, options)
-      if (response.ok) {
-        console.log('Correctly Invited User')
-      } else {
-        // Send POpup?
-      }
+      handleInviteResponse(response)
     })
 }
 
