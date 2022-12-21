@@ -63,5 +63,3 @@ Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('ad
 Route::get('/admins', 'AdminController@show');
 Route::get('/admins/create', 'AdminController@showCreate');
 
-Route::get('/api-tester', function () {return view('pages.api-tester');});
-
