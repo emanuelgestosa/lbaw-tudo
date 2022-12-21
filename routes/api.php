@@ -24,7 +24,7 @@ Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 // User Invites
 Route::get('/user/{id}/invites/received','UserInvitesController@received');
 Route::get('/user/{id}/invites/sent','UserInvitesController@sent');
-Route::delte('/user/{userId}/invites/sent/{inviteId}','UserInvitesController@deleteSentInvite');
+Route::delete('/user/{userId}/invites/sent/{inviteId}','UserInvitesController@deleteSentInvite');
 Route::post('user/{userId}/invites/{inviteId}', 'UserInvitesController@accept');
 Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline');
 
