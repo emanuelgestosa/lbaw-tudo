@@ -10,6 +10,7 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createPopUp": () => (/* binding */ createPopUp),
 /* harmony export */   "sendRequest": () => (/* binding */ sendRequest)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -41,6 +42,43 @@ var sendRequest = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+
+// Pop Up
+var createPopUp = function createPopUp(type, title, text) {
+  var popUp = document.createElement('article');
+  popUp.classList.add('tu-do-popup');
+  popUp.setAttribute('opening', '');
+  var header = document.createElement('header');
+  header.setAttribute(type, '');
+  var titleP = document.createElement('p');
+  titleP.textContent = title;
+  header.appendChild(titleP);
+  var closeButton = document.createElement('button');
+  closeButton.textContent = 'X';
+  header.appendChild(closeButton);
+  var content = document.createElement('section');
+  var headerSection = document.createElement('section');
+  var p = document.createElement('p');
+  p.textContent = text;
+  var closePopUp = function closePopUp(popup) {
+    popUp.removeAttribute('opening');
+    popUp.setAttribute('closing', '');
+    popUp.addEventListener('animationend', function () {
+      popUp.removeAttribute('closing');
+      popUp.classList.add('closed');
+    }, {
+      once: true
+    });
+  };
+  closeButton.addEventListener('click', closePopUp);
+  popUp.addEventListener('animationend', function () {
+    setTimeout(closePopUp, 5 * 1000);
+  });
+  content.appendChild(p);
+  popUp.appendChild(header);
+  popUp.appendChild(content);
+  return popUp;
+};
 
 /***/ }),
 

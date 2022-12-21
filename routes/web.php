@@ -55,7 +55,7 @@ Route::get('/project/{id}/boards/create', 'BoardController@showCreate');
 
 // Project
 Route::get('/project/{id}', 'ProjectController@show');
-Route::get('/project/{id}/invites','ProjectController@invites');
+Route::get('/project/{id}/invites', 'ProjectController@invites');
 Route::get('/user/{user_id}/add_project', 'ProjectController@showCreate');
 Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('add_project');
 
@@ -63,3 +63,7 @@ Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('ad
 Route::get('/admins', 'AdminController@show');
 Route::get('/admins/create', 'AdminController@showCreate');
 
+//Pop Up Tester
+Route::get('popup', function () {
+    return view('pages.popup');
+});
