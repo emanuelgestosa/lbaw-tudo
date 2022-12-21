@@ -1,20 +1,21 @@
 import {sendRequest} from '../app.js'
 
-const searchUser = async (query,maxItems) =>{
-    const params ={ query:query,maxItems:maxItems}
-    const url = new URL(SERVER + "/api/search/users")
-    url.search = new URLSearchParams(params).toString();
-    const response = sendRequest(url,{method:"GET"})
-    const jsonResponse = await response.json()
-    return jsonResponse
+const searchUsers = async (query, maxItems) => {
+  const params = { query: query, maxItems: maxItems }
+  const response = await sendRequest('/api/search/users', {
+    method: 'GET',
+    params: params,
+  })
+  const jsonResponse = await response.json()
+  return jsonResponse
 }
-const apagarLista = () =>{
-    lista = document.querySelector("section.user-results")
-    lista.innerHTML=""
-    lista.style.display= "hidden"
+const deleteUserResults = () => {
+  const lista = document.querySelector('section.user-results')
+  lista.innerHTML = ''
+  lista.style.display = 'hidden'
 }
 const preencherLista = (users) =>{
-    lista = document.querySelector("section.user-results")
+    const lista = document.querySelector("section.user-results")
     for (const user of users){
         const userItem = `
             <article class="user-card" user-id=${user.id}>
@@ -38,9 +39,9 @@ const searchButton = document.querySelector("forum.search_bar>i")
 if(queryInput){
 queryInput.addEventListener('input',async () =>{
     const maxItems = 10
-    apagarLista()
+    deleteUserResults()
     if (queryInput.value != "") {
-    const result = await searchUser(queryInput.value,maxItems)
+    const result = await searchUsers(queryInput.value,maxItems)
     preencherLista(result)
     }
 })
