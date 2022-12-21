@@ -14,3 +14,6 @@ mix.js(['resources/js/app.js',
         'resources/js/project/invites.js',
         'resources/js/user/administration.js'],
         'public/js');
+
+
+mix.js('resources/js/popup-test.js','public/js/popup-test.js');

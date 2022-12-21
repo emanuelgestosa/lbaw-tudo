@@ -6,7 +6,7 @@ export const sendRequest = async (url, options) => {
 }
 
 // Pop Up
-const createPopUp = (type, title, text) => {
+export const createPopUp = (type, title, text) => {
   const popUp = document.createElement('article')
   popUp.classList.add('tu-do-popup')
   popUp.setAttribute('opening', '')
@@ -51,18 +51,3 @@ const createPopUp = (type, title, text) => {
 
   return popUp
 }
-const generatePopupButton = document.querySelector('button#spawn-popup')
-generatePopupButton.addEventListener('click', () => {
-  const popUp = document.querySelector('article.tu-do-popup')
-  if (popUp) {
-    popUp.remove()
-  }
-  const inputTitle = document.querySelector("input[name='popup-title']")
-  const title = inputTitle.value
-  const inputText = document.querySelector("input[name='popup-text']")
-  const text = inputText.value
-  const inputType = document.querySelector('select#PopUp-status')
-  const type = inputType.value
-  console.log(type)
-  document.body.appendChild(createPopUp(type, title, text))
-})
