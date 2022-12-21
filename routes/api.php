@@ -24,16 +24,18 @@ Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 // User Invites
 Route::get('/user/{id}/invites/received','UserInvitesController@received');
 Route::get('/user/{id}/invites/sent','UserInvitesController@sent');
+Route::delete('/user/{userId}/invites/sent/{inviteId}','UserInvitesController@deleteSentInvite');
 Route::post('user/{userId}/invites/{inviteId}', 'UserInvitesController@accept');
 Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline');
 
 // Project Invites
 Route::get('project/{id}/invites','ProjectInvitesController@invites');
 Route::post('project/{id}/invites','ProjectInvitesController@sendInvite');
+Route::delete('project/{id}/invites','ProjectInvitesController@deleteInvite');
 
 
 // Full Text Search
-Route::get('/search/users','FullTextSearch@users');
-Route::get('/search/projects','FullTextSearch@projects');
-Route::get('/search/tasks','FullTextSearch@tasks');
-Route::get('/search/labels','FullTextSearch@lables');
+Route::get('/search/users','FullTextSearchController@users');
+Route::get('/search/projects','FullTextSearchController@projects');
+Route::get('/search/tasks','FullTextSearchController@tasks');
+Route::get('/search/labels','FullTextSearchController@lables');

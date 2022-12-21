@@ -11,7 +11,6 @@ generatePopupButton.addEventListener('click', () => {
   const text = inputText.value
   const inputType = document.querySelector('select#PopUp-status')
   const type = inputType.value
-  console.log(type)
   document.body.appendChild(createPopUp(type, title, text))
 })
 
