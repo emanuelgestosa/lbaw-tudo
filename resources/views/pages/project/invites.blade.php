@@ -7,10 +7,14 @@
     <h2 class="page_name">Invites of {{$project->title}}</h2>
 
     <section class="invite-content" project-id="{{$project->id}}" user-id="{{Auth::user()->id}}" style="display:flex;gap:5em;margin:auto;">
-        <section class="invite-list">
+        <section class="project-invite-list">
             @foreach ($project->invites()->get() as $invite)
             <article class="project-invite-card">
-                <p>{{$invite->inviter->name}} enviou convite para {{$invite->invited->name}}</p>
+                <p>
+                    <a href="/user/{{$invite->inviter->id}}">{{$invite->inviter->name}}</a>
+                    enviou convite para
+                    <a href="/user/{{$invite->inviter->id}}">{{$invite->invited->name}}</a>
+                    </p>
             </article>
             @endforeach
         </section>
@@ -24,4 +28,17 @@
     </section>
 
 </section>
+<style>
+section.project-invite-list{
+    display:flex;
+    flex-direction:column;
+    gap:0.5em;
+}
+article.project-invite-card{
+    border: 1px solid blue;
+    border-radius:1em;
+    padding:1em;
+    
+}
+</style>
 @endsection

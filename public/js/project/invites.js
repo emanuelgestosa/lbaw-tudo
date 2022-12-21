@@ -196,6 +196,35 @@ var deleteUserResults = function deleteUserResults() {
   lista.innerHTML = '';
   lista.style.display = 'hidden';
 };
+var handleInviteResponse = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(response) {
+    var popup, jsonResponse, message;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return response.json();
+          case 2:
+            jsonResponse = _context2.sent;
+            message = jsonResponse.Message;
+            if (response.ok) {
+              popup = (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.createPopUp)("success", "Success", message);
+            } else {
+              popup = (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.createPopUp)("error", "Error", message);
+            }
+            document.body.appendChild(popup);
+          case 6:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return function handleInviteResponse(_x3) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 var createUserResultCards = function createUserResultCards(users) {
   var cards = '';
   var _iterator = _createForOfIteratorHelper(users),
@@ -221,11 +250,11 @@ var userCardEventGoToProfile = function userCardEventGoToProfile(card) {
 };
 var userCardSendInvite = function userCardSendInvite(card) {
   var cardUserId = card.getAttribute('user-id');
-  card.querySelector('section.user-card-send-invite').addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+  card.querySelector('section.user-card-send-invite').addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
     var op, projectId, idInviter, idInvitee, url, data, options, response;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             op = document.querySelector('section.invite-content');
             projectId = op.getAttribute('project-id');
@@ -244,21 +273,17 @@ var userCardSendInvite = function userCardSendInvite(card) {
               },
               body: JSON.stringify(data)
             };
-            _context2.next = 10;
+            _context3.next = 10;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)(url, options);
           case 10:
-            response = _context2.sent;
-            if (response.ok) {
-              console.log('Correctly Invited User');
-            } else {
-              // Send POpup?
-            }
+            response = _context3.sent;
+            handleInviteResponse(response);
           case 12:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   })));
 };
 var addUserCardEvents = function addUserCardEvents(card) {
@@ -289,29 +314,29 @@ var createUserResults = function createUserResults(users) {
 };
 var queryInput = document.querySelector('input.search-user');
 if (queryInput) {
-  queryInput.addEventListener('input', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+  queryInput.addEventListener('input', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
     var maxItems, users;
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
             maxItems = 10;
             deleteUserResults();
             if (!(queryInput.value != '')) {
-              _context3.next = 7;
+              _context4.next = 7;
               break;
             }
-            _context3.next = 5;
+            _context4.next = 5;
             return searchUsers(queryInput.value, maxItems);
           case 5:
-            users = _context3.sent;
+            users = _context4.sent;
             createUserResults(users);
           case 7:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3);
+    }, _callee4);
   })));
 }
 })();
