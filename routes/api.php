@@ -20,6 +20,10 @@ use Illuminate\Http\Request;
 // All API need to bee checked 
 Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 
+// Manage User
+Route::post('/user', 'UserController@create');
+Route::patch('/user/{id}', 'UserController@edit');
+Route::delete('/user/{id}', 'UserController@delete');
 
 // User Invites
 Route::get('/user/{id}/invites/received','UserInvitesController@received');
@@ -28,14 +32,25 @@ Route::delete('/user/{userId}/invites/sent/{inviteId}','UserInvitesController@de
 Route::post('user/{userId}/invites/{inviteId}', 'UserInvitesController@accept');
 Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline');
 
+// Manage Project
+Route::post('/project/{id}/board', 'BoardController@create');
+
 // Project Invites
 Route::get('project/{id}/invites','ProjectInvitesController@invites');
 Route::post('project/{id}/invites','ProjectInvitesController@sendInvite');
 Route::delete('project/{id}/invites','ProjectInvitesController@deleteInvite');
 
 
+// Manage Verticals
+Route::post('/board/{id}/vertical', 'VerticalController@create');
+
+// Manage Tasks
+Route::patch('/task/{id}', 'TaskController@edit');
+Route::delete('/task/{id}', 'TaskController@delete');
+
 // Full Text Search
 Route::get('/search/users','FullTextSearchController@users');
 Route::get('/search/projects','FullTextSearchController@projects');
 Route::get('/search/tasks','FullTextSearchController@tasks');
 Route::get('/search/labels','FullTextSearchController@lables');
+
