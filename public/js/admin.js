@@ -107,16 +107,30 @@ async function openBans() {
     if (end_date.getTime() < currDate.getTime()) {
       continue
     }
+    url = new URL(SERVER + '/api/user/' + contents[key]['id_users'] + '/json')
+    rawResponse = await fetch(url.toString())
+    const userInfo = await rawResponse.json()
+
+    url = new URL(SERVER + '/api/admin/' + contents[key]['id_administrator'] + '/json')
+    rawResponse = await fetch(url.toString())
+    const adminInfo = await rawResponse.json()
+
     const banItem = document.createElement('article')
     banItem.id = contents[key]['id']
     const user = document.createElement('p')
-    user.innerText = contents[key]['id_users']
+    user.innerHTML = `
+      User: 
+      <a href="/user/` + userInfo['user']['id'] + `">` + userInfo['user']['username'] + `</a>
+    `
     const admin = document.createElement('p')
-    admin.innerText = contents[key]['id_administrator']
+    admin.innerHTML = `
+      Banned by: 
+      <a href="/user/` + adminInfo['user']['id'] + `">` + adminInfo['user']['username'] + `</a>
+    `
     const reason = document.createElement('p')
-    reason.innerText = contents[key]['reason']
+    reason.innerText = 'Reason: ' + contents[key]['reason']
     const date = document.createElement('p')
-    date.innerText = contents[key]['end_date']
+    date.innerText = 'Banned until: ' + contents[key]['end_date']
 
     const removeBanButton = document.createElement('button')
     removeBanButton.innerHTML = '<i class="fa-solid fa-times"></i> Remove Ban'
