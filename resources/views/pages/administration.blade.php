@@ -4,6 +4,7 @@
   <script defer src="/js/admin.js"></script>
 @endsection
 
+<script defer src="/js/user/administration.js"></script>
 @yield('content')
 
 @section('content')

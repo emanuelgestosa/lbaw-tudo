@@ -18,8 +18,8 @@
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
-    <script defer  src="/js/app.js"></script>
     @yield('page-scripts')
+    <script defer type="module" src="/js/app.js"></script>
   </head>
   <body>
     <main>

@@ -1,3 +1,7 @@
 {
-    "/js/app.js": "/js/app.js"
+    "/js/app.js": "/js/app.js",
+    "/js/user/administration.js": "/js/user/administration.js",
+    "/js/user/invites.js": "/js/user/invites.js",
+    "/js/project/invites.js": "/js/project/invites.js",
+    "/js/popup-test.js": "/js/popup-test.js"
 }
