@@ -98,7 +98,7 @@ async function openBans() {
   })
   content.appendChild(banButton)
   url = new URL(SERVER + '/api/bans')
-  const rawResponse = await fetch(url.toString())
+  let rawResponse = await fetch(url.toString())
   const contents = await rawResponse.json()
   const currDate = new Date()
   currDate.setHours(0,0,0,0)
@@ -108,6 +108,7 @@ async function openBans() {
       continue
     }
     const banItem = document.createElement('article')
+    banItem.id = contents[key]['id']
     const user = document.createElement('p')
     user.innerText = contents[key]['id_users']
     const admin = document.createElement('p')
@@ -116,10 +117,30 @@ async function openBans() {
     reason.innerText = contents[key]['reason']
     const date = document.createElement('p')
     date.innerText = contents[key]['end_date']
+
+    const removeBanButton = document.createElement('button')
+    removeBanButton.innerHTML = '<i class="fa-solid fa-times"></i> Remove Ban'
+    removeBanButton.addEventListener('click', async (e) => {
+      console.log(e.currentTarget.parentNode.id)
+      url = new URL(SERVER + '/api/bans')
+      rawResponse = await fetch(url.toString(), {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application:json',
+          'Content-Type': 'application:json'
+        },
+        body: JSON.stringify({
+          id: e.currentTarget.parentNode.id
+        })
+      })
+      openBans()
+    })
+
     banItem.appendChild(user)
     banItem.appendChild(admin)
     banItem.appendChild(reason)
     banItem.appendChild(date)
+    banItem.appendChild(removeBanButton)
     content.appendChild(banItem)
   }
 }
