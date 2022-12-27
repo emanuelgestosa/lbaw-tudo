@@ -21,13 +21,6 @@
       <button id="sub-tab-searchuser" class="sub-tab"><i class="fa-solid fa-search"></i> Search User</button>
     </nav>
     <div id="tab-content">
-      @foreach (App\Models\User::all() as $user)
-        @foreach ($user->bans as $ban)
-          @if ($ban->end_date >= date('Y/m/d'))
-            <p>{{ $user->username }} banned until {{ $ban->end_date }}</p>
-          @endif
-        @endforeach
-      @endforeach
     </div>
   </div>
 

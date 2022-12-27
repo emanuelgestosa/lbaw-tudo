@@ -1,3 +1,6 @@
+/* section opened when page is visited */
+openBans()
+
 /* main tabs navigation */
 let tabs = document.getElementsByClassName('tab')
 
@@ -73,10 +76,87 @@ function subTabsNav() {
   })
 }
 
-function openBans() {
+async function openBans() {
   let content = document.getElementById('tab-content')
-  content.innerHTML = 'Bans'
-  /* TODO: Bans content */
+  content.innerHTML = ''
+  let banButton = document.createElement('button');
+  banButton.addEventListener('click', async () => {
+    url = new URL(SERVER + '/api/user/ban')
+    const rawResponse = await fetch(url.toString(), {
+      method: 'POST',
+      headers: {
+        'Accept': 'application:json',
+        'Content-Type': 'application:json'
+      },
+      body: JSON.stringify({
+        id_users:  5,
+        id_administrator: 1,
+        end_date: '2023-01-01',
+        reason: 'gang'
+      })
+    })
+  })
+  content.appendChild(banButton)
+  url = new URL(SERVER + '/api/bans')
+  let rawResponse = await fetch(url.toString())
+  const contents = await rawResponse.json()
+  const currDate = new Date()
+  currDate.setHours(0,0,0,0)
+  for (const key in contents) {
+    const end_date = new Date(contents[key]['end_date'])
+    if (end_date.getTime() < currDate.getTime()) {
+      continue
+    }
+    url = new URL(SERVER + '/api/user/' + contents[key]['id_users'] + '/json')
+    rawResponse = await fetch(url.toString())
+    const userInfo = await rawResponse.json()
+
+    url = new URL(SERVER + '/api/admin/' + contents[key]['id_administrator'] + '/json')
+    rawResponse = await fetch(url.toString())
+    const adminInfo = await rawResponse.json()
+
+    const banItem = document.createElement('article')
+    banItem.id = contents[key]['id']
+    const user = document.createElement('p')
+    user.innerHTML = `
+      User: 
+      <a href="/user/` + userInfo['user']['id'] + `">` + userInfo['user']['username'] + `</a>
+    `
+    const admin = document.createElement('p')
+    admin.innerHTML = `
+      Banned by: 
+      <a href="/user/` + adminInfo['user']['id'] + `">` + adminInfo['user']['username'] + `</a>
+    `
+    const reason = document.createElement('p')
+    reason.innerText = 'Reason: ' + contents[key]['reason']
+    const date = document.createElement('p')
+    date.innerText = 'Banned until: ' + contents[key]['end_date']
+
+    const removeBanButton = document.createElement('button')
+    removeBanButton.innerHTML = '<i class="fa-solid fa-times"></i> Remove Ban'
+    removeBanButton.addEventListener('click', async (e) => {
+      console.log(e.currentTarget.parentNode.id)
+      url = new URL(SERVER + '/api/bans')
+      rawResponse = await fetch(url.toString(), {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application:json',
+          'Content-Type': 'application:json'
+        },
+        body: JSON.stringify({
+          id: e.currentTarget.parentNode.id
+        })
+      })
+      openBans()
+    })
+
+    banItem.appendChild(user)
+    banItem.appendChild(admin)
+    banItem.appendChild(reason)
+    banItem.appendChild(date)
+    banItem.appendChild(removeBanButton)
+    content.appendChild(banItem)
+  }
 }
 
 function openCreateUser() {

@@ -24,6 +24,8 @@ Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 Route::post('/user', 'UserController@create');
 Route::patch('/user/{id}', 'UserController@edit');
 Route::delete('/user/{id}', 'UserController@delete');
+Route::get('/user/{id}/json', 'UserController@getJson');
+Route::get('/admin/{id}/json', 'AdminController@getJson');
 
 // User Invites
 Route::get('/user/{id}/invites/received','UserInvitesController@received');
@@ -32,6 +34,11 @@ Route::delete('/user/{userId}/invites/sent/{inviteId}','UserInvitesController@de
 Route::post('user/{userId}/invites/{inviteId}', 'UserInvitesController@accept');
 Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline');
 
+// User bans
+Route::post('/user/ban', 'BanController@create');
+Route::get('/bans', 'BanController@get_all');
+Route::delete('/bans', 'BanController@remove');
+
 // Manage Project
 Route::post('/project/{id}/board', 'BoardController@create');
 
@@ -39,7 +46,6 @@ Route::post('/project/{id}/board', 'BoardController@create');
 Route::get('project/{id}/invites','ProjectInvitesController@invites');
 Route::post('project/{id}/invites','ProjectInvitesController@sendInvite');
 Route::delete('project/{id}/invites','ProjectInvitesController@deleteInvite');
-
 
 // Manage Verticals
 Route::post('/board/{id}/vertical', 'VerticalController@create');

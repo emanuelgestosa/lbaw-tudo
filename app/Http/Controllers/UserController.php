@@ -175,4 +175,12 @@ class UserController extends Controller
 
       return response()->json(['success' => true]);
     }
+
+    public function getJson($id) {
+      $user = User::find($id);
+      if (is_null($user)) {
+        return response()->json(['success' => false]);
+      }
+      return response()->json(['success' => true, 'user' => $user]);
+    }
 }
