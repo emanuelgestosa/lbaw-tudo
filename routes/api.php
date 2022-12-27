@@ -32,6 +32,9 @@ Route::delete('/user/{userId}/invites/sent/{inviteId}','UserInvitesController@de
 Route::post('user/{userId}/invites/{inviteId}', 'UserInvitesController@accept');
 Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline');
 
+// User bans
+Route::post('/user/ban', 'BanController@create');
+
 // Manage Project
 Route::post('/project/{id}/board', 'BoardController@create');
 
@@ -39,7 +42,6 @@ Route::post('/project/{id}/board', 'BoardController@create');
 Route::get('project/{id}/invites','ProjectInvitesController@invites');
 Route::post('project/{id}/invites','ProjectInvitesController@sendInvite');
 Route::delete('project/{id}/invites','ProjectInvitesController@deleteInvite');
-
 
 // Manage Verticals
 Route::post('/board/{id}/vertical', 'VerticalController@create');

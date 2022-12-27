@@ -75,8 +75,25 @@ function subTabsNav() {
 
 function openBans() {
   let content = document.getElementById('tab-content')
-  content.innerHTML = 'Bans'
-  /* TODO: Bans content */
+  content.innerHTML = ''
+  let banButton = document.createElement('button');
+  banButton.addEventListener('click', async () => {
+    url = new URL(SERVER + '/api/user/ban')
+    const rawResponse = await fetch(url.toString(), {
+      method: 'POST',
+      headers: {
+        'Accept': 'application:json',
+        'Content-Type': 'application:json'
+      },
+      body: JSON.stringify({
+        id_users:  5,
+        id_administrator: 1,
+        end_date: '2023-01-01',
+        reason: 'gang'
+      })
+    })
+  })
+  content.appendChild(banButton)
 }
 
 function openCreateUser() {
