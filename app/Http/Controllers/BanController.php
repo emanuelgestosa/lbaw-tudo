@@ -27,7 +27,22 @@ class BanController extends Controller
     return response()->json(['success' => true]);
   }
 
-  public function get_all() {
+  public function get_all()
+  {
     return Ban::all();
+  }
+
+  public function remove(Request $request)
+  {
+    $requestjson = json_decode($request->getContent(), true);
+    $id = $requestjson['id'];
+    $ban = Ban::find($id);
+
+    if (is_null($ban)) {
+      return response()->json(['sucess' => false]);
+    }
+
+    $ban->delete();
+    return response()->json(['sucess' => true]);
   }
 }

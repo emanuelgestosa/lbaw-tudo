@@ -1,3 +1,6 @@
+/* section opened when page is visited */
+openBans()
+
 /* main tabs navigation */
 let tabs = document.getElementsByClassName('tab')
 
