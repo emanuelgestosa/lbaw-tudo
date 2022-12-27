@@ -73,7 +73,7 @@ function subTabsNav() {
   })
 }
 
-function openBans() {
+async function openBans() {
   let content = document.getElementById('tab-content')
   content.innerHTML = ''
   let banButton = document.createElement('button');
@@ -94,6 +94,31 @@ function openBans() {
     })
   })
   content.appendChild(banButton)
+  url = new URL(SERVER + '/api/bans')
+  const rawResponse = await fetch(url.toString())
+  const contents = await rawResponse.json()
+  const currDate = new Date()
+  currDate.setHours(0,0,0,0)
+  for (const key in contents) {
+    const end_date = new Date(contents[key]['end_date'])
+    if (end_date.getTime() < currDate.getTime()) {
+      continue
+    }
+    const banItem = document.createElement('article')
+    const user = document.createElement('p')
+    user.innerText = contents[key]['id_users']
+    const admin = document.createElement('p')
+    admin.innerText = contents[key]['id_administrator']
+    const reason = document.createElement('p')
+    reason.innerText = contents[key]['reason']
+    const date = document.createElement('p')
+    date.innerText = contents[key]['end_date']
+    banItem.appendChild(user)
+    banItem.appendChild(admin)
+    banItem.appendChild(reason)
+    banItem.appendChild(date)
+    content.appendChild(banItem)
+  }
 }
 
 function openCreateUser() {

@@ -26,4 +26,8 @@ class BanController extends Controller
     ]);
     return response()->json(['success' => true]);
   }
+
+  public function get_all() {
+    return Ban::all();
+  }
 }

@@ -34,6 +34,7 @@ Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline'
 
 // User bans
 Route::post('/user/ban', 'BanController@create');
+Route::get('/bans', 'BanController@get_all');
 
 // Manage Project
 Route::post('/project/{id}/board', 'BoardController@create');
