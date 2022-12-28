@@ -162,20 +162,20 @@ var toggleCommentsButton = document.querySelector('#togle-comments');
 var taskComponent = document.querySelector('article.task-component');
 var commentTab = document.querySelector('section.comment-tab');
 var commentInput = document.querySelector('input#comment-input');
+var taskId = commentInput.getAttribute('task-id');
+var userId = commentInput.getAttribute('user-id');
 commentInput.addEventListener('keypress', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-    var userId, taskId, data, options, response;
+    var data, options, response;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             if (!(e.key == 'Enter')) {
-              _context.next = 11;
+              _context.next = 9;
               break;
             }
             console.log(commentInput.value);
-            userId = commentInput.getAttribute('user-id');
-            taskId = commentInput.getAttribute('task-id');
             data = {
               msg: commentInput.value,
               id_users: parseInt(userId),
@@ -189,12 +189,12 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
               },
               body: JSON.stringify(data)
             };
-            _context.next = 9;
+            _context.next = 7;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
-          case 9:
+          case 7:
             response = _context.sent;
             addComments(taskId);
-          case 11:
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -280,6 +280,7 @@ var addComments = /*#__PURE__*/function () {
 var buildComment = function buildComment(comment) {
   return "\n    <article class=\"comment-component\" id=\"".concat(comment.id, "\">\n        <p>Sent: ").concat(comment.sent_date, "</p>\n        <p>").concat(comment.msg, "</p>\n        <p>Sent By: ").concat(comment.user.name, "</p>\n    </article>\n    ");
 };
+addComments(taskId);
 })();
 
 /******/ })()
