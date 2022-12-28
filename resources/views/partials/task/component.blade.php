@@ -42,13 +42,48 @@
         </form>
     </article>
     <section class="comment-tab" closed>
-        <b> Comments: </b>
-        <section class="comment-container">
+        <section>
+        <div id="message-list" class="px-4 py-5 chat-box bg-white">
+        </div>
+        <input type="text" user-id="{{Auth::user()->id}}" task-id="{{$task->id}}" id="comment-input" placeholder="Type a message">
         </section>
-        <input type="text" id="comment-input" user-id="{{Auth::user()->id}}}" task-id="{{$task->id}}">
     </section>
 </section>
 <style>
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        width: 5px;
+        background: #f5f5f5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        width: 1em;
+        background-color: #ddd;
+        outline: 1px solid slategrey;
+        border-radius: 1rem;
+    }
+
+    .text-small {
+        font-size: 0.9rem;
+    }
+
+    .messages-box,
+    .chat-box {
+        height: 510px;
+        overflow-y: scroll;
+    }
+
+    .rounded-lg {
+        border-radius: 0.5rem;
+    }
+
+    input::placeholder {
+        color: #999;
+    }
+
     section.main-content {
         display: flex;
         row-gap: 1em;
@@ -58,6 +93,12 @@
         width: 75vw;
     }
 
+    section.comment-tab{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:3em;
+    }
     section.comment-tab[closed] {
         display: none;
     }

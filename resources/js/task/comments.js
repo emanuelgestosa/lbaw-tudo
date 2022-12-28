@@ -23,7 +23,7 @@ commentInput.addEventListener('keypress', async (e) => {
       body: JSON.stringify(data),
     }
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-    addComments(taskId)
+    await addComments(taskId)
   }
 })
 const toggleComments = () => {
@@ -42,7 +42,7 @@ const getComments = async (taskId) => {
 }
 
 const addComments = async (taskId) => {
-  const commentList = document.querySelector('section.comment-container')
+  const commentList = document.querySelector('div#message-list')
   let comments = ''
   const commentData = await getComments(taskId)
   for (const comment of commentData) {
@@ -50,15 +50,40 @@ const addComments = async (taskId) => {
   }
   commentList.innerHTML = ''
   commentList.innerHTML = comments
+  commentList.scrollTop = commentList.scrollHeight
 }
 
 const buildComment = (comment) => {
-  return `
-    <article class="comment-component" id="${comment.id}">
-        <p>Sent: ${comment.sent_date}</p>
-        <p>${comment.msg}</p>
-        <p>Sent By: ${comment.user.name}</p>
-    </article>
-    `
+  if (!(comment.id_users == userId)) {
+    return buildMyComment(comment)
+  } else {
+    return buildOtherComment(comment)
+  }
 }
 addComments(taskId)
+
+const buildOtherComment = (comment) => {
+  return `
+    <div class="message-item">
+        <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
+        <div class="message-body">
+            <p class="message-username>${comment.user.name}</p>
+            <div class="text-lists">
+                <p class="message-text">${comment.msg}</p>
+            </div>
+            <p class="message-date">${comment.sent_date}| Aug 13</p>
+        </div>
+    </div>`
+}
+const buildMyComment = (comment) => {
+  return `
+    <div class="message-item">
+        <div class="message-body user-message">
+            <p class="message-username>${comment.user.name}</p>
+            <div class="text-lists">
+                <p class="message-text">${comment.msg}</p>
+            </div>
+            <p class="message-date">${comment.sent_date}| Aug 13</p>
+        </div>
+    </div>`
+}

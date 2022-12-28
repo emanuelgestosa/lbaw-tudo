@@ -172,7 +172,7 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             if (!(e.key == 'Enter')) {
-              _context.next = 9;
+              _context.next = 10;
               break;
             }
             console.log(commentInput.value);
@@ -193,8 +193,9 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
           case 7:
             response = _context.sent;
-            addComments(taskId);
-          case 9:
+            _context.next = 10;
+            return addComments(taskId);
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -247,7 +248,7 @@ var addComments = /*#__PURE__*/function () {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            commentList = document.querySelector('section.comment-container');
+            commentList = document.querySelector('div#message-list');
             comments = '';
             _context3.next = 4;
             return getComments(taskId);
@@ -266,7 +267,8 @@ var addComments = /*#__PURE__*/function () {
             }
             commentList.innerHTML = '';
             commentList.innerHTML = comments;
-          case 9:
+            commentList.scrollTop = commentList.scrollHeight;
+          case 10:
           case "end":
             return _context3.stop();
         }
@@ -278,9 +280,19 @@ var addComments = /*#__PURE__*/function () {
   };
 }();
 var buildComment = function buildComment(comment) {
-  return "\n    <article class=\"comment-component\" id=\"".concat(comment.id, "\">\n        <p>Sent: ").concat(comment.sent_date, "</p>\n        <p>").concat(comment.msg, "</p>\n        <p>Sent By: ").concat(comment.user.name, "</p>\n    </article>\n    ");
+  if (!(comment.id_users == userId)) {
+    return buildMyComment(comment);
+  } else {
+    return buildOtherComment(comment);
+  }
 };
 addComments(taskId);
+var buildOtherComment = function buildOtherComment(comment) {
+  return "\n    <div class=\"message-item\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username>".concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+};
+var buildMyComment = function buildMyComment(comment) {
+  return "\n    <div class=\"message-item\">\n        <div class=\"message-body user-message\">\n            <p class=\"message-username>".concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+};
 })();
 
 /******/ })()
