@@ -78,7 +78,12 @@ Route::get('/task/{id}/comments', function ($id) {
     $task = Task::find($id);
     if ($task) {
         $comments = $task->comments()->get()->all();
-        return response()->json($comments, 200);
+        $commentArray =  [];
+        foreach ($comments as $key => $comment) {
+            $commentArray[$key] = $comment;
+            $commentArray[$key]["user"] =$comment->user()->first();
+        }
+        return response()->json($commentArray, 200);
     } else {
         return response()->json(["Message" => "Task Not Found"], 404);
     }
