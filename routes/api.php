@@ -54,6 +54,18 @@ Route::post('/board/{id}/vertical', 'VerticalController@create');
 Route::patch('/task/{id}', 'TaskController@edit');
 Route::delete('/task/{id}', 'TaskController@delete');
 
+// Task Comments
+Route::get('/task/{id}/comments',function ($id){
+    $task = Task::find($id);
+    if($task){
+    $comments = $task->comments()->get()->all();
+    return response()->json($comments,200);
+    }
+    else{
+        return response()->json(["Message"=>"Task Not Found"],404);
+    }
+});
+
 // Full Text Search
 Route::get('/search/users','FullTextSearchController@users');
 Route::get('/search/projects','FullTextSearchController@projects');
