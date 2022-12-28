@@ -41,11 +41,14 @@
   <button type="submit">Send</button>
 </form>
 </article>
-<section class="comment-container" closed>
+<section class="comment-tab" closed>
+<section class="comment-container">
         <b> Comments: </b>
         @foreach ($task->comments()->get() as $comment)
            @include('partials.comment.component',['comment'=>$comment])
         @endforeach
+<input type="text" id="comment-input">
+</section>
 </section>
 </section>
 <style>
@@ -56,18 +59,24 @@ section.main-content{
 article.task-component[showing-comments]{
     width:75vw;
 }
-section.comment-container[closed]{
+section.comment-tab[closed]{
     display:none;
 }
 </style>
 <script>
 const toggleCommentsButton = document.querySelector("#togle-comments")
 const  taskComponent= document.querySelector("article.task-component")
-const commentContainer = document.querySelector("section.comment-container")
-
+const commentTab = document.querySelector("section.comment-tab")
+const commentInput = document.querySelector("input#comment-input")
+commentInput.addEventListener("keypress",(e) =>{
+    if(e.key == 'Enter'){
+    console.log(commentInput.value)
+    commentInput.value = ""
+    }
+})
 const toggleComments = () =>{
     taskComponent.toggleAttribute("showing-comments")
-    commentContainer.toggleAttribute("closed")
+    commentTab.toggleAttribute("closed")
 }
 toggleCommentsButton.addEventListener("click",toggleComments)
 </script>
