@@ -47,7 +47,7 @@
         @foreach ($task->comments()->get() as $comment)
            @include('partials.comment.component',['comment'=>$comment])
         @endforeach
-<input type="text" id="comment-input">
+<input type="text" id="comment-input" user-id="{{Auth::user()->id}}}" task-id="{{$task->id}}">
 </section>
 </section>
 </section>
