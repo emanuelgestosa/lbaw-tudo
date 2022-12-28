@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\Comment;
 use App\Models\Invite;
 use App\Models\Label;
 use App\Models\User;
@@ -28,11 +30,11 @@ Route::get('/user/{id}/json', 'UserController@getJson');
 Route::get('/admin/{id}/json', 'AdminController@getJson');
 
 // User Invites
-Route::get('/user/{id}/invites/received','UserInvitesController@received');
-Route::get('/user/{id}/invites/sent','UserInvitesController@sent');
-Route::delete('/user/{userId}/invites/sent/{inviteId}','UserInvitesController@deleteSentInvite');
+Route::get('/user/{id}/invites/received', 'UserInvitesController@received');
+Route::get('/user/{id}/invites/sent', 'UserInvitesController@sent');
+Route::delete('/user/{userId}/invites/sent/{inviteId}', 'UserInvitesController@deleteSentInvite');
 Route::post('user/{userId}/invites/{inviteId}', 'UserInvitesController@accept');
-Route::delete('user/{userId}/invites/{inviteId}','UserInvitesController@decline');
+Route::delete('user/{userId}/invites/{inviteId}', 'UserInvitesController@decline');
 
 // User bans
 Route::post('/user/ban', 'BanController@create');
@@ -43,9 +45,9 @@ Route::delete('/bans', 'BanController@remove');
 Route::post('/project/{id}/board', 'BoardController@create');
 
 // Project Invites
-Route::get('project/{id}/invites','ProjectInvitesController@invites');
-Route::post('project/{id}/invites','ProjectInvitesController@sendInvite');
-Route::delete('project/{id}/invites','ProjectInvitesController@deleteInvite');
+Route::get('project/{id}/invites', 'ProjectInvitesController@invites');
+Route::post('project/{id}/invites', 'ProjectInvitesController@sendInvite');
+Route::delete('project/{id}/invites', 'ProjectInvitesController@deleteInvite');
 
 // Manage Verticals
 Route::post('/board/{id}/vertical', 'VerticalController@create');
@@ -54,9 +56,41 @@ Route::post('/board/{id}/vertical', 'VerticalController@create');
 Route::patch('/task/{id}', 'TaskController@edit');
 Route::delete('/task/{id}', 'TaskController@delete');
 
-// Full Text Search
-Route::get('/search/users','FullTextSearchController@users');
-Route::get('/search/projects','FullTextSearchController@projects');
-Route::get('/search/tasks','FullTextSearchController@tasks');
-Route::get('/search/labels','FullTextSearchController@lables');
+// Task Comments
+Route::post('/task/{id}/comments', function (Request $r, $id) {
+    $task = Task::find($id);
+    if ($task) {
+        $message = $r->input("msg");
+        $sentDate = $r->input("sent_date");
+        $idSent = $r->input("id_users");
+        $newComment = new Comment();
+        $newComment->msg = $message;
+        $newComment->id_users = $idSent;
+        $newComment->sent_date =$sentDate;
+        $newComment->id_task = $id;
+        $newComment->save();
+        return response()->json(["Message" => "Successufuly Commented"],201);
+    } else {
+        return response()->json(["Message" => "Task Not Found"], 404);
+    }
+});
+Route::get('/task/{id}/comments', function ($id) {
+    $task = Task::find($id);
+    if ($task) {
+        $comments = $task->comments()->get()->all();
+        $commentArray =  [];
+        foreach ($comments as $key => $comment) {
+            $commentArray[$key] = $comment;
+            $commentArray[$key]["user"] =$comment->user()->first();
+        }
+        return response()->json($commentArray, 200);
+    } else {
+        return response()->json(["Message" => "Task Not Found"], 404);
+    }
+});
 
+// Full Text Search
+Route::get('/search/users', 'FullTextSearchController@users');
+Route::get('/search/projects', 'FullTextSearchController@projects');
+Route::get('/search/tasks', 'FullTextSearchController@tasks');
+Route::get('/search/labels', 'FullTextSearchController@lables');

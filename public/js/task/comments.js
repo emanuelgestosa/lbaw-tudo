@@ -145,9 +145,9 @@ var createPopUp = function createPopUp(type, title, text) {
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*********************************************!*\
-  !*** ./resources/js/user/administration.js ***!
-  \*********************************************/
+/*!***************************************!*\
+  !*** ./resources/js/task/comments.js ***!
+  \***************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.js */ "./resources/js/app.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -158,109 +158,129 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var searchUsers = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(query, maxItems) {
-    var params, response, jsonResponse;
+var toggleCommentsButton = document.querySelector('#togle-comments');
+var taskComponent = document.querySelector('article.task-component');
+var commentTab = document.querySelector('section.comment-tab');
+var commentInput = document.querySelector('input#comment-input');
+var taskId = commentInput.getAttribute('task-id');
+var userId = commentInput.getAttribute('user-id');
+commentInput.addEventListener('keypress', /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+    var data, options, response;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            params = {
-              query: query,
-              maxItems: maxItems
+            if (!(e.key == 'Enter')) {
+              _context.next = 9;
+              break;
+            }
+            console.log(commentInput.value);
+            data = {
+              msg: commentInput.value,
+              id_users: parseInt(userId),
+              sent_date: '2022-12-28'
             };
-            _context.next = 3;
-            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)('/api/search/users', {
-              method: 'GET',
-              params: params
-            });
-          case 3:
+            commentInput.value = '';
+            options = {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            };
+            _context.next = 7;
+            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
+          case 7:
             response = _context.sent;
-            _context.next = 6;
-            return response.json();
-          case 6:
-            jsonResponse = _context.sent;
-            return _context.abrupt("return", jsonResponse);
-          case 8:
+            addComments(taskId);
+          case 9:
           case "end":
             return _context.stop();
         }
       }
     }, _callee);
   }));
-  return function searchUsers(_x, _x2) {
+  return function (_x) {
     return _ref.apply(this, arguments);
   };
-}();
-var deleteUserResults = function deleteUserResults() {
-  var lista = document.querySelector('section.user-results');
-  lista.innerHTML = '';
-  lista.style.display = 'hidden';
+}());
+var toggleComments = function toggleComments() {
+  taskComponent.toggleAttribute('showing-comments');
+  commentTab.toggleAttribute('closed');
 };
-var preencherLista = function preencherLista(users) {
-  var lista = document.querySelector("section.user-results");
-  var _iterator = _createForOfIteratorHelper(users),
-    _step;
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var user = _step.value;
-      var userItem = "\n            <article class=\"user-card\" user-id=".concat(user.id, ">\n            <p>").concat(user.name, "</p>\n            <p>").concat(user.username, "</p>\n            </article>\n            ");
-      lista.innerHTML += userItem;
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-  var userCards = document.querySelectorAll("article.user-card");
-  var _iterator2 = _createForOfIteratorHelper(userCards),
-    _step2;
-  try {
-    var _loop = function _loop() {
-      var card = _step2.value;
-      card.addEventListener('click', function () {
-        var userId = card.getAttribute('user-id');
-        window.location = window.SERVER + "/user/" + userId;
-      });
-    };
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      _loop();
-    }
-  } catch (err) {
-    _iterator2.e(err);
-  } finally {
-    _iterator2.f();
-  }
-  lista.style.display = "block";
-};
-var queryInput = document.querySelector("input.search-user");
-var searchButton = document.querySelector("forum.search_bar>i");
-if (queryInput) {
-  queryInput.addEventListener('input', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-    var maxItems, result;
+toggleCommentsButton.addEventListener('click', toggleComments);
+var getComments = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(taskId) {
+    var options, response, comments;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            maxItems = 10;
-            deleteUserResults();
-            if (!(queryInput.value != "")) {
-              _context2.next = 7;
-              break;
-            }
-            _context2.next = 5;
-            return searchUsers(queryInput.value, maxItems);
-          case 5:
-            result = _context2.sent;
-            preencherLista(result);
-          case 7:
+            options = {
+              method: 'GET'
+            };
+            _context2.next = 3;
+            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
+          case 3:
+            response = _context2.sent;
+            _context2.next = 6;
+            return response.json();
+          case 6:
+            comments = _context2.sent;
+            return _context2.abrupt("return", comments);
+          case 8:
           case "end":
             return _context2.stop();
         }
       }
     }, _callee2);
-  })));
-}
+  }));
+  return function getComments(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+var addComments = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(taskId) {
+    var commentList, comments, commentData, _iterator, _step, comment;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            commentList = document.querySelector('section.comment-container');
+            comments = '';
+            _context3.next = 4;
+            return getComments(taskId);
+          case 4:
+            commentData = _context3.sent;
+            _iterator = _createForOfIteratorHelper(commentData);
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                comment = _step.value;
+                comments += buildComment(comment);
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+            commentList.innerHTML = '';
+            commentList.innerHTML = comments;
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+  return function addComments(_x3) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+var buildComment = function buildComment(comment) {
+  return "\n    <article class=\"comment-component\" id=\"".concat(comment.id, "\">\n        <p>Sent: ").concat(comment.sent_date, "</p>\n        <p>").concat(comment.msg, "</p>\n        <p>Sent By: ").concat(comment.user.name, "</p>\n    </article>\n    ");
+};
+addComments(taskId);
 })();
 
 /******/ })()

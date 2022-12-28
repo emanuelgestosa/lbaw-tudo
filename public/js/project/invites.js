@@ -26,7 +26,8 @@ var sendRequest = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             fullUrl = new URL(window.SERVER + url);
-            if (options.method === "GET") {
+            if (options.method === "GET" && options.params != undefined) {
+              console.log("here");
               fullUrl.search = new URLSearchParams(options.params).toString();
             }
             _context.next = 4;
