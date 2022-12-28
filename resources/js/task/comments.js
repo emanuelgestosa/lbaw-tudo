@@ -23,7 +23,7 @@ commentInput.addEventListener('keypress', async (e) => {
       body: JSON.stringify(data),
     }
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-    console.log(await response.text())
+    addComments(taskId)
   }
 })
 const toggleComments = () => {
@@ -31,3 +31,33 @@ const toggleComments = () => {
   commentTab.toggleAttribute('closed')
 }
 toggleCommentsButton.addEventListener('click', toggleComments)
+
+const getComments = async (taskId) => {
+  const options = {
+    method: 'GET',
+  }
+  const response = await sendRequest(`/api/task/${taskId}/comments`, options)
+  const comments = await response.json()
+  return comments
+}
+
+const addComments = async (taskId) => {
+  const commentList = document.querySelector('section.comment-container')
+  let comments = ''
+  const commentData = await getComments(taskId)
+  for (const comment of commentData) {
+    comments += buildComment(comment)
+  }
+  commentList.innerHTML = ''
+  commentList.innerHTML = comments
+}
+
+const buildComment = (comment) => {
+  return `
+    <article class="comment-component" id="${comment.id}">
+        <p>Sent: ${comment.sent_date}</p>
+        <p>${comment.msg}</p>
+        <p>Sent By: ${comment.user.name}</p>
+    </article>
+    `
+}
