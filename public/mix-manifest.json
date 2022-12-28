@@ -3,5 +3,6 @@
     "/js/user/administration.js": "/js/user/administration.js",
     "/js/user/invites.js": "/js/user/invites.js",
     "/js/project/invites.js": "/js/project/invites.js",
+    "/js/task/comments.js": "/js/task/comments.js",
     "/js/popup-test.js": "/js/popup-test.js"
 }

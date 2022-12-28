@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <link href="{{ asset('/css/task.css') }}" rel="stylesheet">
-
+<script defer src="/js/task/comments.js"></script>
 @yield('content')
 
 @section('content')
@@ -63,21 +63,4 @@ section.comment-tab[closed]{
     display:none;
 }
 </style>
-<script>
-const toggleCommentsButton = document.querySelector("#togle-comments")
-const  taskComponent= document.querySelector("article.task-component")
-const commentTab = document.querySelector("section.comment-tab")
-const commentInput = document.querySelector("input#comment-input")
-commentInput.addEventListener("keypress",(e) =>{
-    if(e.key == 'Enter'){
-    console.log(commentInput.value)
-    commentInput.value = ""
-    }
-})
-const toggleComments = () =>{
-    taskComponent.toggleAttribute("showing-comments")
-    commentTab.toggleAttribute("closed")
-}
-toggleCommentsButton.addEventListener("click",toggleComments)
-</script>
 @endsection
