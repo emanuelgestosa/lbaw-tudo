@@ -238,9 +238,8 @@ var updateComments = /*#__PURE__*/function () {
             return response.json();
           case 9:
             commentData = _context2.sent;
-            console.log(commentData);
             addComments(commentData.reverse());
-          case 12:
+          case 11:
           case "end":
             return _context2.stop();
         }
@@ -269,6 +268,12 @@ var addComments = function addComments(comments) {
   commentList.innerHTML += commentsHTML;
   commentList.scrollTop = commentList.scrollHeight;
 };
+var commentList = document.querySelector('div#message-list');
+commentList.addEventListener("scroll", function (e) {
+  if (commentList.scrollTop == 0) {
+    loadOlderComments(taskId);
+  }
+});
 var initComments = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -295,7 +300,7 @@ var buildComment = function buildComment(comment) {
   }
 };
 var buildOtherComment = function buildOtherComment(comment) {
-  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username\">Here ").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
 };
 var buildMyComment = function buildMyComment(comment) {
   return "\n    <div class=\"message-item\" commet-id=".concat(comment.id, "\">\n        <div class=\"message-body user-message\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
@@ -347,7 +352,6 @@ var loadOlderComments = /*#__PURE__*/function () {
             commentInput.setAttribute('cursor', _jsonResult.next_page_url);
             comments = _jsonResult.data;
           case 27:
-            console.log(comments);
             olderComments = '';
             _iterator2 = _createForOfIteratorHelper(comments.reverse());
             try {
@@ -362,7 +366,7 @@ var loadOlderComments = /*#__PURE__*/function () {
             }
             commentList = document.querySelector('div#message-list');
             commentList.innerHTML = olderComments + commentList.innerHTML;
-          case 33:
+          case 32:
           case "end":
             return _context4.stop();
         }
