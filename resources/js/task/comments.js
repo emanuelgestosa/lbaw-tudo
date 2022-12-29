@@ -3,8 +3,6 @@ import { sendRequest, createPopUp } from '../app.js'
 const toggleCommentsButton = document.querySelector('#togle-comments')
 const taskComponent = document.querySelector('article.task-component')
 const commentTab = document.querySelector('section.comment-tab')
-// WTF
-commentTab.innerHTML += '<button id="more-comments">Load More Comments</button>'
 const commentInput = document.querySelector('input#comment-input')
 const taskId = commentInput.getAttribute('task-id')
 const userId = commentInput.getAttribute('user-id')

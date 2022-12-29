@@ -161,8 +161,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var toggleCommentsButton = document.querySelector('#togle-comments');
 var taskComponent = document.querySelector('article.task-component');
 var commentTab = document.querySelector('section.comment-tab');
-// WTF
-commentTab.innerHTML += '<button id="more-comments">Load More Comments</button>';
 var commentInput = document.querySelector('input#comment-input');
 var taskId = commentInput.getAttribute('task-id');
 var userId = commentInput.getAttribute('user-id');
