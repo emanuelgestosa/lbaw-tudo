@@ -133,6 +133,4 @@ const loadOlderComments = async () => {
   commentList.innerHTML = olderComments + commentList.innerHTML
 }
 
-const loadMore = document.querySelector('button#more-comments')
-loadMore.addEventListener('click', loadOlderComments)
 initComments()

@@ -375,8 +375,6 @@ var loadOlderComments = /*#__PURE__*/function () {
     return _ref4.apply(this, arguments);
   };
 }();
-var loadMore = document.querySelector('button#more-comments');
-loadMore.addEventListener('click', loadOlderComments);
 initComments();
 })();
 
