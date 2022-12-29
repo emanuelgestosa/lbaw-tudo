@@ -81,8 +81,8 @@ Route::get('/task/{id}/comments', function (Request $r, $id) {
     $task = Task::find($id);
     if ($task) {
         $lastComment = $r->input('lastComment');
-        if ($lastComment) {
-            $comments = $task->comments()->orderby('sent_date', 'DESC')->where('id', '>=', $lastComment)->get()->all();
+        if ($lastComment !== null) {
+            $comments = $task->comments()->orderby('sent_date', 'DESC')->where('id', '>', $lastComment)->get()->all();
             $commentArray =  [];
             foreach ($comments as $key => $comment) {
                 $commentArray[$key] = $comment;

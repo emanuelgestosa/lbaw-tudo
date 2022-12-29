@@ -36,8 +36,10 @@ toggleCommentsButton.addEventListener('click', toggleComments)
 
 const updateComments = async (taskId) => {
   const commentList = document.querySelector('div#message-list')
-  const lastCommentId = commentList.lastElementChild.getAttribute('comment-id')
-  let comments = ''
+  let lastCommentId = "0"
+  if (commentList.lastElementChild) {
+    lastCommentId = commentList.lastElementChild.getAttribute('comment-id')
+  }
   const options = {
     method: 'GET',
     params: {
@@ -46,7 +48,7 @@ const updateComments = async (taskId) => {
   }
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
   const commentData = await response.json()
-  addComments(commentData)
+  addComments(commentData.reverse())
 }
 
 const addComments = (comments) => {
@@ -70,7 +72,6 @@ const buildComment = (comment) => {
 }
 
 const buildOtherComment = (comment) => {
-  console.log(comment)
   return `
     <div class="message-item" comment-id="${comment.id}">
         <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
@@ -98,10 +99,8 @@ const buildMyComment = (comment) => {
 
 const loadOlderComments = async () => {
   const cursor = commentInput.getAttribute('cursor')
-  console.log("Cursor is ",cursor)
   let comments
   if (cursor === null) {
-    console.log("First Time")
     const options = {
       method: 'GET',
     }
@@ -109,11 +108,10 @@ const loadOlderComments = async () => {
     const jsonResult = await response.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
     comments = jsonResult.data
-  } else if (cursor === "null") {
-    console.log("No more Messages")
+  } else if (cursor === 'null') {
+    console.log('No more Messages')
     return
   } else {
-    console.log("Getting More Messages")
     const result = await fetch(cursor)
     const jsonResult = await result.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
@@ -122,7 +120,7 @@ const loadOlderComments = async () => {
 
   console.log(comments)
   let olderComments = ''
-  for (const comment of comments) {
+  for (const comment of comments.reverse()) {
     olderComments += buildComment(comment)
   }
   const commentList = document.querySelector('div#message-list')
