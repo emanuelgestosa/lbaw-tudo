@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Administrator;
+use App\Models\User;
 use Auth;
 
 class AdminController extends Controller
@@ -29,5 +30,17 @@ class AdminController extends Controller
         return redirect('/');
       }
       return view('pages.administrationCreate');
+    }
+
+    public function getJson($id) {
+      $admin = Administrator::find($id);
+      if (is_null($admin)) {
+        return response()->json(['success' => false]);
+      }
+      $user = User::find($admin->id);
+      if (is_null($user)) {
+        return response()->json(['success' => false]);
+      }
+      return response()->json(['success' => true, 'user' => $user]);
     }
 }

@@ -8,6 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Ban extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     *@var array
+     */
+    protected $fillable = [
+        'id_users',
+        'id_administrator',
+        'reason', 
+        'start_date',
+        'end_date',
+    ];
+
     public $timestamps=false;
     public $table="ban";
 

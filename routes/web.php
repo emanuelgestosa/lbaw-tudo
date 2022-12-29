@@ -24,14 +24,6 @@ Route::get('/user/{id}/edit', 'UserController@showEdit');
 Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
 Route::get('/user/{id}/invites', 'UserController@showInvites');
 
-// API
-Route::post('/api/user', 'UserController@create');
-Route::patch('/api/user/{id}', 'UserController@edit');
-Route::delete('/api/user/{id}', 'UserController@delete');
-Route::post('/api/project/{id}/board', 'BoardController@create');
-Route::post('/api/board/{id}/vertical', 'VerticalController@create');
-Route::patch('/api/task/{id}', 'TaskController@edit');
-Route::delete('/api/task/{id}', 'TaskController@delete');
 
 
 // Authentication
@@ -55,7 +47,7 @@ Route::get('/project/{id}/boards/create', 'BoardController@showCreate');
 
 // Project
 Route::get('/project/{id}', 'ProjectController@show');
-Route::get('/project/{id}/invites','ProjectController@invites');
+Route::get('/project/{id}/invites', 'ProjectController@invites');
 Route::get('/user/{user_id}/add_project', 'ProjectController@showCreate');
 Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('add_project');
 
@@ -63,3 +55,7 @@ Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('ad
 Route::get('/admins', 'AdminController@show');
 Route::get('/admins/create', 'AdminController@showCreate');
 
+//Pop Up Tester
+Route::get('popup', function () {
+    return view('pages.popup');
+});

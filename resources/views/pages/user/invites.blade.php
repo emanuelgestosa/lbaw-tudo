@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<script defer src="/js/user/invites.js"></script>
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 
 @yield('content')

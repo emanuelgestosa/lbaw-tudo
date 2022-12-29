@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 use App\Models\Administrator;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -144,13 +145,9 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
-      if (!Auth::check() || (
-          Auth::check() &&
-          empty(Administrator::where('id_users', Auth::user()->id)->get()->all()))) {
-        return redirect('/');
-      }
 
-      $validate = $request->validate([
+      $requestjson = json_decode($request->getContent(), true);
+      $validator = Validator::make($requestjson, [
         'name' => 'required|string|max:255',
         'username' => 'required|string|max:255|unique:users',
         'email' => 'required|string|email|max:255|unique:users',
@@ -158,11 +155,16 @@ class UserController extends Controller
         'password' => 'required|string|min:6|confirmed',
       ]);
 
-      $username = $request->input('username');
-      $name = $request->input('name');
-      $email = $request->input('email');
-      $phone_number = $request->input('phone_number');
-      $password = $request->input('password');
+      if ($validator->fails()) {
+        return response()->json(['success' => false,
+          'error' => $validator->messages()]);
+      }
+
+      $username = $requestjson['username'];
+      $name = $requestjson['name'];
+      $email = $requestjson['email'];
+      $phone_number = $requestjson['phone_number'];
+      $password = $requestjson['password'];
       $user = User::create([
         'name' => $name,
         'username' => $username,
@@ -171,10 +173,14 @@ class UserController extends Controller
         'password' => bcrypt($password),
       ]);
 
-      if (is_null($user)) {
-        return redirect('/');
-      }
+      return response()->json(['success' => true]);
+    }
 
-      return redirect('/user/' . $user->id);
+    public function getJson($id) {
+      $user = User::find($id);
+      if (is_null($user)) {
+        return response()->json(['success' => false]);
+      }
+      return response()->json(['success' => true, 'user' => $user]);
     }
 }
