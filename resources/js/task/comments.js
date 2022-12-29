@@ -78,7 +78,7 @@ const buildOtherComment = (comment) => {
     <div class="message-item" comment-id="${comment.id}">
         <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
         <div class="message-body">
-            <p class="message-username>Here ${comment.user.name}</p>
+            <p class="message-username">Here ${comment.user.name}</p>
             <div class="text-lists">
                 <p class="message-text">${comment.msg}</p>
             </div>
@@ -90,7 +90,7 @@ const buildMyComment = (comment) => {
   return `
     <div class="message-item" commet-id=${comment.id}">
         <div class="message-body user-message">
-            <p class="message-username>${comment.user.name}</p>
+            <p class="message-username">${comment.user.name}</p>
             <div class="text-lists">
                 <p class="message-text">${comment.msg}</p>
             </div>

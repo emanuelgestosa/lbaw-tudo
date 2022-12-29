@@ -295,10 +295,10 @@ var buildComment = function buildComment(comment) {
   }
 };
 var buildOtherComment = function buildOtherComment(comment) {
-  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username>Here ").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username\">Here ").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
 };
 var buildMyComment = function buildMyComment(comment) {
-  return "\n    <div class=\"message-item\" commet-id=".concat(comment.id, "\">\n        <div class=\"message-body user-message\">\n            <p class=\"message-username>").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+  return "\n    <div class=\"message-item\" commet-id=".concat(comment.id, "\">\n        <div class=\"message-body user-message\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
 };
 var loadOlderComments = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
