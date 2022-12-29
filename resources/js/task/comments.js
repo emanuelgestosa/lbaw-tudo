@@ -3,8 +3,6 @@ import { sendRequest, createPopUp } from '../app.js'
 const toggleCommentsButton = document.querySelector('#togle-comments')
 const taskComponent = document.querySelector('article.task-component')
 const commentTab = document.querySelector('section.comment-tab')
-// WTF
-commentTab.innerHTML += '<button id="more-comments">Load More Comments</button>'
 const commentInput = document.querySelector('input#comment-input')
 const taskId = commentInput.getAttribute('task-id')
 const userId = commentInput.getAttribute('user-id')
@@ -48,7 +46,6 @@ const updateComments = async (taskId) => {
   }
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
   const commentData = await response.json()
-  console.log(commentData)
   addComments(commentData.reverse())
 }
 
@@ -61,6 +58,13 @@ const addComments = (comments) => {
   commentList.innerHTML += commentsHTML
   commentList.scrollTop = commentList.scrollHeight
 }
+
+const commentList = document.querySelector('div#message-list')
+commentList.addEventListener("scroll", (e) =>{
+    if(commentList.scrollTop == 0){
+        loadOlderComments(taskId)
+    }
+})
 
 const initComments = async () => {
   loadOlderComments(taskId)
@@ -78,7 +82,7 @@ const buildOtherComment = (comment) => {
     <div class="message-item" comment-id="${comment.id}">
         <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
         <div class="message-body">
-            <p class="message-username">Here ${comment.user.name}</p>
+            <p class="message-username">${comment.user.name}</p>
             <div class="text-lists">
                 <p class="message-text">${comment.msg}</p>
             </div>
@@ -121,7 +125,6 @@ const loadOlderComments = async () => {
     comments = jsonResult.data
   }
 
-  console.log(comments)
   let olderComments = ''
   for (const comment of comments.reverse()) {
     olderComments += buildComment(comment)
@@ -130,6 +133,4 @@ const loadOlderComments = async () => {
   commentList.innerHTML = olderComments + commentList.innerHTML
 }
 
-const loadMore = document.querySelector('button#more-comments')
-loadMore.addEventListener('click', loadOlderComments)
 initComments()
