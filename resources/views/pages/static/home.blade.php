@@ -1,16 +1,16 @@
 @extends('layouts.app')
-<link href="{{ asset('css/home.css') }}" rel="stylesheet">
-
-@yield('content')
+@push('body-class', 'home-bg')
 
 @section('content')
-
+<div id="info">
   <h1>Tu-Do</h1>
-  <h2>To simplify your life</h2>
+  <h2>Simplify your life</h2>
+
+  <img id="img" src="/img/logo.png" height="100px" weigth="100px" alt="Goose made by origami gradient from purple to pink">
 
   @if (!Auth::check())
-    <a class="button" href="{{ url('/register') }}"> Create an account </a>
-    <a class="button" href="{{ url('/login') }}"> Log in </a>
+    <a class="btn btn-primary" id="create" href="{{ url('/register') }}"> Create an account </a>
+    <a class="btn btn-primary" id="login" href="{{ url('/login') }}"> Log in </a>
   @endif
-
+</div>
 @endsection

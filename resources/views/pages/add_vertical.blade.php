@@ -13,7 +13,7 @@
     <label for="name">Name</label>
     <input id="name" type="text" name="name" value="" required autofocus>
   
-    <button type="submit">Save</button>
+    <button type="submit" class="btn btn-primary" >Save</button>
     <a href="{{ '/board/'.$id }}"> Cancel </a>
   </form>
 

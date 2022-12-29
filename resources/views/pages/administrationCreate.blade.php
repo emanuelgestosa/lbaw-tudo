@@ -4,7 +4,7 @@
 
 @section('content')
 
-  <h1 class="page_name" style="text-align:center;">Create User</h1>
+  <h1 class="page_name">Create User</h1>
   <form method="POST" action="/api/user">
       {{ csrf_field() }}
   
@@ -52,10 +52,10 @@
       <label for="password-confirm">Confirm Password</label>
       <input id="password-confirm" type="password" name="password_confirmation" required>
   
-      <button type="submit">
+      <button type="submit" class="btn btn-primary">
         Create
       </button>
-      <a class="button button-outline" href="{{ ('/admins') }}">Go Back</a>
+      <a class="btn btn-primary" href="{{ ('/admins') }}">Go Back</a>
   </form>
 
 @endsection

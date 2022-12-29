@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link href="{{ asset('css/common.css') }}" rel="stylesheet">
 
 @yield('content')
 
@@ -34,7 +33,7 @@
   @endif
 
 
-  <button type="submit">
+  <button type="submit" class="btn btn-primary">
     Save
   </button>
 

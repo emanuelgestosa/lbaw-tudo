@@ -1,7 +1,19 @@
+/*
+Index:
+
+      Name                      Description
+  - Overrides           Overrides bootstrap css
+  - Home Page Design    Changes the homepage design
+  - Profile             Users profile page
+  - Nav e footer
+*/
+
+
 :root {
-  --lilac:#4E41E7;
-  --blilac: #897FFF;
+  --lilac:#843ace;
+  --blilac: #A055EC;
   --white: #ffffff;
+  --dark: #1B1E2C;
 }
 
 * {
@@ -9,55 +21,20 @@
 }
 
 body {
-  background-color: --white;
-  color: var(--lilac);
+  background-color: var(--dark);
+  color: var(--blilac);
 }
-main > #main_head {
-  width: 100%;
-  height: 80px;
-  max-height: 80px;
-  margin: 0;
-  align-items: center;
+
+ul{
+  list-style-type: none;
+}
+
+.dropdown-menu-dark{
   background-color: var(--blilac);
-  padding: 1%;
-  text-align: center;
-  background: var(--blilac);
-  color: white;
-  font-size: 30px;
-  flex-direction: row;
-  justify-content: end;
-  padding-top: 9px;
-}
-main > header h1 {
-  margin: 0;
-}
-main > header a.button {
-  margin: 1em;
-  justify-self: center;
-}
-main > header span {
-  margin: 1em;
-  justify-self: center;
 }
 
-footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   padding: 0.7%;
-   background-color: var(--lilac);
-   text-align: center;
-}
-
-footer a {
-    color: var(--white);
-    font-weight: bold;
-    margin-inline: 2%;
-}
-
-.principal {
-    text-align: center;
+.dropdown-toggle{
+  display: inline-flex;
 }
 
 #content label {
@@ -67,7 +44,6 @@ footer a {
 #content > form {
   margin: 0 auto;
   padding: 1em;
-  max-width: 20em;
   border: 1px solid --blilac;
 }
 
@@ -101,11 +77,9 @@ footer a {
   main > header span {
     margin: 0;
   }
-  #content form {
-    margin: 0;
-    max-width: 25em;
-  }
+
 }
+
 /**
  * Overide milligram colors
  * Some styles might be missing
@@ -134,30 +108,6 @@ input[type=password]:focus {
   border-color: var(--lilac);
 }
 
-#main_head {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  grid-auto-rows: minmax(50px, auto);
-}
-
-#main_logo{
-  font-size: 35px;
-  margin-top: 1%;
-  margin-left: 3%;
-  font-weight: bold;
-  grid-column: 1;
-}
-
-#main_buttons{
-  grid-column: 5;
-}
-
-.right {
-  float: right;
-  display: flex;
-  flex-direction: column;
-}
 
 .items {
   display: flex;
@@ -171,6 +121,7 @@ input[type=password]:focus {
   border-radius: 1em;
   text-align: center;
 }
+
 .page_name{
   font-size: 35px;
   font-weight: bold;
@@ -292,4 +243,374 @@ article.tu-do-popup.closed {
   100% {
     opacity: 0;
   }
+}
+
+article.tu-do-popup {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  min-width: 15em;
+  flex-direction: column;
+  border: 3px solid white;
+  color: white;
+  background-color: #897fff;
+}
+article.tu-do-popup > section {
+  text-align: center;
+  display: flex;
+  min-height: 3em;
+  flex-direction: column;
+  justify-content: center;
+}
+article.tu-do-popup p {
+  margin: 0px;
+}
+article.tu-do-popup > header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+article.tu-do-popup > header > button {
+  margin: 0;
+  width: 2em;
+  background-color: grey;
+  color: black;kkkkkkk
+}
+article.tu-do-popup > header[information] {
+  background-color: lightblue;
+}
+
+article.tu-do-popup > header[error] {
+  background-color: red;
+}
+
+article.tu-do-popup > header[success] {
+  background-color: green;
+}
+
+article.tu-do-popup[opening] {
+  animation: slide-up 500ms ease-out, fade-in 700ms;
+}
+
+article.tu-do-popup[closing] {
+  animation: slide-down 500ms ease-out, fade-out 700ms;
+}
+
+article.tu-do-popup.closed {
+  display: none;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/*
+Nav e footer
+*/
+
+.container-nav *.navbar-butto, .container-nav *.navbar-brand, .navbar-toggler{
+  margin: 0 10px;
+}
+
+.nav-link, .navbar-brand{
+  color:var(--blilac)
+}
+
+.pfp-nav{
+  width: 25px;
+  height: 25px;
+  position: relative;
+}
+
+.pfp-nav > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  position: relative;
+}
+
+footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   padding: 0.7%;
+   text-align: center;
+}
+
+footer a {
+    color:  #A055EC;
+    margin-inline: 2%;
+}
+
+
+/*
+Overrides
+*/
+
+.btn{
+background-color: var(--blilac);
+}
+
+.btn-primary{
+  background-color: var(--blilac);
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--blilac);
+  --bs-btn-border-color: var(--blilac);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--lilac);
+  --bs-btn-hover-border-color: var(--lilac);
+  --bs-btn-focus-shadow-rgb: 49,132,253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--lilac);
+  --bs-btn-active-border-color: var(--lilac);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: var(--blilac);
+  --bs-btn-disabled-border-color: var(--blilac);
+}
+
+a{
+  text-decoration: none;
+}
+
+/*
+Home Page Design
+*/
+
+.home-bg .container-nav{
+  display: none;
+}
+
+.home-bg{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.home-bg #info{
+  display: grid;
+  grid-template-columns: auto 1fr ;
+  gap: 20px;
+  grid-auto-rows: auto;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.home-bg #info #img{
+  grid-column: 1;
+  grid-row: 1;
+  margin: auto;
+}
+
+.home-bg #info h1{
+  font-size: 70px;
+  font-family: 'Nunito';
+  font-weight: bold;
+  color: #9832a5;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.home-bg #info h2{
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.home-bg #info #create{
+  grid-column: 1;
+  grid-row: 4;
+}
+.home-bg #info #login{
+  grid-column: 1;
+  grid-row: 5;
+}
+
+.home-bg #info .btn-primary{
+  max-width: 300px;
+  max-height: fit-content;
+  align-items: center;
+  text-align: center; 
+}
+
+/*
+Profile
+*/
+.profile-bg .pfp{
+  width: 200px;
+  height: 200px;
+  position: relative;
+  border-radius: 50%;
+  box-shadow: 4px 6px 0 #a055ec4f;
+  margin: 30px 0px;
+}
+.profile-bg .pfp > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 3px;
+  border-color: var(--blilac);
+  position: relative;
+}
+.profile-bg #contacts{
+  margin: 0;
+}
+.profile-bg #contacts li{
+  text-decoration: none;
+  margin:10px 0px;
+}
+.profile-bg{
+  display: block;
+}
+.profile-bg #user-info{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "pic button"
+  "contact todo";
+}
+.profile-bg .pfp{
+  grid-area: pic;
+}
+.profile-bg #contacts{
+  grid-area: contact;
+}
+.profile-bg .right{
+  grid-area: button;
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  position: absolute;
+  right: 0;
+  margin: 0px 30px;
+}
+.profile-bg .right>*{
+  margin: 5px;
+}
+.profile-bg .todo{
+  grid-area: todo;
+  background-color: #7c24882e;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+
+/*
+Login
+*/
+.login-bg #login-form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-bg #login-form2{
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-bg .form-auth .form-row *{
+  width: 100%;
+}
+
+.login-bg h1, #logo{
+  text-align: center;
+}
+
+
+.login-bg #register-now{
+  text-decoration: underline;
+  font-weight: bold;
+  color: rgb(235, 185, 21);
+  break-before: auto;
+}
+
+/*
+Register
+*/
+.reg-bg #login-form{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  grid-auto-rows: auto;
+}
+
+.reg-bg #login-form2{
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.reg-bg .form-auth .form-row *{
+  width: 100%;
+}
+
+.reg-bg h1, #logo{
+  text-align: center;
+}
+
+.reg-bg #login-now{
+  text-decoration: underline;
+  font-weight: bold;
+  color: rgb(235, 185, 21);
+  break-before: auto;
 }

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link href="{{ asset('css/common.css') }}" rel="stylesheet">
 
 @yield('content')
 
@@ -25,7 +24,7 @@
   </div>
   @endif
 
-  <button type="submit">
+  <button type="submit" class="btn btn-primary">
     Save
   </button>
   <a id="cancel_button" href="{{ route('projects', ['id' => $user->id]) }}"> Cancel </a>

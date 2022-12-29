@@ -15,12 +15,12 @@
       <p><i class="fa-solid fa-phone"></i> {{ $phone_number }}</p>
     </div>
 
-    <a class="button" id="edit" href="{{ url('/user/'. $id. '/edit') }}"><i class="fa-solid fa-pencil"></i> Edit Profile</a>
+    <a class="btn btn-primary" id="edit" href="{{ url('/user/'. $id. '/edit') }}"><i class="fa-solid fa-pencil"></i> Edit Profile</a>
   </div>
   <nav class="right">
-    <a class="button" href="{{ url('user/' . $id . '/favorites') }}"><i class="fa-solid fa-star"></i> My Favorites</a>
-    <a class="button" href="{{ url('user/' . $id . '/calendar') }}"><i class="fa-solid fa-calendar"></i> My Calendar</a>
-    <a class="button" href="{{ url('user/' . $id . '/projects') }}"><i class="fa-solid fa-diagram-project"></i> My Projects</a>
+    <a class="btn btn-primary" href="{{ url('user/' . $id . '/favorites') }}"><i class="fa-solid fa-star"></i> My Favorites</a>
+    <a class="btn btn-primary" href="{{ url('user/' . $id . '/calendar') }}"><i class="fa-solid fa-calendar"></i> My Calendar</a>
+    <a class="btn btn-primary" href="{{ url('user/' . $id . '/projects') }}"><i class="fa-solid fa-diagram-project"></i> My Projects</a>
   </nav>
 
   <form method="post" action="/api/user/{{ $id }}">
@@ -33,7 +33,7 @@
     <input type="text" name="phone_number"  value="{{ $phone_number }}" />
     <input type="email" name="email"  value="{{ $email }}" />
 
-    <button type="submit">Send</button>
+    <button type="submit" class="btn btn-primary">Send</button>
   </form>
 
   <form method="post" action="/api/user/{{ $id }}">
@@ -42,7 +42,7 @@
 
     <input type="hidden" name="id"  value="{{ $id }}" />
 
-    <button type="submit" style="background-color: red; border: none;"><i class="fa-solid fa-trash"></i> Delete User</button>
+    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash"></i> Delete User</button>
     </form>
 
 @endsection

@@ -17,7 +17,7 @@
           <input type="hidden" name="userId"  value="{{ $invite->invited->id }}" />
           <input type="hidden" name="inviteId"  value="{{ $invite->id }}" />
 
-          <button id="accept" type="submit"> Accept </button>
+          <button id="accept"  class="btn btn-primary" type="submit"> Accept </button>
         </form>
 
         <form>
@@ -26,7 +26,7 @@
 
           <input type="hidden" name="userId"  value="{{ $invite->invited->id }}" />
           <input type="hidden" name="inviteId"  value="{{ $invite->id }}" />
-          <button id="decline" type="submit"> Decline </button>
+          <button id="decline" type="submit" class="btn btn-primary"> Decline </button>
       </article>
     @endforeach
 @endsection

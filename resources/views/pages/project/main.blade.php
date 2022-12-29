@@ -15,7 +15,7 @@
         </div>
 
     <section id="project_boards">
-        <h2 class="subtitle"> <i class="fa-solid fa-briefcase"></i> Boards <a class="button" href="{{ url('/project/'.$project->id.'/boards/create') }}"> Add board </a> </h2>
+        <h2 class="subtitle"> <i class="fa-solid fa-briefcase"></i> Boards <a class="btn btn-primary" href="{{ url('/project/'.$project->id.'/boards/create') }}"> Add board </a> </h2>
         <div class="boardboard">
         @foreach ($project->boards()->get() as $board)
         @include('partials.board.card',['board',$board])
@@ -27,7 +27,7 @@
         <section>
              <h2 class="subtitle"><i class="fa-solid fa-people-group"></i> Collaborators 
              </h2>
-             <a class="button" href="/project/{{$project->id}}/invites">
+             <a class="btn btn-primary" href="/project/{{$project->id}}/invites">
                 <i class="fa-solid fa-envelope"></i> Invites
              </a>       
         </section>
