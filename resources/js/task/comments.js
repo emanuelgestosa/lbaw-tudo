@@ -8,10 +8,8 @@ commentTab.innerHTML += '<button id="more-comments">Load More Comments</button>'
 const commentInput = document.querySelector('input#comment-input')
 const taskId = commentInput.getAttribute('task-id')
 const userId = commentInput.getAttribute('user-id')
-console.log(commentInput)
 commentInput.addEventListener('keypress', async (e) => {
   if (e.key == 'Enter') {
-    console.log(commentInput.value)
     const data = {
       msg: commentInput.value,
       id_users: parseInt(userId),
@@ -26,7 +24,7 @@ commentInput.addEventListener('keypress', async (e) => {
       body: JSON.stringify(data),
     }
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-    await addComments(taskId)
+    await updateComments(taskId)
   }
 })
 const toggleComments = () => {
@@ -36,31 +34,33 @@ const toggleComments = () => {
 
 toggleCommentsButton.addEventListener('click', toggleComments)
 
-const getComments = async (taskId) => {
+const updateComments = async (taskId) => {
+  const commentList = document.querySelector('div#message-list')
+  const lastCommentId = commentList.lastElementChild.getAttribute('comment-id')
+  let comments = ''
   const options = {
     method: 'GET',
+    params: {
+      lastComment: lastCommentId,
+    },
   }
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-  const comments = await response.json()
-  if (commentInput.getAttribute('cursor') == undefined) {
-    commentInput.setAttribute('cursor', comments.next_page_url)
-  }
- console.log("Cursor Is Already Defined")
-  return comments.data
+  const commentData = await response.json()
+  addComments(commentData)
 }
 
-const addComments = async (taskId) => {
+const addComments = (comments) => {
   const commentList = document.querySelector('div#message-list')
-  let comments = ''
-  const commentData = await getComments(taskId)
-  console.log(commentData)
-  for (const comment of commentData) {
+  for (const comment of comments) {
     comments += buildComment(comment)
   }
   commentList.innerHTML += comments
   commentList.scrollTop = commentList.scrollHeight
 }
 
+const initComments = async () => {
+  loadOlderComments(taskId)
+}
 const buildComment = (comment) => {
   if (!(comment.id_users == userId)) {
     return buildMyComment(comment)
@@ -68,11 +68,11 @@ const buildComment = (comment) => {
     return buildOtherComment(comment)
   }
 }
-addComments(taskId)
 
 const buildOtherComment = (comment) => {
+  console.log(comment)
   return `
-    <div class="message-item">
+    <div class="message-item" comment-id="${comment.id}">
         <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
         <div class="message-body">
             <p class="message-username>${comment.user.name}</p>
@@ -85,7 +85,7 @@ const buildOtherComment = (comment) => {
 }
 const buildMyComment = (comment) => {
   return `
-    <div class="message-item">
+    <div class="message-item" commet-id=${comment.id}">
         <div class="message-body user-message">
             <p class="message-username>${comment.user.name}</p>
             <div class="text-lists">
@@ -98,15 +98,29 @@ const buildMyComment = (comment) => {
 
 const loadOlderComments = async () => {
   const cursor = commentInput.getAttribute('cursor')
+  console.log("Cursor is ",cursor)
   let comments
-  if (cursor) {
+  if (cursor === null) {
+    console.log("First Time")
+    const options = {
+      method: 'GET',
+    }
+    const response = await sendRequest(`/api/task/${taskId}/comments`, options)
+    const jsonResult = await response.json()
+    commentInput.setAttribute('cursor', jsonResult.next_page_url)
+    comments = jsonResult.data
+  } else if (cursor === "null") {
+    console.log("No more Messages")
+    return
+  } else {
+    console.log("Getting More Messages")
     const result = await fetch(cursor)
     const jsonResult = await result.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
     comments = jsonResult.data
-  } else {
-    comments = await getComments(taskId)
   }
+
+  console.log(comments)
   let olderComments = ''
   for (const comment of comments) {
     olderComments += buildComment(comment)
@@ -117,3 +131,4 @@ const loadOlderComments = async () => {
 
 const loadMore = document.querySelector('button#more-comments')
 loadMore.addEventListener('click', loadOlderComments)
+initComments()

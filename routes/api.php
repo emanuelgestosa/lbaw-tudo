@@ -96,7 +96,6 @@ Route::get('/task/{id}/comments', function (Request $r, $id) {
                     ->where('id', '<',  Cursor::fromEncoded($cursor)->parameters(["id"]))
                     ->orderby('id','DESC')
                     ->cursorPaginate(3);
-                return response()->json($comments, 200);
             }
             $comments = $task->comments()
                 ->orderby('id','DESC')->cursorPaginate(3);
