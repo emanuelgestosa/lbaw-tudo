@@ -24,6 +24,19 @@ class ProjectController extends Controller
       return view('pages.project.create', ['user' => $user]);
     }
 
+    public function toggle_favourite($project_id) {
+      $user_id = Auth::id();
+      $project = Project::find($project_id);
+      $collab = $project->collaborators()->wherePivot('id_project', $project_id)->wherePivot('id_users', $user_id)->first();
+      $project->collaborators()->wherePivot('id_project', $project_id)->wherePivot('id_users', $user_id)
+      ->updateExistingPivot($user_id, array('favourite' => ! $collab->pivot->favourite), false);
+        //return response()->json(["Message" => "Successufuly toggled favourite"],201);
+       /* else {
+          return response()->json(["Message" => "Collaborator not found"], 404);
+      } */
+      return view('pages.project.main', ['project'=>$project]);
+  }
+
     public function create(Request $request){
 
       $request->validate([
@@ -32,6 +45,7 @@ class ProjectController extends Controller
       ]);
 
       $user = Auth::user();
+      print_r($user->id);
       $new_project = New Project();
       $new_project->title = $request->input('title');
       $new_project->description = $request->input('description');

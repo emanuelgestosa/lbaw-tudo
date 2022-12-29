@@ -64,6 +64,22 @@ class UserController extends Controller
       return view('pages.user.projects', ['projects' => $projects, 'user_id' => $id]);
     }
 
+    public function showFavourites($id)
+    {
+      if (!UserController::hasPerms($id)) {
+        return redirect('/user/'.$id);
+      }
+      
+      $all_projects = User::find($id)->projects;
+      $favourites = [];
+      foreach($all_projects as $project){
+        if($project->collaborators()->wherePivot('id_users', $id)->first()->pivot->favourite == true){
+          $favourites[] = $project;
+        }
+      }
+      return view('pages.user.my_favourites', ['projects' => $favourites]);
+    }
+
     /**
      * Shows invites of a user.
      */

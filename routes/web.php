@@ -22,9 +22,8 @@ Route::get('/features', 'FeaturesController@show');
 Route::get('/user/{id}', 'UserController@show');
 Route::get('/user/{id}/edit', 'UserController@showEdit');
 Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
+Route::get('/user/{id}/favourites', 'UserController@showFavourites')->name('favourites');
 Route::get('/user/{id}/invites', 'UserController@showInvites');
-
-
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -50,6 +49,7 @@ Route::get('/project/{id}', 'ProjectController@show');
 Route::get('/project/{id}/invites', 'ProjectController@invites');
 Route::get('/user/{user_id}/add_project', 'ProjectController@showCreate');
 Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('add_project');
+Route::get('/project/{project_id}/favourite', 'ProjectController@toggle_favourite')->name('fav_project');
 
 // Administration
 Route::get('/admins', 'AdminController@show');

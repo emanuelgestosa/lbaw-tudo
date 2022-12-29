@@ -60,7 +60,7 @@
                   <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id) }}"> My Profile </a>
                   <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id . '/projects') }}"> My Projects </a>
                   <li><a class="dropdown-item" href="#">Calendar</a></li>
-                  <li><a class="dropdown-item" href="#">My Favorites</a></li>
+                  <li><a class="dropdown-item" href="{{ route('favourites', Auth::id()) }}">My Favorites</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{{ url('/logout') }}"> <i class="fa fa-sign-out"></i> Logout </a> </li>
                 </ul>

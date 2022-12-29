@@ -36,6 +36,15 @@
         <a href="{{ url('/user/' . $collaborator->id) }}"> {{$collaborator->name}} </a>
         @endforeach
     </ul>
+
+    <a href="{{ route('fav_project', ['project_id' => $project->id]) }}">
+    @if (! $project->collaborators()->wherePivot('id_project', $project->id)->wherePivot('id_users', Auth::id())->first()->pivot->favourite)
+    <i class="fa-regular fa-star"></i> Favorite Project
+    @else
+    <i class="fa-solid fa-star"></i> Unfavorite Project
+    @endif
+    </a>
+
     </div>
 </article>
 @endsection

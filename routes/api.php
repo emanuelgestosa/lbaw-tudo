@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +76,7 @@ Route::post('/task/{id}/comments', function (Request $r, $id) {
         return response()->json(["Message" => "Task Not Found"], 404);
     }
 });
+
 Route::get('/task/{id}/comments', function ($id) {
     $task = Task::find($id);
     if ($task) {

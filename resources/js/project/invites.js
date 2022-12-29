@@ -9,6 +9,7 @@ const searchUsers = async (query, maxItems) => {
   const jsonResponse = await response.json()
   return jsonResponse
 }
+
 const deleteUserResults = () => {
   const lista = document.querySelector('section.user-results')
   lista.innerHTML = ''
@@ -51,6 +52,7 @@ const userCardEventGoToProfile = (card) => {
     window.location = window.SERVER + '/user/' + cardUserId
   })
 }
+
 const userCardSendInvite = (card) => {
   const cardUserId = card.getAttribute('user-id')
   card
