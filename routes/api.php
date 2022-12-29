@@ -66,25 +66,35 @@ Route::post('/task/{id}/comments', function (Request $r, $id) {
         $newComment = new Comment();
         $newComment->msg = $message;
         $newComment->id_users = $idSent;
-        $newComment->sent_date =$sentDate;
+        $newComment->sent_date = $sentDate;
         $newComment->id_task = $id;
         $newComment->save();
-        return response()->json(["Message" => "Successufuly Commented"],201);
+        return response()->json(["Message" => "Successufuly Commented"], 201);
     } else {
         return response()->json(["Message" => "Task Not Found"], 404);
     }
 });
-Route::get('/task/{id}/comments', function ($id) {
+Route::get('/task/{id}/comments', function (Request $r, $id) {
     $task = Task::find($id);
     if ($task) {
-        $comments = $task->comments()->orderby('sent_date','DESC')->asc->cursorPaginate(3);
-        $commentArray =  [];
-        foreach ($comments->items() as $key => $comment) {
-            $commentArray[$key] = $comment;
-            $commentArray[$key]["user"] =$comment->user()->first();
+        $lastComment = $r->input('lastComment');
+        if ($lastComment) {
+            $comments = $task->comments()->orderby('sent_date', 'DESC')->where('id', '>=', $lastComment)->get()->all();
+            $commentArray =  [];
+            foreach ($comments as $key => $comment) {
+                $commentArray[$key] = $comment;
+                $commentArray[$key]["user"] = $comment->user()->first();
+            }
+            return response()->json($commentArray, 200);
+        } else {
+            $comments = $task->comments()->orderby('sent_date', 'DESC')->cursorPaginate(3);
+            $commentArray =  [];
+            foreach ($comments->items() as $key => $comment) {
+                $commentArray[$key] = $comment;
+                $commentArray[$key]["user"] = $comment->user()->first();
+            }
+            return response()->json($comments, 200);
         }
-
-        return response()->json($comments, 200);
     } else {
         return response()->json(["Message" => "Task Not Found"], 404);
     }
