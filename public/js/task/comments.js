@@ -172,14 +172,13 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             if (!(e.key == 'Enter')) {
-              _context.next = 10;
+              _context.next = 9;
               break;
             }
-            console.log(commentInput.value);
             data = {
               msg: commentInput.value,
               id_users: parseInt(userId),
-              sent_date: '2022-12-28'
+              sent_date: new Date()
             };
             commentInput.value = '';
             options = {
@@ -189,13 +188,13 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
               },
               body: JSON.stringify(data)
             };
-            _context.next = 7;
+            _context.next = 6;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
-          case 7:
+          case 6:
             response = _context.sent;
-            _context.next = 10;
-            return addComments(taskId);
-          case 10:
+            _context.next = 9;
+            return updateComments(taskId);
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -211,71 +210,83 @@ var toggleComments = function toggleComments() {
   commentTab.toggleAttribute('closed');
 };
 toggleCommentsButton.addEventListener('click', toggleComments);
-var getComments = /*#__PURE__*/function () {
+var updateComments = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(taskId) {
-    var options, response, comments;
+    var commentList, lastCommentId, options, response, commentData;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
+            commentList = document.querySelector('div#message-list');
+            lastCommentId = "0";
+            if (commentList.lastElementChild) {
+              lastCommentId = commentList.lastElementChild.getAttribute('comment-id');
+            }
             options = {
-              method: 'GET'
+              method: 'GET',
+              params: {
+                lastComment: lastCommentId
+              }
             };
-            _context2.next = 3;
-            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
-          case 3:
-            response = _context2.sent;
             _context2.next = 6;
-            return response.json();
+            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
           case 6:
-            comments = _context2.sent;
-            return _context2.abrupt("return", comments);
-          case 8:
+            response = _context2.sent;
+            _context2.next = 9;
+            return response.json();
+          case 9:
+            commentData = _context2.sent;
+            addComments(commentData.reverse());
+          case 11:
           case "end":
             return _context2.stop();
         }
       }
     }, _callee2);
   }));
-  return function getComments(_x2) {
+  return function updateComments(_x2) {
     return _ref2.apply(this, arguments);
   };
 }();
-var addComments = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(taskId) {
-    var commentList, comments, commentData, _iterator, _step, comment;
+var addComments = function addComments(comments) {
+  var commentList = document.querySelector('div#message-list');
+  var commentsHTML = '';
+  var _iterator = _createForOfIteratorHelper(comments),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var comment = _step.value;
+      commentsHTML += buildComment(comment);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  commentList.innerHTML += commentsHTML;
+  commentList.scrollTop = commentList.scrollHeight;
+};
+var commentList = document.querySelector('div#message-list');
+commentList.addEventListener("scroll", function (e) {
+  if (commentList.scrollTop == 0) {
+    loadOlderComments(taskId);
+  }
+});
+var initComments = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            commentList = document.querySelector('div#message-list');
-            comments = '';
-            _context3.next = 4;
-            return getComments(taskId);
-          case 4:
-            commentData = _context3.sent;
-            _iterator = _createForOfIteratorHelper(commentData);
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                comment = _step.value;
-                comments += buildComment(comment);
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-            commentList.innerHTML = '';
-            commentList.innerHTML = comments;
-            commentList.scrollTop = commentList.scrollHeight;
-          case 10:
+            loadOlderComments(taskId);
+          case 1:
           case "end":
             return _context3.stop();
         }
       }
     }, _callee3);
   }));
-  return function addComments(_x3) {
+  return function initComments() {
     return _ref3.apply(this, arguments);
   };
 }();
@@ -286,13 +297,85 @@ var buildComment = function buildComment(comment) {
     return buildOtherComment(comment);
   }
 };
-addComments(taskId);
 var buildOtherComment = function buildOtherComment(comment) {
-  return "\n    <div class=\"message-item\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username>".concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
 };
 var buildMyComment = function buildMyComment(comment) {
-  return "\n    <div class=\"message-item\">\n        <div class=\"message-body user-message\">\n            <p class=\"message-username>".concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+  return "\n    <div class=\"message-item\" commet-id=".concat(comment.id, "\">\n        <div class=\"message-body user-message\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
 };
+var loadOlderComments = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    var cursor, comments, options, response, jsonResult, result, _jsonResult, olderComments, _iterator2, _step2, comment, commentList;
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            cursor = commentInput.getAttribute('cursor');
+            if (!(cursor === null)) {
+              _context4.next = 13;
+              break;
+            }
+            options = {
+              method: 'GET'
+            };
+            _context4.next = 5;
+            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
+          case 5:
+            response = _context4.sent;
+            _context4.next = 8;
+            return response.json();
+          case 8:
+            jsonResult = _context4.sent;
+            commentInput.setAttribute('cursor', jsonResult.next_page_url);
+            comments = jsonResult.data;
+            _context4.next = 27;
+            break;
+          case 13:
+            if (!(cursor === 'null')) {
+              _context4.next = 18;
+              break;
+            }
+            console.log('No more Messages');
+            return _context4.abrupt("return");
+          case 18:
+            console.log('Getting More Messages');
+            _context4.next = 21;
+            return fetch(cursor);
+          case 21:
+            result = _context4.sent;
+            _context4.next = 24;
+            return result.json();
+          case 24:
+            _jsonResult = _context4.sent;
+            commentInput.setAttribute('cursor', _jsonResult.next_page_url);
+            comments = _jsonResult.data;
+          case 27:
+            olderComments = '';
+            _iterator2 = _createForOfIteratorHelper(comments.reverse());
+            try {
+              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                comment = _step2.value;
+                olderComments += buildComment(comment);
+              }
+            } catch (err) {
+              _iterator2.e(err);
+            } finally {
+              _iterator2.f();
+            }
+            commentList = document.querySelector('div#message-list');
+            commentList.innerHTML = olderComments + commentList.innerHTML;
+          case 32:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+  return function loadOlderComments() {
+    return _ref4.apply(this, arguments);
+  };
+}();
+initComments();
 })();
 
 /******/ })()

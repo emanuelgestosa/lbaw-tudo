@@ -8,11 +8,10 @@ const taskId = commentInput.getAttribute('task-id')
 const userId = commentInput.getAttribute('user-id')
 commentInput.addEventListener('keypress', async (e) => {
   if (e.key == 'Enter') {
-    console.log(commentInput.value)
     const data = {
       msg: commentInput.value,
       id_users: parseInt(userId),
-      sent_date: '2022-12-28',
+      sent_date: new Date(),
     }
     commentInput.value = ''
     const options = {
@@ -23,36 +22,53 @@ commentInput.addEventListener('keypress', async (e) => {
       body: JSON.stringify(data),
     }
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-    await addComments(taskId)
+    await updateComments(taskId)
   }
 })
 const toggleComments = () => {
   taskComponent.toggleAttribute('showing-comments')
   commentTab.toggleAttribute('closed')
 }
+
 toggleCommentsButton.addEventListener('click', toggleComments)
 
-const getComments = async (taskId) => {
+const updateComments = async (taskId) => {
+  const commentList = document.querySelector('div#message-list')
+  let lastCommentId = "0"
+  if (commentList.lastElementChild) {
+    lastCommentId = commentList.lastElementChild.getAttribute('comment-id')
+  }
   const options = {
     method: 'GET',
+    params: {
+      lastComment: lastCommentId,
+    },
   }
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-  const comments = await response.json()
-  return comments
+  const commentData = await response.json()
+  addComments(commentData.reverse())
 }
 
-const addComments = async (taskId) => {
+const addComments = (comments) => {
   const commentList = document.querySelector('div#message-list')
-  let comments = ''
-  const commentData = await getComments(taskId)
-  for (const comment of commentData) {
-    comments += buildComment(comment)
+  let commentsHTML= '' 
+  for (const comment of comments) {
+    commentsHTML += buildComment(comment)
   }
-  commentList.innerHTML = ''
-  commentList.innerHTML = comments
+  commentList.innerHTML += commentsHTML
   commentList.scrollTop = commentList.scrollHeight
 }
 
+const commentList = document.querySelector('div#message-list')
+commentList.addEventListener("scroll", (e) =>{
+    if(commentList.scrollTop == 0){
+        loadOlderComments(taskId)
+    }
+})
+
+const initComments = async () => {
+  loadOlderComments(taskId)
+}
 const buildComment = (comment) => {
   if (!(comment.id_users == userId)) {
     return buildMyComment(comment)
@@ -60,14 +76,13 @@ const buildComment = (comment) => {
     return buildOtherComment(comment)
   }
 }
-addComments(taskId)
 
 const buildOtherComment = (comment) => {
   return `
-    <div class="message-item">
+    <div class="message-item" comment-id="${comment.id}">
         <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
         <div class="message-body">
-            <p class="message-username>${comment.user.name}</p>
+            <p class="message-username">${comment.user.name}</p>
             <div class="text-lists">
                 <p class="message-text">${comment.msg}</p>
             </div>
@@ -77,9 +92,9 @@ const buildOtherComment = (comment) => {
 }
 const buildMyComment = (comment) => {
   return `
-    <div class="message-item">
+    <div class="message-item" commet-id=${comment.id}">
         <div class="message-body user-message">
-            <p class="message-username>${comment.user.name}</p>
+            <p class="message-username">${comment.user.name}</p>
             <div class="text-lists">
                 <p class="message-text">${comment.msg}</p>
             </div>
@@ -87,3 +102,35 @@ const buildMyComment = (comment) => {
         </div>
     </div>`
 }
+
+const loadOlderComments = async () => {
+  const cursor = commentInput.getAttribute('cursor')
+  let comments
+  if (cursor === null) {
+    const options = {
+      method: 'GET',
+    }
+    const response = await sendRequest(`/api/task/${taskId}/comments`, options)
+    const jsonResult = await response.json()
+    commentInput.setAttribute('cursor', jsonResult.next_page_url)
+    comments = jsonResult.data
+  } else if (cursor === 'null') {
+    console.log('No more Messages')
+    return
+  } else {
+    console.log('Getting More Messages')
+    const result = await fetch(cursor)
+    const jsonResult = await result.json()
+    commentInput.setAttribute('cursor', jsonResult.next_page_url)
+    comments = jsonResult.data
+  }
+
+  let olderComments = ''
+  for (const comment of comments.reverse()) {
+    olderComments += buildComment(comment)
+  }
+  const commentList = document.querySelector('div#message-list')
+  commentList.innerHTML = olderComments + commentList.innerHTML
+}
+
+initComments()
