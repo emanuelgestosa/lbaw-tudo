@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Cursor;
+use Illuminate\Pagination\CursorPaginator;
+use Illuminate\Pagination\Paginator;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,24 +69,43 @@ Route::post('/task/{id}/comments', function (Request $r, $id) {
         $newComment = new Comment();
         $newComment->msg = $message;
         $newComment->id_users = $idSent;
-        $newComment->sent_date =$sentDate;
+        $newComment->sent_date = $sentDate;
         $newComment->id_task = $id;
         $newComment->save();
-        return response()->json(["Message" => "Successufuly Commented"],201);
+        return response()->json(["Message" => "Successufuly Commented"], 201);
     } else {
         return response()->json(["Message" => "Task Not Found"], 404);
     }
 });
-Route::get('/task/{id}/comments', function ($id) {
+Route::get('/task/{id}/comments', function (Request $r, $id) {
     $task = Task::find($id);
     if ($task) {
-        $comments = $task->comments()->get()->all();
-        $commentArray =  [];
-        foreach ($comments as $key => $comment) {
-            $commentArray[$key] = $comment;
-            $commentArray[$key]["user"] =$comment->user()->first();
+        $lastComment = $r->input('lastComment');
+        if ($lastComment !== null) {
+            $comments = $task->comments()->orderby('sent_date', 'DESC')->where('id', '>', $lastComment)->get()->all();
+            $commentArray =  [];
+            foreach ($comments as $key => $comment) {
+                $commentArray[$key] = $comment;
+                $commentArray[$key]["user"] = $comment->user()->first();
+            }
+            return response()->json($commentArray, 200);
+        } else {
+            $cursor = $r->input('cursor');
+            if ($cursor) {
+                $comments =$task->comments()
+                    ->where('id', '<',  Cursor::fromEncoded($cursor)->parameters(["id"]))
+                    ->orderby('id','DESC')
+                    ->cursorPaginate(3);
+            }
+            $comments = $task->comments()
+                ->orderby('id','DESC')->cursorPaginate(3);
+            $commentArray =  [];
+            foreach ($comments->items() as $key => $comment) {
+                $commentArray[$key] = $comment;
+                $commentArray[$key]["user"] = $comment->user()->first();
+            }
+            return response()->json($comments, 200);
         }
-        return response()->json($commentArray, 200);
     } else {
         return response()->json(["Message" => "Task Not Found"], 404);
     }
