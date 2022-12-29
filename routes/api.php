@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Cursor;
+use Illuminate\Pagination\CursorPaginator;
+use Illuminate\Pagination\Paginator;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,7 +90,16 @@ Route::get('/task/{id}/comments', function (Request $r, $id) {
             }
             return response()->json($commentArray, 200);
         } else {
-            $comments = $task->comments()->orderby('sent_date', 'DESC')->cursorPaginate(3);
+            $cursor = $r->input('cursor');
+            if ($cursor) {
+                $comments =$task->comments()
+                    ->where('id', '<',  Cursor::fromEncoded($cursor)->parameters(["id"]))
+                    ->orderby('id','DESC')
+                    ->cursorPaginate(3);
+                return response()->json($comments, 200);
+            }
+            $comments = $task->comments()
+                ->orderby('id','DESC')->cursorPaginate(3);
             $commentArray =  [];
             foreach ($comments->items() as $key => $comment) {
                 $commentArray[$key] = $comment;
