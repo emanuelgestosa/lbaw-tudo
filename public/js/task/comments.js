@@ -238,8 +238,9 @@ var updateComments = /*#__PURE__*/function () {
             return response.json();
           case 9:
             commentData = _context2.sent;
+            console.log(commentData);
             addComments(commentData.reverse());
-          case 11:
+          case 12:
           case "end":
             return _context2.stop();
         }
@@ -252,19 +253,20 @@ var updateComments = /*#__PURE__*/function () {
 }();
 var addComments = function addComments(comments) {
   var commentList = document.querySelector('div#message-list');
+  var commentsHTML = '';
   var _iterator = _createForOfIteratorHelper(comments),
     _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var comment = _step.value;
-      comments += buildComment(comment);
+      commentsHTML += buildComment(comment);
     }
   } catch (err) {
     _iterator.e(err);
   } finally {
     _iterator.f();
   }
-  commentList.innerHTML += comments;
+  commentList.innerHTML += commentsHTML;
   commentList.scrollTop = commentList.scrollHeight;
 };
 var initComments = /*#__PURE__*/function () {
@@ -293,7 +295,7 @@ var buildComment = function buildComment(comment) {
   }
 };
 var buildOtherComment = function buildOtherComment(comment) {
-  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username>").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username>Here ").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
 };
 var buildMyComment = function buildMyComment(comment) {
   return "\n    <div class=\"message-item\" commet-id=".concat(comment.id, "\">\n        <div class=\"message-body user-message\">\n            <p class=\"message-username>").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
@@ -323,7 +325,7 @@ var loadOlderComments = /*#__PURE__*/function () {
             jsonResult = _context4.sent;
             commentInput.setAttribute('cursor', jsonResult.next_page_url);
             comments = jsonResult.data;
-            _context4.next = 26;
+            _context4.next = 27;
             break;
           case 13:
             if (!(cursor === 'null')) {
@@ -333,17 +335,18 @@ var loadOlderComments = /*#__PURE__*/function () {
             console.log('No more Messages');
             return _context4.abrupt("return");
           case 18:
-            _context4.next = 20;
+            console.log('Getting More Messages');
+            _context4.next = 21;
             return fetch(cursor);
-          case 20:
+          case 21:
             result = _context4.sent;
-            _context4.next = 23;
+            _context4.next = 24;
             return result.json();
-          case 23:
+          case 24:
             _jsonResult = _context4.sent;
             commentInput.setAttribute('cursor', _jsonResult.next_page_url);
             comments = _jsonResult.data;
-          case 26:
+          case 27:
             console.log(comments);
             olderComments = '';
             _iterator2 = _createForOfIteratorHelper(comments.reverse());
@@ -359,7 +362,7 @@ var loadOlderComments = /*#__PURE__*/function () {
             }
             commentList = document.querySelector('div#message-list');
             commentList.innerHTML = olderComments + commentList.innerHTML;
-          case 32:
+          case 33:
           case "end":
             return _context4.stop();
         }

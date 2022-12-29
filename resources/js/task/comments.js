@@ -48,15 +48,17 @@ const updateComments = async (taskId) => {
   }
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
   const commentData = await response.json()
+  console.log(commentData)
   addComments(commentData.reverse())
 }
 
 const addComments = (comments) => {
   const commentList = document.querySelector('div#message-list')
+  let commentsHTML= '' 
   for (const comment of comments) {
-    comments += buildComment(comment)
+    commentsHTML += buildComment(comment)
   }
-  commentList.innerHTML += comments
+  commentList.innerHTML += commentsHTML
   commentList.scrollTop = commentList.scrollHeight
 }
 
@@ -76,7 +78,7 @@ const buildOtherComment = (comment) => {
     <div class="message-item" comment-id="${comment.id}">
         <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
         <div class="message-body">
-            <p class="message-username>${comment.user.name}</p>
+            <p class="message-username>Here ${comment.user.name}</p>
             <div class="text-lists">
                 <p class="message-text">${comment.msg}</p>
             </div>
@@ -112,6 +114,7 @@ const loadOlderComments = async () => {
     console.log('No more Messages')
     return
   } else {
+    console.log('Getting More Messages')
     const result = await fetch(cursor)
     const jsonResult = await result.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
