@@ -502,8 +502,8 @@ Profile
   border-color: var(--blilac);
   position: relative;
 }
-.profile-bg #contacts{
-
+.profile-bg #content{
+  margin: 0;
 }
 .profile-bg #contacts li{
   text-decoration: none;
@@ -542,7 +542,17 @@ Profile
   border-style: solid;
   border-radius: 10px;
 }
-
+.profile-bg #sidebarpro{
+  background: #141724;
+}
+.profile-bg .flex-column .nav-link{
+  color: var(--lilac);
+}
+.profile-bg .fs-5#title_nav_lat{
+  color: #9832a5;
+  font-weight:600 !important;
+  font-size: 30px!important;
+} 
 
 /*
 Login
