@@ -614,29 +614,17 @@ Register
 }
 
 /* Project */
-.project-bg #side_nav{
-  background: var(--blilac);
-  min-width: 250px;
-  max-width: 250px;
-  margin: 0;
-}
-.project-bg .content{
-  min-height: 100vh;
-  width: 100%;
-}
 .project-bg #content{
   margin: 0;
 }
-.project-bg hr.h-color{
-  background: var(--dark);
+.project-bg #sidebarpro{
+  background: #141724;
 }
-.project-bg .sidebar li.active{
-  background-color: var(--dark);
-  border-radius: 8px;
+.project-bg .flex-column .nav-link{
+  color: var(--lilac);
 }
-.project-bg .sidebar li.active a, .project-bg .sidebar li.active a:hover{
-  color: var(--dark);
-}
-.project-bg .sidebar li a{
-  color: var(--dark)
-}
+.project-bg .fs-5#title_nav_lat{
+  color: #9832a5;
+  font-weight:600 !important;
+  font-size: 30px!important;
+} 
