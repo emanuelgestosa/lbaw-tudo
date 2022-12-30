@@ -376,6 +376,9 @@ var loadOlderComments = /*#__PURE__*/function () {
   };
 }();
 initComments();
+setInterval(function () {
+  return updateComments(taskId);
+}, 2 * 1000);
 })();
 
 /******/ })()

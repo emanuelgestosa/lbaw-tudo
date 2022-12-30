@@ -134,3 +134,4 @@ const loadOlderComments = async () => {
 }
 
 initComments()
+setInterval(() => updateComments(taskId),2*1000);
