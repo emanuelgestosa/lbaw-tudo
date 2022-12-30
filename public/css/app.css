@@ -10,8 +10,8 @@ Index:
 
 
 :root {
-  --lilac:#843ace;
-  --blilac: #A055EC;
+  --lilac:#9a3ace;
+  --blilac: #AD6FEC; 
   --white: #ffffff;
   --dark: #1B1E2C;
 }
@@ -30,7 +30,7 @@ ul{
 }
 
 .dropdown-menu-dark{
-  background-color: var(--blilac);
+  background-color: var(--lilac);
 }
 
 .dropdown-toggle{
@@ -44,7 +44,7 @@ ul{
 #content > form {
   margin: 0 auto;
   padding: 1em;
-  border: 1px solid --blilac;
+  border: 1px solid var(--blilac);
 }
 
 #content > form .error {
@@ -379,7 +379,7 @@ footer {
 }
 
 footer a {
-    color:  #A055EC;
+    color:  var(--blilac);
     margin-inline: 2%;
 }
 
@@ -389,23 +389,23 @@ Overrides
 */
 
 .btn{
-background-color: var(--blilac);
+background-color: var(--lilac);
 }
 
 .btn-primary{
-  background-color: var(--blilac);
+  background-color: var(--lilac);
 }
 
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: var(--blilac);
-  --bs-btn-border-color: var(--blilac);
+  --bs-btn-bg: var(--lilac);
+  --bs-btn-border-color: var(--lilac);
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--lilac);
-  --bs-btn-hover-border-color: var(--lilac);
+  --bs-btn-hover-bg: var(--blilac);
+  --bs-btn-hover-border-color: var(--blilac);
   --bs-btn-focus-shadow-rgb: 49,132,253;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: var(--lilac);
+  --bs-btn-active-bg: var(--blilac);
   --bs-btn-active-border-color: var(--lilac);
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
@@ -485,15 +485,14 @@ Home Page Design
 /*
 Profile
 */
-.profile-bg .pfp{
+.profile-bg #pfp{
   width: 200px;
   height: 200px;
   position: relative;
   border-radius: 50%;
-  box-shadow: 4px 6px 0 #a055ec4f;
-  margin: 30px 0px;
+  box-shadow: 4px 6px 0 #ad6fec7f;
 }
-.profile-bg .pfp > img{
+.profile-bg #pfp > img{
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -504,41 +503,40 @@ Profile
   position: relative;
 }
 .profile-bg #contacts{
-  margin: 0;
+
 }
 .profile-bg #contacts li{
   text-decoration: none;
-  margin:10px 0px;
+  margin: 10px 0px;
 }
 .profile-bg{
   display: block;
 }
 .profile-bg #user-info{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "pic button"
-  "contact todo";
+  grid-template-columns:  1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "pic buttons"
+  "contact .  ";
+  grid-gap: 10px;
 }
-.profile-bg .pfp{
+.profile-bg #pfp{
   grid-area: pic;
 }
 .profile-bg #contacts{
   grid-area: contact;
 }
-.profile-bg .right{
-  grid-area: button;
+.profile-bg #right{
+  grid-area: buttons;
   display: flex;
   flex-direction: column;
   max-width: fit-content;
-  position: absolute;
-  right: 0;
-  margin: 0px 30px;
+  margin-right: 0;
 }
-.profile-bg .right>*{
+.profile-bg #right>*{
   margin: 5px;
 }
-.profile-bg .todo{
+.profile-bg #todo{
   grid-area: todo;
   background-color: #7c24882e;
   border-style: solid;
@@ -613,4 +611,32 @@ Register
   font-weight: bold;
   color: rgb(235, 185, 21);
   break-before: auto;
+}
+
+/* Project */
+.project-bg #side_nav{
+  background: var(--blilac);
+  min-width: 250px;
+  max-width: 250px;
+  margin: 0;
+}
+.project-bg .content{
+  min-height: 100vh;
+  width: 100%;
+}
+.project-bg #content{
+  margin: 0;
+}
+.project-bg hr.h-color{
+  background: var(--dark);
+}
+.project-bg .sidebar li.active{
+  background-color: var(--dark);
+  border-radius: 8px;
+}
+.project-bg .sidebar li.active a, .project-bg .sidebar li.active a:hover{
+  color: var(--dark);
+}
+.project-bg .sidebar li a{
+  color: var(--dark)
 }

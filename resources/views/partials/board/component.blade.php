@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link href="{{ asset('/css/board.css') }}" rel="stylesheet">
 
 @yield('content')
 

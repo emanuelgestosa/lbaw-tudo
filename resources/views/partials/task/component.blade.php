@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link href="{{ asset('/css/task.css') }}" rel="stylesheet">
 <script defer src="/js/task/comments.js"></script>
 @yield('content')
 

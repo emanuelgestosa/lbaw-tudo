@@ -17,7 +17,6 @@
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a5b6fcde37.js" crossorigin="anonymous"></script>
     <script type="text/javascript">

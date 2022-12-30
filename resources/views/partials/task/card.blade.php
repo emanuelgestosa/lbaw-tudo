@@ -1,4 +1,3 @@
-<link href="{{ asset('/css/board.css') }}" rel="stylesheet">
 
 <article class="task-card" data-id="{{ $task->id }}">
   <header>

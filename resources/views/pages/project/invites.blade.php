@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link href="{{ asset('/css/project.css') }}" rel="stylesheet">
 <script defer src="/js/project/invites.js"></script>
 @yield('content')
 @section('content')
