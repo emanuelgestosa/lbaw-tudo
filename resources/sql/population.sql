@@ -238,10 +238,10 @@ insert into label_class (name) values
 insert into forum (id_project) values (3);
 
 insert into task (name, description,due_date, id_vertical) values 
- ('Add more tables to UML', 'The teacher wants more classes', '12/30/2022', 10),
- ('Correct bug on sql', 'I need help','12/30/2022', 13),
- ('Code more triggersssss', 'We need more triggers', '12/30/2022', 14),
- ('Ask the teacher for more time', 'We are super late', '12/30/2022', 12);
+ ('Add more tables to UML', 'The teacher wants more classes', '12/30/2023', 10),
+ ('Correct bug on sql', 'I need help','12/30/2023', 13),
+ ('Code more triggersssss', 'We need more triggers', '12/30/2023', 14),
+ ('Ask the teacher for more time', 'We are super late', '12/30/2023', 12);
 
 insert into post (title, description, id_forum,id_users) values 
 ('Post geral do Projeto LBAW', 'Onde nos falamos IMENSO (tipo o discord)',  3,14),
