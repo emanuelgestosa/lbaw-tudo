@@ -455,17 +455,21 @@ Home Page Design
 }
 
 .home-bg #info h1{
-  font-size: 70px;
+  font-size: 10vw;
   font-family: 'Nunito';
   font-weight: bold;
   color: #9832a5;
   grid-column: 1;
   grid-row: 2;
 }
-
 .home-bg #info h2{
   grid-column: 1;
   grid-row: 3;
+}
+@media screen and (min-width: 601px) {
+  .home-bg #info h1{
+    font-size: 80px;
+  }
 }
 
 .home-bg #info #create{

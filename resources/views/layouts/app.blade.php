@@ -33,8 +33,8 @@
       @if (Auth::check())
       <div class="container-nav">
         <nav class="navbar navbar-expand-md navbar-dark shadow">
-          <a href="{{ url('/') }}" class="navbar-brand">
-            <img src="/img/logo.png" alt="Tu-Do logo a goose made by origami" width="32" height="34"
+          <a tabindex="0" href="{{ url('/') }}" class="navbar-brand">
+            <img tabindex="0" src="/img/logo.png" alt="Tu-Do logo a goose made by origami" width="32" height="34"
             class="d-inline-block align-top"/>
             Tu-Do
           </a>
@@ -84,10 +84,10 @@
           <div class="collapse navbar-collapse navbar-butto" id="toggleMobileMenu">
             <ul class="navbar-nav ms-auto">
               <li>
-                <a class="nav-link" href="{{ url('/register') }}"> Register </a> 
+                <a tabindex="0" class="nav-link" href="{{ url('/register') }}"> Register </a> 
               </li>
               <li>
-                <a class="nav-link" href="{{ url('/login') }}"> Login </a>
+                <a tabindex="0" class="nav-link" href="{{ url('/login') }}"> Login </a>
               </li>
           </div>
         </nav>
@@ -99,9 +99,9 @@
       </section>
       <footer>
         <nav>
-          <a href="{{ url('/faq') }}">FAQ</a>
-          <a href="{{ url('/contacts') }}">Contacts</a>
-          <a href="{{ url('/about') }}">About us</a>
+          <a tabindex="0" href="{{ url('/faq') }}">FAQ</a>
+          <a tabindex="0" href="{{ url('/contacts') }}">Contacts</a>
+          <a tabindex="0" href="{{ url('/about') }}">About us</a>
         </nav>
       </footer>
     </main>
