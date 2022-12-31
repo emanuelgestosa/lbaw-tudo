@@ -34,7 +34,7 @@
       <div class="container-nav">
         <nav class="navbar navbar-expand-md navbar-dark shadow">
           <a tabindex="0" href="{{ url('/') }}" class="navbar-brand">
-            <img tabindex="0" src="/img/logo.png" alt="Tu-Do logo a goose made by origami" width="32" height="34"
+            <img src="/img/logo.png" alt="Tu-Do logo a goose made by origami" width="32" height="34"
             class="d-inline-block align-top"/>
             Tu-Do
           </a>
@@ -45,10 +45,10 @@
           <div class="collapse navbar-collapse navbar-butto" id="toggleMobileMenu">
             <ul class="navbar-nav ms-auto">
               <li>
-                <a class="nav-link" href="#"> <i class="fa fa-bell"></i> Notifications</a>
+                <a tabindex="0" class="nav-link" href="#"> <i class="fa fa-bell"></i> Notifications</a>
 
               </li>
-              <li class="nav-item dropdown">
+              <li tabindex="0" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="pfp-nav">
                     <img src="https://picsum.photos/175/175"/> 
@@ -56,12 +56,12 @@
                   Me
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow">
-                  <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id) }}"> My Profile </a>
-                  <li><a class="dropdown-item" href="{{ url('/user/'. Auth::user()->id . '/projects') }}"> My Projects </a>
-                  <li><a class="dropdown-item" href="#">Calendar</a></li>
-                  <li><a class="dropdown-item" href="{{ route('favourites', Auth::id()) }}">My Favorites</a></li>
+                  <li><a tabindex="1" class="dropdown-item" href="{{ url('/user/'. Auth::user()->id) }}"> My Profile </a>
+                  <li><a tabindex="1" class="dropdown-item" href="{{ url('/user/'. Auth::user()->id . '/projects') }}"> My Projects </a>
+                  <li><a tabindex="1" class="dropdown-item" href="#">Calendar</a></li>
+                  <li><a tabindex="1"class="dropdown-item" href="{{ route('favourites', Auth::id()) }}">My Favorites</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{{ url('/logout') }}"> <i class="fa fa-sign-out"></i> Logout </a> </li>
+                  <li><a tabindex="1" class="dropdown-item" href="{{ url('/logout') }}"> <i class="fa fa-sign-out"></i> Logout </a> </li>
                 </ul>
               </li>
           </div>
@@ -72,7 +72,7 @@
       @if (!Auth::check())
       <div class="container-nav">
         <nav class="navbar navbar-expand-md navbar-dark shadow">
-          <a href="{{ url('/') }}" class="navbar-brand">
+          <a tabindex="0" href="{{ url('/') }}" class="navbar-brand">
             <img src="/img/logo.png" alt="Tu-Do logo a goose made by origami" width="32" height="34"
             class="d-inline-block align-top"/>
             Tu-Do
