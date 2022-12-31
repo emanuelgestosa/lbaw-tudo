@@ -5,7 +5,10 @@ Index:
   - Overrides           Overrides bootstrap css
   - Home Page Design    Changes the homepage design
   - Profile             Users profile page
+                        Users edit page
+                        Users my projects page (Profile Projects)
   - Nav e footer
+  -Navbar (so para por width a 100%)
 */
 
 
@@ -125,10 +128,6 @@ input[type=password]:focus {
 .page_name{
   font-size: 35px;
   font-weight: bold;
-}
-
-#content {
-  margin: 3em;
 }
 
 .search_bar  {
@@ -276,7 +275,7 @@ article.tu-do-popup > header > button {
   margin: 0;
   width: 2em;
   background-color: grey;
-  color: black;kkkkkkk
+  color: black;
 }
 article.tu-do-popup > header[information] {
   background-color: lightblue;
@@ -383,6 +382,9 @@ footer a {
     margin-inline: 2%;
 }
 
+.container-nav .navbar{
+  width: 100vw;
+}
 
 /*
 Overrides
@@ -502,9 +504,6 @@ Profile
   border-color: var(--blilac);
   position: relative;
 }
-.profile-bg #content{
-  margin: 0;
-}
 .profile-bg #contacts li{
   text-decoration: none;
   margin: 10px 0px;
@@ -580,6 +579,14 @@ Profile
   background-color: var(--dark);
   color: var(--lilac);
 }
+
+/*
+Profile Projects
+*/
+.profile-bg .items{
+  gap: 10px;
+}
+
 /*
 Login
 */
@@ -650,10 +657,7 @@ Register
 }
 
 /* Project */
-.project-bg #content{
-  margin: 0;
-}
-.project-bg #sidebarpro{
+.profile-bg #sidebarpro{
   background: #141724;
 }
 .project-bg .flex-column .nav-link{
@@ -664,3 +668,8 @@ Register
   font-weight:600 !important;
   font-size: 30px!important;
 } 
+
+
+.content{
+  width: 100vw;
+}
