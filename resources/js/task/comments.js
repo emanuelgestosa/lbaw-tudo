@@ -21,11 +21,9 @@ commentInput.addEventListener('keypress', async (e) => {
       },
       body: JSON.stringify(data),
     }
-    console.log("Enviando Mensage")
-    console.log(options)
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-    console.log(response)
-    await updateComments(taskId)
+    // With Pusher with don't need this anymore
+    //await updateComments(taskId)
   }
 })
 const toggleComments = () => {
@@ -37,11 +35,10 @@ toggleCommentsButton.addEventListener('click', toggleComments)
 
 const updateComments = async (taskId) => {
   const commentList = document.querySelector('div#message-list')
-  let lastCommentId = "0"
+  let lastCommentId = '0'
   if (commentList.lastElementChild) {
     lastCommentId = commentList.lastElementChild.getAttribute('comment-id')
-    if(lastCommentId == null)
-        return 
+    if (lastCommentId == null) return
   }
   const options = {
     method: 'GET',
@@ -49,17 +46,17 @@ const updateComments = async (taskId) => {
       lastComment: lastCommentId,
     },
   }
-  console.log(lastCommentId)
+  //console.log(lastCommentId)
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-  console.log("Updating Comments")
-  console.log(response)
+  //console.log('Updating Comments')
+  //console.log(response)
   const commentData = await response.json()
   addComments(commentData.reverse())
 }
 
 const addComments = (comments) => {
   const commentList = document.querySelector('div#message-list')
-  let commentsHTML= '' 
+  let commentsHTML = ''
   for (const comment of comments) {
     commentsHTML += buildComment(comment)
   }
@@ -68,10 +65,10 @@ const addComments = (comments) => {
 }
 
 const commentList = document.querySelector('div#message-list')
-commentList.addEventListener("scroll", (e) =>{
-    if(commentList.scrollTop == 0){
-        loadOlderComments(taskId)
-    }
+commentList.addEventListener('scroll', (e) => {
+  if (commentList.scrollTop == 0) {
+    loadOlderComments(taskId)
+  }
 })
 
 const initComments = async () => {
@@ -119,16 +116,16 @@ const loadOlderComments = async () => {
       method: 'GET',
     }
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-    console.log("Fetching Comments")
-    console.log(response)
+    //console.log('Fetching Comments')
+    //console.log(response)
     const jsonResult = await response.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
     comments = jsonResult.data
   } else if (cursor === 'null') {
-    console.log('No more Messages')
+    //console.log('No more Messages')
     return
   } else {
-    console.log('Getting More Messages')
+    //console.log('Getting More Messages')
     const result = await fetch(cursor)
     const jsonResult = await result.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
@@ -144,4 +141,20 @@ const loadOlderComments = async () => {
 }
 
 initComments()
-setInterval(() => updateComments(taskId),10*1000);
+// Old ways without pusher
+// setInterval(() => updateComments(taskId),10*1000);
+
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+var pusher = new Pusher('db6806e87ad6634558db', {
+  cluster: 'eu',
+})
+const taskChannelName = `task-${taskId}`
+var taskChannel = pusher.subscribe(taskChannelName)
+
+taskChannel.bind('new-comment', function (data) {
+  const comment = JSON.parse(data.comment)
+  //console.log(comment)
+  //console.log(buildComment(comment))
+  addComments([comment])
+})

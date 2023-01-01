@@ -1,5 +1,8 @@
 <?php
 
+use App\Events\NewTaskComment;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,6 +59,10 @@ Route::get('/admins', 'AdminController@show');
 Route::get('/admins/create', 'AdminController@showCreate');
 
 //Pop Up Tester
-Route::get('popup', function () {
+Route::get('/popup', function () {
     return view('pages.popup');
+});
+
+Route::get('/pusher', function () {
+    return view('pages.pusher');
 });
