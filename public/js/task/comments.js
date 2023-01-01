@@ -222,27 +222,36 @@ var updateComments = /*#__PURE__*/function () {
           case 0:
             commentList = document.querySelector('div#message-list');
             lastCommentId = "0";
-            if (commentList.lastElementChild) {
-              lastCommentId = commentList.lastElementChild.getAttribute('comment-id');
+            if (!commentList.lastElementChild) {
+              _context2.next = 6;
+              break;
             }
+            lastCommentId = commentList.lastElementChild.getAttribute('comment-id');
+            if (!(lastCommentId == null)) {
+              _context2.next = 6;
+              break;
+            }
+            return _context2.abrupt("return");
+          case 6:
             options = {
               method: 'GET',
               params: {
                 lastComment: lastCommentId
               }
             };
-            _context2.next = 6;
+            console.log(lastCommentId);
+            _context2.next = 10;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
-          case 6:
+          case 10:
             response = _context2.sent;
             console.log("Updating Comments");
             console.log(response);
-            _context2.next = 11;
+            _context2.next = 15;
             return response.json();
-          case 11:
+          case 15:
             commentData = _context2.sent;
             addComments(commentData.reverse());
-          case 13:
+          case 17:
           case "end":
             return _context2.stop();
         }

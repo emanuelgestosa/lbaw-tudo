@@ -40,7 +40,7 @@ const updateComments = async (taskId) => {
   let lastCommentId = "0"
   if (commentList.lastElementChild) {
     lastCommentId = commentList.lastElementChild.getAttribute('comment-id')
-    if(lastCommentId == "null")
+    if(lastCommentId == null)
         return 
   }
   const options = {
@@ -49,6 +49,7 @@ const updateComments = async (taskId) => {
       lastComment: lastCommentId,
     },
   }
+  console.log(lastCommentId)
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
   console.log("Updating Comments")
   console.log(response)
