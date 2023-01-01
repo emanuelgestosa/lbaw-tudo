@@ -188,7 +188,7 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
               },
               body: JSON.stringify(data)
             };
-            console.log("Enviando Mensage");
+            console.log('Enviando Mensage');
             console.log(options);
             _context.next = 8;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
@@ -221,7 +221,7 @@ var updateComments = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             commentList = document.querySelector('div#message-list');
-            lastCommentId = "0";
+            lastCommentId = '0';
             if (!commentList.lastElementChild) {
               _context2.next = 6;
               break;
@@ -244,7 +244,7 @@ var updateComments = /*#__PURE__*/function () {
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
           case 10:
             response = _context2.sent;
-            console.log("Updating Comments");
+            console.log('Updating Comments');
             console.log(response);
             _context2.next = 15;
             return response.json();
@@ -281,7 +281,7 @@ var addComments = function addComments(comments) {
   commentList.scrollTop = commentList.scrollHeight;
 };
 var commentList = document.querySelector('div#message-list');
-commentList.addEventListener("scroll", function (e) {
+commentList.addEventListener('scroll', function (e) {
   if (commentList.scrollTop == 0) {
     loadOlderComments(taskId);
   }
@@ -336,7 +336,7 @@ var loadOlderComments = /*#__PURE__*/function () {
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
           case 5:
             response = _context4.sent;
-            console.log("Fetching Comments");
+            console.log('Fetching Comments');
             console.log(response);
             _context4.next = 10;
             return response.json();
@@ -392,9 +392,22 @@ var loadOlderComments = /*#__PURE__*/function () {
   };
 }();
 initComments();
-setInterval(function () {
-  return updateComments(taskId);
-}, 10 * 1000);
+// setInterval(() => updateComments(taskId),10*1000);
+
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+var pusher = new Pusher('db6806e87ad6634558db', {
+  cluster: 'eu'
+});
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function (data) {
+  alert(JSON.stringify(data));
+});
+var taskChannelName = "task-".concat(taskId);
+var taskChannel = pusher.subscribe(taskChannelName);
+taskChannel.bind('new-comment', function (data) {
+  alert(JSON.stringify(data));
+});
 })();
 
 /******/ })()

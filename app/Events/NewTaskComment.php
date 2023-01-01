@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewTaskComment
+class NewTaskComment implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -22,6 +22,7 @@ class NewTaskComment
 
     public $message;
     public $taskId;
+
     public function __construct($message,$taskId)
     {
       $this->message = $message;
@@ -33,13 +34,17 @@ class NewTaskComment
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('task-comments');
-    }
+
 
     public function broadcastAs()
     {
-        return 'event-new-comment-' . $this->taskId;
+        return 'new-comment';
     }
+
+    public function broadcastOn()
+    {
+        return new Channel('task-'.  $this->taskId);
+    }
+
+
 }

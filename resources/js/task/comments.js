@@ -21,7 +21,7 @@ commentInput.addEventListener('keypress', async (e) => {
       },
       body: JSON.stringify(data),
     }
-    console.log("Enviando Mensage")
+    console.log('Enviando Mensage')
     console.log(options)
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
     console.log(response)
@@ -37,11 +37,10 @@ toggleCommentsButton.addEventListener('click', toggleComments)
 
 const updateComments = async (taskId) => {
   const commentList = document.querySelector('div#message-list')
-  let lastCommentId = "0"
+  let lastCommentId = '0'
   if (commentList.lastElementChild) {
     lastCommentId = commentList.lastElementChild.getAttribute('comment-id')
-    if(lastCommentId == null)
-        return 
+    if (lastCommentId == null) return
   }
   const options = {
     method: 'GET',
@@ -51,7 +50,7 @@ const updateComments = async (taskId) => {
   }
   console.log(lastCommentId)
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-  console.log("Updating Comments")
+  console.log('Updating Comments')
   console.log(response)
   const commentData = await response.json()
   addComments(commentData.reverse())
@@ -59,7 +58,7 @@ const updateComments = async (taskId) => {
 
 const addComments = (comments) => {
   const commentList = document.querySelector('div#message-list')
-  let commentsHTML= '' 
+  let commentsHTML = ''
   for (const comment of comments) {
     commentsHTML += buildComment(comment)
   }
@@ -68,10 +67,10 @@ const addComments = (comments) => {
 }
 
 const commentList = document.querySelector('div#message-list')
-commentList.addEventListener("scroll", (e) =>{
-    if(commentList.scrollTop == 0){
-        loadOlderComments(taskId)
-    }
+commentList.addEventListener('scroll', (e) => {
+  if (commentList.scrollTop == 0) {
+    loadOlderComments(taskId)
+  }
 })
 
 const initComments = async () => {
@@ -119,7 +118,7 @@ const loadOlderComments = async () => {
       method: 'GET',
     }
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-    console.log("Fetching Comments")
+    console.log('Fetching Comments')
     console.log(response)
     const jsonResult = await response.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
@@ -144,21 +143,21 @@ const loadOlderComments = async () => {
 }
 
 initComments()
-setInterval(() => updateComments(taskId),10*1000);
+// setInterval(() => updateComments(taskId),10*1000);
 
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+var pusher = new Pusher('db6806e87ad6634558db', {
+  cluster: 'eu',
+})
 
+var channel = pusher.subscribe('my-channel')
+channel.bind('my-event', function (data) {
+  alert(JSON.stringify(data))
+})
+const taskChannelName = `task-${taskId}`
+var taskChannel = pusher.subscribe(taskChannelName)
 
-// Pusher Shananigans
-const gigaChad =  (taskId) => {
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-    var pusher = new Pusher('db6806e87ad6634558db', {
-      cluster: 'eu'
-    });
-
-    var channel = pusher.subscribe('task-comments');
-    channel.bind('event-new-comment-' + taksId,(data) => {
-        console.log(data)
-    });
-    });
-}
+taskChannel.bind('new-comment', function (data) {
+  alert(JSON.stringify(data))
+})
