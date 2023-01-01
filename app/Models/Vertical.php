@@ -17,6 +17,7 @@ class Vertical extends Model
     protected $fillable = [
         'name',
         'id_board',
+        'isdone',
     ];
 
     public $timestamps=false;

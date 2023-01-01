@@ -29,4 +29,16 @@ class VerticalController extends Controller
 
     return redirect('/board/'.$board_id);
   }
+
+  public function markDone(Request $request)
+  {
+    $id = $request->input('id');
+    $board_id = $request->input('board_id');
+
+    $vertical = Vertical::findOrFail($id);
+    $curr = $vertical->isdone;
+    $vertical->isdone = !$curr;
+
+    return redirect('/board/'.$board_id);
+  }
 }
