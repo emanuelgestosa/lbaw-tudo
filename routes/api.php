@@ -55,6 +55,7 @@ Route::delete('project/{id}/invites', 'ProjectInvitesController@deleteInvite');
 
 // Manage Verticals
 Route::post('/board/{id}/vertical', 'VerticalController@create');
+Route::post('/vertical/set_order', 'VerticalController@setOrder');
 
 // Manage Tasks
 Route::patch('/task/{id}', 'TaskController@edit');

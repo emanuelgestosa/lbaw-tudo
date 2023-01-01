@@ -1,8 +1,7 @@
-<link href="{{ asset('/css/board.css') }}" rel="stylesheet">
 @if ($vertical->isdone)
-    <article class="vertical completed">
+    <article class="vertical completed" data-id="{{ $vertical->id }}">
 @else
-    <article class="vertical">
+    <article class="vertical" data-id="{{ $vertical->id }}">
 @endif
     <h2 id="vertical_name"> {{$vertical->name}} </h2>
     <a class="button" href="{{ url('/verticals/'. $vertical->id .'/add_task') }}"> Add task </a>
@@ -26,6 +25,3 @@
         @endforeach
     </div>
 </article>
-
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" defer></script>
-<script src="/js/project/tasks-sortable.js" defer> </script>
