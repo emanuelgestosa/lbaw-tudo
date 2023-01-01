@@ -11,7 +11,7 @@ commentInput.addEventListener('keypress', async (e) => {
     const data = {
       msg: commentInput.value,
       id_users: parseInt(userId),
-      sent_date: new Date(),
+      sent_date: new Date().toISOString(),
     }
     commentInput.value = ''
     const options = {
@@ -21,7 +21,10 @@ commentInput.addEventListener('keypress', async (e) => {
       },
       body: JSON.stringify(data),
     }
+    console.log("Enviando Mensage")
+    console.log(options)
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
+    console.log(response)
     await updateComments(taskId)
   }
 })
@@ -37,6 +40,8 @@ const updateComments = async (taskId) => {
   let lastCommentId = "0"
   if (commentList.lastElementChild) {
     lastCommentId = commentList.lastElementChild.getAttribute('comment-id')
+    if(lastCommentId == null)
+        return 
   }
   const options = {
     method: 'GET',
@@ -44,7 +49,10 @@ const updateComments = async (taskId) => {
       lastComment: lastCommentId,
     },
   }
+  console.log(lastCommentId)
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
+  console.log("Updating Comments")
+  console.log(response)
   const commentData = await response.json()
   addComments(commentData.reverse())
 }
@@ -111,6 +119,8 @@ const loadOlderComments = async () => {
       method: 'GET',
     }
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
+    console.log("Fetching Comments")
+    console.log(response)
     const jsonResult = await response.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
     comments = jsonResult.data
@@ -134,4 +144,4 @@ const loadOlderComments = async () => {
 }
 
 initComments()
-setInterval(() => updateComments(taskId),2*1000);
+setInterval(() => updateComments(taskId),10*1000);

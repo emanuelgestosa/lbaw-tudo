@@ -172,13 +172,13 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             if (!(e.key == 'Enter')) {
-              _context.next = 9;
+              _context.next = 12;
               break;
             }
             data = {
               msg: commentInput.value,
               id_users: parseInt(userId),
-              sent_date: new Date()
+              sent_date: new Date().toISOString()
             };
             commentInput.value = '';
             options = {
@@ -188,13 +188,16 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
               },
               body: JSON.stringify(data)
             };
-            _context.next = 6;
+            console.log("Enviando Mensage");
+            console.log(options);
+            _context.next = 8;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
-          case 6:
+          case 8:
             response = _context.sent;
-            _context.next = 9;
+            console.log(response);
+            _context.next = 12;
             return updateComments(taskId);
-          case 9:
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -219,25 +222,36 @@ var updateComments = /*#__PURE__*/function () {
           case 0:
             commentList = document.querySelector('div#message-list');
             lastCommentId = "0";
-            if (commentList.lastElementChild) {
-              lastCommentId = commentList.lastElementChild.getAttribute('comment-id');
+            if (!commentList.lastElementChild) {
+              _context2.next = 6;
+              break;
             }
+            lastCommentId = commentList.lastElementChild.getAttribute('comment-id');
+            if (!(lastCommentId == null)) {
+              _context2.next = 6;
+              break;
+            }
+            return _context2.abrupt("return");
+          case 6:
             options = {
               method: 'GET',
               params: {
                 lastComment: lastCommentId
               }
             };
-            _context2.next = 6;
+            console.log(lastCommentId);
+            _context2.next = 10;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
-          case 6:
+          case 10:
             response = _context2.sent;
-            _context2.next = 9;
+            console.log("Updating Comments");
+            console.log(response);
+            _context2.next = 15;
             return response.json();
-          case 9:
+          case 15:
             commentData = _context2.sent;
             addComments(commentData.reverse());
-          case 11:
+          case 17:
           case "end":
             return _context2.stop();
         }
@@ -312,7 +326,7 @@ var loadOlderComments = /*#__PURE__*/function () {
           case 0:
             cursor = commentInput.getAttribute('cursor');
             if (!(cursor === null)) {
-              _context4.next = 13;
+              _context4.next = 15;
               break;
             }
             options = {
@@ -322,34 +336,36 @@ var loadOlderComments = /*#__PURE__*/function () {
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
           case 5:
             response = _context4.sent;
-            _context4.next = 8;
+            console.log("Fetching Comments");
+            console.log(response);
+            _context4.next = 10;
             return response.json();
-          case 8:
+          case 10:
             jsonResult = _context4.sent;
             commentInput.setAttribute('cursor', jsonResult.next_page_url);
             comments = jsonResult.data;
-            _context4.next = 27;
+            _context4.next = 29;
             break;
-          case 13:
+          case 15:
             if (!(cursor === 'null')) {
-              _context4.next = 18;
+              _context4.next = 20;
               break;
             }
             console.log('No more Messages');
             return _context4.abrupt("return");
-          case 18:
+          case 20:
             console.log('Getting More Messages');
-            _context4.next = 21;
+            _context4.next = 23;
             return fetch(cursor);
-          case 21:
+          case 23:
             result = _context4.sent;
-            _context4.next = 24;
+            _context4.next = 26;
             return result.json();
-          case 24:
+          case 26:
             _jsonResult = _context4.sent;
             commentInput.setAttribute('cursor', _jsonResult.next_page_url);
             comments = _jsonResult.data;
-          case 27:
+          case 29:
             olderComments = '';
             _iterator2 = _createForOfIteratorHelper(comments.reverse());
             try {
@@ -364,7 +380,7 @@ var loadOlderComments = /*#__PURE__*/function () {
             }
             commentList = document.querySelector('div#message-list');
             commentList.innerHTML = olderComments + commentList.innerHTML;
-          case 32:
+          case 34:
           case "end":
             return _context4.stop();
         }
@@ -378,7 +394,7 @@ var loadOlderComments = /*#__PURE__*/function () {
 initComments();
 setInterval(function () {
   return updateComments(taskId);
-}, 2 * 1000);
+}, 10 * 1000);
 })();
 
 /******/ })()
