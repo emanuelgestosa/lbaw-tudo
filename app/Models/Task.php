@@ -16,6 +16,7 @@ class Task extends Model
      */
     protected $fillable = [
         'id_vertical',
+        'order_vertical',
     ];
 
     public $timestamps=false;

@@ -91,6 +91,7 @@ CREATE TABLE vertical (
     id serial PRIMARY KEY,
     name text NOT NULL,
     isDone boolean NOT NULL DEFAULT FALSE,
+    order_board integer NOT NULL,
     id_board integer NOT NULL REFERENCES board (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -100,6 +101,7 @@ CREATE TABLE task (
     description text,
     creation_date timestamp NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_TIMESTAMP) default CURRENT_TIMESTAMP,
     due_date timestamp CONSTRAINT CK_task_due_date CHECK (creation_date < due_date),
+    order_vertical integer NOT NULL,
     id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
