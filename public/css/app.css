@@ -383,7 +383,7 @@ footer a {
 }
 
 .container-nav .navbar{
-  width: 100vw;
+  width: 100%;
 }
 
 /*
@@ -589,6 +589,21 @@ Profile Projects
 */
 .profile-bg .items{
   gap: 10px;
+}
+.profile-bg .row.flex-nowrap{
+  width: 100%;
+}
+.profile-bg #project-cards{
+  margin-top: 10px;
+}
+.profile-bg .card{
+  background-color: rgb(235, 214, 249);
+}
+.profile-bg .card, .profile-bg .card a{
+  color: var(--dark);
+}
+.profile-bg .card .btn{
+  color: var(--white);
 }
 
 /*
