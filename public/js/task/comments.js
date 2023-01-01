@@ -172,13 +172,13 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             if (!(e.key == 'Enter')) {
-              _context.next = 9;
+              _context.next = 7;
               break;
             }
             data = {
               msg: commentInput.value,
               id_users: parseInt(userId),
-              sent_date: new Date()
+              sent_date: new Date().toISOString()
             };
             commentInput.value = '';
             options = {
@@ -192,9 +192,7 @@ commentInput.addEventListener('keypress', /*#__PURE__*/function () {
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
           case 6:
             response = _context.sent;
-            _context.next = 9;
-            return updateComments(taskId);
-          case 9:
+          case 7:
           case "end":
             return _context.stop();
         }
@@ -218,26 +216,34 @@ var updateComments = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             commentList = document.querySelector('div#message-list');
-            lastCommentId = "0";
-            if (commentList.lastElementChild) {
-              lastCommentId = commentList.lastElementChild.getAttribute('comment-id');
+            lastCommentId = '0';
+            if (!commentList.lastElementChild) {
+              _context2.next = 6;
+              break;
             }
+            lastCommentId = commentList.lastElementChild.getAttribute('comment-id');
+            if (!(lastCommentId == null)) {
+              _context2.next = 6;
+              break;
+            }
+            return _context2.abrupt("return");
+          case 6:
             options = {
               method: 'GET',
               params: {
                 lastComment: lastCommentId
               }
-            };
-            _context2.next = 6;
-            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
-          case 6:
-            response = _context2.sent;
+            }; //console.log(lastCommentId)
             _context2.next = 9;
-            return response.json();
+            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/task/".concat(taskId, "/comments"), options);
           case 9:
+            response = _context2.sent;
+            _context2.next = 12;
+            return response.json();
+          case 12:
             commentData = _context2.sent;
             addComments(commentData.reverse());
-          case 11:
+          case 14:
           case "end":
             return _context2.stop();
         }
@@ -267,7 +273,7 @@ var addComments = function addComments(comments) {
   commentList.scrollTop = commentList.scrollHeight;
 };
 var commentList = document.querySelector('div#message-list');
-commentList.addEventListener("scroll", function (e) {
+commentList.addEventListener('scroll', function (e) {
   if (commentList.scrollTop == 0) {
     loadOlderComments(taskId);
   }
@@ -298,10 +304,18 @@ var buildComment = function buildComment(comment) {
   }
 };
 var buildOtherComment = function buildOtherComment(comment) {
-  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+  var date = new Date(comment.sent_date);
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var localDate = date.toLocaleDateString();
+  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(hours, ":").concat(minutes, "| ").concat(localDate, "</p>\n        </div>\n    </div>");
 };
 var buildMyComment = function buildMyComment(comment) {
-  return "\n    <div class=\"message-item\" commet-id=".concat(comment.id, "\">\n        <div class=\"message-body user-message\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(comment.sent_date, "| Aug 13</p>\n        </div>\n    </div>");
+  var date = new Date(comment.sent_date);
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var localDate = date.toLocaleDateString();
+  return "\n    <div class=\"message-item\" commet-id=".concat(comment.id, "\">\n        <div class=\"message-body user-message\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(hours, ":").concat(minutes, "| ").concat(localDate, "</p>\n        </div>\n        </div>\n    </div>");
 };
 var loadOlderComments = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
@@ -328,28 +342,26 @@ var loadOlderComments = /*#__PURE__*/function () {
             jsonResult = _context4.sent;
             commentInput.setAttribute('cursor', jsonResult.next_page_url);
             comments = jsonResult.data;
-            _context4.next = 27;
+            _context4.next = 25;
             break;
           case 13:
             if (!(cursor === 'null')) {
-              _context4.next = 18;
+              _context4.next = 17;
               break;
             }
-            console.log('No more Messages');
             return _context4.abrupt("return");
-          case 18:
-            console.log('Getting More Messages');
-            _context4.next = 21;
+          case 17:
+            _context4.next = 19;
             return fetch(cursor);
-          case 21:
+          case 19:
             result = _context4.sent;
-            _context4.next = 24;
+            _context4.next = 22;
             return result.json();
-          case 24:
+          case 22:
             _jsonResult = _context4.sent;
             commentInput.setAttribute('cursor', _jsonResult.next_page_url);
             comments = _jsonResult.data;
-          case 27:
+          case 25:
             olderComments = '';
             _iterator2 = _createForOfIteratorHelper(comments.reverse());
             try {
@@ -364,7 +376,7 @@ var loadOlderComments = /*#__PURE__*/function () {
             }
             commentList = document.querySelector('div#message-list');
             commentList.innerHTML = olderComments + commentList.innerHTML;
-          case 32:
+          case 30:
           case "end":
             return _context4.stop();
         }
@@ -376,6 +388,23 @@ var loadOlderComments = /*#__PURE__*/function () {
   };
 }();
 initComments();
+// Old ways without pusher
+// setInterval(() => updateComments(taskId),10*1000);
+
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+var pusher = new Pusher('db6806e87ad6634558db', {
+  cluster: 'eu'
+});
+var taskChannelName = "task-".concat(taskId);
+var taskChannel = pusher.subscribe(taskChannelName);
+taskChannel.bind('new-comment', function (data) {
+  var comment = JSON.parse(data.comment);
+  //console.log(comment)
+  //console.log(buildComment(comment))
+  console.log(comment.sent_date);
+  addComments([comment]);
+});
 })();
 
 /******/ })()

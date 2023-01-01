@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Vertical;
 
+use App\Events\NewTaskComment;
+
 class TaskController extends Controller
 {
     public function show($id)
