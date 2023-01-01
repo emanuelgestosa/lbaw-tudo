@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link href="{{ asset('/css/task.css') }}" rel="stylesheet">
+<script defer src="https://js.pusher.com/7.2/pusher.min.js"></script>
 <script defer src="/js/task/comments.js"></script>
 @yield('content')
 

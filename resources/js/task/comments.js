@@ -145,3 +145,20 @@ const loadOlderComments = async () => {
 
 initComments()
 setInterval(() => updateComments(taskId),10*1000);
+
+
+
+// Pusher Shananigans
+const gigaChad =  (taskId) => {
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+    var pusher = new Pusher('db6806e87ad6634558db', {
+      cluster: 'eu'
+    });
+
+    var channel = pusher.subscribe('task-comments');
+    channel.bind('event-new-comment-' + taksId,(data) => {
+        console.log(data)
+    });
+    });
+}
