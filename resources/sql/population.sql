@@ -42,15 +42,15 @@ insert into board (name, id_project) values ('Tech', 1),
  ('Accounting', 2),
  ('Human Resources', 2);
 
-insert into vertical (name, id_board) values ('Doing', 1),
- ('In need of approval', 1),
- ('Completed', 1),
- ('Electronics', 2),
- ('Music', 2),
- ('To pay', 3),
- ('Paid', 3),
- ('Need to talk', 4),
- ('Need a raise', 4);
+insert into vertical (name, id_board, order_board) values ('Doing', 1, 1),
+ ('In need of approval', 1, 2),
+ ('Completed', 1, 3),
+ ('Electronics', 2, 1),
+ ('Music', 2, 2),
+ ('To pay', 3, 1),
+ ('Paid', 3, 2),
+ ('Need to talk', 4, 1),
+ ('Need a raise', 4, 2);
 
 insert into label (name,colour) values 
  ('Important',x'FF00FF'::int),
@@ -71,15 +71,15 @@ insert into label_class (name) values ('Priority'),
 insert into forum (id_project) values (1),
 (2);
 
-insert into task (name, description, creation_date, due_date, id_vertical) values ('Deliver mockups', 'Gogle wants mockups for a website about the season fruits', '11/22/2021', '1/25/2022', 2),
- ('Correct bug on sql', 'I need help', '9/23/2021', '5/20/2022', 2),
- ('Prepare some cookies', 'We need gluten free cookies and some orange juice', '11/15/2021', '7/1/2022', 8),
- ('Eat burguer', 'nom nom I am hungry', '8/17/2021', '10/8/2022', 7),
- ('Call Susan Boyle', 'lalalalala', '10/4/2021', '7/24/2022', 1),
- ('Cook the beans', 'beans are amazing nom nom', '11/17/2021', '9/7/2022', 3),
- ('Deliver mockups', 'Macrohard neeeds some help in their beauty site', '11/28/2021', '5/18/2022', 5),
- ('Smile', 'smile and wave', '10/17/2021', '2/7/2022', 6),
- ('Correct bug on sql', 'i dont know what is wrong it justs says error help joanne', '11/27/2021', '8/27/2022', 8);
+insert into task (name, description, creation_date, due_date, id_vertical, order_vertical) values ('Deliver mockups', 'Gogle wants mockups for a website about the season fruits', '11/22/2021', '1/25/2022', 2, 1),
+ ('Correct bug on sql', 'I need help', '9/23/2021', '5/20/2022', 2, 2),
+ ('Prepare some cookies', 'We need gluten free cookies and some orange juice', '11/15/2021', '7/1/2022', 8, 1),
+ ('Eat burguer', 'nom nom I am hungry', '8/17/2021', '10/8/2022', 7, 1),
+ ('Call Susan Boyle', 'lalalalala', '10/4/2021', '7/24/2022', 1, 1),
+ ('Cook the beans', 'beans are amazing nom nom', '11/17/2021', '9/7/2022', 3, 1),
+ ('Deliver mockups', 'Macrohard neeeds some help in their beauty site', '11/28/2021', '5/18/2022', 5, 1),
+ ('Smile', 'smile and wave', '10/17/2021', '2/7/2022', 6, 1),
+ ('Correct bug on sql', 'i dont know what is wrong it justs says error help joanne', '11/27/2021', '8/27/2022', 8, 2);
 
 insert into post (title, description, id_forum,id_users) values 
  ('Off-Topic', null,  1, 1),
@@ -218,12 +218,12 @@ insert into board (name, id_project) values
 ('EBD', 3),
 ('EAP', 3);
 
-insert into vertical (name, id_board) values 
- ('A4', 5),
- ('A7', 6),
- ('A8', 6),
- ('A5', 5),
- ('A6', 5);
+insert into vertical (name, id_board, order_board) values 
+ ('A4', 5, 1),
+ ('A7', 6, 1),
+ ('A8', 6, 2),
+ ('A5', 5, 2),
+ ('A6', 5, 3);
 
 insert into label (name,colour) values 
  ('Aborrecida',x'0000FF'::int),
@@ -237,11 +237,11 @@ insert into label_class (name) values
 
 insert into forum (id_project) values (3);
 
-insert into task (name, description,due_date, id_vertical) values 
- ('Add more tables to UML', 'The teacher wants more classes', '12/30/2023', 10),
- ('Correct bug on sql', 'I need help','12/30/2023', 13),
- ('Code more triggersssss', 'We need more triggers', '12/30/2023', 14),
- ('Ask the teacher for more time', 'We are super late', '12/30/2023', 12);
+insert into task (name, description,due_date, id_vertical, order_vertical) values 
+ ('Add more tables to UML', 'The teacher wants more classes', '12/30/2023', 10, 1),
+ ('Correct bug on sql', 'I need help','12/30/2023', 13, 1),
+ ('Code more triggersssss', 'We need more triggers', '12/30/2023', 14, 1),
+ ('Ask the teacher for more time', 'We are super late', '12/30/2023', 12, 1);
 
 insert into post (title, description, id_forum,id_users) values 
 ('Post geral do Projeto LBAW', 'Onde nos falamos IMENSO (tipo o discord)',  3,14),
