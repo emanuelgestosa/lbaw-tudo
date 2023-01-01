@@ -83,6 +83,10 @@ const buildComment = (comment) => {
 }
 
 const buildOtherComment = (comment) => {
+  const date = new Date(comment.sent_date)
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const localDate = date.toLocaleDateString()
   return `
     <div class="message-item" comment-id="${comment.id}">
         <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
@@ -91,11 +95,15 @@ const buildOtherComment = (comment) => {
             <div class="text-lists">
                 <p class="message-text">${comment.msg}</p>
             </div>
-            <p class="message-date">${comment.sent_date}| Aug 13</p>
+            <p class="message-date">${hours}:${minutes}| ${localDate}</p>
         </div>
     </div>`
 }
 const buildMyComment = (comment) => {
+  const date = new Date(comment.sent_date)
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const localDate = date.toLocaleDateString()
   return `
     <div class="message-item" commet-id=${comment.id}">
         <div class="message-body user-message">
@@ -103,7 +111,8 @@ const buildMyComment = (comment) => {
             <div class="text-lists">
                 <p class="message-text">${comment.msg}</p>
             </div>
-            <p class="message-date">${comment.sent_date}| Aug 13</p>
+            <p class="message-date">${hours}:${minutes}| ${localDate}</p>
+        </div>
         </div>
     </div>`
 }
@@ -156,5 +165,6 @@ taskChannel.bind('new-comment', function (data) {
   const comment = JSON.parse(data.comment)
   //console.log(comment)
   //console.log(buildComment(comment))
+  console.log(comment.sent_date)
   addComments([comment])
 })
