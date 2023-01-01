@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewTaskComment;
 use App\Models\Comment;
 use App\Models\Invite;
 use App\Models\Label;
@@ -72,6 +73,7 @@ Route::post('/task/{id}/comments', function (Request $r, $id) {
         $newComment->sent_date = $sentDate;
         $newComment->id_task = $id;
         $newComment->save();
+        event(new NewTaskComment($message,$id));
         return response()->json(["Message" => "Successufuly Commented"], 201);
     } else {
         return response()->json(["Message" => "Task Not Found"], 404);
