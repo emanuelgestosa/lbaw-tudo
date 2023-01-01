@@ -40,6 +40,8 @@ const updateComments = async (taskId) => {
   let lastCommentId = "0"
   if (commentList.lastElementChild) {
     lastCommentId = commentList.lastElementChild.getAttribute('comment-id')
+    if(lastCommentId == "null")
+        return 
   }
   const options = {
     method: 'GET',
