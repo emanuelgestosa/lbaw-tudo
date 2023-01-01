@@ -11,8 +11,12 @@
 
         <input type="hidden" name="id" value="{{ $vertical->id }}">
         <input type="hidden" name="board_id" value="{{ $board->id }}">
-
-        <button type="submit">Done</button>
+        
+        @if ($vertical->isdone)
+            <input type="checkbox" onChange="this.form.submit()" checked>
+        @else
+            <input type="checkbox" onChange="this.form.submit()">
+        @endif
     </form>
     <div class="tareas">
         @foreach ($vertical->tasks()->get() as $task)
