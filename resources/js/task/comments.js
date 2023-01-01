@@ -21,11 +21,9 @@ commentInput.addEventListener('keypress', async (e) => {
       },
       body: JSON.stringify(data),
     }
-    console.log('Enviando Mensage')
-    console.log(options)
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-    console.log(response)
-    await updateComments(taskId)
+    // With Pusher with don't need this anymore
+    //await updateComments(taskId)
   }
 })
 const toggleComments = () => {
@@ -48,10 +46,10 @@ const updateComments = async (taskId) => {
       lastComment: lastCommentId,
     },
   }
-  console.log(lastCommentId)
+  //console.log(lastCommentId)
   const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-  console.log('Updating Comments')
-  console.log(response)
+  //console.log('Updating Comments')
+  //console.log(response)
   const commentData = await response.json()
   addComments(commentData.reverse())
 }
@@ -118,16 +116,16 @@ const loadOlderComments = async () => {
       method: 'GET',
     }
     const response = await sendRequest(`/api/task/${taskId}/comments`, options)
-    console.log('Fetching Comments')
-    console.log(response)
+    //console.log('Fetching Comments')
+    //console.log(response)
     const jsonResult = await response.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
     comments = jsonResult.data
   } else if (cursor === 'null') {
-    console.log('No more Messages')
+    //console.log('No more Messages')
     return
   } else {
-    console.log('Getting More Messages')
+    //console.log('Getting More Messages')
     const result = await fetch(cursor)
     const jsonResult = await result.json()
     commentInput.setAttribute('cursor', jsonResult.next_page_url)
@@ -143,6 +141,7 @@ const loadOlderComments = async () => {
 }
 
 initComments()
+// Old ways without pusher
 // setInterval(() => updateComments(taskId),10*1000);
 
 // Enable pusher logging - don't include this in production
@@ -150,14 +149,12 @@ Pusher.logToConsole = true;
 var pusher = new Pusher('db6806e87ad6634558db', {
   cluster: 'eu',
 })
-
-var channel = pusher.subscribe('my-channel')
-channel.bind('my-event', function (data) {
-  alert(JSON.stringify(data))
-})
 const taskChannelName = `task-${taskId}`
 var taskChannel = pusher.subscribe(taskChannelName)
 
 taskChannel.bind('new-comment', function (data) {
-  alert(JSON.stringify(data))
+  const comment = JSON.parse(data.comment)
+  //console.log(comment)
+  //console.log(buildComment(comment))
+  addComments([comment])
 })

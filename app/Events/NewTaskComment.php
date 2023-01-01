@@ -20,12 +20,12 @@ class NewTaskComment implements ShouldBroadcast
      * @return void
      */
 
-    public $message;
+    public $comment;
     public $taskId;
 
-    public function __construct($message,$taskId)
+    public function __construct($comment,$taskId)
     {
-      $this->message = $message;
+      $this->comment= $comment;
       $this->taskId = $taskId;
     }
 

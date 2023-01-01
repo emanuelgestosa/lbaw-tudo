@@ -11,7 +11,6 @@ class TaskController extends Controller
 {
     public function show($id)
     {
-        event(new NewTaskComment("Miguel",14));
         $task = Task::find($id);
         return view('partials.task.component',['task'=>$task]);
     }
