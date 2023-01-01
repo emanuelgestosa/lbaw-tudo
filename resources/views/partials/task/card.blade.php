@@ -4,8 +4,8 @@
   <header>
     <a href="{{ url('/task/' . $task->id) }}">
       <div class="task-container">
-        <h2 class="task-name">    
-          {{ $task->name}} 
+        <h2 class="task-name">
+          {{ $task->name}}
         </h2>
       </div>
     </a>
