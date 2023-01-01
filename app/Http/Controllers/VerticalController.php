@@ -38,6 +38,7 @@ class VerticalController extends Controller
     $vertical = Vertical::findOrFail($id);
     $curr = $vertical->isdone;
     $vertical->isdone = !$curr;
+    $vertical->save();
 
     return redirect('/board/'.$board_id);
   }

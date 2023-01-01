@@ -42,7 +42,7 @@ Route::post('/verticals/{vertical_id}/add_task', 'TaskController@add_task')->nam
 
 // Vertical
 Route::get('/board/{id}/create', 'VerticalController@showCreate');
-Route::post('/action/board/{id}/mark_completed', 'VerticalController@markDone');
+Route::post('/action/vertical/mark_completed', 'VerticalController@markDone');
 
 // Board
 Route::get('/board/{id}', 'BoardController@show')->name('board');

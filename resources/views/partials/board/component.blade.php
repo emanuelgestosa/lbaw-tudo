@@ -9,7 +9,7 @@
   <a class="btn btn-primary" href="/board/{{  $board->id }}/create"><i class="fa-solid fa-plus"></i> Create Column</a>
   <article class="board" id="{{$board->id}}">
     @foreach ($board->verticals()->get() as $vertical)
-       @include('partials.vertical.component',['vertical',$vertical])
+       @include('partials.vertical.component',['vertical',$vertical, 'board', $board])
     @endforeach
   </article>
 
