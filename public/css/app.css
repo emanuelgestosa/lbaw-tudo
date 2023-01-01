@@ -8,7 +8,7 @@ Index:
                         Users edit page
                         Users my projects page (Profile Projects)
   - Nav e footer
-  -Navbar (so para por width a 100%)
+  - Side nav bar
 */
 
 
@@ -529,13 +529,6 @@ Profile
 .profile-bg #contacts{
   grid-area: contact;
 }
-.profile-bg .here{
-  background: var(--lilac);
-}
-.profile-bg .flex-column .here .nav-link{
-  color: #141724;
-}
-
 .profile-bg #right{
   grid-area: buttons;
   display: flex;
@@ -552,46 +545,12 @@ Profile
   border-style: solid;
   border-radius: 10px;
 }
-.profile-bg .container-fluid{
-  padding: 0;
-}
-.profile-bg #sidebarpro{
-  background: #141724;
-  padding-right: 0!important; 
-}
-.profile-bg .flex-column .nav-link{
-  color: var(--lilac);
-}
-.profile-bg .fs-5#title_nav_lat{
-  color: #9832a5;
-  font-weight:600 !important;
-  font-size: 30px!important;
-  padding: 0em 1em;
-} 
-.profile-bg
-.profile-bg .d-flex.flex-column.align-items-center.align-items-sm-start.px-3.pt-2.text-white.min-vh-100{
-  width: 100%;
-}
-.profile-bg #menu{
-  width: 100%;
-}
-.profile-bg #menu li{
-  width: 100%;
-  padding: 0em 1.5em;
-}
-.profile-bg #menu li:hover, .profile-bg #menu li:hover .nav-link{
-  background-color: var(--dark);
-  color: var(--lilac);
-}
 
 /*
 Profile Projects
 */
 .profile-bg .items{
   gap: 10px;
-}
-.profile-bg .row.flex-nowrap{
-  width: 100%;
 }
 .profile-bg #project-cards{
   margin-top: 10px;
@@ -676,19 +635,60 @@ Register
 }
 
 /* Project */
-.profile-bg #sidebarpro{
-  background: #141724;
+.content{
+  width: 100vw;
 }
+
+/*
+Side nav bar
+*/
+.profile-bg .here,
+.project-bg .here{
+  background: var(--lilac);
+}
+.profile-bg .flex-column .here .nav-link,
+.project-bg .flex-column .here .nav-link{
+  color: #141724;
+}
+.profile-bg .container-fluid,
+.project-bg .container-fluid{
+  padding: 0;
+}
+.profile-bg #sidebarpro,
+.project-bg #sidebarpro{
+  background: #141724;
+  padding-right: 0!important; 
+}
+.profile-bg .flex-column .nav-link,
 .project-bg .flex-column .nav-link{
   color: var(--lilac);
 }
+.profile-bg .fs-5#title_nav_lat,
 .project-bg .fs-5#title_nav_lat{
   color: #9832a5;
   font-weight:600 !important;
   font-size: 30px!important;
+  padding: 0em 1em;
 } 
-
-
-.content{
-  width: 100vw;
+.profile-bg .d-flex.flex-column.align-items-center.align-items-sm-start.px-3.pt-2.text-white.min-vh-100,
+.project-bg .d-flex.flex-column.align-items-center.align-items-sm-start.px-3.pt-2.text-white.min-vh-100{
+  width: 100%;
+}
+.profile-bg #menu,
+.project-bg #menu{
+  width: 100%;
+}
+.profile-bg #menu li,
+.project-bg #menu li{
+  width: 100%;
+  padding: 0em 1.5em;
+}
+.profile-bg #menu li:hover, .profile-bg #menu li:hover .nav-link,
+.project-bg #menu li:hover, .project-bg #menu li:hover .nav-link{
+  background-color: var(--dark);
+  color: var(--lilac);
+}
+.profile-bg .row.flex-nowrap,
+.project-bg .row.flex-nowrap{
+  width: 100%;
 }
