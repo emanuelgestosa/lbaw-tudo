@@ -21,7 +21,7 @@
     <i class="fa-solid fa-question-circle help"></i>
     <div class="hide">Select/Unselect to set/unset column for completed tasks</div>
     <div class="tarefas" data-id="{{ $vertical->id }}">
-        @foreach ($vertical->tasks()->get() as $task)
+        @foreach ($vertical->tasks->sortBy('order_vertical') as $task)
             @include('partials.task.card',['task'=>$task])
         @endforeach
     </div>

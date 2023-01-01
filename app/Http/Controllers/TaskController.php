@@ -55,6 +55,19 @@ class TaskController extends Controller
       $task->save();
     }
 
+    public function setOrder(Request $request)
+    {
+      $requestjson = json_decode($request->getContent(), true);
+
+      $id = $requestjson['id'];
+      $order = $requestjson['order'];
+
+      $task = Task::find($id);
+      $task->order_vertical = $order;
+      $task->save();
+    }
+
+
     public function add_task(Request $request, $vertical_id){
 
       $request->validate([

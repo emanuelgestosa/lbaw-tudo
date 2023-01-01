@@ -92,8 +92,7 @@ CREATE TABLE vertical (
     name text NOT NULL,
     isDone boolean NOT NULL DEFAULT FALSE,
     order_board integer NOT NULL,
-    id_board integer NOT NULL REFERENCES board (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT UC_board_order UNIQUE (order_board, id_board)
+    id_board integer NOT NULL REFERENCES board (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE task (
@@ -103,8 +102,7 @@ CREATE TABLE task (
     creation_date timestamp NOT NULL CONSTRAINT CK_task_creation_date CHECK (creation_date <= CURRENT_TIMESTAMP) default CURRENT_TIMESTAMP,
     due_date timestamp CONSTRAINT CK_task_due_date CHECK (creation_date < due_date),
     order_vertical integer NOT NULL,
-    id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT UC_vertical_order UNIQUE (order_vertical, id_vertical)
+    id_vertical integer NOT NULL REFERENCES vertical (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE label (

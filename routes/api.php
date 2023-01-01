@@ -60,6 +60,7 @@ Route::post('/board/{id}/vertical', 'VerticalController@create');
 Route::patch('/task/{id}', 'TaskController@edit');
 Route::delete('/task/{id}', 'TaskController@delete');
 Route::post('/task/set_col', 'TaskController@setCol');
+Route::post('/task/set_order', 'TaskController@setOrder');
 
 // Task Comments
 Route::post('/task/{id}/comments', function (Request $r, $id) {
