@@ -297,7 +297,7 @@ var initComments = /*#__PURE__*/function () {
   };
 }();
 var buildComment = function buildComment(comment) {
-  if (!(comment.id_users == userId)) {
+  if (comment.id_users == userId) {
     return buildMyComment(comment);
   } else {
     return buildOtherComment(comment);
