@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     *@var array
+     */
+    protected $fillable = [
+        'id_vertical',
+    ];
+
     public $timestamps=false;
     public $table = "task";
 

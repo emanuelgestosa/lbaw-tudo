@@ -43,6 +43,18 @@ class TaskController extends Controller
       return redirect('/board/' . $request->input('board_id'));
     }
 
+    public function setCol(Request $request)
+    {
+      $requestjson = json_decode($request->getContent(), true);
+
+      $id = $requestjson['id'];
+      $vertical_id = $requestjson['vertical_id'];
+
+      $task = Task::find($id);
+      $task->id_vertical = $vertical_id;
+      $task->save();
+    }
+
     public function add_task(Request $request, $vertical_id){
 
       $request->validate([
