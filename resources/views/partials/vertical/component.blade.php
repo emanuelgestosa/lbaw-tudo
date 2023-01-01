@@ -18,6 +18,8 @@
             <input type="checkbox" onChange="this.form.submit()">
         @endif
     </form>
+    <i class="fa-solid fa-question-circle help"></i>
+    <div class="hide">Select/Unselect to set/unset column for completed tasks</div>
     <div class="tareas">
         @foreach ($vertical->tasks()->get() as $task)
             @include('partials.task.card',['task'=>$task])

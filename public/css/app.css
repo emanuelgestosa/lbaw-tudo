@@ -614,3 +614,11 @@ Register
   color: rgb(235, 185, 21);
   break-before: auto;
 }
+
+.hide {
+  display: none;
+}
+
+.help:hover + .hide {
+  display: block;
+}
