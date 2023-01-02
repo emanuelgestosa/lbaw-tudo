@@ -52,18 +52,19 @@
       </div>
       @endif
       <div class="col py-3">
-        <div id="user-info">
-          <!--h1 id="usnm">{{ $username }}</h1-->
-      
+        <div class="flex-row">
+          <h1 id="page_name">{{ ucfirst($name) }}'s Profile</h1>
+        </div>
+        <div class="container">
           <div id= "pfp">
             <img src="https://picsum.photos/175/175">
           </div>
       
           <ul id="contacts">
             <li><i class="fa-solid fa-at"></i> {{ $username }}</li>
-            <li><i class="fa-solid fa-user"></i> {{ $name }}</li>
-            <li><i class="fa-solid fa-envelope"></i> {{ $email }}</li>
-            <li><i class="fa-solid fa-phone"></i> {{ $phone_number }}</li>
+            <li><i class="fa-solid fa-user"></i> {{ ucfirst($name) }}</li>
+            <li><a class="text-decoration-none" href="mailto:{{$email}}"><i class="fa-solid fa-envelope"></i> {{ $email }}</a></li>
+            <li><a href="tel:{{$phone_number}}"><i class="fa-solid fa-phone"></i> {{ $phone_number }}</a></li>
           </ul>
       </div>
     </div>
@@ -71,3 +72,4 @@
 </div>
   
 @endsection
+

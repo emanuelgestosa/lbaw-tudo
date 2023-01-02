@@ -52,7 +52,7 @@
       </div>
       @endif
       <div class="col py-3">
-        <h1 class="page_name">My Projects         
+        <h1 id="page_name"> My Projects         
           <a class="btn btn-primary" href="{{ url('/user/' . $user->id . '/add_project') }}">
             <i class="fa-solid fa-plus"></i> New Project
           </a>

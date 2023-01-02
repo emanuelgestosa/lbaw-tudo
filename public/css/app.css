@@ -127,9 +127,10 @@ input[type=password]:focus {
   text-align: center;
 }
 
-.page_name{
+#page_name{
   font-size: 35px;
-  font-weight: bold;
+  font-weight:400;
+
 }
 
 .search_bar  {
@@ -497,14 +498,14 @@ Profile
   width: 200px;
   height: 200px;
   position: relative;
-  border-radius: 50%;
+  border-radius: 10px;
   box-shadow: 4px 6px 0 #ad6fec7f;
 }
 .profile-bg #pfp > img{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 10px;
   border-style: solid;
   border-width: 3px;
   border-color: var(--blilac);
@@ -530,6 +531,8 @@ Profile
 }
 .profile-bg #contacts{
   grid-area: contact;
+  padding: 0;
+  margin-top: 20px;
 }
 .profile-bg #right{
   grid-area: buttons;
@@ -546,6 +549,12 @@ Profile
   background-color: #7c24882e;
   border-style: solid;
   border-radius: 10px;
+}
+/*
+Edit Profile
+*/
+.profile-bg #edit-profile-forms{
+  margin-top: 20px;
 }
 
 /*

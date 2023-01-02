@@ -51,45 +51,59 @@
         </nav>
       </div>
       @endif
-  <div id="user-info">
-    <h1 id="usnm">{{ $username }}</h1>
-    <div class= "pfp">
-      <img src="https://picsum.photos/175/175">
-    </div>
-    <div id="contacts">
-      <p><i class="fa-solid fa-user"></i> {{ $name }}</p>
-      <p><i class="fa-solid fa-envelope"></i> {{ $email }}</p>
-      <p><i class="fa-solid fa-phone"></i> {{ $phone_number }}</p>
-    </div>
+      
 
-    <a class="btn btn-primary" id="edit" href="{{ url('/user/'. $id. '/edit') }}"><i class="fa-solid fa-pencil"></i> Edit Profile</a>
+      <div class="col py-3">
+        <div class="flex-row">
+          <h1 id="page_name"> Edit {{ ucfirst($name) }}'s Profile</h1>
+        </div>
+        <div class="container">
+          <div id= "pfp">
+            <img src="https://picsum.photos/175/175">
+          </div>
+          
+          <div id="edit-profile-forms" style="max-width: 300px;">
+            <form class="form-group" method="POST" action="/action/user/{{ $id }}">
+              <input type="hidden" name="_method" value="PATCH">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          
+              <input type="hidden" name="id" value="{{ $id }}" />
+              <label for="username">Username</label>
+              <input type="text" name="username" class="form-control" value="{{ $username }}" />
+              <label for="name">Name</label>
+              <input type="text" name="name" class="form-control" value="{{ ucfirst($name) }}" />
+              <label for="phone_number">Phone Number</label>
+              <input type="text" name="phone_number" class="form-control" value="{{ $phone_number }}" />
+              <label for="email">Email</label>
+              <input type="email" name="email" class="form-control" value="{{ $email }}" />
+          <div class="flex-row">
+              <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+          
+            <form class="form-group" method="POST" action="/action/user/{{ $id }}">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          
+              <input type="hidden" name="id"  value="{{ $id }}" />
+          
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash"></i> Delete User</button>
+          </div>
+            </form>
+
+            <form class="form-group" method="POST" action="/action/user/{{ $id }}">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          
+              <input type="hidden" name="id"  value="{{ $id }}" />
+          
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash"></i> Delete User</button>
+            </form>
+
+          </div>
+            </div>
+        </div>
+      </div> 
+    </div>
   </div>
-  <nav class="right">
-    <a class="btn btn-primary" href="{{ url('user/' . $id . '/favorites') }}"><i class="fa-solid fa-star"></i> My Favorites</a>
-    <a class="btn btn-primary" href="{{ url('user/' . $id . '/calendar') }}"><i class="fa-solid fa-calendar"></i> My Calendar</a>
-    <a class="btn btn-primary" href="{{ url('user/' . $id . '/projects') }}"><i class="fa-solid fa-diagram-project"></i> My Projects</a>
-  </nav>
-
-  <form method="POST" action="/action/user/{{ $id }}">
-    <input type="hidden" name="_method" value="PATCH">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-    <input type="hidden" name="id"  value="{{ $id }}" />
-    <input type="text" name="username"  value="{{ $username }}" />
-    <input type="text" name="name"  value="{{ $name }}" />
-    <input type="text" name="phone_number"  value="{{ $phone_number }}" />
-    <input type="email" name="email"  value="{{ $email }}" />
-
-    <button type="submit" class="btn btn-primary">Send</button>
-  </form>
-
-  <form method="POST" action="/action/user/{{ $id }}">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-    <input type="hidden" name="id"  value="{{ $id }}" />
-
-    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash"></i> Delete User</button>
-    </form>
 
 @endsection
