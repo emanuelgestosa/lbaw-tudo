@@ -36,7 +36,7 @@
             </div>
             <div class="col py-3">
               <div class="flex-row">
-                <h1>{{ $project->title }}'s Workspace</h1>
+                <h1 id="page_name">{{ $project->title }}'s Workspace</h1>
                 <h2>Coordinator e descrição!! ajuda</h2>
               </div>
                 <h2>Boards

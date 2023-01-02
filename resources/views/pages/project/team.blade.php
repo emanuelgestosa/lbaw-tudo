@@ -33,7 +33,7 @@
               </nav>
             </div>
             <div class="col py-3">
-                <h1>{{ $project->title }}'s Collaborators</h1>            
+                <h1 id="page_name">{{ $project->title }}'s Collaborators</h1>            
                 <div class="container">
                     <div class="row g-3" id="team-cards">
                         <ul class="d-flex flex-wrap list-group" id="project-collaborators">

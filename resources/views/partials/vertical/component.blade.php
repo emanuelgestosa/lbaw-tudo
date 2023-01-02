@@ -1,7 +1,7 @@
 @if ($vertical->isdone)
-    <article class="vertical completed" data-id="{{ $vertical->id }}">
+    <article class="vertical completed list-group" data-id="{{ $vertical->id }}">
 @else
-    <article class="vertical" data-id="{{ $vertical->id }}">
+    <article class="vertical list-group" data-id="{{ $vertical->id }}">
 @endif
     <h2 id="vertical_name"> {{$vertical->name}} </h2>
     <a class="button" href="{{ url('/verticals/'. $vertical->id .'/add_task') }}"> Add task </a>
