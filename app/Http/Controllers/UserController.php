@@ -77,7 +77,7 @@ class UserController extends Controller
           $favourites[] = $project;
         }
       }
-      return view('pages.user.my_favourites', ['projects' => $favourites]);
+      return view('pages.user.my_favourites', ['projects' => $favourites, 'user' => User::find($id)]);
     }
 
     /**

@@ -16,13 +16,8 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item here">
-                          <a tabindex="0" id="edit" href="#" class="nav-link align-middle px-0">
-                            <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline"> Main Page </span>
-                          </a>
-                        </li>  
-                        <li class="nav-item">
-                            <a tabindex="0" id="edit" href="#" class="nav-link align-middle px-0">
-                              <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> Boards </span>
+                            <a tabindex="0" id="edit" href="/project/{{$project->id}}" class="nav-link align-middle px-0">
+                              <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> Workspace </span>
                             </a>
                         </li>  
                         <li class="nav-item">
@@ -40,12 +35,24 @@
               </nav>
             </div>
             <div class="col py-3">
-                <h3>Boards aqui?</h3>
-               
-                    
-            </div>
+              <div class="flex-row">
+                <h1>{{ $project->title }}'s Workspace</h1>
+                <h2>Coordinator e descrição!! ajuda</h2>
+              </div>
+                <h2>Boards
+                  <a class="btn btn-primary" href="{{ url('/project/'.$project->id.'/boards/create') }}"> Add board </a> 
+                </h2>
+                <div class="container">
+                  <div class="row g-3" id="board-cards">
+                  @foreach ($project->boards()->get() as $board)
+                      <div class="col-12 col-md-6 col-lg-4">
+                             @include('partials.board.card',['board',$board])
+                      </div>
+                      @endforeach
+                  </div>
+              </div>
+            </div> 
+          </div>
         </div>
-    </div>
-</article>
-@endsection
-
+      </article>
+        @endsection

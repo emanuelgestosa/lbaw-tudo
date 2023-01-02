@@ -636,6 +636,21 @@ Register
 }
 
 /* Project */
+.project-bg .items{
+  gap: 10px;
+}
+.project-bg #board-cards{
+  margin-top: 10px;
+}
+.project-bg .card{
+  background-color: rgb(235, 214, 249);
+}
+.project-bg .card, .project-bg .card a{
+  color: var(--dark);
+}
+.project-bg .card .btn{
+  color: var(--white);
+}
 .content{
   width: 100vw;
 }
@@ -652,7 +667,7 @@ Register
   margin:10px;
   border-radius: 10px;
   border: 1px solid var(--blilac);
-  background-color: #cba1f5;
+  background-color:  rgb(235, 214, 249);
   color: var(--dark);
   font-weight: 500;
 }

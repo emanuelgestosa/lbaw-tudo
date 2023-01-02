@@ -14,13 +14,8 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item">
-                          <a tabindex="0" id="edit" href="#" class="nav-link align-middle px-0">
-                            <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline"> Main Page </span>
-                          </a>
-                        </li>  
-                        <li class="nav-item">
-                            <a tabindex="0" id="edit" href="#" class="nav-link align-middle px-0">
-                              <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> Boards </span>
+                            <a tabindex="0" id="edit" href="/project/{{$project->id}}" class="nav-link align-middle px-0">
+                              <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> Workspace </span>
                             </a>
                         </li>  
                         <li class="nav-item here">
@@ -38,7 +33,7 @@
               </nav>
             </div>
             <div class="col py-3">
-                <h1><i class="fa-solid fa-users"></i> {{ $project->title }}'s Collaborators</h1>            
+                <h1>{{ $project->title }}'s Collaborators</h1>            
                 <div class="container">
                     <div class="row g-3" id="team-cards">
                         <ul class="d-flex flex-wrap list-group" id="project-collaborators">

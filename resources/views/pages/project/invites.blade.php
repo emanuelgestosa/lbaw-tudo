@@ -14,13 +14,8 @@
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                      <a tabindex="0" id="edit" href="#" class="nav-link align-middle px-0">
-                        <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline"> Main Page </span>
-                      </a>
-                    </li>  
-                    <li class="nav-item">
-                        <a tabindex="0" id="edit" href="#" class="nav-link align-middle px-0">
-                          <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> Boards </span>
+                        <a tabindex="0" id="edit" href="/project/{{$project->id}}" class="nav-link align-middle px-0">
+                          <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> Workspace </span>
                         </a>
                     </li>  
                     <li class="nav-item">
