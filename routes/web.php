@@ -28,6 +28,7 @@ Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects
 Route::get('/user/{id}/favourites', 'UserController@showFavourites')->name('favourites');
 Route::get('/user/{id}/invites', 'UserController@showInvites');
 Route::patch('/action/user/{id}', 'UserController@edit');
+Route::delete('/action/user/{id}', 'UserController@delete');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

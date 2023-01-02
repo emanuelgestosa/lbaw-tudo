@@ -28,7 +28,6 @@ Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 
 // Manage User
 Route::post('/user', 'UserController@create');
-Route::delete('/user/{id}', 'UserController@delete');
 Route::get('/user/{id}/json', 'UserController@getJson');
 Route::get('/admin/{id}/json', 'AdminController@getJson');
 
