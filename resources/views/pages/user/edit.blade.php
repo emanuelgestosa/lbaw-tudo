@@ -23,7 +23,7 @@
     <a class="btn btn-primary" href="{{ url('user/' . $id . '/projects') }}"><i class="fa-solid fa-diagram-project"></i> My Projects</a>
   </nav>
 
-  <form method="post" action="/api/user/{{ $id }}">
+  <form method="POST" action="/action/user/{{ $id }}">
     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -36,7 +36,7 @@
     <button type="submit" class="btn btn-primary">Send</button>
   </form>
 
-  <form method="post" action="/api/user/{{ $id }}">
+  <form method="POST" action="/action/user/{{ $id }}">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

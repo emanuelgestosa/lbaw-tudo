@@ -132,7 +132,7 @@ CREATE TABLE msg (
     id serial PRIMARY KEY,
     msg text NOT NULL,
     sent_date timestamp NOT NULL CONSTRAINT CK_sent_date CHECK (sent_date <= CURRENT_TIMESTAMP) default CURRENT_TIMESTAMP,
-    id_users integer REFERENCES users (id) ON UPDATE CASCADE,
+    id_users integer REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_post integer NOT NULL REFERENCES post (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
