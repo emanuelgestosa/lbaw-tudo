@@ -28,8 +28,6 @@ Route::middleware('auth:api')->get('/user', 'Auth\LoginController@getUser');
 
 // Manage User
 Route::post('/user', 'UserController@create');
-Route::patch('/user/{id}', 'UserController@edit');
-Route::delete('/user/{id}', 'UserController@delete');
 Route::get('/user/{id}/json', 'UserController@getJson');
 Route::get('/admin/{id}/json', 'AdminController@getJson');
 
@@ -55,10 +53,13 @@ Route::delete('project/{id}/invites', 'ProjectInvitesController@deleteInvite');
 
 // Manage Verticals
 Route::post('/board/{id}/vertical', 'VerticalController@create');
+Route::post('/vertical/set_order', 'VerticalController@setOrder');
 
 // Manage Tasks
 Route::patch('/task/{id}', 'TaskController@edit');
 Route::delete('/task/{id}', 'TaskController@delete');
+Route::post('/task/set_col', 'TaskController@setCol');
+Route::post('/task/set_order', 'TaskController@setOrder');
 
 // Task Comments
 Route::post('/task/{id}/comments', function (Request $r, $id) {

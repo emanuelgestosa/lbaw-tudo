@@ -29,4 +29,29 @@ class VerticalController extends Controller
 
     return redirect('/board/'.$board_id);
   }
+
+  public function markDone(Request $request)
+  {
+    $id = $request->input('id');
+    $board_id = $request->input('board_id');
+
+    $vertical = Vertical::findOrFail($id);
+    $curr = $vertical->isdone;
+    $vertical->isdone = !$curr;
+    $vertical->save();
+
+    return redirect('/board/'.$board_id);
+  }
+
+    public function setOrder(Request $request)
+    {
+      $requestjson = json_decode($request->getContent(), true);
+
+      $id = $requestjson['id'];
+      $order = $requestjson['order'];
+
+      $verticak = Vertical::find($id);
+      $verticak->order_board = $order;
+      $verticak->save();
+    }
 }
