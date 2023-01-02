@@ -23,6 +23,16 @@ class ProjectController extends Controller
       $user = Auth::user();
       return view('pages.project.create', ['user' => $user]);
     }
+    public function showTeam($id)
+    {
+      $project = Project::find($id);
+      return view('pages.project.team', ['project' => $project]);
+    }
+    public function showBoards($id)
+    {
+      $project = Project::find($id);
+      return view('pages.project.boards', ['project' => $project]);
+    }
 
     public function toggle_favourite($project_id) {
       $user_id = Auth::id();

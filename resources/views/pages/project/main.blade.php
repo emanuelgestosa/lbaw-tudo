@@ -26,12 +26,12 @@
                             </a>
                         </li>  
                         <li class="nav-item">
-                            <a tabindex="0" href="#" class="nav-link align-middle px-0">
+                            <a tabindex="0" href="/project/{{$project->id}}/team" class="nav-link align-middle px-0">
                               <i class="fa-solid fa-users"></i> <span class="ms-1 d-none d-sm-inline"> Team </span>
                             </a>
                         </li> 
                         <li class="nav-item">
-                            <a tabindex="0" href="#" class="nav-link align-middle px-0">
+                            <a tabindex="0" href="/project/{{$project->id}}/invites" class="nav-link align-middle px-0">
                               <i class="fa-solid fa-user-plus"></i> <span class="ms-1 d-none d-sm-inline"> Invite </span>
                             </a>
                         </li>     

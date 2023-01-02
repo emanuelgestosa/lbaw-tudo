@@ -32,7 +32,7 @@
                       </a>
                   </li> 
                   <li class="nav-item">
-                      <a tabindex="0" href="{{ url('user/' . $user->id . '/favorites') }}" class="nav-link align-middle px-0">
+                      <a tabindex="0" href="{{ url('user/' . $user->id . '/favourites') }}" class="nav-link align-middle px-0">
                         <i class="fa-solid fa-star"></i> <span class="ms-1 d-none d-sm-inline"> My Favorites </span>
                       </a>
                   </li>   
@@ -52,8 +52,12 @@
       </div>
       @endif
       <div class="col py-3">
-        <h1 class="page_name">My Projects         <a class="btn btn-primary" href="{{ url('/user/' . $user->id . '/add_project') }}"><i class="fa-solid fa-plus"></i> New Project</a>
-          <div class="container"></h1>
+        <h1 class="page_name">My Projects         
+          <a class="btn btn-primary" href="{{ url('/user/' . $user->id . '/add_project') }}">
+            <i class="fa-solid fa-plus"></i> New Project
+          </a>
+        </h1>
+          <div class="container">
           <div class="row g-3" id="project-cards">
             @foreach($projects as $project)
               <div class="col-12 col-md-6 col-lg-4">
@@ -68,9 +72,6 @@
               @endforeach
           </div>
       </div>
-
-
-      </div> 
-    </div>
+    </div> 
   </div>
 @endsection
