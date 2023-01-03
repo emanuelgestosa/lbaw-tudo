@@ -22,9 +22,12 @@ class VerticalController extends Controller
     $name = $request->input('name');
     $board_id = $request->input('board_id');
 
+    $order = Vertical::where('id_board', '=', $board_id)->max('order_board') + 1;
+
     $vertical = Vertical::create([
       'name' => $name,
       'id_board' => $board_id,
+      'order_board' => $order,
     ]);
 
     return redirect('/board/'.$board_id);
