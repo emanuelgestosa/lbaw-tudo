@@ -27,8 +27,12 @@ Route::get('/user/{id}/edit', 'UserController@showEdit');
 Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
 Route::get('/user/{id}/favourites', 'UserController@showFavourites')->name('favourites');
 Route::get('/user/{id}/invites', 'UserController@showInvites');
+Route::get('/user/{id}/ban', 'UserController@showBan');
 Route::patch('/action/user/{id}', 'UserController@edit');
 Route::delete('/action/user/{id}', 'UserController@delete');
+
+// Ban
+Route::post('/action/ban', 'BanController@create');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

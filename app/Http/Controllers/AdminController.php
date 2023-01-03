@@ -37,7 +37,7 @@ class AdminController extends Controller
       if (is_null($admin)) {
         return response()->json(['success' => false]);
       }
-      $user = User::find($admin->id);
+      $user = User::find($admin->id_users);
       if (is_null($user)) {
         return response()->json(['success' => false]);
       }

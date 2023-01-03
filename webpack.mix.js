@@ -11,7 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 mix.js('resources/js/app.js','public/js/app.js')
-    .js('resources/js/user/administration.js','public/js/user/administration.js')
+    .js('resources/js/admin/bans.js','public/js/admin/bans.js')
+    .js('resources/js/admin/searchUsers.js','public/js/admin/searchUsers.js')
     .js('resources/js/user/invites.js','public/js/user/invites.js')
     .js('resources/js/project/invites.js','public/js/project/invites.js')
     .js('resources/js/task/comments.js','public/js/task/comments.js')

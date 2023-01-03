@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-    "/js/user/administration.js": "/js/user/administration.js",
+    "/js/admin/bans.js": "/js/admin/bans.js",
+    "/js/admin/searchUsers.js": "/js/admin/searchUsers.js",
     "/js/user/invites.js": "/js/user/invites.js",
     "/js/project/invites.js": "/js/project/invites.js",
     "/js/task/comments.js": "/js/task/comments.js",

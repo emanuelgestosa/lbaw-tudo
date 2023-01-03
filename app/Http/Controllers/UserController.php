@@ -55,6 +55,16 @@ class UserController extends Controller
       ]);
     }
 
+    public function showBan($id)
+    {
+      if (!Auth::check() || (
+          Auth::check() &&
+          empty(Administrator::where('id_users', Auth::user()->id)->get()->all()))) {
+        return redirect('/user/'.$id);
+      }
+      return view('pages.user.ban', ['id_users' => $id, 'id_administrator' => Auth::id()]);
+    }
+
     /**
      * Shows projects of a user.
      */

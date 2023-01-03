@@ -28,7 +28,35 @@
 
 ### 3. Application Help
 
+To mark a column as a column for completed tasks, the user needs to check
+a box. We provide a help text that can be revealed by hovering a question mark
+to tell the user the function of the checkbox.
+
+ADD IMAGE!!!!!
+
 ### 4. Input validation
+
+On the server side, we used the laravel Request validate method. On the client side,
+validation is made using HTML forms.
+
+Example of validation of the creation of a task:
+
+On the server side:
+
+```php
+$request->validate([
+        'name' => 'required',
+        'description' => 'nullable',
+        'due_date' => 'nullable|date|after_or_equal:tomorrow'
+      ]);
+```
+
+On the client side:
+
+```html
+<input class="form-control" type="text" name="name" value="{{ $task->name }}" required/>
+<input class="form-control" type="date" name="due_date" value="{{ $task->due_date }}" pattern="\d{4}-\d{2}-\d{2}">
+```
 
 ### 5. Check Accessibility and Usability
 
@@ -41,7 +69,14 @@
 ### 9. Implementation Details
 
 #### 9.1. Libraries Used
-
+- [Bootstrap](https://getbootstrap.com)
+    - This library provides a wide variety of pre-made responsive design elements which speeds up the front-end development process We used this library here INSERIR
+- [Font Awesome](https://fontawesome.com)
+    - This library provides a wide range of icons. We used this library in our project because icons are a great way to visualize concepts. That can lead to the user spending less time looking for some feature. We used this library here INSERIR
+- [Pusher](https://pusher.com)
+    - Pusher offers 
+- [SortableJS](https://sortablejs.github.io/Sortable/)
+    - SortableJS is a library that allows sorting lists by dragging and dropping items. We used this library to sort both collumns and tasks inside the boards. As can be seen here INSERIR
 #### 9.2 User Stories
 
 ## A10: Presentation
