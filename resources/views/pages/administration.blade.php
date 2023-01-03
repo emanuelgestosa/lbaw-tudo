@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
-@section('page-scripts')
-  <script defer src="/js/admin.js"></script>
-@endsection
-
-<script defer src="/js/user/administration.js"></script>
+<script defer src="/js/admin/bans.js"></script>
 @yield('content')
 
 @section('content')
