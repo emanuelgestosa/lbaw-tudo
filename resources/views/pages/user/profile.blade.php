@@ -32,7 +32,7 @@
                       </a>
                   </li> 
                   <li class="nav-item">
-                      <a tabindex="0" href="{{ url('user/' . $id . '/favorites') }}" class="nav-link align-middle px-0">
+                      <a tabindex="0" href="{{ url('user/' . $id . '/favourites') }}" class="nav-link align-middle px-0">
                         <i class="fa-solid fa-star"></i> <span class="ms-1 d-none d-sm-inline"> My Favorites </span>
                       </a>
                   </li>   

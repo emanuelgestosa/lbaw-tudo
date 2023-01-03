@@ -755,3 +755,34 @@ Side nav bar
   display: block;
 }
 
+.upload-image{
+  display: inline-block;
+  cursor: pointer;
+  height: 70px;
+  width: 70px;
+  background-color: #e78e44;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  right: -35px;
+  bottom: -35px;
+  transition: 0.5s;
+}
+
+.upload-image:hover{
+  opacity: 0.9;
+}
+
+.upload-image:hover > .fa{
+
+  color: #000000 
+}
+
+#board-content{
+  display:grid;
+  grid-auto-flow:column;
+  column-gap: 20px;
+}
+.board-bg {
+  overflow: auto;
+}

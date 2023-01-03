@@ -36,9 +36,23 @@
             </div>
             <div class="col py-3">
               <div class="flex-row">
-                <h1 id="page_name">{{ $project->title }}'s Workspace</h1>
-                <h2>Coordinator e descrição!! ajuda</h2>
+                <h1 id="page_name">{{ $project->title }}'s Workspace <a  class= "btn btn-primary" href="{{ route('fav_project', ['project_id' => $project->id]) }}">
+                    @if (! $project->collaborators()->wherePivot('id_project', $project->id)->wherePivot('id_users', Auth::id())->first()->pivot->favourite)
+                    <i class="fa-regular fa-star"></i> Favorite Project
+                    @else
+                    <i class="fa-solid fa-star"></i> Unfavorite Project
+                    @endif
+                    </a>
+                </h1>     
               </div>
+                <h2>Coordinator</h2>
+                <div class="d-flex text-truncate list-group">    
+                    <a href="{{ url('/user/' . $project->id_coordinator ) }}"> 
+                        <li tabindex="0" class="list-group-item d-flex justify-content-between align-items-center text-truncate">
+                            <img class="pfp-team" src="https://picsum.photos/175/175" alt="pic"> Coordenador Nome
+                        </li>
+                    </a>
+                </div>
                 <h2>Boards
                   <a class="btn btn-primary" href="{{ url('/project/'.$project->id.'/boards/create') }}"> Add board </a> 
                 </h2>

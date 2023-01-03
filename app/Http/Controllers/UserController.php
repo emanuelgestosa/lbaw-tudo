@@ -90,7 +90,7 @@ class UserController extends Controller
       }
       
       $invites = User::find($id)->invitesReceived;
-      return view('pages.user.invites', ['invites' => $invites, 'user_id' => $id]);
+      return view('pages.user.invites', ['invites' => $invites, 'user' => User::find($id)]);
     }
 
     /**

@@ -32,7 +32,7 @@
                       </a>
                   </li> 
                   <li class="nav-item">
-                      <a  href="{{ url('user/' . $id . '/favorites') }}" class="nav-link align-middle px-0">
+                      <a  href="{{ url('user/' . $id . '/favourites') }}" class="nav-link align-middle px-0">
                         <i class="fa-solid fa-star"></i> <span class="ms-1 d-none d-sm-inline"> My Favorites </span>
                       </a>
                   </li>   
@@ -90,14 +90,6 @@
           </div>
             </form>
 
-            <form class="form-group" method="POST" action="/action/user/{{ $id }}">
-              <input type="hidden" name="_method" value="DELETE">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          
-              <input type="hidden" name="id"  value="{{ $id }}" />
-          
-              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash"></i> Delete User</button>
-            </form>
 
           </div>
             </div>

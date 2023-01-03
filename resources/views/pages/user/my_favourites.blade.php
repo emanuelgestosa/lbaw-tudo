@@ -52,7 +52,7 @@
       </div>
       @endif
       <div class="col py-3">
-        <h1 class="page_name">My Favourite Projects</h1>
+        <h1 id="page_name">My Favourite Projects</h1>
           <div class="container">
           <div class="row g-3" id="project-cards">
             @foreach($projects as $project)

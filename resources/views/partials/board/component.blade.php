@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@push('body-class', 'project-bg')
+@push('body-class', 'project-bg board-bg')
 
 @yield('content')
 
 @section('content')
 
 
-<article class="project" id="project_content">
+<article class="project" id="board-content">
   <div class="container-fluid">
       <div class="row flex-nowrap">
           <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 shadow-sm shadow-lg" id="sidebarpro">
@@ -40,15 +40,20 @@
               </div>
             </nav>
           </div>
-  <h1 id="page_name">{{$board->name}} </h1>
-  <a class="btn btn-primary" href="/board/{{  $board->id }}/create"><i class="fa-solid fa-plus"></i> Create Column</a>
-  <article class="board" id="{{$board->id}}">
-    @foreach ($board->verticals->sortBy('order_board') as $vertical)
-       @include('partials.vertical.component',['vertical',$vertical, 'board', $board])
-    @endforeach
-  </article>
+          <div class="col py-3">
+            <div class="flex-row">
+                <h1 id="page_name">{{$board->name}} 
+                  <a class="btn btn-primary" href="/board/{{  $board->id }}/create"><i class="fa-solid fa-plus"></i> Create Column</a>
+                </h1>
+                <div class="container">
+                  <div class="row g-3" id="board-cards">
+                    <article class="board d-flex" id="{{$board->id}}">
+                      @foreach ($board->verticals->sortBy('order_board') as $vertical)
+                        @include('partials.vertical.component',['vertical',$vertical, 'board', $board])
+                      @endforeach
+                    </article>
 
-@endsection
+              @endsection
 
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" defer></script>
-<script src="/js/project/tasks-sortable.js" defer> </script>
+              <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" defer></script>
+              <script src="/js/project/tasks-sortable.js" defer> </script>

@@ -1,4 +1,6 @@
-<article class="list-group-item" data-id="{{ $task->id }}" order="{{ $task->order_vertical }}">
+
+
+<article class="flex-row list-group-item task-card-fr-fr" data-id="{{ $task->id }}" order="{{ $task->order_vertical }}">
   <header>
     <a href="{{ url('/task/' . $task->id) }}">
       <div class="task-container">
