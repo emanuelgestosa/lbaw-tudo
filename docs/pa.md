@@ -28,7 +28,35 @@
 
 ### 3. Application Help
 
+To mark a column as a column for completed tasks, the user needs to check
+a box. We provide a help text that can be revealed by hovering a question mark
+to tell the user the function of the checkbox.
+
+ADD IMAGE!!!!!
+
 ### 4. Input validation
+
+On the server side, we used the laravel Request validate method. On the client side,
+validation is made using HTML forms.
+
+Example of validation of the creation of a task:
+
+On the server side:
+
+```php
+$request->validate([
+        'name' => 'required',
+        'description' => 'nullable',
+        'due_date' => 'nullable|date|after_or_equal:tomorrow'
+      ]);
+```
+
+On the client side:
+
+```html
+<input class="form-control" type="text" name="name" value="{{ $task->name }}" required/>
+<input class="form-control" type="date" name="due_date" value="{{ $task->due_date }}" pattern="\d{4}-\d{2}-\d{2}">
+```
 
 ### 5. Check Accessibility and Usability
 

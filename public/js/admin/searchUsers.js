@@ -242,7 +242,6 @@ var addSearchUsersFunctionality = /*#__PURE__*/function () {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            console.log("Adding Event");
             queryInput = document.querySelector('input.search-user');
             if (queryInput) {
               queryInput.addEventListener('input', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
@@ -251,19 +250,18 @@ var addSearchUsersFunctionality = /*#__PURE__*/function () {
                   while (1) {
                     switch (_context2.prev = _context2.next) {
                       case 0:
-                        console.log("Estou A receber Texto");
                         maxItems = 10;
                         deleteUserResults();
                         if (!(queryInput.value != '')) {
-                          _context2.next = 8;
+                          _context2.next = 7;
                           break;
                         }
-                        _context2.next = 6;
+                        _context2.next = 5;
                         return searchUsers(queryInput.value, maxItems);
-                      case 6:
+                      case 5:
                         result = _context2.sent;
                         preencherLista(result);
-                      case 8:
+                      case 7:
                       case "end":
                         return _context2.stop();
                     }
@@ -273,7 +271,7 @@ var addSearchUsersFunctionality = /*#__PURE__*/function () {
             } else {
               console.log('Não Encontrei os Butoes ');
             }
-          case 3:
+          case 2:
           case "end":
             return _context3.stop();
         }
