@@ -61,7 +61,7 @@ class UserController extends Controller
       }
       
       $projects = User::find($id)->projects;
-      return view('pages.user.projects', ['projects' => $projects, 'user_id' => $id]);
+      return view('pages.user.projects', ['projects' => $projects, 'user' => User::find($id)]);
     }
 
     public function showFavourites($id)
@@ -77,7 +77,7 @@ class UserController extends Controller
           $favourites[] = $project;
         }
       }
-      return view('pages.user.my_favourites', ['projects' => $favourites]);
+      return view('pages.user.my_favourites', ['projects' => $favourites, 'user' => User::find($id)]);
     }
 
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
       }
       
       $invites = User::find($id)->invitesReceived;
-      return view('pages.user.invites', ['invites' => $invites, 'user_id' => $id]);
+      return view('pages.user.invites', ['invites' => $invites, 'user' => User::find($id)]);
     }
 
     /**

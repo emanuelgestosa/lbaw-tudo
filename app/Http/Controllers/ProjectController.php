@@ -23,6 +23,11 @@ class ProjectController extends Controller
       $user = Auth::user();
       return view('pages.project.create', ['user' => $user]);
     }
+    public function showTeam($id)
+    {
+      $project = Project::find($id);
+      return view('pages.project.team', ['project' => $project]);
+    }
 
     public function toggle_favourite($project_id) {
       $user_id = Auth::id();
@@ -48,7 +53,11 @@ class ProjectController extends Controller
       print_r($user->id);
       $new_project = New Project();
       $new_project->title = $request->input('title');
-      $new_project->description = $request->input('description');
+      if ($request->input('description') == ""){
+        $new_project->description = "This project has no description yet.";
+      }else {
+        $new_project->description = $request->input('description');
+      }
       $new_project->id_coordinator = $user->id;
       $new_project->save();
       $new_project->collaborators()->save(User::find($user->id));

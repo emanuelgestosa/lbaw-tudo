@@ -56,6 +56,8 @@ Route::get('/project/{id}/invites', 'ProjectController@invites');
 Route::get('/user/{user_id}/add_project', 'ProjectController@showCreate');
 Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('add_project');
 Route::get('/project/{project_id}/favourite', 'ProjectController@toggle_favourite')->name('fav_project');
+Route::get('/project/{project_id}/team', 'ProjectController@showTeam')->name('team');
+Route::get('/project/{project_id}/boards', 'ProjectController@showBoards')->name('boards');
 
 // Administration
 Route::get('/admins', 'AdminController@show');

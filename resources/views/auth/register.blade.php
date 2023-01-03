@@ -64,7 +64,7 @@
     <button type="submit" class="btn btn-primary">
       Register
     </button>
-    <a id="login-now" href="{{ route('login') }}">I want to log in</a>
+    <a tabindex="0" id="login-now" href="{{ route('login') }}">I want to log in</a>
 </form>
   </div>
 </div>

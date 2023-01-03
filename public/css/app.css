@@ -5,13 +5,18 @@ Index:
   - Overrides           Overrides bootstrap css
   - Home Page Design    Changes the homepage design
   - Profile             Users profile page
+                        Users edit page
+                        Users my projects page (Profile Projects)
+  - Projects            Includes team page (Team page)
   - Nav e footer
+  - Side nav bar
+  - Vertical
 */
 
 
 :root {
-  --lilac:#843ace;
-  --blilac: #A055EC;
+  --lilac:#9a3ace;
+  --blilac: #AD6FEC; 
   --white: #ffffff;
   --dark: #1B1E2C;
 }
@@ -30,7 +35,7 @@ ul{
 }
 
 .dropdown-menu-dark{
-  background-color: var(--blilac);
+  background-color: var(--lilac);
 }
 
 .dropdown-toggle{
@@ -44,7 +49,7 @@ ul{
 #content > form {
   margin: 0 auto;
   padding: 1em;
-  border: 1px solid --blilac;
+  border: 1px solid var(--blilac);
 }
 
 #content > form .error {
@@ -122,13 +127,10 @@ input[type=password]:focus {
   text-align: center;
 }
 
-.page_name{
+#page_name{
   font-size: 35px;
-  font-weight: bold;
-}
+  font-weight:400;
 
-#content {
-  margin: 3em;
 }
 
 .search_bar  {
@@ -276,7 +278,7 @@ article.tu-do-popup > header > button {
   margin: 0;
   width: 2em;
   background-color: grey;
-  color: black;kkkkkkk
+  color: black;
 }
 article.tu-do-popup > header[information] {
   background-color: lightblue;
@@ -379,33 +381,36 @@ footer {
 }
 
 footer a {
-    color:  #A055EC;
+    color:  var(--blilac);
     margin-inline: 2%;
 }
 
+.container-nav .navbar{
+  width: 100%;
+}
 
 /*
 Overrides
 */
 
 .btn{
-background-color: var(--blilac);
+background-color: var(--lilac);
 }
 
 .btn-primary{
-  background-color: var(--blilac);
+  background-color: var(--lilac);
 }
 
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: var(--blilac);
-  --bs-btn-border-color: var(--blilac);
+  --bs-btn-bg: var(--lilac);
+  --bs-btn-border-color: var(--lilac);
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--lilac);
-  --bs-btn-hover-border-color: var(--lilac);
+  --bs-btn-hover-bg: var(--blilac);
+  --bs-btn-hover-border-color: var(--blilac);
   --bs-btn-focus-shadow-rgb: 49,132,253;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: var(--lilac);
+  --bs-btn-active-bg: var(--blilac);
   --bs-btn-active-border-color: var(--lilac);
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
@@ -453,17 +458,21 @@ Home Page Design
 }
 
 .home-bg #info h1{
-  font-size: 70px;
+  font-size: 10vw;
   font-family: 'Nunito';
   font-weight: bold;
   color: #9832a5;
   grid-column: 1;
   grid-row: 2;
 }
-
 .home-bg #info h2{
   grid-column: 1;
   grid-row: 3;
+}
+@media screen and (min-width: 601px) {
+  .home-bg #info h1{
+    font-size: 80px;
+  }
 }
 
 .home-bg #info #create{
@@ -485,66 +494,87 @@ Home Page Design
 /*
 Profile
 */
-.profile-bg .pfp{
+.profile-bg #pfp{
   width: 200px;
   height: 200px;
   position: relative;
-  border-radius: 50%;
-  box-shadow: 4px 6px 0 #a055ec4f;
-  margin: 30px 0px;
+  border-radius: 10px;
+  box-shadow: 4px 6px 0 #ad6fec7f;
 }
-.profile-bg .pfp > img{
+.profile-bg #pfp > img{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 10px;
   border-style: solid;
   border-width: 3px;
   border-color: var(--blilac);
   position: relative;
 }
-.profile-bg #contacts{
-  margin: 0;
-}
 .profile-bg #contacts li{
   text-decoration: none;
-  margin:10px 0px;
+  margin: 10px 0px;
 }
 .profile-bg{
   display: block;
 }
 .profile-bg #user-info{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "pic button"
-  "contact todo";
+  grid-template-columns:  1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "pic buttons"
+  "contact .  ";
+  grid-gap: 10px;
 }
-.profile-bg .pfp{
+.profile-bg #pfp{
   grid-area: pic;
 }
 .profile-bg #contacts{
   grid-area: contact;
+  padding: 0;
+  margin-top: 20px;
 }
-.profile-bg .right{
-  grid-area: button;
+.profile-bg #right{
+  grid-area: buttons;
   display: flex;
   flex-direction: column;
   max-width: fit-content;
-  position: absolute;
-  right: 0;
-  margin: 0px 30px;
+  margin-right: 0;
 }
-.profile-bg .right>*{
+.profile-bg #right>*{
   margin: 5px;
 }
-.profile-bg .todo{
+.profile-bg #todo{
   grid-area: todo;
   background-color: #7c24882e;
   border-style: solid;
   border-radius: 10px;
 }
+/*
+Edit Profile
+*/
+.profile-bg #edit-profile-forms{
+  margin-top: 20px;
+}
 
+/*
+Profile Projects
+*/
+.profile-bg .items{
+  gap: 10px;
+}
+.profile-bg #project-cards{
+  margin-top: 10px;
+}
+.profile-bg .card{
+  background-color: rgb(235, 214, 249);
+}
+.profile-bg .card, .profile-bg .card a{
+  color: var(--dark);
+}
+.profile-bg .card .btn{
+  color: var(--white);
+}
 
 /*
 Login
@@ -615,10 +645,144 @@ Register
   break-before: auto;
 }
 
+/* Project */
+.project-bg .items{
+  gap: 10px;
+}
+.project-bg #board-cards{
+  margin-top: 10px;
+}
+.project-bg .card{
+  background-color: rgb(235, 214, 249);
+}
+.project-bg .card, .project-bg .card a{
+  color: var(--dark);
+}
+.project-bg .card .btn{
+  color: var(--white);
+}
+.content{
+  width: 100vw;
+}
+/*Team page*/
+.project-bg .pfp-team{
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.project-bg .list-group{
+  flex-direction: row !important;
+}
+.project-bg .list-group .list-group-item{
+  margin:10px;
+  border-radius: 10px;
+  border: 1px solid var(--blilac);
+  background-color:  rgb(235, 214, 249);
+  color: var(--dark);
+  font-weight: 500;
+}
+.project-bg .pfp-team > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  position: relative;
+  margin: 0;
+}
+
+
+
+/*
+Side nav bar
+*/
+.profile-bg .here,
+.project-bg .here{
+  background: var(--lilac);
+}
+.profile-bg .flex-column .here .nav-link,
+.project-bg .flex-column .here .nav-link{
+  color: #141724;
+}
+.profile-bg .container-fluid,
+.project-bg .container-fluid{
+  padding: 0;
+}
+.profile-bg #sidebarpro,
+.project-bg #sidebarpro{
+  background: #141724;
+  padding-right: 0!important; 
+}
+.profile-bg .flex-column .nav-link,
+.project-bg .flex-column .nav-link{
+  color: var(--lilac);
+}
+.profile-bg .fs-5#title_nav_lat,
+.project-bg .fs-5#title_nav_lat{
+  color: #9832a5;
+  font-weight:600 !important;
+  font-size: 30px!important;
+  padding: 0em 1em;
+} 
+.profile-bg .d-flex.flex-column.align-items-center.align-items-sm-start.px-3.pt-2.text-white.min-vh-100,
+.project-bg .d-flex.flex-column.align-items-center.align-items-sm-start.px-3.pt-2.text-white.min-vh-100{
+  width: 100%;
+}
+.profile-bg #menu,
+.project-bg #menu{
+  width: 100%;
+}
+.profile-bg #menu li,
+.project-bg #menu li{
+  width: 100%;
+  padding: 0em 1.5em;
+}
+.profile-bg #menu li:hover, .profile-bg #menu li:hover .nav-link,
+.project-bg #menu li:hover, .project-bg #menu li:hover .nav-link{
+  background-color: var(--dark);
+  color: var(--lilac);
+}
+.profile-bg .row.flex-nowrap,
+.project-bg .row.flex-nowrap{
+  width: 100%;
+}
+
+/* Vertical */
 .hide {
   display: none;
 }
 
 .help:hover + .hide {
   display: block;
+}
+
+.upload-image{
+  display: inline-block;
+  cursor: pointer;
+  height: 70px;
+  width: 70px;
+  background-color: #e78e44;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  right: -35px;
+  bottom: -35px;
+  transition: 0.5s;
+}
+
+.upload-image:hover{
+  opacity: 0.9;
+}
+
+.upload-image:hover > .fa{
+
+  color: #000000 
+}
+
+#board-content{
+  display:grid;
+  grid-auto-flow:column;
+  column-gap: 20px;
+}
+.board-bg {
+  overflow: auto;
 }
