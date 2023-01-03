@@ -400,11 +400,10 @@ var bigChaq = /*#__PURE__*/function () {
             invites = _context6.sent;
             cards = createInviteCards(invites);
             cardContainer = document.querySelector("div.container > div");
-            console.log(invites);
             cardContainer.innerHTML = cards;
-            _context6.next = 10;
+            _context6.next = 9;
             return deleteInvitesAjax();
-          case 10:
+          case 9:
           case "end":
             return _context6.stop();
         }
