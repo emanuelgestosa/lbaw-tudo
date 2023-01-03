@@ -76,12 +76,14 @@ class TaskController extends Controller
         'due_date' => 'nullable|date|after_or_equal:tomorrow'
       ]);
 
+      $tasks = Task::where('id_vertical', '=', $vertical_id)->max('order_vertical') + 1;
+
       $new_task = New Task();
       $new_task->id_vertical = $vertical_id;
-      $new_task->id = Task::max('id') + 1;
       $new_task->name = $request->input('name');
       $new_task->description = $request->input('description');
       $new_task->due_date = $request->input('due_date');
+      $new_task->order_vertical = $tasks;
 
 
       $new_task->save();
