@@ -60,6 +60,22 @@ On the client side:
 
 ### 5. Check Accessibility and Usability
 
+#### Accessibility
+
+To evaluate the Accessibility of our wep app we used the online checklist: https://ux.sapo.pt/checklists/acessibilidade/
+We ended-up agreeing on a 14 out of 18 score, since we had some checkmarks unchecked, like:
+- Non textual elements have a an alternative version in text
+- <fieldset> and <legend> are used to group various fileds on forms
+- The <title> of the pages is clear, direct and perceptible and its related to the content of the page
+- The website is totally navigable using only the keyboard
+
+#### Usability
+
+To evaluate the Usability of our wep app we used the online checklist: https://ux.sapo.pt/checklists/usabilidade/
+We ended-up agreeing on a 26 out of 28 score, since we had some checkmarks unchecked, like:
+- A stylesheet specific for printing is included
+- "Open Graph" tags were added
+
 ### 6. HTML & CSS Validation
 
 ### 7. Revisions to the Project
