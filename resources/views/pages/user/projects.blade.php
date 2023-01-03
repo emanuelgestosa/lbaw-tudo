@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
-@push('body-class', 'profile-bg')
+@push('body-class', 'project-bg')
 
 @yield('content')
 
 @section('content')
+<article class="project" id="project_content">
+
 @if (Auth::check() && (Auth::user()->id == $user->id ||
     !empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all())))
 <div class="container-fluid">
@@ -53,7 +55,7 @@
           </a>
         </h1>
           <div class="container">
-          <div class="row g-3" id="project-cards">
+          <div class="row g-3" id="board-cards">
             @foreach($projects as $project)
               <div class="col-12 col-md-6 col-lg-4">
                   <div class="card shadow">

@@ -26,7 +26,7 @@
                         <i class="fa-solid fa-pen-to-square"></i> <span class="ms-1 d-none d-sm-inline"> Edit Profile </span>
                       </a>
                   </li>  
-                  <li class="nav-item here">
+                  <li class="nav-item">
                       <a tabindex="0" href="{{ url('user/' . $user->id . '/projects') }}" class="nav-link align-middle px-0">
                         <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> My Projects</span>
                       </a>
@@ -36,7 +36,7 @@
                         <i class="fa-solid fa-star"></i> <span class="ms-1 d-none d-sm-inline"> My Favorites </span>
                       </a>
                   </li>    
-                  <li class="nav-item">
+                  <li class="nav-item here">
                     <a tabindex="0" href="{{ url('user/' . $user->id . '/invites') }}" class="nav-link align-middle px-0">
                       <i class="fa-solid fa-envelopes-bulk"></i><span class="ms-1 d-none d-sm-inline"> My Invites </span>
                     </a>
@@ -47,11 +47,7 @@
       </div>
       @endif
       <div class="col py-3">
-        <h1 id="page_name"> My Projects         
-          <a class="btn btn-primary" href="{{ url('/user/' . $user->id . '/add_project') }}">
-            <i class="fa-solid fa-plus"></i> New Project
-          </a>
-        </h1>
+        <h1 id="page_name"> My Invites </h1>
           <div class="container">
           <div class="row g-3" id="project-cards">
             @foreach($invites as $invite)
@@ -60,9 +56,9 @@
                 <div class="card-body">
                   <h5 class="card-title"><i class="fa fa-envelope"></i>  Invite</h5>
               <p class="card-text text-truncate" title="You were invited by {{ $invite->inviter->name }} to the {{$invite->project->title}} project">
-                You were invited by <a href="/user/{{ $invite->inviter->id }}">{{ $invite->inviter->name }}</a> to the {{$invite->project->title}} project
+                You were invited by <a class="text-decoration-underline" href="/user/{{ $invite->inviter->id }}">{{ $invite->inviter->name }}</a> to the {{$invite->project->title}} project
               </p>
-              <form>
+              <form class="d-inline">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
       
                 <input type="hidden" name="userId"  value="{{ $invite->invited->id }}" />
@@ -71,13 +67,15 @@
                 <button id="accept"  class="btn btn-primary" type="submit" style="background-color:rgb(44, 164, 104); border-style: none;"> Accept </button>
               </form>
       
-              <form>
+              <form class="d-inline">
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
       
                 <input type="hidden" name="userId"  value="{{ $invite->invited->id }}" />
                 <input type="hidden" name="inviteId"  value="{{ $invite->id }}" />
                 <button id="decline" type="submit" class="btn btn-primary" style="background-color:rgb(223, 33, 59); border-style: none;"> Decline </button>
+              </form>
+
             </article>
           @endforeach
           </div>
