@@ -41,6 +41,15 @@
                       <i class="fa-solid fa-envelopes-bulk" alt="my invites"></i><span class="ms-1 d-none d-sm-inline"> My Invites </span>
                     </a>
                   </li>       
+                  @if (!(!Auth::check() || (
+                    Auth::check() &&
+                  empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all()))) )
+                  <li class="nav-item">
+                    <a href="{{ url('/admins') }}" class="nav-link align-middle px-0">
+                      <i class="fa-solid fa-tools"></i><span class="ms-1 d-none d-sm-inline"> Admin Panel </span>
+                    </a>
+                  </li>       
+                  @endif
               </ul>
           </div>
         </nav>
@@ -52,9 +61,8 @@
         </div>
         <div class="container">
           <div id= "pfp">
-            <img src="https://picsum.photos/175/175" alt="profile picture">
+          <img src="{{ asset('storage/profile_pics/'.$id) }}" alt="Profile Pic" title="" width=175 height=175>
           </div>
-      
           <ul id="contacts">
             <li><i class="fa-solid fa-at"></i> {{ $username }}</li>
             <li><i class="fa-solid fa-user"></i> {{ ucfirst($name) }}</li>
@@ -65,6 +73,5 @@
     </div>
   </div>
 </div>
-  
 @endsection
 
