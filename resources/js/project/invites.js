@@ -32,7 +32,7 @@ const createUserResultCards = (users) => {
   let cards = ''
   for (const user of users) {
     const userCard = `
-            <article class="user-card" user-id=${user.id} style="margin:0.5em;padding:1em;display:flex;border:1px solid blue;border-radius:1em;">
+            <article class="user-card"  style="margin:0.5em;padding:1em;display:flex;border:1px solid blue;border-radius:1em;">
             <section class="user-card-name">
             <p>Name ${user.name}</p>
             <p>Username ${user.username}</p>
@@ -108,8 +108,27 @@ if (queryInput) {
   })
 }
 
-// Eliminar convites
 
+const createInviteCards = (invites) => {
+  let cards = ''
+  for (const invite of invites) {
+    const inviteCard =`
+    <article class="project-invite-card col-12 col-md-6 col-lg-4" project-id="${invite.projectId}" invite-id="${invite.id}">
+        <div class="card shadow">
+            <div class="card-body">
+             <h5 class="card-title"><i class="fa fa-envelope" aria-hidden="true"></i>  Invite to Tu-do</h5>
+             <p class="card-text text-truncate" title="You were invited by Ricardo to the Tu-do project">
+             From: <a href="/user/${invite.inviterId}">${invite.inviterName</a> <br> To: <a href="/user/${invite.inviteeId}">${invite.inviteeName}</a>
+             </p>
+             <button class="btn btn primary" closed="">Delete Invite</button>
+             </div>
+        </div>
+    </article>`
+    cards += inviteCard
+  }
+  return cards
+}
+// Eliminar convites
 const deleteInvitesAjax = async () => {
   const invites = document.querySelectorAll('article.project-invite-card')
   if (invites) {
