@@ -27,14 +27,17 @@ class BanController extends Controller
   //   return response()->json(['success' => true]);
   // }
 
-  public function create($id_user, $id_admin, $end_date)
+  public function create(Request $request)
   {
+    $id_admin = Administrator::where('id_users', '=', $request->input('id_administrator'))->first()->id;
     $ban = Ban::create([
       'start_date' => date('Y-m-d'),
-      'id_users' => $id_users,
+      'id_users' => $request->input('id_users'),
       'id_administrator' => $id_admin,
-      'end_date' => $end_date,
+      'end_date' => $request->input('end_date'),
+      'reason' => $request->input('reason'),
     ]);
+    return redirect('/admins');
   }
 
   public function get_all()
