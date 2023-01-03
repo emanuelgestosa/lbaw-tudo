@@ -14,8 +14,17 @@ class ProjectInvitesController extends Controller
         if (!Project::find($id)) {
             return response()->json(["Message" => "Object Does Not Exist"], 404);
         }
-        $result = Project::find($id)->invites()->get();
-        return response()->json($result);
+        $result = Project::find($id)->invites()->get()->all();
+        $resultList = [];
+            foreach ($result as $key => $invite){
+                $inviter = User::find($invite->id_inviter);
+                $invitee = User::find($invite->id_invitee);
+                $invite["inviter"] = $inviter;
+                $invite["invitee"] = $invitee;
+                $resultList[$key] = $invite;
+            }
+
+        return response()->json($resultList,200);
     }
     public static function sendInvite(Request $r, $id)
     {
