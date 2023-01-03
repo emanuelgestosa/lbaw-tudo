@@ -63,7 +63,7 @@
           </div>
           
           <div id="edit-profile-forms" style="max-width: 300px;">
-            <form class="form-group" method="POST" action="/action/user/{{ $id }}">
+            <form class="form-group" method="POST" action="/action/user/{{ $id }}" enctype="multipart/form-data">
               <input type="hidden" name="_method" value="PATCH">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
           
@@ -76,6 +76,8 @@
               <input type="text" name="phone_number" class="form-control" value="{{ $phone_number }}" />
               <label for="email">Email</label>
               <input type="email" name="email" class="form-control" value="{{ $email }}" />
+              <label for="profile_pic">Profile picture</label>
+              <input type="file" name="profile_pic" class="form-control" />
           <div class="flex-row">
               <button type="submit" class="btn btn-primary">Send</button>
             </form>
