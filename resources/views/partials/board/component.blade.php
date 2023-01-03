@@ -41,8 +41,8 @@
                   <a class="btn btn-primary" href="/board/{{  $board->id }}/create"><i class="fa-solid fa-plus"></i> Create Column</a>
                 </h1>
                 <div class="container">
-                  <div class="row g-3" id="board-cards"  style="max-width: 80%; ">
-                    <article class="board d-flex" style="overflow-x: auto;" id={{$board->id}}">
+                  <div class="row g-3" id="board-cards"  style="overflow: auto; ">
+                    <article class="board d-flex" style="overflow-x: auto" id={{$board->id}}">
                       @foreach ($board->verticals->sortBy('order_board') as $vertical)
                         @include('partials.vertical.component',['vertical',$vertical, 'board', $board])
                       @endforeach

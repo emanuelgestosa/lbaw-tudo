@@ -1,4 +1,4 @@
-<div style="flex-direction: column;" class="flex-column d-flex" style="overflow-x: auto;">
+<div style="flex-direction: column;" class="flex-column d-flex" style="overflow-y: auto; max-height: 100%;">
 @if ($vertical->isdone)
     <article style="width: 200px; max-width:100%;  border: 1px solid black; border-radius: 20px; height: 500px; max-height: %; margin: 5px;"  class="  vertical completed list-group " data-id="{{ $vertical->id }}">
 @else
@@ -21,7 +21,7 @@
     </h2>
     <i class="fa-solid fa-question-circle help"></i>
     <div class="hide">Select/Unselect to set/unset column for completed tasks</div>
-    <div class="tarefas list-group" style="overflow-y: auto;" data-id="{{ $vertical->id }}">
+    <div class="tarefas list-group" style="max-height: 425px; overflow: scroll;" data-id="{{ $vertical->id }}">
         @foreach ($vertical->tasks->sortBy('order_vertical') as $task)
             @include('partials.task.card',['task'=>$task])
         @endforeach
