@@ -62,59 +62,8 @@ Route::post('/task/set_col', 'TaskController@setCol');
 Route::post('/task/set_order', 'TaskController@setOrder');
 
 // Task Comments
-Route::post('/task/{id}/comments', function (Request $r, $id) {
-    $task = Task::find($id);
-    if ($task) {
-        $message = $r->input("msg");
-        $sentDate = $r->input("sent_date");
-        $idSent = $r->input("id_users");
-        $newComment = new Comment();
-        $newComment->msg = $message;
-        $newComment->id_users = $idSent;
-        $newComment->sent_date = $sentDate;
-        $newComment->id_task = $id;
-        $newComment->save();
-        $newComment["user"] = $newComment->user()->first(); 
-        $event = new NewTaskComment(json_encode($newComment),$id);
-        event($event);
-        return response()->json(["Message" => "Successufuly Commented","u"=>$newComment], 201);
-    } else {
-        return response()->json(["Message" => "Task Not Found"], 404);
-    }
-});
-Route::get('/task/{id}/comments', function (Request $r, $id) {
-    $task = Task::find($id);
-    if ($task) {
-        $lastComment = $r->input('lastComment');
-        if ($lastComment !== null) {
-            $comments = $task->comments()->orderby('sent_date', 'DESC')->where('id', '>', $lastComment)->get()->all();
-            $commentArray =  [];
-            foreach ($comments as $key => $comment) {
-                $commentArray[$key] = $comment;
-                $commentArray[$key]["user"] = $comment->user()->first();
-            }
-            return response()->json($commentArray, 200);
-        } else {
-            $cursor = $r->input('cursor');
-            if ($cursor) {
-                $comments =$task->comments()
-                    ->where('id', '<',  Cursor::fromEncoded($cursor)->parameters(["id"]))
-                    ->orderby('id','DESC')
-                    ->cursorPaginate(3);
-            }
-            $comments = $task->comments()
-                ->orderby('id','DESC')->cursorPaginate(3);
-            $commentArray =  [];
-            foreach ($comments->items() as $key => $comment) {
-                $commentArray[$key] = $comment;
-                $commentArray[$key]["user"] = $comment->user()->first();
-            }
-            return response()->json($comments, 200);
-        }
-    } else {
-        return response()->json(["Message" => "Task Not Found"], 404);
-    }
-});
+Route::post('/task/{id}/comments','TaskController@postComments');
+Route::get('/task/{id}/comments','TaskController@getComments');
 
 // Full Text Search
 Route::get('/search/users', 'FullTextSearchController@users');

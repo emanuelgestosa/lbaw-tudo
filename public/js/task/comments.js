@@ -391,7 +391,7 @@ initComments();
 // setInterval(() => updateComments(taskId),10*1000);
 
 // Enable pusher logging - don't include this in production
-Pusher.logToConsole = true;
+//Pusher.logToConsole = true;
 var pusher = new Pusher('db6806e87ad6634558db', {
   cluster: 'eu'
 });
@@ -401,7 +401,6 @@ taskChannel.bind('new-comment', function (data) {
   var comment = JSON.parse(data.comment);
   //console.log(comment)
   //console.log(buildComment(comment))
-  console.log(comment.sent_date);
   addComments([comment]);
 });
 })();
