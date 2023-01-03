@@ -69,7 +69,7 @@ class ProjectController extends Controller
 
       $project = Project::find($id);
       $user = Auth::user();
-      $user->projects()->delete($project);
+      $user->projects()->where('id_project', '=', $id)->delete();
 
       return redirect('/user/'. $user->id .'/projects');
     }
