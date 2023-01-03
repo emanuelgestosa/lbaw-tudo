@@ -1,6 +1,6 @@
 <div style="flex-direction: column;" class="flex-column d-flex" style="overflow-y: auto; max-height: 100%;">
 @if ($vertical->isdone)
-    <article style="width: 200px; max-width:100%;  border: 1px solid black;  border-radius: 20px; height: 500px; max-height: %; margin: 5px;"  class="  vertical completed list-group " data-id="{{ $vertical->id }}">
+    <article style="width: 200px; max-width:100%;  border: 1px solid black;  border-radius: 20px; height: 500px; max-height: 100%; margin: 5px;"  class="  vertical completed " data-id="{{ $vertical->id }}">
 @else
     <article style="width: 200px; max-width:100%;  border: 1px solid black; border-radius: 20px; height: 500px; max-height: 100%; margin: 5px;"  class="  vertical " data-id="{{ $vertical->id }}">
 @endif
