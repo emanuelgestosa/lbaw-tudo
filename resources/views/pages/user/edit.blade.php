@@ -63,7 +63,11 @@
         </div>
         <div class="container">
           <div id= "pfp">
-            <img src="https://picsum.photos/175/175" alt="profile picture">
+          @if (Storage::exists("/profile_pics/".Auth::user()->id ))
+          <img src="{{ asset('storage/profile_pics/'.Auth::user()->id) }}" alt="Profile Pic" title="" width=175 height=175>
+          @else 
+          <img src="/img/pfp_user/default.jpg" alt="Profile Pic" width=175 height=175>
+          @endif 
           </div>
           
           <div id="edit-profile-forms" style="max-width: 300px;">

@@ -58,11 +58,18 @@
       <div class="col py-3">
         <div class="flex-row">
           <h1 id="page_name">{{ ucfirst($name) }}'s Profile
+          @if (!(!Auth::check() || (
+                  empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all()))) )
           <a class="button btn btn-primary" href="/user/{{ $id }}/ban" style="background-color: ; color: white;" ><i class="fa-solid fa-ban"></i> Ban User</a></h1>
+        @endif
         </div>
         <div class="container">
           <div id= "pfp">
-          <img src="{{ asset('storage/profile_pics/'.$id) }}" alt="Profile Pic" title="" width=175 height=175>
+          @if (Storage::exists("/profile_pics/".$id ))
+          <img src="{{ asset('storage/profile_pics/'.$id) }}" alt="Profile Pic" width=175 height=175>
+          @else 
+          <img src="/img/pfp_user/default.jpg" alt="Profile Pic" width=175 height=175>
+          @endif 
           </div>
           <ul id="contacts">
             <li><i class="fa-solid fa-at"></i> {{ $username }}</li>

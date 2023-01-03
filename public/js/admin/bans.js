@@ -103,7 +103,6 @@ var addSearchUsersFunctionality = /*#__PURE__*/function () {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            console.log("Adding Event");
             queryInput = document.querySelector('input.search-user');
             if (queryInput) {
               queryInput.addEventListener('input', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
@@ -112,19 +111,18 @@ var addSearchUsersFunctionality = /*#__PURE__*/function () {
                   while (1) {
                     switch (_context2.prev = _context2.next) {
                       case 0:
-                        console.log("Estou A receber Texto");
                         maxItems = 10;
                         deleteUserResults();
                         if (!(queryInput.value != '')) {
-                          _context2.next = 8;
+                          _context2.next = 7;
                           break;
                         }
-                        _context2.next = 6;
+                        _context2.next = 5;
                         return searchUsers(queryInput.value, maxItems);
-                      case 6:
+                      case 5:
                         result = _context2.sent;
                         preencherLista(result);
-                      case 8:
+                      case 7:
                       case "end":
                         return _context2.stop();
                     }
@@ -134,7 +132,7 @@ var addSearchUsersFunctionality = /*#__PURE__*/function () {
             } else {
               console.log('Não Encontrei os Butoes ');
             }
-          case 3:
+          case 2:
           case "end":
             return _context3.stop();
         }
@@ -421,53 +419,53 @@ function _openBans() {
               }, _callee2);
             })));
             url = '/api/bans';
-            _context4.next = 8;
+            _context4.next = 7;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)(url, {
               method: "GET"
             });
-          case 8:
+          case 7:
             rawResponse = _context4.sent;
-            _context4.next = 11;
+            _context4.next = 10;
             return rawResponse.json();
-          case 11:
+          case 10:
             contents = _context4.sent;
             currDate = new Date();
             currDate.setHours(0, 0, 0, 0);
             _context4.t0 = _regeneratorRuntime().keys(contents);
-          case 15:
+          case 14:
             if ((_context4.t1 = _context4.t0()).done) {
-              _context4.next = 55;
+              _context4.next = 54;
               break;
             }
             key = _context4.t1.value;
             end_date = new Date(contents[key]['end_date']);
             if (!(end_date.getTime() < currDate.getTime())) {
-              _context4.next = 20;
+              _context4.next = 19;
               break;
             }
-            return _context4.abrupt("continue", 15);
-          case 20:
+            return _context4.abrupt("continue", 14);
+          case 19:
             _url = '/api/user/' + contents[key]['id_users'] + '/json';
-            _context4.next = 23;
+            _context4.next = 22;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)(_url, {
               method: "GET"
             });
-          case 23:
+          case 22:
             rawResponse = _context4.sent;
-            _context4.next = 26;
+            _context4.next = 25;
             return rawResponse.json();
-          case 26:
+          case 25:
             userInfo = _context4.sent;
             _url = '/api/admin/' + contents[key]['id_administrator'] + '/json';
-            _context4.next = 30;
+            _context4.next = 29;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)(_url, {
               method: "GET"
             });
-          case 30:
+          case 29:
             rawResponse = _context4.sent;
-            _context4.next = 33;
+            _context4.next = 32;
             return rawResponse.json();
-          case 33:
+          case 32:
             adminInfo = _context4.sent;
             banItem = document.createElement('article');
             banItem.id = contents[key]['id'];
@@ -521,9 +519,9 @@ function _openBans() {
             banItem.appendChild(date);
             banItem.appendChild(removeBanButton);
             content.appendChild(banItem);
-            _context4.next = 15;
+            _context4.next = 14;
             break;
-          case 55:
+          case 54:
           case "end":
             return _context4.stop();
         }
