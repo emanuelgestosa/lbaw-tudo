@@ -36,11 +36,9 @@ const preencherLista = (users) => {
 }
 
 export const addSearchUsersFunctionality = async () => {
-  console.log("Adding Event")
   const queryInput = document.querySelector('input.search-user')
   if (queryInput) {
     queryInput.addEventListener('input', async () => {
-      console.log("Estou A receber Texto")
       const maxItems = 10
       deleteUserResults()
       if (queryInput.value != '') {
