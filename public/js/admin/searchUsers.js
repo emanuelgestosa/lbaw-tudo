@@ -27,7 +27,6 @@ var sendRequest = /*#__PURE__*/function () {
           case 0:
             fullUrl = new URL(window.SERVER + url);
             if (options.method === "GET" && options.params != undefined) {
-              console.log("here");
               fullUrl.search = new URLSearchParams(options.params).toString();
             }
             _context.next = 4;
@@ -145,10 +144,13 @@ var createPopUp = function createPopUp(type, title, text) {
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*********************************************!*\
-  !*** ./resources/js/user/administration.js ***!
-  \*********************************************/
+/*!*******************************************!*\
+  !*** ./resources/js/admin/searchUsers.js ***!
+  \*******************************************/
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addSearchUsersFunctionality": () => (/* binding */ addSearchUsersFunctionality)
+/* harmony export */ });
 /* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.js */ "./resources/js/app.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -198,7 +200,7 @@ var deleteUserResults = function deleteUserResults() {
   lista.style.display = 'hidden';
 };
 var preencherLista = function preencherLista(users) {
-  var lista = document.querySelector("section.user-results");
+  var lista = document.querySelector('section.user-results');
   var _iterator = _createForOfIteratorHelper(users),
     _step;
   try {
@@ -212,7 +214,7 @@ var preencherLista = function preencherLista(users) {
   } finally {
     _iterator.f();
   }
-  var userCards = document.querySelectorAll("article.user-card");
+  var userCards = document.querySelectorAll('article.user-card');
   var _iterator2 = _createForOfIteratorHelper(userCards),
     _step2;
   try {
@@ -220,7 +222,7 @@ var preencherLista = function preencherLista(users) {
       var card = _step2.value;
       card.addEventListener('click', function () {
         var userId = card.getAttribute('user-id');
-        window.location = window.location.href + "user/" + userId;
+        window.location = window.location.origin + '/user/' + userId;
       });
     };
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -231,36 +233,57 @@ var preencherLista = function preencherLista(users) {
   } finally {
     _iterator2.f();
   }
-  lista.style.display = "block";
+  lista.style.display = 'block';
 };
-var queryInput = document.querySelector("input.search-user");
-var searchButton = document.querySelector("forum.search_bar>i");
-if (queryInput) {
-  queryInput.addEventListener('input', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-    var maxItems, result;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+var addSearchUsersFunctionality = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+    var queryInput;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
-            maxItems = 10;
-            deleteUserResults();
-            if (!(queryInput.value != "")) {
-              _context2.next = 7;
-              break;
+            console.log("Adding Event");
+            queryInput = document.querySelector('input.search-user');
+            if (queryInput) {
+              queryInput.addEventListener('input', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+                var maxItems, result;
+                return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        console.log("Estou A receber Texto");
+                        maxItems = 10;
+                        deleteUserResults();
+                        if (!(queryInput.value != '')) {
+                          _context2.next = 8;
+                          break;
+                        }
+                        _context2.next = 6;
+                        return searchUsers(queryInput.value, maxItems);
+                      case 6:
+                        result = _context2.sent;
+                        preencherLista(result);
+                      case 8:
+                      case "end":
+                        return _context2.stop();
+                    }
+                  }
+                }, _callee2);
+              })));
+            } else {
+              console.log('Não Encontrei os Butoes ');
             }
-            _context2.next = 5;
-            return searchUsers(queryInput.value, maxItems);
-          case 5:
-            result = _context2.sent;
-            preencherLista(result);
-          case 7:
+          case 3:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
-  })));
-}
+    }, _callee3);
+  }));
+  return function addSearchUsersFunctionality() {
+    return _ref2.apply(this, arguments);
+  };
+}();
 })();
 
 /******/ })()

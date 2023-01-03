@@ -1,4 +1,6 @@
 import {sendRequest} from '../app.js'
+import {addSearchUsersFunctionality} from './searchUsers.js'
+
 /* section opened when page is visited */
 openBans()
 
@@ -329,9 +331,15 @@ function openCreateUser() {
   content.appendChild(form)
 }
 
-function openSearchUser() {
+async function openSearchUser() {
   let content = document.getElementById('tab-content')
-  content.innerHTML = '<div class="search_bar"><i class="fa-solid fa-search"></i><input class="search-user" type="text" placeholder="Search user..."></div><section class="user-results" style="display:hidden"></section>'
+  content.innerHTML = '
+        <div class="search_bar">
+        <i class="fa-solid fa-search"></i>
+        <input class="search-user" type="text" placeholder="Search user...">
+        </div>
+        <section class="user-results" style="display:hidden"></section>'
+  addSearchUsersFunctionality()
 }
 
 function openSearchProject() {
