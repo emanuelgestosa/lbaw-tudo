@@ -18,7 +18,7 @@
               <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                   <li class="nav-item">
                     <a tabindex="0" id="edit" href="{{ url('/user/'. $user->id) }}" class="nav-link align-middle px-0">
-                      <i class="fa-solid fa-user" alt="my profile"</i> <span class="ms-1 d-none d-sm-inline"> My Profile </span>
+                      <i class="fa-solid fa-user" alt="my profile"></i> <span class="ms-1 d-none d-sm-inline"> My Profile </span>
                     </a>
                   </li>  
                   <li class="nav-item">
