@@ -9,7 +9,7 @@
 
 @section('content')
 
-  <h1 class="page_name">Administration Panel</h1>
+  <h1 id="page_name">Administration Panel</h1>
   <div id="panel">
     <nav id="tabs">
       <button id="tab-user" class="tab selected"><i class="fa-solid fa-user"></i> User</button>

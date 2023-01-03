@@ -4,7 +4,7 @@
 
 @section('content')
 
-  <h1 class="page_name">Create Board</h1>
+  <h1 id="page_name">Create Board</h1>
   <form id="add_project_form" method="POST" action="{{ '/api/project/'.$id.'/board' }}">
     {{ csrf_field() }}
   

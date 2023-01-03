@@ -33,7 +33,7 @@
           </nav>
         </div>
 <section style="display:flex;flex-direction:column;justify-content:center">
-    <h1 class="page_name">Invites of {{$project->title}}</h1>
+    <h1 id="page_name">Invites of {{$project->title}}</h1>
 
     <section class="invite-content" project-id="{{$project->id}}" user-id="{{Auth::user()->id}}" style="display:flex;gap:5em;margin:auto;">
         <section class="project-invite-list">

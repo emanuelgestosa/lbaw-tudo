@@ -28,7 +28,7 @@
             @endforeach
         </section>
         <br><br>
-        <h1 class="page_name"> Editar </h1>
+        <h1 id="page_name"> Editar </h1>
         <form method="post" action="/api/task/{{ $task->id }}">
             <input type="hidden" name="_method" value="PATCH">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

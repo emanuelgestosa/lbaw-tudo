@@ -35,12 +35,7 @@
                       <a  href="{{ url('user/' . $id . '/favourites') }}" class="nav-link align-middle px-0">
                         <i class="fa-solid fa-star"></i> <span class="ms-1 d-none d-sm-inline"> My Favorites </span>
                       </a>
-                  </li>   
-                  <li class="nav-item">
-                    <a href="{{ url('user/' . $id . '/calendar') }}" class="nav-link align-middle px-0">
-                      <i class="fa-solid fa-calendar"></i><span class="ms-1 d-none d-sm-inline"> My Calendar </span>
-                    </a>
-                  </li>       
+                  </li>        
                   <li class="nav-item">
                     <a href="{{ url('user/' . $id . '/invites') }}" class="nav-link align-middle px-0">
                       <i class="fa-solid fa-envelopes-bulk"></i><span class="ms-1 d-none d-sm-inline"> My Invites </span>
