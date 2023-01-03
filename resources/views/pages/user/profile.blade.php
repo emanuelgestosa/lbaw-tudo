@@ -61,7 +61,11 @@
         </div>
         <div class="container">
           <div id= "pfp">
-          <img src="{{ asset('storage/profile_pics/'.$id) }}" alt="Profile Pic" title="" width=175 height=175>
+          @if (Storage::exists("/profile_pics/".$id ))
+          <img src="{{ asset('storage/profile_pics/'.$id) }}" alt="Profile Pic" width=175 height=175>
+          @else 
+          <img src="/img/pfp_user/default.jpg" alt="Profile Pic" width=175 height=175>
+          @endif 
           </div>
           <ul id="contacts">
             <li><i class="fa-solid fa-at"></i> {{ $username }}</li>

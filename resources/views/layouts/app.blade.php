@@ -51,7 +51,11 @@
               <li tabindex="0" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="pfp-nav">
-                    <img src="https://picsum.photos/175/175" alt="profile picture"/> 
+                  @if (Storage::exists("/profile_pics/".Auth::id()))
+                  <img src="{{ asset('storage/profile_pics/'.Auth::id()) }}" alt="Profile Pic" title="" width=175 height=175>
+                  @else 
+                  <img src="/img/pfp_user/default.jpg" alt="Profile Pic" title="" width=175 height=175>
+                  @endif
                   </div>
                   Me
                 </a>

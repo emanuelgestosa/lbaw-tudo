@@ -54,7 +54,12 @@
                 <div class="col-12 col-md-6 col-lg-4">   
                 <a href="{{ url('/user/' . $project->id_coordinator ) }}"> 
                     <li tabindex="0" class="list-group-item d-flex justify-content-between align-items-center text-truncate">
-                        <img class="pfp-team" src="https://picsum.photos/175/175" alt="profile picture"> Coordinator
+                    @if (Storage::exists("/profile_pics/".$project->id_coordinator ))
+                  <img class="pfp-team" src="{{ asset('storage/profile_pics/'.$project->id_coordinator ) }}" alt="Profile Pic" width=175 height=175>
+                  @else 
+                  <img class="pfp-team" src="/img/pfp_user/default.jpg" alt="Profile Pic" width=175 height=175>
+                  @endif 
+                      Coordinator
                     </li>
                   </div>
                 </a>
