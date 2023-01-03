@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function show()
     {
 
-        if($this->authorize('showAdmin',User::class)){
+        if(!$this->authorize('showAdmin',User::class)){
             return redirect('/');
         }
       return view('pages.administration');
@@ -23,7 +23,7 @@ class AdminController extends Controller
 
     public function showCreate()
     {
-        if($this->authorize('showAdmin',User::class)){
+        if(!$this->authorize('showAdmin',User::class)){
             return redirect('/');
         }
       return view('pages.administrationCreate');
