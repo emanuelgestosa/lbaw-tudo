@@ -232,7 +232,7 @@ var createUserResultCards = function createUserResultCards(users) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var user = _step.value;
-      var userCard = "\n            <article class=\"user-card\" user-id=".concat(user.id, " style=\"margin:0.5em;padding:1em;display:flex;border:1px solid blue;border-radius:1em;\">\n            <section class=\"user-card-name\">\n            <p>Name ").concat(user.name, "</p>\n            <p>Username ").concat(user.username, "</p>\n            </section>\n            <section class=\"user-card-send-invite\">\n                <i class=\"fa-solid fa-envelope\"></i>\n            </section>            \n            </article>\n            ");
+      var userCard = "\n            <article class=\"user-card\"  style=\"margin:0.5em;padding:1em;display:flex;border:1px solid blue;border-radius:1em;\">\n            <section class=\"user-card-name\">\n            <p>Name ".concat(user.name, "</p>\n            <p>Username ").concat(user.username, "</p>\n            </section>\n            <section class=\"user-card-send-invite\">\n                <i class=\"fa-solid fa-envelope\"></i>\n            </section>            \n            </article>\n            ");
       cards += userCard;
     }
   } catch (err) {
@@ -339,22 +339,90 @@ if (queryInput) {
     }, _callee4);
   })));
 }
-
-// Eliminar convites
-
-var deleteInvitesAjax = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-    var invites, _iterator3, _step3, _loop;
+var createInviteCards = function createInviteCards(invites) {
+  var cards = '';
+  var _iterator3 = _createForOfIteratorHelper(invites),
+    _step3;
+  try {
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+      var invite = _step3.value;
+      var inviteCard = "\n    <article class=\"project-invite-card col-12 col-md-6 col-lg-4\" project-id=\"".concat(invite.projectId, "\" invite-id=\"").concat(invite.id, "\">\n        <div class=\"card shadow\">\n            <div class=\"card-body\">\n             <h5 class=\"card-title\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>  Invite to Tu-do</h5>\n             <p class=\"card-text text-truncate\" title=\"You were invited by Ricardo to the Tu-do project\">\n             From: <a href=\"/user/").concat(invite.inviterId, "\">").concat(invite.inviterName, "</a> <br> To: <a href=\"/user/").concat(invite.inviteeId, "\">").concat(invite.inviteeName, "</a>\n             </p>\n             <button class=\"btn btn primary\" closed=\"\">Delete Invite</button>\n             </div>\n        </div>\n    </article>");
+      cards += inviteCard;
+    }
+  } catch (err) {
+    _iterator3.e(err);
+  } finally {
+    _iterator3.f();
+  }
+  return cards;
+};
+var getProjectInvites = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id) {
+    var response, jsonResponse;
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)("/api/project/".concat(id, "/invites"), {
+              method: 'GET'
+            });
+          case 2:
+            response = _context5.sent;
+            _context5.next = 5;
+            return response.json();
+          case 5:
+            jsonResponse = _context5.sent;
+            return _context5.abrupt("return", jsonResponse);
+          case 7:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+  return function getProjectInvites(_x4) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+var bigChaq = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
+            _context6.t0 = console;
+            _context6.next = 3;
+            return getProjectInvites(3);
+          case 3:
+            _context6.t1 = _context6.sent;
+            _context6.t0.log.call(_context6.t0, _context6.t1);
+          case 5:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  }));
+  return function bigChaq() {
+    return _ref6.apply(this, arguments);
+  };
+}();
+bigChaq();
+// Eliminar convites
+var deleteInvitesAjax = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+    var invites, _iterator4, _step4, _loop;
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
             invites = document.querySelectorAll('article.project-invite-card');
             if (invites) {
-              _iterator3 = _createForOfIteratorHelper(invites);
+              _iterator4 = _createForOfIteratorHelper(invites);
               try {
                 _loop = function _loop() {
-                  var invite = _step3.value;
+                  var invite = _step4.value;
                   var deleteButton = invite.querySelector('button');
                   var inviteId = invite.getAttribute("invite-id");
                   var projId = invite.getAttribute("project-id");
@@ -362,11 +430,11 @@ var deleteInvitesAjax = /*#__PURE__*/function () {
                     "inviteId": inviteId
                   };
                   var deleteInvite = /*#__PURE__*/function () {
-                    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+                    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                       var url, options, response;
-                      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+                      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
                         while (1) {
-                          switch (_context5.prev = _context5.next) {
+                          switch (_context7.prev = _context7.next) {
                             case 0:
                               url = "/api/project/".concat(projId, "/invites/");
                               options = {
@@ -376,23 +444,23 @@ var deleteInvitesAjax = /*#__PURE__*/function () {
                                 },
                                 body: JSON.stringify(data)
                               };
-                              _context5.next = 4;
+                              _context7.next = 4;
                               return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)(url, options);
                             case 4:
-                              response = _context5.sent;
+                              response = _context7.sent;
                               if (response.ok) {
                                 invite.style.display = "none";
                               }
                               handleInviteResponse(response);
                             case 7:
                             case "end":
-                              return _context5.stop();
+                              return _context7.stop();
                           }
                         }
-                      }, _callee5);
+                      }, _callee7);
                     }));
                     return function deleteInvite() {
-                      return _ref6.apply(this, arguments);
+                      return _ref8.apply(this, arguments);
                     };
                   }();
                   deleteButton.addEventListener('click', deleteInvite);
@@ -400,24 +468,24 @@ var deleteInvitesAjax = /*#__PURE__*/function () {
                     deleteButton.toggleAttribute("closed");
                   });
                 };
-                for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
                   _loop();
                 }
               } catch (err) {
-                _iterator3.e(err);
+                _iterator4.e(err);
               } finally {
-                _iterator3.f();
+                _iterator4.f();
               }
             }
           case 2:
           case "end":
-            return _context6.stop();
+            return _context8.stop();
         }
       }
-    }, _callee6);
+    }, _callee8);
   }));
   return function deleteInvitesAjax() {
-    return _ref5.apply(this, arguments);
+    return _ref7.apply(this, arguments);
   };
 }();
 deleteInvitesAjax();

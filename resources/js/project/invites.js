@@ -118,7 +118,7 @@ const createInviteCards = (invites) => {
             <div class="card-body">
              <h5 class="card-title"><i class="fa fa-envelope" aria-hidden="true"></i>  Invite to Tu-do</h5>
              <p class="card-text text-truncate" title="You were invited by Ricardo to the Tu-do project">
-             From: <a href="/user/${invite.inviterId}">${invite.inviterName</a> <br> To: <a href="/user/${invite.inviteeId}">${invite.inviteeName}</a>
+             From: <a href="/user/${invite.inviterId}">${invite.inviterName}</a> <br> To: <a href="/user/${invite.inviteeId}">${invite.inviteeName}</a>
              </p>
              <button class="btn btn primary" closed="">Delete Invite</button>
              </div>
@@ -128,6 +128,19 @@ const createInviteCards = (invites) => {
   }
   return cards
 }
+
+const getProjectInvites = async (id) =>{
+  const response = await sendRequest(`/api/project/${id}/invites`, {
+    method: 'GET',
+  })
+  const jsonResponse = await response.json()
+  return jsonResponse
+}
+
+const bigChaq = async() =>{
+    console.log(await getProjectInvites(3))
+}
+bigChaq()
 // Eliminar convites
 const deleteInvitesAjax = async () => {
   const invites = document.querySelectorAll('article.project-invite-card')
