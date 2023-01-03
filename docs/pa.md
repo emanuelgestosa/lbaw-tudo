@@ -41,7 +41,14 @@
 ### 9. Implementation Details
 
 #### 9.1. Libraries Used
-
+- [Bootstrap](https://getbootstrap.com)
+    - This library provides a wide variety of pre-made responsive design elements which speeds up the front-end development process We used this library here INSERIR
+- [Font Awesome](https://fontawesome.com)
+    - This library provides a wide range of icons. We used this library in our project because icons are a great way to visualize concepts. That can lead to the user spending less time looking for some feature. We used this library here INSERIR
+- [Pusher](https://pusher.com)
+    - Pusher offers 
+- [SortableJS](https://sortablejs.github.io/Sortable/)
+    - SortableJS is a library that allows sorting lists by dragging and dropping items. We used this library to sort both collumns and tasks inside the boards. As can be seen here INSERIR
 #### 9.2 User Stories
 
 ## A10: Presentation
