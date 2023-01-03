@@ -40,9 +40,8 @@
         </div>
 
 
-        <label id="remember-me">
-            <input  type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-        </label>
+        <label for="remember">Remember Me</label>
+            <input  type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> 
 
         <a tabindex="0" id="register-now" href="{{ route('register') }}">Register Now!</a>
     </form>

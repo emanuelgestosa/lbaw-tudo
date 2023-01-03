@@ -18,29 +18,38 @@
               <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                   <li class="nav-item">
                     <a id="edit" href="{{ url('/user/'. $id) }}" class="nav-link align-middle px-0">
-                      <i class="fa-solid fa-user"></i> <span class="ms-1 d-none d-sm-inline"> My Profile </span>
+                      <i class="fa-solid fa-user" alt="my profile"></i> <span class="ms-1 d-none d-sm-inline"> My Profile </span>
                     </a>
                   </li>  
                   <li class="nav-item here">
                       <a id="edit" href="{{ url('/user/'. $id. '/edit') }}" class="nav-link align-middle px-0">
-                        <i class="fa-solid fa-pen-to-square"></i> <span class="ms-1 d-none d-sm-inline"> Edit Profile </span>
+                        <i class="fa-solid fa-pen-to-square" alt="edit my profile"></i> <span class="ms-1 d-none d-sm-inline"> Edit Profile </span>
                       </a>
                   </li>  
                   <li class="nav-item">
                       <a href="{{ url('user/' . $id . '/projects') }}" class="nav-link align-middle px-0">
-                        <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> My Projects</span>
+                        <i class="fa-solid fa-diagram-project" alt="my projects"></i> <span class="ms-1 d-none d-sm-inline"> My Projects</span>
                       </a>
                   </li> 
                   <li class="nav-item">
                       <a  href="{{ url('user/' . $id . '/favourites') }}" class="nav-link align-middle px-0">
-                        <i class="fa-solid fa-star"></i> <span class="ms-1 d-none d-sm-inline"> My Favorites </span>
+                        <i class="fa-solid fa-star" alt="my invites"></i> <span class="ms-1 d-none d-sm-inline"> My Favorites </span>
                       </a>
                   </li>        
                   <li class="nav-item">
                     <a href="{{ url('user/' . $id . '/invites') }}" class="nav-link align-middle px-0">
-                      <i class="fa-solid fa-envelopes-bulk"></i><span class="ms-1 d-none d-sm-inline"> My Invites </span>
+                      <i class="fa-solid fa-envelopes-bulk" alt="my invites"></i><span class="ms-1 d-none d-sm-inline"> My Invites </span>
                     </a>
                   </li>       
+                  @if (!(!Auth::check() || (
+                    Auth::check() &&
+                  empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all()))) )
+                  <li class="nav-item">
+                    <a href="{{ url('/admins') }}" class="nav-link align-middle px-0">
+                      <i class="fa-solid fa-tools"></i><span class="ms-1 d-none d-sm-inline"> Admin Panel </span>
+                    </a>
+                  </li>       
+                  @endif
               </ul>
           </div>
         </nav>
@@ -54,11 +63,11 @@
         </div>
         <div class="container">
           <div id= "pfp">
-            <img src="https://picsum.photos/175/175">
+            <img src="https://picsum.photos/175/175" alt="profile picture">
           </div>
           
           <div id="edit-profile-forms" style="max-width: 300px;">
-            <form class="form-group" method="POST" action="/action/user/{{ $id }}">
+            <form class="form-group" method="POST" action="/action/user/{{ $id }}" enctype="multipart/form-data">
               <input type="hidden" name="_method" value="PATCH">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
           
@@ -71,6 +80,8 @@
               <input type="text" name="phone_number" class="form-control" value="{{ $phone_number }}" />
               <label for="email">Email</label>
               <input type="email" name="email" class="form-control" value="{{ $email }}" />
+              <label for="profile_pic">Profile picture</label>
+              <input type="file" name="profile_pic" class="form-control" />
           <div class="flex-row">
               <button type="submit" class="btn btn-primary">Send</button>
             </form>

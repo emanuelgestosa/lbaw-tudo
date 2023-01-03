@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 use App\Models\Administrator;
 use Auth;
+use Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -42,6 +43,9 @@ class UserController extends Controller
         return redirect('/');
       }
 
+      if (Storage::disk('public')->exists("/profile_pics/".$user->id)) {
+        $contents = Storage::get("/profile_pics/".$user->id);
+    }
       return view('pages.user.profile', [
         'id' => $user->id,
         'username' => $user->username,
@@ -147,6 +151,24 @@ class UserController extends Controller
       $user->name = $request->input('name');
       $user->email = $request->input('email');
       $user->phone_number = $request->input('phone_number');
+      //print_r($request);
+      $file_content = $request->file('profile_pic')->get();
+      $extension = $request->file('profile_pic')->getClientOriginalExtension();
+      //$ext = pathinfo(storage_path().'/profile_pics/categories/featured_image.jpg', PATHINFO_EXTENSION);
+      $path = "/profile_pics/".$id;
+      if(!Storage::disk('public')->put($path, $file_content)) {
+        return false;
+    }
+      //$request->file->move(public_path('uploads'), '/users/'.$id);
+      // $fileName = time().'_'.$request->file->getClientOriginalName();
+      // $filePath = $request->file('profile_pic')->storeAs('uploads', $fileName, 'public');
+      // $file = $request->file('profile_pic');
+      // $file->move(base_path('\modo\images'), $file->getClientOriginalName());
+/*       $path = $request->file('profile_pic')->storeAs(
+        'users',
+        $id,
+        'public'
+    ); */
       $user->save();
       return redirect('/user/' . $user->id);
     }

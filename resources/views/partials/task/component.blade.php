@@ -84,7 +84,7 @@
                             <button class="btn btn-primary" type="submit">Send</button>
                         </form>
                     </article>
-                    <section class="comment-tab" closed>
+                    <section class="comment-tab"  closed>
                         <section>
                         <div id="message-list" class="px-4 py-5 chat-box bg-white">
                         </div>
@@ -108,7 +108,6 @@
                         outline: 1px solid slategrey;
                         border-radius: 1rem;
                     }
-                
                 
                     .messages-box,
                     .chat-box {

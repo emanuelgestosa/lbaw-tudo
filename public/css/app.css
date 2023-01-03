@@ -784,6 +784,11 @@ Side nav bar
   grid-auto-flow:column;
   column-gap: 20px;
 }
-.board-bg {
-  overflow: auto;
+
+
+/*
+Task
+*/
+.list-group.tarefas {
+  flex-direction: column !important;
 }
