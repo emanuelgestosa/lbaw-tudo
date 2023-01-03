@@ -28,20 +28,23 @@ const handleInviteResponse = async (response) => {
 
   document.body.appendChild(popup)
 }
-const createUserResultCards = (users) => {
+const createUserResultCards= (users) => {
   let cards = ''
   for (const user of users) {
-    const userCard = `
-            <article class="user-card" user-id=${user.id} style="margin:0.5em;padding:1em;display:flex;border:1px solid blue;border-radius:1em;">
+    const userCard =`
+    <article class="user-card" user-id="${user.id}">
+        <div class="card shadow">
+            <div class="card-body">
+             <h5 class="card-title"><i class="fa fa-envelope" aria-hidden="true"></i> Invite to Tu-do</h5>
+             <p class="card-text text-truncate" title="You were invited by Ricardo to the Tu-do project"></p>
             <section class="user-card-name">
             <p>Name ${user.name}</p>
             <p>Username ${user.username}</p>
             </section>
-            <section class="user-card-send-invite">
-                <i class="fa-solid fa-envelope"></i>
-            </section>            
-            </article>
-            `
+             <button class="btn btn primary" closed="">Send Invite</button>
+             </div>
+        </div>
+    </article>`
     cards += userCard
   }
   return cards
@@ -49,16 +52,16 @@ const createUserResultCards = (users) => {
 const userCardEventGoToProfile = (card) => {
   const cardUserId = card.getAttribute('user-id')
   card.querySelector('section.user-card-name').addEventListener('click', () => {
-    window.location = window.SERVER + '/user/' + cardUserId
+    window.location = window.location.origin + '/user/' + cardUserId
   })
 }
 
 const userCardSendInvite = (card) => {
   const cardUserId = card.getAttribute('user-id')
   card
-    .querySelector('section.user-card-send-invite')
+    .querySelector('button.btn')
     .addEventListener('click', async () => {
-      const op = document.querySelector('section.invite-content')
+      const op = document.querySelector('meta[project-id]')
       const projectId = op.getAttribute('project-id')
       const idInviter = op.getAttribute('user-id')
       const idInvitee = cardUserId
@@ -108,8 +111,44 @@ if (queryInput) {
   })
 }
 
-// Eliminar convites
 
+const createInviteCards = (invites) => {
+  let cards = ''
+  for (const invite of invites) {
+    const inviteCard =`
+    <article class="project-invite-card col-12 col-md-6 col-lg-4" project-id="${invite.id_project}" invite-id="${invite.id}">
+        <div class="card shadow">
+            <div class="card-body">
+             <h5 class="card-title"><i class="fa fa-envelope" aria-hidden="true"></i>  Invite to Tu-do</h5>
+             <p class="card-text text-truncate" title="You were invited by Ricardo to the Tu-do project">
+             From: <a href="/user/${invite.inviter.id}">${invite.inviter.name}</a> <br> To: <a href="/user/${invite.invitee.id}">${invite.invitee.name}</a>
+             </p>
+             <button class="btn btn primary" closed="">Delete Invite</button>
+             </div>
+        </div>
+    </article>`
+    cards += inviteCard
+  }
+  return cards
+}
+
+const getProjectInvites = async (id) =>{
+  const response = await sendRequest(`/api/project/${id}/invites`, {
+    method: 'GET',
+  })
+  const jsonResponse = await response.json()
+  return jsonResponse
+}
+
+const bigChaq = async(id) =>{
+    const projectId = document.querySelector("meta[project-id]").getAttribute("project-id")
+    const invites = await getProjectInvites(projectId)
+    const cards = createInviteCards(invites)
+    const cardContainer = document.querySelector("div.container > div")
+    cardContainer.innerHTML += cards
+    await deleteInvitesAjax()
+}
+// Eliminar convites
 const deleteInvitesAjax = async () => {
   const invites = document.querySelectorAll('article.project-invite-card')
   if (invites) {
@@ -141,4 +180,4 @@ const deleteInvitesAjax = async () => {
     }
   }
 }
-deleteInvitesAjax()
+bigChaq()
