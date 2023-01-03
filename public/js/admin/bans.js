@@ -420,7 +420,6 @@ function _openBans() {
                 }
               }, _callee2);
             })));
-            content.appendChild(banButton);
             url = '/api/bans';
             _context4.next = 8;
             return (0,_app_js__WEBPACK_IMPORTED_MODULE_0__.sendRequest)(url, {

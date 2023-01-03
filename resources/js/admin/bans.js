@@ -99,7 +99,6 @@ async function openBans() {
       })
     })
   })
-  content.appendChild(banButton)
   let url = '/api/bans'
   let rawResponse = await sendRequest(url,{method:"GET"})
   const contents = await rawResponse.json()
