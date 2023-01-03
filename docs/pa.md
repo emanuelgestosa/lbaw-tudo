@@ -24,7 +24,7 @@
 
 | Type          | Username | Password   |
 |---------------|----------|------------|
-| basic account | ricardo  | ricardo123 |
+| basic account | ana  | ana123 |
 
 ### 3. Application Help
 

@@ -54,7 +54,7 @@
         </div>
         <div class="container">
           <div id= "pfp">
-            <img src="https://picsum.photos/175/175">
+            <img src="https://picsum.photos/175/175" alt="profile picture">
           </div>
           
           <div id="edit-profile-forms" style="max-width: 300px;">

@@ -41,7 +41,7 @@
                             <div class="col-12 col-md-6 col-lg-4">    
                                 <a href="{{ url('/user/' . $collaborator->id) }}"> 
                                     <li tabindex="0" class="list-group-item d-flex justify-content-between align-items-center text-truncate">
-                                        <img class="pfp-team" src="https://picsum.photos/175/175" alt="pic"> {{ucfirst($collaborator->name)}} 
+                                        <img class="pfp-team" src="https://picsum.photos/175/175" alt="profile picture"> {{ucfirst($collaborator->name)}} 
                                     </li>
                                 </a>
                             </div>
