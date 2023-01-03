@@ -307,7 +307,7 @@ var buildOtherComment = function buildOtherComment(comment) {
   var hours = date.getHours();
   var minutes = date.getMinutes();
   var localDate = date.toLocaleDateString();
-  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"https://bootstrapious.com/i/snippets/sn-chat/avatar.svg\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(hours, ":").concat(minutes, "| ").concat(localDate, "</p>\n        </div>\n    </div>");
+  return "\n    <div class=\"message-item\" comment-id=\"".concat(comment.id, "\">\n        <img src=\"").concat(window.location.origin, "/storage/profile_pics/").concat(comment.user.id, "\" alt=\"user\" width=\"50\" class=\"rounded-circle\">\n        <div class=\"message-body\">\n            <p class=\"message-username\">").concat(comment.user.name, "</p>\n            <div class=\"text-lists\">\n                <p class=\"message-text\">").concat(comment.msg, "</p>\n            </div>\n            <p class=\"message-date\">").concat(hours, ":").concat(minutes, "| ").concat(localDate, "</p>\n        </div>\n    </div>");
 };
 var buildMyComment = function buildMyComment(comment) {
   var date = new Date(comment.sent_date);
