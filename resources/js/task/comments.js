@@ -89,7 +89,7 @@ const buildOtherComment = (comment) => {
   const localDate = date.toLocaleDateString()
   return `
     <div class="message-item" comment-id="${comment.id}">
-        <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
+        <img src="${window.location.origin}/storage/profile_pics/${comment.user.id}" alt="user" width="50" class="rounded-circle">
         <div class="message-body">
             <p class="message-username">${comment.user.name}</p>
             <div class="text-lists">
