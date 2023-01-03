@@ -1,7 +1,6 @@
 @extends('layouts.app')
-
 @push('body-class', 'profile-bg')
-
+<script defer src="/js/user/invites.js"></script>
 @yield('content')
 
 @section('content')
