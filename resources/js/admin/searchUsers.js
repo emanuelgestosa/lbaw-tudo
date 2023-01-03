@@ -29,7 +29,7 @@ const preencherLista = (users) =>{
     for (const card of userCards){
         card.addEventListener('click',() =>{
             const userId = card.getAttribute('user-id')
-            window.location= (window.SERVER + "/user/"+userId);
+            window.location= (window.location.href + "user/"+userId);
         })
     }
     lista.style.display= "block"
