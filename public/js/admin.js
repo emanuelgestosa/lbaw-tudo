@@ -91,8 +91,8 @@ async function openBans() {
       body: JSON.stringify({
         id_users:  5,
         id_administrator: 1,
-        end_date: '2023-01-01',
-        reason: 'gang'
+        end_date: '2024-01-01',
+        reason: 'asdsada'
       })
     })
   })

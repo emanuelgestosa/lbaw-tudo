@@ -372,12 +372,13 @@ Nav e footer
 }
 
 footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   padding: 0.7%;
-   text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0.7%;
+  text-align: center;
+  pointer-events: none;
 }
 
 footer a {
