@@ -41,10 +41,10 @@
                             <div class="col-12 col-md-6 col-lg-4">    
                                 <a href="{{ url('/user/' . $collaborator->id) }}"> 
                                     <li tabindex="0" class="list-group-item d-flex justify-content-between align-items-center text-truncate">
-                                    @if (Storage::disk('public')->exists("/profile_pics/".$collaborator->id_users)))
-                                    <img src="{{ asset('storage/profile_pics/'.$collaborator->id_users ) }}" alt="Profile Pic" width=175 height=175>
+                                    @if (Storage::disk('public')->exists("/profile_pics/".$collaborator->id))
+                                    <img src="{{ asset('storage/profile_pics/'.$collaborator->id ) }}" alt="Profile Pic" width="50px" height="50px">
                                     @else 
-                                    <img src="/img/pfp_user/default.jpg" alt="Profile Pic" width=175 height=175>
+                                    <img src="/img/pfp_user/default.jpg" alt="Profile Pic" width="50px" height="50px"">
                                     @endif 
                                     {{ucfirst($collaborator->name)}} 
                                     </li>

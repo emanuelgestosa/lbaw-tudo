@@ -15,7 +15,7 @@
     <input type="text" name="reason"/>
 
     <label for="end_date">End Date: </label>
-    <input type="date" name="end_date" pattern="\d{4}-\d{2}-\d{2}">
+    <input type="date" name="end_date" required="true" pattern="\d{4}-\d{2}-\d{2}">
 
     <button type="submit" class="btn btn-primary"> Ban</button>
   </form>

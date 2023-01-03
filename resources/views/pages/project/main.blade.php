@@ -55,9 +55,9 @@
                 <a href="{{ url('/user/' . $project->id_coordinator ) }}"> 
                     <li tabindex="0" class="list-group-item d-flex justify-content-between align-items-center text-truncate">
                     @if (Storage::disk('public')->exists("/profile_pics/".$project->id_coordinator))
-                  <img class="pfp-team" src="{{ asset('storage/profile_pics/'.$project->id_coordinator ) }}" alt="Profile Pic" width=175 height=175>
+                  <img class="pfp-team" src="{{ asset('storage/profile_pics/'.$project->id_coordinator ) }}" alt="Profile Pic" width="50px" height="50px">
                   @else 
-                  <img class="pfp-team" src="/img/pfp_user/default.jpg" alt="Profile Pic" width=175 height=175>
+                  <img class="pfp-team" src="/img/pfp_user/default.jpg" alt="Profile Pic" width="50px" height="50px">
                   @endif 
                       Coordinator
                     </li>
