@@ -43,6 +43,11 @@
                     <i class="fa-solid fa-star"></i> Unfavorite Project
                     @endif
                     </a>
+                    <a  class= "btn btn-primary" href="{{ route('leave_project', ['project_id' => $project->id]) }}">
+                    @if (true)
+                    Leave Project
+                    @endif
+                    </a>
                 </h1>     
               </div>
               <div class="d-flex text-truncate list-group">    

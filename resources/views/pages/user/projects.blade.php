@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
-@push('body-class', 'profile-bg')
+@push('body-class', 'project-bg')
 
 @yield('content')
 
 @section('content')
+<article class="project" id="project_content">
+
 @if (Auth::check() && (Auth::user()->id == $user->id ||
     !empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all())))
 <div class="container-fluid">
@@ -40,7 +42,16 @@
                     <a tabindex="0" href="{{ url('user/' . $user->id . '/invites') }}" class="nav-link align-middle px-0">
                       <i class="fa-solid fa-envelopes-bulk" alt="my invites"></i><span class="ms-1 d-none d-sm-inline"> My Invites </span>
                     </a>
+                  </li>      
+                  @if (!(!Auth::check() || (
+                    Auth::check() &&
+                  empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all()))) )
+                  <li class="nav-item">
+                    <a href="{{ url('/admins') }}" class="nav-link align-middle px-0">
+                      <i class="fa-solid fa-tools"></i><span class="ms-1 d-none d-sm-inline"> Admin Panel </span>
+                    </a>
                   </li>       
+                  @endif 
               </ul>
           </div>
         </nav>
@@ -53,7 +64,7 @@
           </a>
         </h1>
           <div class="container">
-          <div class="row g-3" id="project-cards">
+          <div class="row g-3" id="board-cards">
             @foreach($projects as $project)
               <div class="col-12 col-md-6 col-lg-4">
                   <div class="card shadow">

@@ -50,7 +50,6 @@ class ProjectController extends Controller
       ]);
 
       $user = Auth::user();
-      print_r($user->id);
       $new_project = New Project();
       $new_project->title = $request->input('title');
       if ($request->input('description') == ""){
@@ -64,4 +63,14 @@ class ProjectController extends Controller
 
       return redirect('/user/'. $user->id .'/projects');
     }
-}
+
+
+    public function leave($id){
+
+      $project = Project::find($id);
+      $user = Auth::user();
+      $user->projects()->delete($project);
+
+      return redirect('/user/'. $user->id .'/projects');
+    }
+} 

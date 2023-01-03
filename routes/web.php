@@ -27,8 +27,12 @@ Route::get('/user/{id}/edit', 'UserController@showEdit');
 Route::get('/user/{id}/projects', 'UserController@showProjects')->name('projects');
 Route::get('/user/{id}/favourites', 'UserController@showFavourites')->name('favourites');
 Route::get('/user/{id}/invites', 'UserController@showInvites');
+Route::get('/user/{id}/ban', 'UserController@showBan');
 Route::patch('/action/user/{id}', 'UserController@edit');
 Route::delete('/action/user/{id}', 'UserController@delete');
+
+// Ban
+Route::post('/action/ban', 'BanController@create');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -58,6 +62,7 @@ Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('ad
 Route::get('/project/{project_id}/favourite', 'ProjectController@toggle_favourite')->name('fav_project');
 Route::get('/project/{project_id}/team', 'ProjectController@showTeam')->name('team');
 Route::get('/project/{project_id}/boards', 'ProjectController@showBoards')->name('boards');
+Route::get('/project/{project_id}/leave', 'ProjectController@leave')->name('leave_project');
 
 // Administration
 Route::get('/admins', 'AdminController@show');
