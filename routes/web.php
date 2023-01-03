@@ -58,6 +58,7 @@ Route::post('/user/{user_id}/add_project', 'ProjectController@create')->name('ad
 Route::get('/project/{project_id}/favourite', 'ProjectController@toggle_favourite')->name('fav_project');
 Route::get('/project/{project_id}/team', 'ProjectController@showTeam')->name('team');
 Route::get('/project/{project_id}/boards', 'ProjectController@showBoards')->name('boards');
+Route::get('/project/{project_id}/leave', 'ProjectController@leave')->name('leave_project');
 
 // Administration
 Route::get('/admins', 'AdminController@show');
