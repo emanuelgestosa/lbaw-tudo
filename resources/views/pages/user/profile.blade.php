@@ -52,7 +52,9 @@
         </div>
         <div class="container">
           <div id= "pfp">
-            <img src="https://picsum.photos/175/175">
+          <img src="{{ asset('storage/profile_pics/'.$id) }}" alt="" title="" width=175 height=175>
+          <!-- <img src="{{ url('storage/app/public/profile_pics/'.$id) }}" alt="" title=""> -->
+          <!-- <img src="https://picsum.photos/175/175"> -->
           </div>
       
           <ul id="contacts">
