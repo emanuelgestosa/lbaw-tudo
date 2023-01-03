@@ -727,7 +727,7 @@ function _openSearchUser() {
         switch (_context5.prev = _context5.next) {
           case 0:
             content = document.getElementById('tab-content');
-            content.innerHTML = '<div class="search_bar"><i class="fa-solid fa-search"></i><input class="search-user" type="text" placeholder="Search user..."></div><section class="user-results" style="display:hidden"></section>';
+            content.innerHTML = "<div class=\"search_bar\">\n        <i class=\"fa-solid fa-search\"></i>\n        <input class=\"search-user\" type=\"text\" placeholder=\"Search user...\">\n        </div>\n        <section class=\"user-results\" style=\"display:hidden\"></section>";
             (0,_searchUsers_js__WEBPACK_IMPORTED_MODULE_1__.addSearchUsersFunctionality)();
           case 3:
           case "end":

@@ -333,12 +333,11 @@ function openCreateUser() {
 
 async function openSearchUser() {
   let content = document.getElementById('tab-content')
-  content.innerHTML = '
-        <div class="search_bar">
+  content.innerHTML = `<div class="search_bar">
         <i class="fa-solid fa-search"></i>
         <input class="search-user" type="text" placeholder="Search user...">
         </div>
-        <section class="user-results" style="display:hidden"></section>'
+        <section class="user-results" style="display:hidden"></section>`
   addSearchUsersFunctionality()
 }
 
