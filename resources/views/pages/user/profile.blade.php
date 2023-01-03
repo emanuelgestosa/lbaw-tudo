@@ -58,7 +58,10 @@
       <div class="col py-3">
         <div class="flex-row">
           <h1 id="page_name">{{ ucfirst($name) }}'s Profile
+          @if (!(!Auth::check() || (
+                  empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all()))) )
           <a class="button btn btn-primary" href="/user/{{ $id }}/ban" style="background-color: ; color: white;" ><i class="fa-solid fa-ban"></i> Ban User</a></h1>
+        @endif
         </div>
         <div class="container">
           <div id= "pfp">
