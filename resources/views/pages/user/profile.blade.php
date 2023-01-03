@@ -48,7 +48,8 @@
       @endif
       <div class="col py-3">
         <div class="flex-row">
-          <h1 id="page_name">{{ ucfirst($name) }}'s Profile</h1>
+          <h1 id="page_name">{{ ucfirst($name) }}'s Profile
+          <a class="button btn btn-primary" href="/user/{{ $id }}/ban" style="background-color: ; color: white;" ><i class="fa-solid fa-ban"></i> Ban User</a></h1>
         </div>
         <div class="container">
           <div id= "pfp">

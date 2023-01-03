@@ -11,20 +11,30 @@ use Auth;
 
 class BanController extends Controller
 {
-  public function create(Request $request) {
-    $requestjson = json_decode($request->getContent(), true);
-    $user = $requestjson['id_users'];
-    $admin =  $requestjson['id_administrator'];
-    $end_date = $requestjson['end_date'];
-    $reason = $requestjson['reason'];
+  // public function create(Request $request) {
+  //   $requestjson = json_decode($request->getContent(), true);
+  //   $user = $requestjson['id_users'];
+  //   $admin =  $requestjson['id_administrator'];
+  //   $end_date = $requestjson['end_date'];
+  //   $reason = $requestjson['reason'];
+  //   $ban = Ban::create([
+  //     'id_users' => $user,
+  //     'id_administrator' => $admin,
+  //     'end_date' => $end_date,
+  //     'reason' => $reason,
+  //     'start_date' => date("Y-m-d"),
+  //   ]);
+  //   return response()->json(['success' => true]);
+  // }
+
+  public function create($id_user, $id_admin, $end_date)
+  {
     $ban = Ban::create([
-      'id_users' => $user,
-      'id_administrator' => $admin,
+      'start_date' => date('Y-m-d'),
+      'id_users' => $id_users,
+      'id_administrator' => $id_admin,
       'end_date' => $end_date,
-      'reason' => $reason,
-      'start_date' => date("Y-m-d"),
     ]);
-    return response()->json(['success' => true]);
   }
 
   public function get_all()
