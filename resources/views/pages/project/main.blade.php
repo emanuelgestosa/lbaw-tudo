@@ -45,13 +45,14 @@
                     </a>
                 </h1>     
               </div>
-                <h2>Coordinator</h2>
-                <div class="d-flex text-truncate list-group">    
-                    <a href="{{ url('/user/' . $project->id_coordinator ) }}"> 
-                        <li tabindex="0" class="list-group-item d-flex justify-content-between align-items-center text-truncate">
-                            <img class="pfp-team" src="https://picsum.photos/175/175" alt="pic"> Coordenador Nome
-                        </li>
-                    </a>
+              <div class="d-flex text-truncate list-group">    
+                <div class="col-12 col-md-6 col-lg-4">   
+                <a href="{{ url('/user/' . $project->id_coordinator ) }}"> 
+                    <li tabindex="0" class="list-group-item d-flex justify-content-between align-items-center text-truncate">
+                        <img class="pfp-team" src="https://picsum.photos/175/175" alt="pic"> Coordinator
+                    </li>
+                  </div>
+                </a>
                 </div>
                 <h2>Boards
                   <a class="btn btn-primary" href="{{ url('/project/'.$project->id.'/boards/create') }}"> Add board </a> 

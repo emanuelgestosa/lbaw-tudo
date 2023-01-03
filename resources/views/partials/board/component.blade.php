@@ -13,7 +13,7 @@
             <nav>
               <div class="d-flex flex-column align-items-center align-items-sm-start pt-2 text-white min-vh-100">
                   <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
-                      <span class="fs-5 d-none d-sm-inline" id ="title_nav_lat">titulo do projeto</span>
+                      <span class="fs-5 d-none d-sm-inline" id ="title_nav_lat">{{$board->name}}</span>
                   </a>
                   <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                       <li class="nav-item here">
