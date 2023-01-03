@@ -51,7 +51,7 @@
               <li tabindex="0" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="pfp-nav">
-                    <img src="https://picsum.photos/175/175"/> 
+                    <img src="https://picsum.photos/175/175" alt="profile picture"/> 
                   </div>
                   Me
                 </a>

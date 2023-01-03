@@ -17,17 +17,17 @@
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item here">
                             <a tabindex="0" id="edit" href="/project/{{$project->id}}" class="nav-link align-middle px-0">
-                              <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> Workspace </span>
+                              <i class="fa-solid fa-diagram-project" alt="diagram project"></i> <span class="ms-1 d-none d-sm-inline"> Workspace </span>
                             </a>
                         </li>  
                         <li class="nav-item">
                             <a tabindex="0" href="/project/{{$project->id}}/team" class="nav-link align-middle px-0">
-                              <i class="fa-solid fa-users"></i> <span class="ms-1 d-none d-sm-inline"> Team </span>
+                              <i class="fa-solid fa-users" alt="team"></i> <span class="ms-1 d-none d-sm-inline"> Team </span>
                             </a>
                         </li> 
                         <li class="nav-item">
                             <a tabindex="0" href="/project/{{$project->id}}/invites" class="nav-link align-middle px-0">
-                              <i class="fa-solid fa-user-plus"></i> <span class="ms-1 d-none d-sm-inline"> Invite </span>
+                              <i class="fa-solid fa-user-plus" alt="invite"></i> <span class="ms-1 d-none d-sm-inline"> Invite </span>
                             </a>
                         </li>     
                     </ul>
@@ -49,7 +49,7 @@
                 <div class="col-12 col-md-6 col-lg-4">   
                 <a href="{{ url('/user/' . $project->id_coordinator ) }}"> 
                     <li tabindex="0" class="list-group-item d-flex justify-content-between align-items-center text-truncate">
-                        <img class="pfp-team" src="https://picsum.photos/175/175" alt="pic"> Coordinator
+                        <img class="pfp-team" src="https://picsum.photos/175/175" alt="profile picture"> Coordinator
                     </li>
                   </div>
                 </a>

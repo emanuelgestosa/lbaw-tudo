@@ -15,17 +15,17 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a tabindex="0" id="edit" href="/project/{{$project->id}}" class="nav-link align-middle px-0">
-                          <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline"> Workspace </span>
+                          <i class="fa-solid fa-diagram-project" alt="diagram project"></i> <span class="ms-1 d-none d-sm-inline"> Workspace </span>
                         </a>
                     </li>  
                     <li class="nav-item">
                         <a tabindex="0" href="/project/{{$project->id}}/team" class="nav-link align-middle px-0">
-                          <i class="fa-solid fa-users"></i> <span class="ms-1 d-none d-sm-inline"> Team </span>
+                          <i class="fa-solid fa-users" alt="team"></i> <span class="ms-1 d-none d-sm-inline"> Team </span>
                         </a>
                     </li> 
                     <li class="nav-item here">
                         <a tabindex="0" href="/project/{{$project->id}}/invites" class="nav-link align-middle px-0">
-                          <i class="fa-solid fa-user-plus"></i> <span class="ms-1 d-none d-sm-inline"> Invite </span>
+                          <i class="fa-solid fa-user-plus" alt="invite"></i> <span class="ms-1 d-none d-sm-inline"> Invite </span>
                         </a>
                     </li>     
                 </ul>
@@ -60,7 +60,27 @@
                                  <button class="btn btn primary" closed>Delete Invite</button>
                     </article>
                     @endforeach
-
+    <section class="invite-content" project-id="{{$project->id}}" user-id="{{Auth::user()->id}}" style="display:flex;gap:5em;margin:auto;">
+        <section class="project-invite-list">
+            @foreach ($project->invites()->get() as $invite)
+            <article class="project-invite-card" project-id="{{$project->id}}" invite-id="{{$invite->id}}">
+                <p class="project-invite-card-title">{{$project->title}}</p>
+                <p>
+                    <a href="/user/{{$invite->inviter->id}}">{{$invite->inviter->name}}</a>
+                    enviou convite para
+                    <a href="/user/{{$invite->inviter->id}}">{{$invite->invited->name}}</a>
+                </p>
+                <button closed>Delete Invite</button>
+            </article>
+            @endforeach
+        </section>
+        <section class="search-collaborator">
+            <div class="search_bar">
+                <i class="fa-solid fa-search" alt="search"></i>
+                <label for="search">Search user</label>
+                <input class="search-user" type="text" placeholder="Search user..." id="search">
+            </div>
+            <section class="user-results" style="display:hidden"></section>
+        </section>
     </section>
-</section>
 @endsection
