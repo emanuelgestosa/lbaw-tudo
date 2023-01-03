@@ -278,7 +278,8 @@ var userCardSendInvite = function userCardSendInvite(card) {
           case 10:
             response = _context3.sent;
             handleInviteResponse(response);
-          case 12:
+            bigChaq();
+          case 13:
           case "end":
             return _context3.stop();
         }
@@ -386,7 +387,7 @@ var getProjectInvites = /*#__PURE__*/function () {
   };
 }();
 var bigChaq = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(id) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
     var projectId, invites, cards, cardContainer;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) {
@@ -399,17 +400,18 @@ var bigChaq = /*#__PURE__*/function () {
             invites = _context6.sent;
             cards = createInviteCards(invites);
             cardContainer = document.querySelector("div.container > div");
-            cardContainer.innerHTML += cards;
-            _context6.next = 9;
+            console.log(invites);
+            cardContainer.innerHTML = cards;
+            _context6.next = 10;
             return deleteInvitesAjax();
-          case 9:
+          case 10:
           case "end":
             return _context6.stop();
         }
       }
     }, _callee6);
   }));
-  return function bigChaq(_x5) {
+  return function bigChaq() {
     return _ref6.apply(this, arguments);
   };
 }();

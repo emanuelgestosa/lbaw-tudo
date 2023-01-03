@@ -78,6 +78,7 @@ const userCardSendInvite = (card) => {
       }
       const response = await sendRequest(url, options)
       handleInviteResponse(response)
+      bigChaq()
     })
 }
 
@@ -140,12 +141,12 @@ const getProjectInvites = async (id) =>{
   return jsonResponse
 }
 
-const bigChaq = async(id) =>{
+const bigChaq = async() =>{
     const projectId = document.querySelector("meta[project-id]").getAttribute("project-id")
     const invites = await getProjectInvites(projectId)
     const cards = createInviteCards(invites)
     const cardContainer = document.querySelector("div.container > div")
-    cardContainer.innerHTML += cards
+    cardContainer.innerHTML = cards
     await deleteInvitesAjax()
 }
 // Eliminar convites
@@ -153,6 +154,7 @@ const deleteInvitesAjax = async () => {
   const invites = document.querySelectorAll('article.project-invite-card')
   if (invites) {
     for (const invite of invites) {
+
       const deleteButton = invite.querySelector('button')
         const inviteId = invite.getAttribute("invite-id")
         const projId = invite.getAttribute("project-id")
