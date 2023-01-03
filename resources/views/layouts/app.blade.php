@@ -59,7 +59,12 @@
                   <li><a tabindex="1" class="dropdown-item" href="{{ url('/user/'. Auth::user()->id) }}"> My Profile </a>
                   <li><a tabindex="1" class="dropdown-item" href="{{ url('/user/'. Auth::user()->id . '/projects') }}"> My Projects </a>
                   <li><a tabindex="1" class="dropdown-item" href="#">Calendar</a></li>
-                  <li><a tabindex="1"class="dropdown-item" href="{{ route('favourites', Auth::id()) }}">My Favorites</a></li>
+                  <li><a tabindex="1" class="dropdown-item" href="{{ route('favourites', Auth::id()) }}">My Favorites</a></li>
+                  @if (!(!Auth::check() || (
+                    Auth::check() &&
+                  empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all()))) )
+                    <li><a tabindex="1" class="dropdown-item" href="{{url('/admins')}}">Administator Panel</a></li>
+                  @endif
                   <li><hr class="dropdown-divider"></li>
                   <li><a tabindex="1" class="dropdown-item" href="{{ url('/logout') }}"> <i class="fa fa-sign-out"></i> Logout </a> </li>
                 </ul>

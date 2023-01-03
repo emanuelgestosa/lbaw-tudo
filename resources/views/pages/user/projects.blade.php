@@ -42,7 +42,16 @@
                     <a tabindex="0" href="{{ url('user/' . $user->id . '/invites') }}" class="nav-link align-middle px-0">
                       <i class="fa-solid fa-envelopes-bulk"></i><span class="ms-1 d-none d-sm-inline"> My Invites </span>
                     </a>
+                  </li>      
+                  @if (!(!Auth::check() || (
+                    Auth::check() &&
+                  empty(App\Models\Administrator::where('id_users', Auth::user()->id)->get()->all()))) )
+                  <li class="nav-item">
+                    <a href="{{ url('/admins') }}" class="nav-link align-middle px-0">
+                      <i class="fa-solid fa-tools"></i><span class="ms-1 d-none d-sm-inline"> Admin Panel </span>
+                    </a>
                   </li>       
+                  @endif 
               </ul>
           </div>
         </nav>
