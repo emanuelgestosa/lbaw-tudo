@@ -13,14 +13,9 @@
             <nav>
               <div class="d-flex flex-column align-items-center align-items-sm-start pt-2 text-white min-vh-100">
                   <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
-                      <span class="fs-5 d-none d-sm-inline" id ="title_nav_lat">titulo do projeto</span>
+                      <span class="fs-5 d-none d-sm-inline" id ="title_nav_lat">Board: {{$board->name}}</span>
                   </a>
                   <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                      <li class="nav-item here">
-                        <a tabindex="0" href="#" class="nav-link align-middle px-0">
-                          <i class="fa-solid fa-clapperboard"></i> <span class="ms-1 d-none d-sm-inline"> {{$board->name}} </span>
-                        </a>
-                      </li>  
                       <li class="nav-item">
                           <a tabindex="0" href="/project/{{$board->id_project}}" class="nav-link align-middle px-0">
                             <i class="fa-solid fa-diagram-project"></i> <span class="ms-1 d-none d-sm-inline">  Back to Workspace </span>

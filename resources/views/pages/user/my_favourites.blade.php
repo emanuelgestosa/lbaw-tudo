@@ -13,7 +13,7 @@
         <nav>
           <div class="d-flex flex-column align-items-center align-items-sm-start pt-2 text-white min-vh-100">
               <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
-                  <span class="fs-5 d-none d-sm-inline" id ="title_nav_lat">{{ $user->username}}</span>
+                  <span class="fs-5 d-none d-sm-inline" id ="title_nav_lat">{{ ucfirst($user->username)}}</span>
               </a>
               <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                   <li class="nav-item">
@@ -35,11 +35,6 @@
                       <a tabindex="0" href="{{ url('user/' . $user->id . '/favourites') }}" class="nav-link align-middle px-0">
                         <i class="fa-solid fa-star"></i> <span class="ms-1 d-none d-sm-inline"> My Favorites </span>
                       </a>
-                  </li>   
-                  <li class="nav-item">
-                    <a tabindex="0" href="{{ url('user/' . $user->id . '/calendar') }}" class="nav-link align-middle px-0">
-                      <i class="fa-solid fa-calendar"></i><span class="ms-1 d-none d-sm-inline"> My Calendar </span>
-                    </a>
                   </li>       
                   <li class="nav-item">
                     <a tabindex="0" href="{{ url('user/' . $user->id . '/invites') }}" class="nav-link align-middle px-0">

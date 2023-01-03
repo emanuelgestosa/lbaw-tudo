@@ -4,7 +4,7 @@
 
 @section('content')
 
-  <h1 class="page_name">Create User</h1>
+  <h1 id="page_name">Create User</h1>
   <form method="POST" action="/api/user">
       {{ csrf_field() }}
   
