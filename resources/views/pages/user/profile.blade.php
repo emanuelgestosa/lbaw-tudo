@@ -66,9 +66,9 @@
         <div class="container">
           <div id= "pfp">
           @if (Storage::disk('public')->exists("/profile_pics/".$id))
-            <img src="{{ asset('storage/profile_pics/'.$id) }}" alt="Profile Pic" width=175 height=175>
+            <img src="{{ asset('storage/profile_pics/'.$id) }}" alt="Profile Pic" width="175px" height="175px">
           @else 
-            <img src="/img/pfp_user/default.jpg" alt="Profile Pic" width=175 height=175>
+            <img src="/img/pfp_user/default.jpg" alt="Profile Pic" width="175px" height="175px">
           @endif 
             
           <!-- <img src="{{ asset('storage/profile_pics/'.$id) }}" alt="Profile Pic" width=175 height=175> -->
