@@ -210,6 +210,8 @@ if (acceptButtons) {
   } finally {
     _iterator2.f();
   }
+} else {
+  console.log("O design partiu tudo");
 }
 })();
 

@@ -37,3 +37,6 @@ if (acceptButtons) {
     })
   }
 }
+else{
+    console.log("O design partiu tudo")
+}
