@@ -1,3 +1,4 @@
+import {sendRequest} from '../app.js'
 /* section opened when page is visited */
 openBans()
 
@@ -10,7 +11,7 @@ Array.from(tabs).forEach(e => {
       /* its already selected, do nothing */
       return
     }
-    selected = document.getElementsByClassName('selected')
+    let selected = document.getElementsByClassName('selected')
     Array.from(selected).forEach(s => {
       s.className = s.className.replace(' selected', '')
     })
@@ -58,7 +59,7 @@ function subTabsNav() {
   
   Array.from(sub_tabs).forEach(e => {
     e.addEventListener('click', function(e) {
-      selected = document.getElementsByClassName('sub-tab selected') 
+      let selected = document.getElementsByClassName('sub-tab selected') 
       Array.from(selected).forEach(s => {
         s.className = s.className.replace(' selected', '')
       })
@@ -81,8 +82,8 @@ async function openBans() {
   content.innerHTML = ''
   let banButton = document.createElement('button');
   banButton.addEventListener('click', async () => {
-    url = new URL(SERVER + '/api/user/ban')
-    const rawResponse = await fetch(url.toString(), {
+    let url = '/api/user/ban'
+    const rawResponse = await sendRequest(url,{
       method: 'POST',
       headers: {
         'Accept': 'application:json',
@@ -97,8 +98,8 @@ async function openBans() {
     })
   })
   content.appendChild(banButton)
-  url = new URL(SERVER + '/api/bans')
-  let rawResponse = await fetch(url.toString())
+  let url = '/api/bans'
+  let rawResponse = await sendRequest(url,{method:"GET"})
   const contents = await rawResponse.json()
   const currDate = new Date()
   currDate.setHours(0,0,0,0)
@@ -107,12 +108,12 @@ async function openBans() {
     if (end_date.getTime() < currDate.getTime()) {
       continue
     }
-    url = new URL(SERVER + '/api/user/' + contents[key]['id_users'] + '/json')
-    rawResponse = await fetch(url.toString())
+    let url = '/api/user/' + contents[key]['id_users'] + '/json'
+    rawResponse = await sendRequest(url,{method:"GET"})
     const userInfo = await rawResponse.json()
 
-    url = new URL(SERVER + '/api/admin/' + contents[key]['id_administrator'] + '/json')
-    rawResponse = await fetch(url.toString())
+    url = '/api/admin/' + contents[key]['id_administrator'] + '/json'
+    rawResponse = await sendRequest(url,{method:"GET"})
     const adminInfo = await rawResponse.json()
 
     const banItem = document.createElement('article')
@@ -136,8 +137,8 @@ async function openBans() {
     removeBanButton.innerHTML = '<i class="fa-solid fa-times"></i> Remove Ban'
     removeBanButton.addEventListener('click', async (e) => {
       console.log(e.currentTarget.parentNode.id)
-      url = new URL(SERVER + '/api/bans')
-      rawResponse = await fetch(url.toString(), {
+      let url = '/api/bans'
+      rawResponse = await sendRequest(url.toString(), {
         method: 'DELETE',
         headers: {
           'Accept': 'application:json',
@@ -267,8 +268,8 @@ function openCreateUser() {
   form.appendChild(submit)
 
   form.addEventListener('submit', async () => {
-    url = new URL(SERVER + '/api/user')
-    const rawResponse = await fetch(url.toString(), {
+    let url =  '/api/user'
+    const rawResponse = await sendRequest(url.toString(), {
       method: 'POST',
       headers: {
         'Accept': 'application:json',
