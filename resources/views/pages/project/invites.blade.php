@@ -52,7 +52,8 @@
         <section class="search-collaborator">
             <div class="search_bar">
                 <i class="fa-solid fa-search" alt="search"></i>
-                <input class="search-user" type="text" placeholder="Search user...">
+                <label for="search">Search user</label>
+                <input class="search-user" type="text" placeholder="Search user..." name="search">
             </div>
             <section class="user-results" style="display:hidden"></section>
         </section>
