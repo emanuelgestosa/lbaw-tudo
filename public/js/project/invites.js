@@ -232,7 +232,7 @@ var createUserResultCards = function createUserResultCards(users) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var user = _step.value;
-      var userCard = "\n            <article class=\"user-card\"  style=\"margin:0.5em;padding:1em;display:flex;border:1px solid blue;border-radius:1em;\">\n            <section class=\"user-card-name\">\n            <p>Name ".concat(user.name, "</p>\n            <p>Username ").concat(user.username, "</p>\n            </section>\n            <section class=\"user-card-send-invite\">\n                <i class=\"fa-solid fa-envelope\"></i>\n            </section>            \n            </article>\n            ");
+      var userCard = "\n            <article class=\"user-card card\" user-id=".concat(user.id, "\">\n            <section class=\"user-card-name\">\n            <p>Name ").concat(user.name, "</p>\n            <p>Username ").concat(user.username, "</p>\n            </section>\n            <section class=\"user-card-send-invite\">\n                <i class=\"fa-solid fa-envelope\"></i>\n            </section>            \n            </article>\n            ");
       cards += userCard;
     }
   } catch (err) {
@@ -245,7 +245,7 @@ var createUserResultCards = function createUserResultCards(users) {
 var userCardEventGoToProfile = function userCardEventGoToProfile(card) {
   var cardUserId = card.getAttribute('user-id');
   card.querySelector('section.user-card-name').addEventListener('click', function () {
-    window.location = window.SERVER + '/user/' + cardUserId;
+    window.location = window.location.origin + '/user/' + cardUserId;
   });
 };
 var userCardSendInvite = function userCardSendInvite(card) {
@@ -256,7 +256,7 @@ var userCardSendInvite = function userCardSendInvite(card) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            op = document.querySelector('section.invite-content');
+            op = document.querySelector('meta[project-id]');
             projectId = op.getAttribute('project-id');
             idInviter = op.getAttribute('user-id');
             idInvitee = cardUserId;
@@ -346,7 +346,7 @@ var createInviteCards = function createInviteCards(invites) {
   try {
     for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
       var invite = _step3.value;
-      var inviteCard = "\n    <article class=\"project-invite-card col-12 col-md-6 col-lg-4\" project-id=\"".concat(invite.projectId, "\" invite-id=\"").concat(invite.id, "\">\n        <div class=\"card shadow\">\n            <div class=\"card-body\">\n             <h5 class=\"card-title\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>  Invite to Tu-do</h5>\n             <p class=\"card-text text-truncate\" title=\"You were invited by Ricardo to the Tu-do project\">\n             From: <a href=\"/user/").concat(invite.inviterId, "\">").concat(invite.inviterName, "</a> <br> To: <a href=\"/user/").concat(invite.inviteeId, "\">").concat(invite.inviteeName, "</a>\n             </p>\n             <button class=\"btn btn primary\" closed=\"\">Delete Invite</button>\n             </div>\n        </div>\n    </article>");
+      var inviteCard = "\n    <article class=\"project-invite-card col-12 col-md-6 col-lg-4\" project-id=\"".concat(invite.id_project, "\" invite-id=\"").concat(invite.id, "\">\n        <div class=\"card shadow\">\n            <div class=\"card-body\">\n             <h5 class=\"card-title\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>  Invite to Tu-do</h5>\n             <p class=\"card-text text-truncate\" title=\"You were invited by Ricardo to the Tu-do project\">\n             From: <a href=\"/user/").concat(invite.inviter.id, "\">").concat(invite.inviter.name, "</a> <br> To: <a href=\"/user/").concat(invite.invitee.id, "\">").concat(invite.invitee.name, "</a>\n             </p>\n             <button class=\"btn btn primary\" closed=\"\">Delete Invite</button>\n             </div>\n        </div>\n    </article>");
       cards += inviteCard;
     }
   } catch (err) {
@@ -386,29 +386,33 @@ var getProjectInvites = /*#__PURE__*/function () {
   };
 }();
 var bigChaq = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(id) {
+    var projectId, invites, cards, cardContainer;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            _context6.t0 = console;
+            projectId = document.querySelector("meta[project-id]").getAttribute("project-id");
             _context6.next = 3;
-            return getProjectInvites(3);
+            return getProjectInvites(projectId);
           case 3:
-            _context6.t1 = _context6.sent;
-            _context6.t0.log.call(_context6.t0, _context6.t1);
-          case 5:
+            invites = _context6.sent;
+            cards = createInviteCards(invites);
+            cardContainer = document.querySelector("div.container > div");
+            cardContainer.innerHTML += cards;
+            _context6.next = 9;
+            return deleteInvitesAjax();
+          case 9:
           case "end":
             return _context6.stop();
         }
       }
     }, _callee6);
   }));
-  return function bigChaq() {
+  return function bigChaq(_x5) {
     return _ref6.apply(this, arguments);
   };
 }();
-bigChaq();
 // Eliminar convites
 var deleteInvitesAjax = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
@@ -488,7 +492,7 @@ var deleteInvitesAjax = /*#__PURE__*/function () {
     return _ref7.apply(this, arguments);
   };
 }();
-deleteInvitesAjax();
+bigChaq();
 })();
 
 /******/ })()
