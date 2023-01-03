@@ -30,9 +30,9 @@ const handleInviteResponse = async (response) => {
 }
 const createUserResultCards= (users) => {
   let cards = ''
-  for (const invite of invites) {
-    const inviteCard =`
-    <article class="user-card  col-12 col-md-6 col-lg-4" user-id="${user.id}">
+  for (const user of users) {
+    const userCard =`
+    <article class="user-card" user-id="${user.id}">
         <div class="card shadow">
             <div class="card-body">
              <h5 class="card-title"><i class="fa fa-envelope" aria-hidden="true"></i> Invite to Tu-do</h5>
@@ -45,7 +45,7 @@ const createUserResultCards= (users) => {
              </div>
         </div>
     </article>`
-    cards += inviteCard
+    cards += userCard
   }
   return cards
 }

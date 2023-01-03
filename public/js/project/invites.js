@@ -232,7 +232,7 @@ var createUserResultCards = function createUserResultCards(users) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var user = _step.value;
-      var userCard = "\n            <article class=\"user-card card\" user-id=".concat(user.id, "\">\n            <section class=\"user-card-name\">\n            <p>Name ").concat(user.name, "</p>\n            <p>Username ").concat(user.username, "</p>\n            </section>\n            <section class=\"user-card-send-invite\">\n                <i class=\"fa-solid fa-envelope\"></i>\n            </section>            \n            </article>\n            ");
+      var userCard = "\n    <article class=\"user-card\" user-id=\"".concat(user.id, "\">\n        <div class=\"card shadow\">\n            <div class=\"card-body\">\n             <h5 class=\"card-title\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i> Invite to Tu-do</h5>\n             <p class=\"card-text text-truncate\" title=\"You were invited by Ricardo to the Tu-do project\"></p>\n            <section class=\"user-card-name\">\n            <p>Name ").concat(user.name, "</p>\n            <p>Username ").concat(user.username, "</p>\n            </section>\n             <button class=\"btn btn primary\" closed=\"\">Send Invite</button>\n             </div>\n        </div>\n    </article>");
       cards += userCard;
     }
   } catch (err) {
@@ -250,7 +250,7 @@ var userCardEventGoToProfile = function userCardEventGoToProfile(card) {
 };
 var userCardSendInvite = function userCardSendInvite(card) {
   var cardUserId = card.getAttribute('user-id');
-  card.querySelector('section.user-card-send-invite').addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+  card.querySelector('button.btn').addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
     var op, projectId, idInviter, idInvitee, url, data, options, response;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
