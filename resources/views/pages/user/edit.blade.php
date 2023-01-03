@@ -63,7 +63,7 @@
         </div>
         <div class="container">
           <div id= "pfp">
-          @if (Storage::exists("/profile_pics/".Auth::user()->id ))
+          @if (Storage::disk('public')->exists("/profile_pics/".Auth::user()->id))
           <img src="{{ asset('storage/profile_pics/'.Auth::user()->id) }}" alt="Profile Pic" title="" width=175 height=175>
           @else 
           <img src="/img/pfp_user/default.jpg" alt="Profile Pic" width=175 height=175>

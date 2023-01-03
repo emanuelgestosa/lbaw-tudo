@@ -161,8 +161,8 @@ class UserController extends Controller
       if($request->file('profile_pic') != NULL){
         $file_content = $request->file('profile_pic')->get();
         $path = "/profile_pics/".$id;
-        if (Storage::exists($path)) {
-            Storage::delete($path);
+        if (Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
         }
         if(!Storage::disk('public')->put($path, $file_content)) {
           return false;
