@@ -2528,6 +2528,15 @@ paths:
 
 ### 1. Product presentation
 
+Tu-Do allows the user to create and participate in projects with his
+coleages. There they are able to create boards, and inside them create columns
+to organize their tasks. You can invite and accept invites to other projects,
+and leave any project whenever you want.
+You can edit your profile to your liking, including your profile picture and
+set projects as favorite so you can more easily find them.
+
+> URL to the product: http://lbaw2215.lbaw.fe.up.pt
+
 ### 2. Video presentation
 
 ## Revision history
