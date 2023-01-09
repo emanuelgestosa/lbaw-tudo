@@ -1,5 +1,3 @@
-# pa
-
 # PA: Product and Presentation
 
 > Tu-Do is a tool designed to  be an interactive and easy way of managing projects. It uses interactive, intuitive, dynamic and visual interfaces and can be used for personal, small and big projects! One can enroll in multiple projects and organize them as they want!
@@ -7,6 +5,42 @@
 ## A9: Product
 
 ### 1. Installation
+
+```sh=
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+php artisan db:seed
+
+rm .env
+cp .env.production .env
+
+npm run dev
+
+# Login In Docker
+docker login git.fe.up.pt:5050
+
+./upload_image.sh
+```
+
+```sh=
+#!/bin/bash
+
+# Stop execution if a step fails
+set -e
+
+IMAGE_NAME=git.fe.up.pt:5050/lbaw/lbaw2223/lbaw2215 # Replace with your group's image name
+
+# Ensure that dependencies are available
+composer install
+php artisan clear-compiled
+php artisan optimize
+
+#docker buildx build --push --platform linux/amd64 -t $IMAGE_NAME .
+docker build -t $IMAGE_NAME .
+docker push $IMAGE_NAME
+```
 
 ### 2. Usage
 
@@ -31,8 +65,6 @@
 To mark a column as a column for completed tasks, the user needs to check
 a box. We provide a help text that can be revealed by hovering a question mark
 to tell the user the function of the checkbox.
-
-ADD IMAGE!!!!!
 
 ### 4. Input validation
 
@@ -77,6 +109,44 @@ We ended-up agreeing on a 26 out of 28 score, since we had some checkmarks unche
 - "Open Graph" tags were added
 
 ### 6. HTML & CSS Validation
+
+[home](check-html-css/Tu-Do.pdf)
+
+[about](check-html-css/about-us.pdf)
+
+[contacts](check-html-css/contacts.pdf)
+
+[create board](check-html-css/create-board.pdf)
+
+[create column](check-html-css/create-column.pdf)
+
+[edit profile](check-html-css/edit-profile.pdf)
+
+[faq](check-html-css/faq.pdf)
+
+[invite project](check-html-css/invite-project.pdf)
+
+[login](check-html-css/login.pdf)
+
+[favorites](check-html-css/my-favorites.pdf)
+
+[my invites](check-html-css/my-invites.pdf)
+
+[profile](check-html-css/my-profile.pdf)
+
+[projects](check-html-css/my-projects.pdf)
+
+[other person](check-html-css/other-person.pdf)
+
+[see board](check-html-css/see-board.pdf)
+
+[signup](check-html-css/signup.pdf)
+
+[task](check-html-css/task.pdf)
+
+[team](check-html-css/team.pdf)
+
+[workspace](check-html-css/workspace.pdf)
 
 ### 7. Revisions to the Project
 
@@ -2555,6 +2625,9 @@ set projects as favorite so you can more easily find them.
 
 ### 2. Video presentation
 
+![image](uploads/e8f7b14c4a48f005801bc5d60fedc13f/image.png)
+[video](https://git.fe.up.pt/lbaw/lbaw2223/lbaw2215/-/blob/main/docs/lbaw2215.mp4)
+
 ## Revision history
 
 GROUP2215, 03/01/2023
@@ -2563,3 +2636,4 @@ GROUP2215, 03/01/2023
 * José Leandro Rodrigues da Silva, up202008061@edu.fe.up.pt
 * Mariana Solange Monteiro Rocha, up202004656@edu.fe.up.pt
 * Martim Afonso Rodrigues dos Santos Castro Videira, up202006289@edu.fe.up.pt
+
